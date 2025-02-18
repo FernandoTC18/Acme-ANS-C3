@@ -22,6 +22,7 @@
 			<acme:menu-suboption code="master.menu.anonymous.favourite-link-fernando" action="https://www.youtube.com/"/>
 			<acme:menu-suboption code="master.menu.anonymous.favourite-link-josemgarciar" action="https://www.formula1.com/"/>
 			<acme:menu-suboption code="master.menu.anonymous.favourite-link-julrompar" action="https://www.nytimes.com/crosswords"/>
+			<acme:menu-suboption code="master.menu.anonymous.favourite-link-petcargon" action="https://sites.google.com/site/populardoodlegames/google-snake"/>
 			
 		</acme:menu-option>
 
