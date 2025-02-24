@@ -36,14 +36,25 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>acme-framework</name>
+			<name>classes</name>
 			<type>2</type>
-			<locationURI>WORKSPACE_LOC/Frameworks/Acme-Framework-25.1.0/target/classes</locationURI>
+			<locationURI>WORKSPACE_LOC/Frameworks/Acme-Framework-25.2.0/target/classes</locationURI>
 		</link>
 		<link>
 			<name>target_classes</name>
 			<type>2</type>
-			<location>//Users/fernando/Documents/Universidad/DP2/Proyecto/Workspace-25/Projects/Acme-ANS-D01/target/classes/</location>
+			<location>//Users/fernando/Documents/Universidad/DP2/Proyecto/Workspace-25/Projects/Acme-ANS-D01/target/classes</location>
 		</link>
 	</linkedResources>
+	<filteredResources>
+		<filter>
+			<id>1740419692546</id>
+			<name></name>
+			<type>30</type>
+			<matcher>
+				<id>org.eclipse.core.resources.regexFilterMatcher</id>
+				<arguments>node_modules|\.git|__CREATED_BY_JAVA_LANGUAGE_SERVER__</arguments>
+			</matcher>
+		</filter>
+	</filteredResources>
 </projectDescription>
