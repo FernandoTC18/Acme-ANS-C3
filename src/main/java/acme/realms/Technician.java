@@ -3,10 +3,13 @@ package acme.realms;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractRole;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
+import acme.client.components.validation.Optional;
+import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,7 +28,6 @@ public class Technician extends AbstractRole {
 	@Mandatory
 	@Column(unique = true)
 	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$")
-	@Automapped
 	private String				licenseNumber;
 
 	@Mandatory
@@ -39,14 +41,17 @@ public class Technician extends AbstractRole {
 	private String				specialization;
 
 	@Mandatory
+	@Valid
 	@Automapped
 	private Boolean				anualHealthTest;
 
 	@Mandatory
 	@Automapped
+	@ValidNumber(min = 0)
 	private Integer				yearsOfExperience;
 
 	@Automapped
+	@Optional
 	@ValidString(min = 0, max = 255)
 	private String				certifications;
 	// Derived attributes -----------------------------------------------------
