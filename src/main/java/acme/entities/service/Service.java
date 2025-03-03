@@ -1,15 +1,14 @@
-
 package acme.entities.service;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.datatypes.Money;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
+import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
 import acme.client.components.validation.ValidUrl;
@@ -38,18 +37,17 @@ public class Service extends AbstractEntity {
 	private String				pictureLink;
 
 	@Mandatory
-	@ValidNumber
+	@ValidNumber(min = 0)
 	@Automapped
 	private Integer				averageDwellTime;
 
 	@Optional
 	@ValidString(pattern = "^[A-Z]{4}-[0-9]{2}$")
 	@Column(unique = true)
-	@Automapped
 	private String				promotionCode;
 
 	@Optional
-	@Valid
+	@ValidMoney
 	@Automapped
 	private Money				money;
 	// Derived attributes -----------------------------------------------------
