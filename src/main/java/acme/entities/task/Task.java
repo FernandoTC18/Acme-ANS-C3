@@ -44,19 +44,19 @@ public class Task extends AbstractEntity {
 	private Integer				estimatedDuration;
 
 	@Mandatory
-	@ManyToOne
+	@ManyToOne(optional = false)
 	@Automapped
 	@Valid
 	private MaintenanceRecord	maintenanceRecord;
 
 	@Mandatory
-	@ManyToOne
+	@ManyToOne(optional = false)
 	@Automapped
 	@Valid
 	private Technician			technician;
 
 	@Mandatory
-	@ManyToOne
+	@ManyToOne(optional = false)
 	@Automapped
 	@Valid
 	private Aircraft			aircraft;
