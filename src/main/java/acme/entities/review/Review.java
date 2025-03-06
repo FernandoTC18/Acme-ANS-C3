@@ -4,8 +4,11 @@ package acme.entities.review;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.Valid;
 
+import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
@@ -18,7 +21,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Review {
+public class Review extends AbstractEntity {
 
 	// Serialisation version --------------------------------------------------
 
@@ -33,7 +36,7 @@ public class Review {
 
 	@Mandatory
 	@ValidMoment(past = true)
-	@Automapped
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date				moment;
 
 	@Mandatory
@@ -42,7 +45,7 @@ public class Review {
 	private String				subject;
 
 	@Mandatory
-	@ValidString(min = 0, max = 50)
+	@ValidString(min = 0, max = 255)
 	@Automapped
 	private String				text;
 
