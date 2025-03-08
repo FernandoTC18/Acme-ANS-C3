@@ -39,7 +39,7 @@ public class FlightCrew extends AbstractRole {
 	private String					phoneNumber;
 
 	@Mandatory
-	@ValidString(max = 255)
+	@ValidString(min = 1, max = 255)
 	@Automapped
 	private String					languageSkills;
 
@@ -49,12 +49,12 @@ public class FlightCrew extends AbstractRole {
 	private FlightCrewAvailability	availability;
 
 	@Mandatory
-	@ValidMoney
+	@ValidMoney(min = 0, max = 1000000)
 	@Automapped
 	private Money					salary;
 
 	@Optional
-	@ValidNumber
+	@ValidNumber(min = 0, max = 120)
 	@Automapped
 	private Integer					experienceYears;
 
