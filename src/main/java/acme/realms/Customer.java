@@ -16,7 +16,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Customers extends AbstractRole {
+public class Customer extends AbstractRole {
 
 	// Serialisation version --------------------------------------------------
 
@@ -35,17 +35,17 @@ public class Customers extends AbstractRole {
 	private String				phoneNumber;
 
 	@Mandatory
-	@ValidString(min = 0, max = 255)
+	@ValidString(min = 1, max = 255)
 	@Automapped
 	private String				address;
 
 	@Mandatory
-	@ValidString(min = 0, max = 50)
+	@ValidString(min = 1, max = 50)
 	@Automapped
 	private String				city;
 
 	@Mandatory
-	@ValidString(min = 0, max = 50)
+	@ValidString(min = 1, max = 50)
 	@Automapped
 	private String				country;
 
