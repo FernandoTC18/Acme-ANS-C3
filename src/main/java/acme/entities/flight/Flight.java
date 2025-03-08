@@ -2,11 +2,8 @@
 package acme.entities.flight;
 
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.OneToMany;
 import javax.persistence.Transient;
-import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.datatypes.Money;
@@ -15,7 +12,7 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidString;
-import acme.entities.leg.Leg;
+import acme.client.helpers.SpringHelper;
 
 public class Flight extends AbstractEntity {
 
@@ -33,45 +30,61 @@ public class Flight extends AbstractEntity {
 	@Mandatory
 	@ValidMoney(min = 0)
 	@Automapped
-	private Money				price;
+	private Money				cost;
 
 	@Optional
 	@ValidString(max = 255)
 	@Automapped
 	private String				description;
 
-	@Mandatory
-	@Valid
-	@OneToMany()
-	private List<Leg>			legs;
-
 
 	@Transient
 	public Date getScheduledDeparture() {
-		Leg firstLeg = this.legs.get(0);
-		return firstLeg.getScheduledDeparture();
+		Date result;
+		FlightRepository repository;
+
+		repository = SpringHelper.getBean(FlightRepository.class);
+		result = repository.computeScheduledDepartureByFlight(this.getId());
+		return result;
 	}
 
 	@Transient
 	public Date getScheduledArrival() {
-		Leg lastLeg = this.legs.get(this.legs.size() - 1);
-		return lastLeg.getScheduledArrival();
+		Date result;
+		FlightRepository repository;
+
+		repository = SpringHelper.getBean(FlightRepository.class);
+		result = repository.computeScheduledArrivalByFlight(this.getId());
+		return result;
 	}
 
 	@Transient
 	public String getOriginCity() {
-		Leg firstLeg = this.legs.get(0);
-		return firstLeg.getDepartureAirport().getCity();
+		String result;
+		FlightRepository repository;
+
+		repository = SpringHelper.getBean(FlightRepository.class);
+		result = repository.computeOriginCityByFlight(this.getId());
+		return result;
 	}
 
 	@Transient
 	public String getArrivalCity() {
-		Leg lastLeg = this.legs.get(this.legs.size() - 1);
-		return lastLeg.getArrivalAirport().getCity();
+		String result;
+		FlightRepository repository;
+
+		repository = SpringHelper.getBean(FlightRepository.class);
+		result = repository.computeArrivalCityByFlight(this.getId());
+		return result;
 	}
 
 	@Transient
 	public Integer getLayoversNumber() {
-		return this.legs.size() - 1;
+		Integer result;
+		FlightRepository repository;
+
+		repository = SpringHelper.getBean(FlightRepository.class);
+		result = repository.computeLegsNumberByFlight(this.getId());
+		return result;
 	}
 }
