@@ -5,5 +5,6 @@ acme.validation.leg.correctFlightNumber.message = El código iata del tramo debe
 acme.validation.leg.correctMinScheduleDeparture.message = La salida programada debe ser como mínimo en el momento actual
 acme.validation.leg.correctMinScheduleArrival.message = La llegada programada debe ser como mínimo un minuto después de la salida programada
 acme.validation.manager.identifiernumber.message = Las 2/3 primeras letras del identificador deben corresponderse con las iniciales del manager
+acme.validation.flightassignment.lastupdate.message = La ultima actualización de una asignación de vuelo debe ser previa a la fecha actual.
 
  
