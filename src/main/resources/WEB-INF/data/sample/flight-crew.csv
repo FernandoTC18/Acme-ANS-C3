@@ -1,0 +1,5 @@
+key,employee-code,phone-number,language-skills,availability,salary,experience-years,key:airline,key:userAccount
+member-01,JD123456,+34000000000,l,AVAILABLE,EUR 0.00,0,airline-01,user-account-member-01
+member-02,AW567890,+34123456789,lo,ON_VACATION,USD 1.00,1,airline-02,user-account-member-02
+member-03,PP000000,+34555555555,天飽雲馬消根清歡寫尾做兒幫,ON_LEAVE,GBP 500.00,10,airline-03,user-account-member-03
+member-04,MK111111,+34888888888,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor.",AVAILABLE,USD 999999.00,119,airline-04,user-account-member-04
