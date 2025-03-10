@@ -1,0 +1,6 @@
+key,model,registrationNumber,capacity,cargoWeight,status,details
+aircraft-01,L,L,1,2000,ACTIVE_SERVICE,
+aircraft-02,Lo,Lo,2,2001,UNDER_MAINTENANCE,L
+aircraft-03,天飽雲馬消根清歡寫尾做兒幫,天飽雲馬消根清歡寫尾做兒幫,128,26000,ACTIVE_SERVICE,天飽雲馬消根清歡寫尾做兒幫
+aircraft-04,Lorem ipsum dolor sit amet consectetur adipiscin,Lorem ipsum dolor sit amet consectetur adipiscin,254,49999,UNDER_MAINTENANCE,Lorem ipsum dolor sit amet consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*
+aircraft-05,Lorem ipsum dolor sit amet consectetur adipiscing,Lorem ipsum dolor sit amet consectetur adipiscing,255,50000,ACTIVE_SERVICE,Lorem ipsum dolor sit amet consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor**
