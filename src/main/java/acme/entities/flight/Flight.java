@@ -3,7 +3,10 @@ package acme.entities.flight;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
+import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.datatypes.Money;
@@ -13,7 +16,15 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidString;
 import acme.client.helpers.SpringHelper;
+import acme.constraints.ValidFlight;
+import acme.realms.Manager;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
+@Entity
+@ValidFlight
 public class Flight extends AbstractEntity {
 
 	public static final long	serialVersionUID	= 1L;
@@ -36,6 +47,11 @@ public class Flight extends AbstractEntity {
 	@ValidString(max = 255)
 	@Automapped
 	private String				description;
+
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	Manager						manager;
 
 
 	@Transient

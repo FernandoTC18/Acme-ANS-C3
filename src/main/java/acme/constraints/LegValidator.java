@@ -47,9 +47,10 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 				Leg nextLeg;
 
 				legsByFlight = this.repository.computeLegsByFlight(leg.getFlight().getId());
+				if(!legsByFlight.contains(leg)){
 				legsByFlight.add(leg);
 				legsByFlight.sort(Comparator.comparing(Leg::getScheduledDeparture));
-
+				}
 				int overlappedLegs = 0;
 				for (int i = 0; i < legsByFlight.size() - 1; i++) {
 

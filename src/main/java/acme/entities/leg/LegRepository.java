@@ -14,6 +14,6 @@ public interface LegRepository extends AbstractRepository {
 	@Query("select l from Leg l where l.flight.id=:flightId order by l.scheduledDeparture asc")
 	List<Leg> computeLegsByFlight(int flightId);
 
-	@Query("select a.iataCode from Airline a where a.iataCode==:iataCodeLeg")
+	@Query("select a.iataCode from Airline a where a.iataCode=:iataCodeLeg")
 	String computeAirlineIataCode(String iataCodeLeg);
 }
