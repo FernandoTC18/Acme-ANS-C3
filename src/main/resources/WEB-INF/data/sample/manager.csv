@@ -1,0 +1,4 @@
+key,key:userAccount,identifierNumber,yearsOfExperience,birthDate,pictureLink
+manager-01,user-account-manager-01,MM234567,4,2004/09/04 15:55,
+manager-02,user-account-manager-02,MM123456,0,2000/01/01 00:00,https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbt5HV8wLn91Z5FsXOIIGdUVLeT1TESHhDRw&s
+manager-03,user-account-manager-03,MMA234567,120,2020/02/02 15:30,
