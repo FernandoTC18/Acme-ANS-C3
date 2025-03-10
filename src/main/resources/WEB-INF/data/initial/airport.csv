@@ -1,0 +1,5 @@
+key,name,iataCode,operationalScope,city,country,webSite,email,phoneNumber
+airport-01,Madrid-Barajas Adolfo Suárez,MAD,INTERNATIONAL,Madrid,Spain,http://lorem.com/ipsum,info@aena.es,+34911888333
+airport-02,Los Angeles International,LAX,DOMESTIC,Los Angeles,United States,http://laAirport.com/ipsum,contact@flylax.com,+49911222333
+airport-03,Frankfurt am Main,FRA,REGIONAL,Frankfurt,Germany,http://lorem.com/ipsum,info@fraport.de,+72912722333
+airport-04,Aeropuerto de Badajoz,BJZ,DOMESTIC,Badajoz,Spain,http://example.org/a/b?,badajoz@aena.es,+34965722333
