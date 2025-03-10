@@ -1,0 +1,6 @@
+key,moment,status,inspectionDueDate,estimatedCost,notes,key:aircraft,key:technician
+maintenance-record-01,2000/01/01 00:00,PENDING,2000/01/01 00:00,EUR 0.00,,aircraft-01,technician-01
+maintenance-record-02,2000/01/01 00:01,IN_PROGRESS,2000/01/01 00:01,EUR 0.01,L,aircraft-02,technician-02
+maintenance-record-03,2015/11/23 15:47,COMPLETED,2035/06/05 14:52,USD 1234.56,天飽雲馬消根清歡寫尾做兒幫,aircraft-03,technician-01
+maintenance-record-04,2025/03/09 12:34,PENDING,2200/12/31 23:58,EUR 999999.99,Lorem ipsum dolor sit amet consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*,aircraft-04,technician-02
+maintenance-record-05,2025/03/09 12:35,IN_PROGRESS,2200/12/31 23:59,EUR 1000000.00,Lorem ipsum dolor sit amet consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor**,aircraft-05,technician-01
