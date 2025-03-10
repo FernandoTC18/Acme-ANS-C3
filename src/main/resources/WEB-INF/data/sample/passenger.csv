@@ -1,0 +1,5 @@
+key,name,email,passportNumber,birth,specialNeeds
+passenger-01,José,jos@example.acme,ABC123,2012/01/01 0:00,asñdlkjf
+passenger-02,Fernando,fer@example.acme,X9Y8Z7W,2002/12/31 23:59,ipsum dolor si
+passenger-03,Julián,a@b.e,12345678,2000/01/01 0:00,Lorem ipsum dolor sit amet
+passenger-04,Peter,a@b.es,AB12CD345,2009/01/01 0:00,añsldkjhfgio
