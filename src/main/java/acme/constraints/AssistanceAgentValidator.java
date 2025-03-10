@@ -29,9 +29,11 @@ public class AssistanceAgentValidator extends AbstractValidator<ValidAssistanceA
 		else {
 			boolean correctEmployeeCode;
 			DefaultUserIdentity identity = assistanceAgent.getUserAccount().getIdentity();
-			String employeeCode = assistanceAgent.getEmployeeCode();
+			String[] employeeCode = assistanceAgent.getEmployeeCode().trim().split("");
+			String[] name = identity.getName().trim().split("");
+			String[] surname = identity.getSurname().trim().split("");
 
-			correctEmployeeCode = employeeCode.charAt(0) == identity.getName().charAt(0) && employeeCode.charAt(1) == identity.getSurname().charAt(0);
+			correctEmployeeCode = employeeCode[0].equals(name[0]) && employeeCode[1].equals(surname[0]);
 			super.state(context, correctEmployeeCode, "employeeCode", "acme.validation.trackingLog.invalid-employee-code.message");
 		}
 
