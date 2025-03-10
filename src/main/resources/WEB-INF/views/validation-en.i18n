@@ -6,5 +6,6 @@ acme.validation.leg.correctMinScheduleDeparture.message = Schedule departure mus
 acme.validation.leg.correctMinScheduleArrival.message = Schedule arrival must be at the very least after one minute of the schedule departure
 acme.validation.manager.identifiernumber.message = The first 2/3 letters of the identifier must correspond to the manager's initials
 acme.validation.flightassignment.lastupdate.message = The last update of a flight assignment must be prior to the current date.
+acme.validation.activitylog.registrationMoment.message = The registration moment of an activity log must be after the leg has taken place.
 
  
