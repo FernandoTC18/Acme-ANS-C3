@@ -6,7 +6,6 @@ import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
-import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.entities.maintenanceRecord.MaintenanceRecord;
 import acme.entities.task.Task;
@@ -20,15 +19,13 @@ public class Involves extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
-	@Automapped
-	@Valid
 	@Mandatory
+	@Valid
 	@ManyToOne(optional = false)
 	private MaintenanceRecord	maintenanceRecord;
 
-	@Automapped
-	@Valid
 	@Mandatory
+	@Valid
 	@ManyToOne(optional = false)
 	private Task				task;
 }
