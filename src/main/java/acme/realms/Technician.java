@@ -26,8 +26,8 @@ public class Technician extends AbstractRole {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	@Column(unique = true)
 	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$")
+	@Column(unique = true)
 	private String				licenseNumber;
 
 	@Mandatory
@@ -38,7 +38,7 @@ public class Technician extends AbstractRole {
 	@Mandatory
 	@ValidString(min = 1, max = 50)
 	@Automapped
-	private String				specialization;
+	private String				specialisation;
 
 	@Mandatory
 	@Valid
@@ -46,13 +46,13 @@ public class Technician extends AbstractRole {
 	private Boolean				annualHealthTest;
 
 	@Mandatory
-	@Automapped
 	@ValidNumber(min = 0, max = 120)
+	@Automapped
 	private Integer				yearsOfExperience;
 
-	@Automapped
 	@Optional
 	@ValidString(min = 0, max = 255)
+	@Automapped
 	private String				certifications;
 	// Derived attributes -----------------------------------------------------
 
