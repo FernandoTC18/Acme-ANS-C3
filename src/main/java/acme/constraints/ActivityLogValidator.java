@@ -8,6 +8,7 @@ import javax.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.validation.AbstractValidator;
+import acme.client.helpers.MomentHelper;
 import acme.entities.activitylog.ActivityLog;
 import acme.entities.activitylog.ActivityLogRepository;
 
@@ -35,14 +36,14 @@ public class ActivityLogValidator extends AbstractValidator<ValidActivityLog, Ac
 			boolean correctDate;
 			Date legDate;
 
-			ActivityLog log = this.activityLogRepository.getActivityLogByFlightAssignmentId(activityLog.getLogger().getId());
-			legDate = log.getLogger().getLeg().getScheduledArrival();
+			ActivityLog log = this.activityLogRepository.getActivityLogByFlightAssignmentId(activityLog.getFlightAssignment().getId());
+			legDate = log.getFlightAssignment().getLeg().getScheduledArrival();
 
 			Date logDate = activityLog.getRegistrationMoment();
 
-			correctDate = logDate.after(logDate);
+			correctDate = MomentHelper.isBeforeOrEqual(logDate, legDate);
 
-			super.state(context, correctDate, "registrationMoment", "");
+			super.state(context, correctDate, "registrationMoment", "acme.validation.activitylog.registrationMoment.message");
 		}
 
 		res = !super.hasErrors(context);
