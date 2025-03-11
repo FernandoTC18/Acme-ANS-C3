@@ -51,7 +51,7 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 
 				legsByFlight.add(leg);
 
-				legsByFlight.sort(Comparator.comparing(Leg::getOrder));
+				legsByFlight.sort(Comparator.comparing(Leg::getSequenceOrder));
 				int overlappedLegs = 0;
 				for (int i = 1; i < legsByFlight.size(); i++) {
 
@@ -79,8 +79,8 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 
 				min = MomentHelper.getCurrentMoment();
 
-				correctMinScheduleDeparture = !leg.getScheduledDeparture().before(min);
-				super.state(context, correctMinScheduleDeparture, "scheduledeparture", "acme.validation.leg.correctMinScheduleDeparture.message");
+				correctMinScheduleDeparture = !MomentHelper.isBefore(leg.getScheduledDeparture(), min);
+				super.state(context, correctMinScheduleDeparture, "scheduledDeparture", "acme.validation.leg.correctMinScheduleDeparture.message");
 
 			}
 			{
@@ -89,8 +89,8 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 
 				min = MomentHelper.deltaFromMoment(leg.getScheduledDeparture(), 1, ChronoUnit.MINUTES);
 
-				correctMinScheduleArrival = !leg.getScheduledDeparture().before(min);
-				super.state(context, correctMinScheduleArrival, "schedulearrival", "acme.validation.leg.correctMinScheduleArrival.message");
+				correctMinScheduleArrival = !MomentHelper.isBefore(leg.getScheduledArrival(), min);
+				super.state(context, correctMinScheduleArrival, "scheduledArrival", "acme.validation.leg.correctMinScheduleArrival.message");
 			}
 		}
 		result = !super.hasErrors(context);

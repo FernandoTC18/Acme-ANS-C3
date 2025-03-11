@@ -35,6 +35,7 @@ public class Flight extends AbstractEntity {
 	private String				tag;
 
 	@Mandatory
+	@Valid
 	@Automapped
 	private Boolean				selfTransferRequired;
 
@@ -51,7 +52,7 @@ public class Flight extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	Manager						manager;
+	private Manager				manager;
 
 
 	@Transient
@@ -100,7 +101,7 @@ public class Flight extends AbstractEntity {
 		FlightRepository repository;
 
 		repository = SpringHelper.getBean(FlightRepository.class);
-		result = repository.computeLegsNumberByFlight(this.getId());
+		result = repository.computeLegsNumberByFlight(this.getId()) - 1;
 		return result;
 	}
 }
