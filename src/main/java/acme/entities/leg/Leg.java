@@ -15,7 +15,9 @@ import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidMoment;
+import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
+import acme.client.helpers.MomentHelper;
 import acme.constraints.ValidLeg;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.airport.Airport;
@@ -32,7 +34,7 @@ public class Leg extends AbstractEntity {
 	public static final long	serialVersionUID	= 1L;
 
 	@Mandatory
-	@ValidString(min = 7, max = 7)
+	@ValidString(pattern = "^[A-Z]{3}\\d{4}$")
 	@Column(unique = true)
 	private String				flightNumber;
 
@@ -49,34 +51,39 @@ public class Leg extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@Automapped
-	LegStatus					status;
+	private LegStatus			status;
 
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	Airport						departureAirport;
+	private Airport				departureAirport;
 
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	Airport						arrivalAirport;
+	private Airport				arrivalAirport;
 
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	Aircraft					plane;
+	private Aircraft			plane;
 
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	Flight						flight;
+	private Flight				flight;
+
+	@Mandatory
+	@ValidNumber(min = 1)
+	@Automapped
+	private Integer				order;
 
 
 	@Transient
 	Double getDuration() {
-		Long scheD = this.scheduledDeparture.getTime();
-		Long scheA = this.scheduledArrival.getTime();
+		Date scheD = this.scheduledDeparture;
+		Date scheA = this.scheduledArrival;
 
-		return Double.valueOf((scheA - scheD) / (60 * 1000));
+		return Double.valueOf(MomentHelper.computeDuration(scheD, scheA).getSeconds() / 3600);
 	}
 }
