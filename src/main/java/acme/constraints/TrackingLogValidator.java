@@ -1,14 +1,18 @@
 
 package acme.constraints;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
 import javax.validation.ConstraintValidatorContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.validation.AbstractValidator;
+import acme.entities.claim.ClaimStatus;
 import acme.entities.trackingLog.TrackingLog;
 import acme.entities.trackingLog.TrackingLogRepository;
-import acme.entities.trackingLog.TrackingLogStatus;
 
 public class TrackingLogValidator extends AbstractValidator<ValidTrackingLog, TrackingLog> {
 
@@ -37,26 +41,45 @@ public class TrackingLogValidator extends AbstractValidator<ValidTrackingLog, Tr
 			{
 				boolean correctIndicator;
 				Double resolutionPercentage = trackingLog.getResolutionPercentage();
-				TrackingLogStatus indicator = trackingLog.getIndicator();
+				ClaimStatus indicator = trackingLog.getIndicator();
 
-				correctIndicator = resolutionPercentage < 100.0 && indicator == TrackingLogStatus.PENDING || resolutionPercentage == 100.0 && (indicator == TrackingLogStatus.ACCEPTED || indicator == TrackingLogStatus.REJECTED);
+				correctIndicator = resolutionPercentage == 100.0 && (indicator == ClaimStatus.ACCEPTED || indicator == ClaimStatus.REJECTED) || resolutionPercentage < 100.0 && indicator == ClaimStatus.PENDING;
 				super.state(context, correctIndicator, "indicator", "acme.validation.trackingLog.incorrect-indicator.message");
 			}
 			{
-				TrackingLog latestTrackingLog;
+				List<TrackingLog> logs;
 				boolean correctPercentage;
 
-				latestTrackingLog = this.repository.findLatestTrackingLogByClaimId(trackingLog.getClaim().getId());
+				logs = this.repository.findTrackingLogsByClaimId(trackingLog.getClaim().getId());
 
-				if (latestTrackingLog != null) {
-					correctPercentage = trackingLog.getResolutionPercentage() > latestTrackingLog.getResolutionPercentage();
-					super.state(context, correctPercentage, "resolutionPercentage", "acme.validation.trackingLog.invalid-resolution-percentage.message");
-				}
+				List<TrackingLog> allLogs = new ArrayList<>(logs);
+				if (!allLogs.contains(trackingLog))
+					allLogs.add(trackingLog);
+
+				allLogs.sort(Comparator.comparing(TrackingLog::getLastUpdateMoment));
+
+				double maxPercentage = 0.0;
+				correctPercentage = true;
+
+				for (TrackingLog log : allLogs)
+
+					if (log.getResolutionPercentage() <= maxPercentage) {
+
+						if (log.equals(trackingLog)) {
+							correctPercentage = false;
+							break;
+						}
+					} else
+
+						maxPercentage = log.getResolutionPercentage();
+
+				super.state(context, correctPercentage, "resolutionPercentage", "acme.validation.trackingLog.invalid-resolution-percentage.message");
+
 			}
 			{
 				boolean correctResolution;
 
-				if (!trackingLog.getIndicator().equals(TrackingLogStatus.PENDING)) {
+				if (!trackingLog.getIndicator().equals(ClaimStatus.PENDING)) {
 					correctResolution = trackingLog.getResolution() != null && !trackingLog.getResolution().trim().isEmpty();
 					super.state(context, correctResolution, "resolution", "acme.validation.trackingLog.mandatory-resolution.message");
 				}
