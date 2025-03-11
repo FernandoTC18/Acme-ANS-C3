@@ -1,5 +1,42 @@
 key,name,iataCode,operationalScope,city,country,webSite,email,phoneNumber
-airport-01,Madrid-Barajas Adolfo Suárez,MAD,INTERNATIONAL,Madrid,Spain,http://lorem.com/ipsum,info@aena.es,+34911888333
-airport-02,Los Angeles International,LAX,DOMESTIC,Los Angeles,United States,http://laAirport.com/ipsum,contact@flylax.com,+49911222333
-airport-03,Frankfurt am Main,FRA,REGIONAL,Frankfurt,Germany,http://lorem.com/ipsum,info@fraport.de,+72912722333
-airport-04,Aeropuerto de Badajoz,BJZ,DOMESTIC,Badajoz,Spain,http://example.org/a/b?,badajoz@aena.es,+34965722333
+#base entity,"","","","","","","",""
+airport-01,Lorem ipsum dolor sit ame,BJZ,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,+34898231200
+#name-standard,"","","","","","","",""
+airport-02,Lorem ipsum dolor sit ame,VCO,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,+34898231200
+airport-03,L,MSN,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,+34898231200
+airport-04,Lo,VXT,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,+34898231200
+airport-05,"Lorem ipsum dolor sit amet, consectetur adipiscin",YTS,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,+34898231200
+airport-06,"Lorem ipsum dolor sit amet, consectetur adipiscing",YTM,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,+34898231200
+airport-07,โลเร็ม อิปซัม,FFF,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,+34898231200
+airport-08,لوريم إيبسوم,WWW,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,+34898231200
+airport-09,洛伦·伊普森,AAA,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,+34898231200
+#operationalScope-standard,"","","","","","","",""
+airport-31,Lorem ipsum dolor sit ame,EEE,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,+34898231200
+airport-32,Lorem ipsum dolor sit ame,GGG,DOMESTIC,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,+34898231200
+airport-33,Lorem ipsum dolor sit ame,HHH,REGIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,+34898231200
+#city-standard,"","","","","","","",""
+airport-14,Lorem ipsum dolor sit ame,III,INTERNATIONAL,L,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,+34898231200
+airport-15,Lorem ipsum dolor sit ame,JJJ,INTERNATIONAL,Lo,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,+34898231200
+airport-16,Lorem ipsum dolor sit ame,KKK,INTERNATIONAL,"Lorem ipsum dolor sit amet, consectetur adipiscin",Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,+34898231200
+airport-17,Lorem ipsum dolor sit ame,LLL,INTERNATIONAL,"Lorem ipsum dolor sit amet, consectetur adipiscing",Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,+34898231200
+#country-standard,"","","","","","","",""
+airport-18,Lorem ipsum dolor sit ame,MMM,INTERNATIONAL,Lorem ipsum dolor sit ame,L,http://lorem.com/ipsum,acme@lorem-ipsum.org,+34898231200
+airport-19,Lorem ipsum dolor sit ame,NNN,INTERNATIONAL,Lorem ipsum dolor sit ame,Lo,http://lorem.com/ipsum,acme@lorem-ipsum.org,+34898231200
+airport-20,Lorem ipsum dolor sit ame,TTT,INTERNATIONAL,Lorem ipsum dolor sit ame,"Lorem ipsum dolor sit amet, consectetur adipiscin",http://lorem.com/ipsum,acme@lorem-ipsum.org,+34898231200
+airport-21,Lorem ipsum dolor sit ame,OOO,INTERNATIONAL,Lorem ipsum dolor sit ame,"Lorem ipsum dolor sit amet, consectetur adipiscing",http://lorem.com/ipsum,acme@lorem-ipsum.org,+34898231200
+#webSite-standard,"","","","","","","",""
+airport-22,Lorem ipsum dolor sit ame,GHT,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,"http://www.lorem-ipsum.org/dolor/sit/amet,/consectetur/adipiscing/elit,/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/",acme@lorem-ipsum.org,+34898231200
+airport-23,Lorem ipsum dolor sit ame,MNR,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://www.lorem-ipsum.org/dolor/sit.html,acme@lorem-ipsum.org,+34898231200
+airport-24,Lorem ipsum dolor sit ame,SIJ,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://example.org?a=1&b=2,acme@lorem-ipsum.org,+34898231200
+airport-25,Lorem ipsum dolor sit ame,NST,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://example.org?a&b,acme@lorem-ipsum.org,+34898231200
+#email-standard,"","","","","","","",""
+airport-27,Lorem ipsum dolor sit ame,QQQ,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,a@b.e,+34898231200
+airport-28,Lorem ipsum dolor sit ame,RRR,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,a@b.esx,+34898231200
+airport-29,Lorem ipsum dolor sit ame,SSS,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,lorem-ipsum@dolor.sit.amet.consectetur.adipiscing.elit.sed.do.eiusmod.tempor.incididunt.ut.labore.et.dolore.magna.aliqua.Ut.enim.ad.minim.veniam.quis.nostrud.exercitation.ullamco.laboris.nisi.ut.aliquip.ex.ea.commodo.consequat.duis.aute.irure.doloris.edu,+34898231200
+airport-30,Lorem ipsum dolor sit ame,TNT,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,lorem-ipsum@dolor.sit.amet.consectetur.adipiscing.elit.sed.do.eiusmod.tempor.incididunt.ut.labore.et.dolore.magna.aliqua.Ut.enim.ad.minim.veniam.quis.nostrud.exercitation.ullamco.laboris.nisi.ut.aliquip.ex.ea.commodo.consequat.duis.aute.irure.dolor.es.org,+34898231200
+#phoneNumber-standard,"","","","","","","",""
+airport-34,Lorem ipsum dolor sit ame,HGH,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,123456
+airport-35,Lorem ipsum dolor sit ame,TRT,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,+123456
+airport-36,Lorem ipsum dolor sit ame,LHY,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,+1234567890
+airport-37,Lorem ipsum dolor sit ame,POI,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,123456789012345
+airport-38,Lorem ipsum dolor sit ame,QWE,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,+123456789012345
