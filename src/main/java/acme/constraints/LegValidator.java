@@ -44,23 +44,24 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 				boolean notOverlapping;
 				List<Leg> legsByFlight;
 				Leg currentLeg;
-				Leg nextLeg;
-
+				Leg previousLeg;
 				legsByFlight = this.repository.computeLegsByFlight(leg.getFlight().getId());
-				if(!legsByFlight.contains(leg)){
+
+				legsByFlight.removeIf(l -> l.getFlightNumber().equals(leg.getFlightNumber()));
+
 				legsByFlight.add(leg);
-				legsByFlight.sort(Comparator.comparing(Leg::getScheduledDeparture));
-				}
+
+				legsByFlight.sort(Comparator.comparing(Leg::getOrder));
 				int overlappedLegs = 0;
-				for (int i = 0; i < legsByFlight.size() - 1; i++) {
+				for (int i = 1; i < legsByFlight.size(); i++) {
 
 					currentLeg = legsByFlight.get(i);
-					nextLeg = legsByFlight.get(i + 1);
-					if (currentLeg.getScheduledArrival().after(nextLeg.getScheduledDeparture()))
+					previousLeg = legsByFlight.get(i - 1);
+					if (!MomentHelper.isAfter(currentLeg.getScheduledDeparture(), previousLeg.getScheduledArrival()))
 						overlappedLegs = overlappedLegs + 1;
 
 				}
-				notOverlapping = overlappedLegs > 0;
+				notOverlapping = overlappedLegs == 0;
 				super.state(context, notOverlapping, "*", "acme.validation.leg.overlapped.message");
 			}
 			{
@@ -79,7 +80,7 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 				min = MomentHelper.getCurrentMoment();
 
 				correctMinScheduleDeparture = !leg.getScheduledDeparture().before(min);
-				super.state(context, correctMinScheduleDeparture, "scheduledeparture", "acme.validation.leg.correctFlightNumber.message");
+				super.state(context, correctMinScheduleDeparture, "scheduledeparture", "acme.validation.leg.correctMinScheduleDeparture.message");
 
 			}
 			{
@@ -89,7 +90,7 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 				min = MomentHelper.deltaFromMoment(leg.getScheduledDeparture(), 1, ChronoUnit.MINUTES);
 
 				correctMinScheduleArrival = !leg.getScheduledDeparture().before(min);
-				super.state(context, correctMinScheduleArrival, "schedulearrival", "acme.validation.leg.correctFlightNumber.message");
+				super.state(context, correctMinScheduleArrival, "schedulearrival", "acme.validation.leg.correctMinScheduleArrival.message");
 			}
 		}
 		result = !super.hasErrors(context);
