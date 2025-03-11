@@ -10,7 +10,6 @@ import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
-import acme.entities.aircraft.Aircraft;
 import acme.realms.Technician;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,36 +21,28 @@ public class Task extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
-	@Valid
 	@Mandatory
+	@Valid
 	@Automapped
 	private TaskType			type;
 
-	@ValidString(min = 1, max = 255)
 	@Mandatory
+	@ValidString(min = 1, max = 255)
 	@Automapped
 	private String				description;
 
-	@ValidNumber(min = 0, max = 10)
 	@Mandatory
+	@ValidNumber(min = 0, max = 10)
 	@Automapped
 	private Integer				priority;
 
-	@ValidNumber(min = 0, max = 1000)
 	@Mandatory
+	@ValidNumber(min = 0, max = 1000)
 	@Automapped
 	private Integer				estimatedDuration;
 
 	@Mandatory
-	@ManyToOne(optional = false)
-	@Automapped
 	@Valid
+	@ManyToOne(optional = false)
 	private Technician			technician;
-
-	@Mandatory
-	@ManyToOne(optional = false)
-	@Automapped
-	@Valid
-	private Aircraft			aircraft;
-
 }
