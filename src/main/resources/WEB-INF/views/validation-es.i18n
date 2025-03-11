@@ -10,4 +10,4 @@ acme.validation.activitylog.registrationMoment.message = La fecha de registro de
 acme.validation.flight.correctMinScheduleDeparture.message = La salida programada debe ser como mínimo en el momento actual
 acme.validation.flight.correctMinScheduleArrival.message = La llegada programada debe ser como mínimo un minuto después de la salida programada
 acme.validation.flightCrew.employeeCode.message = Las 2 primeras letras del código de empleado deben coincidir con las iniciales del Flight Crew
- 
+acme.validation.service.correctLastTwoNumbers.message = Las últimas dos cifras deben coicidir con el año actual
