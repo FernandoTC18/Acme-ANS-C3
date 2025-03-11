@@ -1,6 +1,0 @@
-key,name,iataCode,website,type,foundation,email,phoneNumber
-airline-01,N,AAA,http://url.com,LOWCOST,2022/07/29 00:00,null,null
-airline-02,Na,ABC,ftp://url1.com,STANDARD,2022/07/30 00:00,a@e.com,null
-airline-03,天飽雲馬消根清歡寫尾做兒幫,CDE,https://www.lorem-ipsum.org,LUXURY,2010/01/01 00:00,天飽雲馬消根清歡寫尾做兒幫@email.com,+34000000000
-airline-04,Lorem ipsum dolor sit amet consectetur adipiscin,YYY,https://lorem.ipsum/dolor/sit-amet/consectetur,LOWCOST,2000/01/01 00:01,null,+3455555555
-airline-05,Lorem ipsum dolor sit amet consectetur adipiscing,ZZZ,https://loremipsum.com/dolor/sit-amet/consectetur/adipiscing-elit/sed-do-eiusmod-tempor/incididunt-ut-labore/et-dolore-magna-aliqua/ut-enim-ad-minim/veniam-quis-nostrud/exercitation-ullamco/laboris-nisi-ut-aliquip/ex-ea-commodo-consequat,LUXURY,2000/01/01 00:00,lorem-ipsum@dolor.sit.amet.consectetur.adipiscing.elit.sed.do.eiusmod.tempor.incididunt.ut.labore.et.dolore.magna.aliqua.Ut.enim.ad.minim.veniam.quis.nostrud.exercitation.ullamco.laboris.nisi.ut.aliquip.ex.ea.commodo.consequat.duis.aute.irure.doloris.edu,+34999999999

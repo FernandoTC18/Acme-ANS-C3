@@ -1,0 +1,61 @@
+key,name,iataCode,website,type,foundation,email,phoneNumber
+# base entity
+airline-00,"Lorem ipsum",AAA,http://lorem.com/ipsum,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
+# name - standard variations
+airline-01,"L",AAB,http://lorem.com/ipsum,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
+airline-02,"Lo",AAC,http://lorem.com/ipsum,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
+airline-03,"Lorem ipsum dolor sit amet, consectetur adipiscin",BAA,http://lorem.com/ipsum,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
+airline-04,"Lorem ipsum dolor sit amet, consectetur adipiscing",CAA,http://lorem.com/ipsum,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
+airline-05,"โลเร็ม อิปซัม",AAD,http://lorem.com/ipsum,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
+airline-06,"لوريم إيبسوم",AAE,http://lorem.com/ipsum,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
+airline-07,"洛伦·伊普森",AAF,http://lorem.com/ipsum,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
+airline-08,"<marquee>Hacked</marquee>",AAG,http://lorem.com/ipsum,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
+airline-09,"<script>alert('Hacked!');</script>",AAH,http://lorem.com/ipsum,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
+airline-10,"' or 'A' = 'A",AAI,http://lorem.com/ipsum,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
+# iataCode - standard variations
+airline-11,"Lorem ipsum",AAJ,http://lorem.com/ipsum,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
+airline-12,"Lorem ipsum",ABC,http://lorem.com/ipsum,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
+airline-13,"Lorem ipsum",XYZ,http://lorem.com/ipsum,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
+airline-14,"Lorem ipsum",ACD,http://lorem.com/ipsum,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
+airline-15,"Lorem ipsum",DAW,http://lorem.com/ipsum,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
+airline-16,"Lorem ipsum",XXA,http://lorem.com/ipsum,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
+airline-17,"Lorem ipsum",ZZZ,http://lorem.com/ipsum,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
+# website - standard variations
+airline-18,"Lorem ipsum",AAK,http://lorem.com/ipsum,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
+airline-19,"Lorem ipsum",AAL,http://a,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
+airline-20,"Lorem ipsum",AAM,http://a.b,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
+airline-21,"Lorem ipsum",AAN,https://www.lorem-ipsum.org,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
+airline-22,"Lorem ipsum",AAO,ftp://www.lorem-ipsum.org,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
+airline-23,"Lorem ipsum",AAP,http://www.lorem-ipsum.org/dolor/sit.html,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
+airline-24,"Lorem ipsum",AAQ,http://www.lorem-ipsum.org/dolor/sit.html#dolor,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
+airline-25,"Lorem ipsum",AAR,http://example.org?a=1&b=2,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
+airline-26,"Lorem ipsum",AAS,"http://www.lorem-ipsum.org/dolor/sit/amet,/consectetur/adipiscing/elit,/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/",LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
+airline-27,"Lorem ipsum",AAT,"http://www.lorem-ipsum.org/dolor/sit/amet,/consectetur/adipiscing/elit,/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/X",LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
+# type - standard variations
+airline-28,"Lorem ipsum",AAW,http://lorem.com/ipsum,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
+airline-29,"Lorem ipsum",AAX,http://lorem.com/ipsum,STANDARD,2000/01/01 10:00,lorem@ipsum.com,+123456789
+airline-30,"Lorem ipsum",AAY,http://lorem.com/ipsum,LOWCOST,2000/01/01 10:00,lorem@ipsum.com,+123456789
+# foundation - standard variations
+airline-31,"Lorem ipsum",AAZ,http://lorem.com/ipsum,LUXURY,2000/01/01 00:00,lorem@ipsum.com,+123456789
+airline-32,"Lorem ipsum",ABA,http://lorem.com/ipsum,LUXURY,2000/01/02 00:01,lorem@ipsum.com,+123456789
+airline-33,"Lorem ipsum",ACA,http://lorem.com/ipsum,LUXURY,2010/01/01 00:00,lorem@ipsum.com,+123456789
+airline-34,"Lorem ipsum",ADA,http://lorem.com/ipsum,LUXURY,2024/12/31 23:59,lorem@ipsum.com,+123456789
+airline-35,"Lorem ipsum",AEA,http://lorem.com/ipsum,LUXURY,2025/01/01 00:00,lorem@ipsum.com,+123456789
+# email - standard variations
+airline-36,"Lorem ipsum",AFA,http://lorem.com/ipsum,LUXURY,2000/01/01 10:00,null,+123456789
+airline-37,"Lorem ipsum",AGA,http://lorem.com/ipsum,LUXURY,2000/01/01 10:00,a@b.c,+123456789
+airline-38,"Lorem ipsum",AIA,http://lorem.com/ipsum,LUXURY,2000/01/01 10:00,very.long.email.address.with.many.parts@very.long.domain.name.with.many.parts.com,+123456789
+airline-39,"Lorem ipsum",AJA,http://lorem.com/ipsum,LUXURY,2000/01/01 10:00,email@with-special-chars!#$%&'*+-/=?^_`{|}~.org,+123456789
+airline-40,"Lorem ipsum",AKA,http://lorem.com/ipsum,LUXURY,2000/01/01 10:00,very.long.email.address@with.many.parts.and.more.parts.and.even.more.parts.to.make.it.very.long.very.long.domain.name.with.many.parts.and.more.parts.and.even.more.parts.to.make.it.very.long.and.even.longer.to.try.and.achieve.the.maximum.num.characters.com,+123456789
+# phoneNumber - standard variations
+airline-41,"Lorem ipsum",AOA,http://lorem.com/ipsum,LUXURY,2000/01/01 10:00,lorem@ipsum.com,
+airline-42,"Lorem ipsum",APA,http://lorem.com/ipsum,LUXURY,2000/01/01 10:00,lorem@ipsum.com,123456
+airline-43,"Lorem ipsum",AQA,http://lorem.com/ipsum,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456
+airline-44,"Lorem ipsum",ARA,http://lorem.com/ipsum,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+1234567
+airline-45,"Lorem ipsum",ASA,http://lorem.com/ipsum,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
+airline-46,"Lorem ipsum",ATA,http://lorem.com/ipsum,LUXURY,2000/01/01 10:00,lorem@ipsum.com,123456789012345
+airline-47,"Lorem ipsum",AUA,http://lorem.com/ipsum,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789012345
+
+# Combination of boundary cases
+airline-48,"L",AYA,http://a,LUXURY,2000/01/01 00:00,a@b.c,+123456
+airline-49,"Lorem ipsum dolor sit amet, consectetur adipiscing",AZA,http://www.lorem-ipsum.org/dolor/sit/amet,LOWCOST,2025/01/01 00:00,very.long.email.address.with.many.parts@very-long-domain-name-with-many-parts.com,+123456789012345
