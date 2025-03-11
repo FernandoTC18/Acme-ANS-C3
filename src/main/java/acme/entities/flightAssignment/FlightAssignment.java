@@ -54,13 +54,11 @@ public class FlightAssignment extends AbstractEntity {
 
 	@Mandatory
 	@Valid
-	@Automapped
 	@ManyToOne(optional = false)
 	Leg							leg;
 
 	@Mandatory
 	@Valid
-	@Automapped
 	@ManyToOne(optional = false)
 	FlightCrew					flightCrewMember;
 
