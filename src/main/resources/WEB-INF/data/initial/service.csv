@@ -1,6 +1,6 @@
-key,name,pictureLink,averageDwellTime,promotionCode,money
-service-01,servicio 1,"https://cdn-icons-png.flaticon.com/512/9375/9375318.png",100,ABCD-12,10
-service-02,servicio 2,"https://cdn-icons-png.freepik.com/256/3632/3632552.png?semt=ais_hybrid",1,WXYZ-99,50
-service-03,servicio 3,"https://cdn-icons-png.flaticon.com/512/9375/9375318.png",0,null,
-service-04,servicio 4,"https://cdn-icons-png.freepik.com/256/3632/3632552.png?semt=ais_hybrid",5,BCAD-33,100
-service-05,服務,"https://cdn-icons-png.freepik.com/256/5300/5300814.png?semt=ais_hybrid",33,null,
+key,name,pictureLink,averageDwellTime,promotionCode,discount
+service-01,servicio 1,https://cdn-icons-png.flaticon.com/512/9375/9375318.png,100,ABCD-25,10.00
+service-02,servicio 2,https://cdn-icons-png.freepik.com/256/3632/3632552.png?semt=ais_hybrid,1,WXYZ-25,50.00
+service-03,servicio 3,https://cdn-icons-png.flaticon.com/512/9375/9375318.png,1,null,
+service-04,servicio 4,https://cdn-icons-png.freepik.com/256/3632/3632552.png?semt=ais_hybrid,5,BCAD-25,100.00
+service-05,服務,https://cdn-icons-png.freepik.com/256/5300/5300814.png?semt=ais_hybrid,33,null,
