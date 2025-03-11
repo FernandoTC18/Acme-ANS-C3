@@ -1,0 +1,3 @@
+key,tag,selfTransferRequired,cost,description,key:manager
+flight-01,A,true,USD 150.50,"這是一次附有說明的飛行",manager-01
+flight-02,El mejor vuelo,false,EUR 200.00,,manager-02

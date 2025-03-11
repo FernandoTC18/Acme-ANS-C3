@@ -40,8 +40,8 @@ public class FlightValidator extends AbstractValidator<ValidFlight, Flight> {
 
 				min = MomentHelper.getCurrentMoment();
 
-				correctMinScheduleDeparture = !flight.getScheduledDeparture().before(min);
-				super.state(context, correctMinScheduleDeparture, "scheduledeparture", "acme.validation.flight.correctFlightNumber.message");
+				correctMinScheduleDeparture = !MomentHelper.isBefore(flight.getScheduledDeparture(), min);
+				super.state(context, correctMinScheduleDeparture, "scheduledDeparture", "acme.validation.flight.correctMinScheduleDeparture.message");
 
 			}
 			{
@@ -50,8 +50,8 @@ public class FlightValidator extends AbstractValidator<ValidFlight, Flight> {
 
 				min = MomentHelper.deltaFromMoment(flight.getScheduledDeparture(), 1, ChronoUnit.MINUTES);
 
-				correctMinScheduleArrival = !flight.getScheduledDeparture().before(min);
-				super.state(context, correctMinScheduleArrival, "schedulearrival", "acme.validation.flight.correctFlightNumber.message");
+				correctMinScheduleArrival = !MomentHelper.isBefore(flight.getScheduledArrival(), min);
+				super.state(context, correctMinScheduleArrival, "scheduledArrival", "acme.validation.flight.correctMinScheduleArrival.message");
 			}
 		}
 		result = !super.hasErrors(context);

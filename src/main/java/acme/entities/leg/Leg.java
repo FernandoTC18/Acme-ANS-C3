@@ -76,7 +76,7 @@ public class Leg extends AbstractEntity {
 	@Mandatory
 	@ValidNumber(min = 1)
 	@Automapped
-	private Integer				order;
+	private Integer				sequenceOrder;
 
 
 	@Transient
