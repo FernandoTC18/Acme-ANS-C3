@@ -12,12 +12,14 @@ import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidScore;
 import acme.client.components.validation.ValidString;
 import acme.client.components.validation.ValidUrl;
+import acme.constraints.ValidService;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
+@ValidService
 public class Service extends AbstractEntity {
 
 	// Serialisation version --------------------------------------------------
@@ -37,7 +39,7 @@ public class Service extends AbstractEntity {
 	private String				pictureLink;
 
 	@Mandatory
-	@ValidNumber(min = 0, max = 100)
+	@ValidNumber(min = 1, max = 100, fraction = 2)
 	@Automapped
 	private Double				averageDwellTime;
 
@@ -49,7 +51,7 @@ public class Service extends AbstractEntity {
 	@Optional
 	@ValidScore
 	@Automapped
-	private Double				money;
+	private Double				discount;
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------
