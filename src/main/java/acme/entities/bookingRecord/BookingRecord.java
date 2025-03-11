@@ -6,7 +6,6 @@ import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
-import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.entities.booking.Booking;
 import acme.entities.passenger.Passenger;
@@ -20,13 +19,11 @@ public class BookingRecord extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
-	@Automapped
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
 	private Booking				booking;
 
-	@Automapped
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
