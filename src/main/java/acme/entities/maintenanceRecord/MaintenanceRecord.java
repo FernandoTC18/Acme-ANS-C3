@@ -30,8 +30,8 @@ public class MaintenanceRecord extends AbstractEntity {
 	private static final long		serialVersionUID	= 1L;
 
 	@Mandatory
-	@Temporal(TemporalType.TIMESTAMP)
 	@ValidMoment
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date					moment;
 
 	@Mandatory
@@ -45,24 +45,22 @@ public class MaintenanceRecord extends AbstractEntity {
 	private Date					inspectionDueDate;
 
 	@Mandatory
-	@Automapped
 	@ValidMoney
+	@Automapped
 	private Money					estimatedCost;
 
 	@Optional
-	@Automapped
 	@ValidString(min = 0, max = 255)
+	@Automapped
 	private String					notes;
 
 	@Mandatory
 	@Valid
-	@Automapped
 	@ManyToOne(optional = false)
 	private Aircraft				aircraft;
 
 	@Mandatory
 	@Valid
-	@Automapped
 	@ManyToOne(optional = false)
 	private Technician				technician;
 }
