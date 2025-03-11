@@ -15,11 +15,10 @@ import acme.client.components.datatypes.Money;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
-import acme.client.components.validation.ValidCreditCard;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidString;
-import acme.entities.airport.Airport;
+import acme.entities.flight.Flight;
 import acme.realms.Customer;
 import lombok.Getter;
 import lombok.Setter;
@@ -53,10 +52,10 @@ public class Booking extends AbstractEntity {
 	@Mandatory
 	@ValidMoney
 	@Automapped
-	private Money				money;
+	private Money				price;
 
 	@Optional
-	@ValidCreditCard
+	@ValidString(pattern = "^\\d{4}$")
 	@Automapped
 	private String				lastCardNibble;
 
@@ -67,13 +66,11 @@ public class Booking extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	@Automapped
 	private Customer			customer;
 
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	@Automapped
-	private Airport				airport;
+	private Flight				flight;
 
 }
