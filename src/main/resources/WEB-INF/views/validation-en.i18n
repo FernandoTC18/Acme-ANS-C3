@@ -10,6 +10,8 @@ acme.validation.activitylog.registrationMoment.message = The registration moment
 acme.validation.flight.correctMinScheduleDeparture.message = Schedule departure must be before the current moment
 acme.validation.flight.correctMinScheduleArrival.message = Schedule arrival must be at the very least after one minute of the schedule departure
 acme.validation.flightCrew.employeeCode.message = The first 2 letters of the employee code must correspond to the flight crew's initials.
-acme.validation.service.correctLastTwoNumbers.message= The last two figures must correspond to the current year
-
- 
+acme.validation.service.correctLastTwoNumbers.message = The last two figures must correspond to the current year
+acme.validation.assistanceAgent.invalid-employee-code.message = The employee code must begin with the first letter of the name followed by the first letter of the first surname.
+acme.validation.trackingLog.incorrect-indicator.message = The indicator must be ACCEPTED or REJECTED when the resolution percentage is 100%, and PENDING when it is less than 100%.
+acme.validation.trackingLog.invalid-resolution-percentage.message = The resolution percentage must be greater than any previously recorded value.
+acme.validation.trackingLog.mandatory-resolution.message = The resolution field is mandatory when the claim status is ACCEPTED or REJECTED.
