@@ -9,7 +9,7 @@ import acme.client.repositories.AbstractRepository;
 @Repository
 public interface ActivityLogRepository extends AbstractRepository {
 
-	@Query("select a from ActivityLog a where a.flightAssignment.id =: flightAssignmentId")
-	ActivityLog getActivityLogByFlightAssignmentId(int flightAssignmentId);
+	@Query("select a from ActivityLog a where a.flightAssignment.id = :flightAssignmentId and a.registrationMoment = (select max(al.registrationMoment) from ActivityLog al where al.flightAssignment.id = :flightAssignmentId)")
+	ActivityLog getMostRecentActivityLogByFlightAssignmentId(int flightAssignmentId);
 
 }
