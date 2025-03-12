@@ -1,0 +1,22 @@
+key,locatorCode,purchaseMoment,travelClass,price,lastCardNibble,key:customer,key:flight
+#base-entity  
+booking-01,A7B9C3,2012/07/02 0:00,ECONOMY,EUR 500000.00,1234,customer-01,flight-01
+#purchaseMoment-standard  
+booking-02,XZ12MNO,2000/01/01 0:00,ECONOMY,EUR 500000.00,1234,customer-01,flight-01
+booking-03,89QWER6,2000/01/01 0:01,ECONOMY,EUR 500000.00,1234,customer-01,flight-01
+booking-04,LKJH87Z,2024/12/31 23:59,ECONOMY,EUR 500000.00,1234,customer-01,flight-01
+booking-05,MNOP345,2025/01/01 0:00,ECONOMY,EUR 500000.00,1234,customer-01,flight-01
+#travelClass-standard  
+booking-06,7YUIPO0,2012/07/02 0:00,ECONOMY,EUR 500000.00,1234,customer-01,flight-01
+booking-07,TGBVF12,2012/07/02 0:00,BUSINESS,EUR 500000.00,1234,customer-01,flight-01
+#price-standard  
+booking-08,A1S2D3F,2012/07/02 0:00,ECONOMY,EUR 0.00,1234,customer-01,flight-01
+booking-09,QAZXSW1,2012/07/02 0:00,ECONOMY,EUR 0.01,1234,customer-01,flight-01
+booking-10,9OKMNJI,2012/07/02 0:00,ECONOMY,EUR 999999.99,1234,customer-01,flight-01
+booking-11,56PLMKO,2012/07/02 0:00,ECONOMY,EUR 1000000.00,1234,customer-01,flight-01
+#lastCardNibble-standard  
+booking-12,QWERTY7,2012/07/02 0:00,ECONOMY,EUR 500000.00,5678,customer-01,flight-01
+booking-13,1ZXCVBN,2012/07/02 0:00,ECONOMY,EUR 500000.00,9101,customer-01,flight-01
+booking-14,45TREWQ,2012/07/02 0:00,ECONOMY,EUR 500000.00,2024,customer-01,flight-01
+booking-15,PLKIJMN,2012/07/02 0:00,ECONOMY,EUR 500000.00,0001,customer-01,flight-01
+
