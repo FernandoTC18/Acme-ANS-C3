@@ -1,13 +1,9 @@
 key,model,registrationNumber,capacity,cargoWeight,status,details
-
 #base-entity
-
 aircraft-00,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetu",40,5000,ACTIVE_SERVICE,"Lorem ipsum dolor sit amet, consectetu"
-
 # model - standard variations
-
-aircraft-01,"L","Lorem ipsum dolor sit amet, consectetu1",40,5000,ACTIVE_SERVICE,"Lorem ipsum dolor sit amet, consectetu"
-aircraft-02,"Lo","Lorem ipsum dolor sit amet, consectetu2",40,5000,ACTIVE_SERVICE,"Lorem ipsum dolor sit amet, consectetu"
+aircraft-01,L,"Lorem ipsum dolor sit amet, consectetu1",40,5000,ACTIVE_SERVICE,"Lorem ipsum dolor sit amet, consectetu"
+aircraft-02,Lo,"Lorem ipsum dolor sit amet, consectetu2",40,5000,ACTIVE_SERVICE,"Lorem ipsum dolor sit amet, consectetu"
 aircraft-03,"Lorem ipsum dolor sit amet, consectetur adipiscin","Lorem ipsum dolor sit amet, consectetu3",40,5000,ACTIVE_SERVICE,"Lorem ipsum dolor sit amet, consectetu"
 aircraft-04,"Lorem ipsum dolor sit amet, consectetur adipiscing","Lorem ipsum dolor sit amet, consectetu4",40,5000,ACTIVE_SERVICE,"Lorem ipsum dolor sit amet, consectetu"
 aircraft-05,โลเร็ม อิปซัม,"Lorem ipsum dolor sit amet, consectetu5",40,5000,ACTIVE_SERVICE,"Lorem ipsum dolor sit amet, consectetu"
@@ -16,13 +12,10 @@ aircraft-07,洛伦·伊普森,"Lorem ipsum dolor sit amet, consectetu7",40,5000,
 aircraft-08,<marquee>Hacked</marquee>,"Lorem ipsum dolor sit amet, consectetu8",40,5000,ACTIVE_SERVICE,"Lorem ipsum dolor sit amet, consectetu"
 aircraft-09,<script>alert(‘Hacked!’)</script>,"Lorem ipsum dolor sit amet, consectetu9",40,5000,ACTIVE_SERVICE,"Lorem ipsum dolor sit amet, consectetu"
 aircraft-10,' or 'A' = 'A,"Lorem ipsum dolor sit amet, consectetu10",40,5000,ACTIVE_SERVICE,"Lorem ipsum dolor sit amet, consectetu"
-
 # model - no singular values
-
 # registrationNumber - standard variations
-
-aircraft-11,"Lorem ipsum dolor sit amet, consectetu","L",40,5000,ACTIVE_SERVICE,"Lorem ipsum dolor sit amet, consectetu"
-aircraft-12,"Lorem ipsum dolor sit amet, consectetu","Lo",40,5000,ACTIVE_SERVICE,"Lorem ipsum dolor sit amet, consectetu"
+aircraft-11,"Lorem ipsum dolor sit amet, consectetu",L,40,5000,ACTIVE_SERVICE,"Lorem ipsum dolor sit amet, consectetu"
+aircraft-12,"Lorem ipsum dolor sit amet, consectetu",Lo,40,5000,ACTIVE_SERVICE,"Lorem ipsum dolor sit amet, consectetu"
 aircraft-13,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetur adipiscin",40,5000,ACTIVE_SERVICE,"Lorem ipsum dolor sit amet, consectetu"
 aircraft-14,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetur adipiscing",40,5000,ACTIVE_SERVICE,"Lorem ipsum dolor sit amet, consectetu"
 aircraft-15,"Lorem ipsum dolor sit amet, consectetu",โลเร็ม อิปซัม,40,5000,ACTIVE_SERVICE,"Lorem ipsum dolor sit amet, consectetu"
@@ -31,40 +24,29 @@ aircraft-17,"Lorem ipsum dolor sit amet, consectetu",洛伦·伊普森,40,5000,A
 aircraft-18,"Lorem ipsum dolor sit amet, consectetu",<marquee>Hacked</marquee>,40,5000,ACTIVE_SERVICE,"Lorem ipsum dolor sit amet, consectetu"
 aircraft-19,"Lorem ipsum dolor sit amet, consectetu",<script>alert(‘Hacked!’)</script>,40,5000,ACTIVE_SERVICE,"Lorem ipsum dolor sit amet, consectetu"
 aircraft-20,"Lorem ipsum dolor sit amet, consectetu",' or 'A' = 'A,40,5000,ACTIVE_SERVICE,"Lorem ipsum dolor sit amet, consectetu"
-
 # registrationNumber - no singular values
-
 # capacity - standard variations
-
 aircraft-21,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetu21",1,5000,ACTIVE_SERVICE,"Lorem ipsum dolor sit amet, consectetu"
 aircraft-22,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetu22",2,5000,ACTIVE_SERVICE,"Lorem ipsum dolor sit amet, consectetu"
 aircraft-23,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetu23",128,5000,ACTIVE_SERVICE,"Lorem ipsum dolor sit amet, consectetu"
 aircraft-24,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetu24",254,5000,ACTIVE_SERVICE,"Lorem ipsum dolor sit amet, consectetu"
 aircraft-25,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetu25",255,5000,ACTIVE_SERVICE,"Lorem ipsum dolor sit amet, consectetu"
-
 # capacity - no singular values
-
 # cargoWeight - standard variations
-
 aircraft-26,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetu26",40,2000,ACTIVE_SERVICE,"Lorem ipsum dolor sit amet, consectetu"
 aircraft-27,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetu27",40,2001,ACTIVE_SERVICE,"Lorem ipsum dolor sit amet, consectetu"
 aircraft-28,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetu28",40,25000,ACTIVE_SERVICE,"Lorem ipsum dolor sit amet, consectetu"
 aircraft-29,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetu29",40,49000,ACTIVE_SERVICE,"Lorem ipsum dolor sit amet, consectetu"
 aircraft-30,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetu30",40,50000,ACTIVE_SERVICE,"Lorem ipsum dolor sit amet, consectetu"
-
 # cargoWeight - no singular values
-
 # status - standard variations
-
 aircraft-31,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetu31",40,5000,ACTIVE_SERVICE,"Lorem ipsum dolor sit amet, consectetu"
 aircraft-32,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetu32",40,5000,UNDER_MAINTENANCE,"Lorem ipsum dolor sit amet, consectetu"
-
 # status - no singular values
-
 # details - standard variations
-
-aircraft-34,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetu34",40,5000,ACTIVE_SERVICE,"L"
-aircraft-35,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetu35",40,5000,ACTIVE_SERVICE,"Lo"
+aircraft-33,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetu33",40,5000,ACTIVE_SERVICE,
+aircraft-34,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetu34",40,5000,ACTIVE_SERVICE,L
+aircraft-35,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetu35",40,5000,ACTIVE_SERVICE,Lo
 aircraft-36,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetu36",40,5000,ACTIVE_SERVICE,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor"
 aircraft-37,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetu37",40,5000,ACTIVE_SERVICE,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*"
 aircraft-38,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetu38",40,5000,ACTIVE_SERVICE,โลเร็ม อิปซัม
@@ -73,5 +55,4 @@ aircraft-40,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet
 aircraft-41,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetu41",40,5000,ACTIVE_SERVICE,<marquee>Hacked</marquee>
 aircraft-42,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetu42",40,5000,ACTIVE_SERVICE,<script>alert(‘Hacked!’)</script>
 aircraft-43,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetu43",40,5000,ACTIVE_SERVICE,' or 'A' = 'A
-
 # details - no singular values
