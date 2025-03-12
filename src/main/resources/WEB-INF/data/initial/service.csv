@@ -1,6 +1,35 @@
 key,name,pictureLink,averageDwellTime,promotionCode,discount
+#base entity
 service-01,servicio 1,https://cdn-icons-png.flaticon.com/512/9375/9375318.png,100,ABCD-25,10.00
-service-02,servicio 2,https://cdn-icons-png.freepik.com/256/3632/3632552.png?semt=ais_hybrid,1,WXYZ-25,50.00
-service-03,servicio 3,https://cdn-icons-png.flaticon.com/512/9375/9375318.png,1,null,
-service-04,servicio 4,https://cdn-icons-png.freepik.com/256/3632/3632552.png?semt=ais_hybrid,5,BCAD-25,100.00
-service-05,服務,https://cdn-icons-png.freepik.com/256/5300/5300814.png?semt=ais_hybrid,33,null,
+
+#name - standard variations
+service-02,s,https://cdn-icons-png.freepik.com/256/3632/3632552.png?semt=ais_hybrid,1,WXYZ-25,50.00
+service-03,ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx,https://cdn-icons-png.flaticon.com/512/9375/9375318.png,1,null,null
+service-04,你好世界这是一个示例,https://cdn-icons-png.freepik.com/256/3632/3632552.png?semt=ais_hybrid,5,UIOP-25,100.00
+service-05,مرحبا بالعالم هذا مثال,https://cdn-icons-png.freepik.com/256/5300/5300814.png?semt=ais_hybrid,33,null,null
+service-06,\u202Eمرحبا بالعالم\u202C,https://cdn-icons-png.freepik.com/256/5300/5300814.png?semt=ais_hybrid,33,null,null
+service-07,'; DROP TABLE users; --,https://cdn-icons-png.freepik.com/256/3632/3632552.png?semt=ais_hybrid,5,PUIO-25,100.00
+service-08,<script>alert('Hacked!');</script>,https://cdn-icons-png.flaticon.com/512/9375/9375318.png,1,null,null
+service-09,<h1>Hacked!</h1>,https://cdn-icons-png.freepik.com/256/5300/5300814.png?semt=ais_hybrid,35,null,null 
+service-10,servicio 10,https://cdn-icons-png.flaticon.com/512/9375/9375318.png,100,RTYU-25,10.00
+
+#pictureLink - standard variations
+
+service-11,servicio 11,https://cdn-icons-png.freepik.com/256/3632/3632552.png?semt=ais_hybrid,5,BCAD-25,100.00
+
+#averageDwellTime - standard variations
+
+service-12,s,https://cdn-icons-png.freepik.com/256/5300/5300814.png?semt=ais_hybrid,1,null,null
+service-13,s,https://cdn-icons-png.freepik.com/256/5300/5300814.png?semt=ais_hybrid,100.00,null,null
+service-14,s,https://cdn-icons-png.freepik.com/256/5300/5300814.png?semt=ais_hybrid,1.01,null,null
+service-15,s,https://cdn-icons-png.freepik.com/256/5300/5300814.png?semt=ais_hybrid,99.99,null,null
+
+#promotionCode - standard variations
+service-16,s,https://cdn-icons-png.freepik.com/256/3632/3632552.png?semt=ais_hybrid,25,null,null
+service-17,s,https://cdn-icons-png.freepik.com/256/3632/3632552.png?semt=ais_hybrid,50,QWER-25,10.00
+
+#discount - standard variations
+service-18,s,https://cdn-icons-png.freepik.com/256/5300/5300814.png?semt=ais_hybrid,30,DEFG-25,0.00
+service-19,s,https://cdn-icons-png.freepik.com/256/5300/5300814.png?semt=ais_hybrid,50,HIJK-25,0.01
+service-20,s,https://cdn-icons-png.freepik.com/256/5300/5300814.png?semt=ais_hybrid,50,HJIK-25,99.99
+service-21,s,https://cdn-icons-png.freepik.com/256/5300/5300814.png?semt=ais_hybrid,50,HKIJ-25,100.00
