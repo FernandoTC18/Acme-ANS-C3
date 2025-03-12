@@ -33,33 +33,33 @@ public class FlightAssignment extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@Automapped
-	Duty						duty;
+	private Duty						duty;
 
 	@Mandatory
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
-	Date						lastUpdate;
+	private Date						lastUpdate;
 
 	@Mandatory
 	@Valid
 	@Automapped
-	AssignmentStatus			status;
+	private AssignmentStatus			status;
 
 	@Optional
 	@ValidString(min = 0, max = 255)
 	@Automapped
-	String						remarks;
+	private String						remarks;
 
 	//Relationships -------------------------------------------------------------
 
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	Leg							leg;
+	private Leg							leg;
 
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	FlightCrew					flightCrewMember;
+	private FlightCrew					flightCrewMember;
 
 }
