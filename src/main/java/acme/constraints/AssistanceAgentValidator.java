@@ -3,7 +3,6 @@ package acme.constraints;
 
 import javax.validation.ConstraintValidatorContext;
 
-import acme.client.components.principals.DefaultUserIdentity;
 import acme.client.components.validation.AbstractValidator;
 import acme.realms.AssistanceAgent;
 
@@ -27,14 +26,17 @@ public class AssistanceAgentValidator extends AbstractValidator<ValidAssistanceA
 		if (assistanceAgent == null)
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
 		else {
+			String name;
+			String surname;
+			String employeeCode;
 			boolean correctEmployeeCode;
-			DefaultUserIdentity identity = assistanceAgent.getUserAccount().getIdentity();
-			String[] employeeCode = assistanceAgent.getEmployeeCode().trim().split("");
-			String[] name = identity.getName().trim().split("");
-			String[] surname = identity.getSurname().trim().split("");
 
-			correctEmployeeCode = employeeCode[0].equals(name[0]) && employeeCode[1].equals(surname[0]);
-			super.state(context, correctEmployeeCode, "employeeCode", "acme.validation.trackingLog.invalid-employee-code.message");
+			name = assistanceAgent.getIdentity().getName();
+			surname = assistanceAgent.getIdentity().getSurname();
+			employeeCode = assistanceAgent.getEmployeeCode();
+
+			correctEmployeeCode = name.charAt(0) == employeeCode.charAt(0) && surname.charAt(0) == employeeCode.charAt(1);
+			super.state(context, correctEmployeeCode, "employeeCode", "acme.validation.assistanceAgent.invalid-employee-code.message");
 		}
 
 		result = !super.hasErrors(context);
