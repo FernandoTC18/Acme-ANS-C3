@@ -1,3 +1,45 @@
-key,tag,selfTransferRequired,cost,description,key:manager
-flight-01,A,true,USD 150.50,"這是一次附有說明的飛行",manager-01
-flight-02,El mejor vuelo,false,EUR 200.00,,manager-02
+key,selfTransferRequired,tag,cost,description,key:manager
+#base entity
+flight-01,true,A,USD 150.50,"這是一次附有說明的飛行",manager-01
+flight-02,false,El mejor vuelo,EUR 200.00,,manager-02
+
+#tag - standard variations
+flight-03,true,F,EUR 50,,manager-01
+flight-04,false,ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrst,EUR 50,,manager-01
+flight-05,true,你好世界这是一个示例,EUR 50,,manager-01
+flight-06,false,مرحبا بالعالم هذا مثال,EUR 50,,manager-01
+
+flight-07,true,\u202Eمرحبا بالعالم\u202C,EUR 50,,manager-01
+flight-08,false,<h1>Hacked!</h1>,EUR 50,,manager-02
+flight-09,true,'; DROP TABLE users; --,EUR 50,,manager-02
+flight-10,false,<script>alert('Hacked!'),EUR 50,,manager-02
+
+#selfTransfered - standard variations
+flight-11,true,B,EUR 25,,manager-01
+flight-12,false,B,EUR 25,,manager-02
+
+#cost - standard variations
+
+flight-13,true,C,EUR 0,,manager-01
+flight-14,true,C,EUR 1000000,,manager-01
+
+flight-15,true,C,EUR 100,,manager-01
+flight-16,true,C,USD 100,,manager-02
+flight-17,true,C,GBP 100,,manager-02
+flight-18,true,C,JPY 100,,manager-02
+
+#description - standard variations
+
+flight-19,true,D,EUR 75,,manager-01
+flight-20,true,C,USD 100,ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrst,manager-01
+flight-21,true,E,EUR 75,null,manager-01
+flight-22,false,E,EUR 75,Descripción de vuelo,manager-01
+flight-23,false,E,EUR 75,你好世界这是一个示例,manager-01
+flight-24,false,E,EUR 75,مرحبا بالعالم هذا مثال,manager-02
+flight-25,false,D,EUR 75,\u202Eمرحبا بالعالم\u202C,manager-02
+flight-26,true,D,EUR 75,'; DROP TABLE users; --,manager-02
+flight-27,true,D,EUR 75,<script>alert('Hacked!');</script>,manager-02
+flight-28,true,D,EUR 75,<h1>Hacked!</h1>,manager-02
+
+#manager - standard variations
+flight-29,true,D,EUR 25,,manager-01
