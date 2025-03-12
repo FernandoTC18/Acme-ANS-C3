@@ -36,7 +36,7 @@ public class ActivityLogValidator extends AbstractValidator<ValidActivityLog, Ac
 			boolean correctDate;
 			Date legDate;
 
-			ActivityLog log = this.activityLogRepository.getActivityLogByFlightAssignmentId(activityLog.getFlightAssignment().getId());
+			ActivityLog log = this.activityLogRepository.getMostRecentActivityLogByFlightAssignmentId(activityLog.getFlightAssignment().getId());
 			legDate = log.getFlightAssignment().getLeg().getScheduledArrival();
 
 			Date logDate = activityLog.getRegistrationMoment();
