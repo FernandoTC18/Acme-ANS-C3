@@ -1,0 +1,45 @@
+key,registrationMoment,passengerEmail,description,type,indicator,key:assistanceAgent,key:leg
+# base entity
+claim-00,2020/01/01 00:00,acme@lorem-ipsum.org,"Lorem ipsum dolor sit amet, consectetur adipiscing",FLIGHT_ISSUES,PENDING,agent-01,leg-01
+# registrationMoment - standard variations
+claim-01,2020/01/01 00:00,acme1@lorem-ipsum.org,"Lorem ipsum dolor sit amet, consectetur adipiscing",FLIGHT_ISSUES,PENDING,agent-01,leg-01
+claim-02,2020/06/30 00:00,acme2@lorem-ipsum.org,"Lorem ipsum dolor sit amet, consectetur adipiscing",FLIGHT_ISSUES,PENDING,agent-01,leg-01
+claim-03,2000/01/01 00:00,acme3@lorem-ipsum.org,"Lorem ipsum dolor sit amet, consectetur adipiscing",FLIGHT_ISSUES,PENDING,agent-01,leg-01
+claim-04,2025/01/01 00:00,acme4@lorem-ipsum.org,"Lorem ipsum dolor sit amet, consectetur adipiscing",FLIGHT_ISSUES,PENDING,agent-01,leg-01
+claim-05,2024/12/31 23:59,acme5@lorem-ipsum.org,"Lorem ipsum dolor sit amet, consectetur adipiscing",FLIGHT_ISSUES,PENDING,agent-01,leg-01
+# registrationMoment - no singular values
+# passengerEmail - standard variations
+claim-06,2020/01/01 00:00,"""acme:password""@lorem-ipsum.org","Lorem ipsum dolor sit amet, consectetur adipiscing",FLIGHT_ISSUES,PENDING,agent-01,leg-01
+claim-07,2020/01/01 00:00,a@b.e,"Lorem ipsum dolor sit amet, consectetur adipiscing",FLIGHT_ISSUES,PENDING,agent-01,leg-01
+claim-08,2020/01/01 00:00,a@b.es,"Lorem ipsum dolor sit amet, consectetur adipiscing",FLIGHT_ISSUES,PENDING,agent-01,leg-01
+claim-09,2020/01/01 00:00,a@b.esx,"Lorem ipsum dolor sit amet, consectetur adipiscing",FLIGHT_ISSUES,PENDING,agent-01,leg-01
+claim-10,2020/01/01 00:00,lorem-ipsum@dolor.sit.amet.consectetur.adipiscing.elit.sed.do.eiusmod.tempor.incididunt.ut.labore.et.dolore.magna.aliqua.Ut.enim.ad.minim.veniam.quis.nostrud.exercitation.ullamco.laboris.nisi.ut.aliquip.ex.ea.commodo.consequat.duis.aute.irure.doloris.edu,"Lorem ipsum dolor sit amet, consectetur adipiscing",FLIGHT_ISSUES,PENDING,agent-01,leg-01
+claim-11,2020/01/01 00:00,lorem-ipsum@dolor.sit.amet.consectetur.adipiscing.elit.sed.do.eiusmod.tempor.incididunt.ut.labore.et.dolore.magna.aliqua.Ut.enim.ad.minim.veniam.quis.nostrud.exercitation.ullamco.laboris.nisi.ut.aliquip.ex.ea.commodo.consequat.duis.aute.irure.dolor.es.org,"Lorem ipsum dolor sit amet, consectetur adipiscing",FLIGHT_ISSUES,PENDING,agent-01,leg-01
+# passengerEmail - no singular values
+# description - standard variations
+claim-12,2020/01/01 00:00,acme10@lorem-ipsum.org,L,FLIGHT_ISSUES,PENDING,agent-01,leg-01
+claim-13,2020/01/01 00:00,acme11@lorem-ipsum.org,Lo,FLIGHT_ISSUES,PENDING,agent-01,leg-01
+claim-14,2020/01/01 00:00,acme12@lorem-ipsum.org,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",FLIGHT_ISSUES,PENDING,agent-01,leg-01
+claim-15,2020/01/01 00:00,acme13@lorem-ipsum.org,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor.",FLIGHT_ISSUES,PENDING,agent-01,leg-01
+claim-16,2020/01/01 00:00,acme14@lorem-ipsum.org,โลเร็ม อิปซัม,FLIGHT_ISSUES,PENDING,agent-01,leg-01
+claim-17,2020/01/01 00:00,acme15@lorem-ipsum.org,لوريم إيبسوم,FLIGHT_ISSUES,PENDING,agent-01,leg-01
+claim-18,2020/01/01 00:00,acme16@lorem-ipsum.org,洛伦·伊پ森,FLIGHT_ISSUES,PENDING,agent-01,leg-01
+claim-19,2020/01/01 00:00,acme17@lorem-ipsum.org,<marquee>Hacked</marquee>,FLIGHT_ISSUES,PENDING,agent-01,leg-01
+claim-20,2020/01/01 00:00,acme18@lorem-ipsum.org,<script>alert('Hacked!');</script>,FLIGHT_ISSUES,PENDING,agent-01,leg-01
+claim-21,2020/01/01 00:00,acme19@lorem-ipsum.org,' or 'A' = 'A,FLIGHT_ISSUES,PENDING,agent-01,leg-01
+# description - no singular values
+# type - standard variations
+claim-22,2020/01/01 00:00,acme20@lorem-ipsum.org,"Lorem ipsum dolor sit amet, consectetur adipiscing",LUGGAGE_ISSUES,PENDING,agent-01,leg-01
+claim-23,2020/01/01 00:00,acme21@lorem-ipsum.org,"Lorem ipsum dolor sit amet, consectetur adipiscing",SECURITY_INCIDENT,PENDING,agent-01,leg-01
+claim-24,2020/01/01 00:00,acme22@lorem-ipsum.org,"Lorem ipsum dolor sit amet, consectetur adipiscing",OTHER_ISSUES,PENDING,agent-01,leg-01
+# type - no singular values
+# indicator - standard variations
+claim-25,2020/01/01 00:00,acme23@lorem-ipsum.org,"Lorem ipsum dolor sit amet, consectetur adipiscing",FLIGHT_ISSUES,ACCEPTED,agent-01,leg-01
+claim-26,2020/01/01 00:00,acme24@lorem-ipsum.org,"Lorem ipsum dolor sit amet, consectetur adipiscing",FLIGHT_ISSUES,REJECTED,agent-01,leg-01
+# indicator - no singular values
+# assistanceAgent - standard variations
+claim-27,2020/01/01 00:00,acme25@lorem-ipsum.org,"Lorem ipsum dolor sit amet, consectetur adipiscing",FLIGHT_ISSUES,PENDING,agent-02,leg-01
+# assistanceAgent - no singular values
+# leg - standard variations
+claim-28,2020/01/01 00:00,acme26@lorem-ipsum.org,"Lorem ipsum dolor sit amet, consectetur adipiscing",FLIGHT_ISSUES,PENDING,agent-01,leg-02
+# leg - no singular values
