@@ -1,2 +1,3 @@
 Repository: https://github.com/FernandoTC18/Acme-ANS-D02
-Planning Dashboard: https://github.com/users/FernandoTC18/projects/1/views/1?filterQuery=assignee%3Ajulrompar
+Planning Dashboard S03 Assignee: https://github.com/users/FernandoTC18/projects/1/views/1?filterQuery=assignee%3Ajulrompar
+Planning Dashboard D02-S03 Tasks: https://github.com/users/FernandoTC18/projects/1/views/1?filterQuery=D02-S03
