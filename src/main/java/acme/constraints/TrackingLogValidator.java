@@ -63,7 +63,7 @@ public class TrackingLogValidator extends AbstractValidator<ValidTrackingLog, Tr
 
 				for (TrackingLog log : allLogs)
 
-					if (log.getResolutionPercentage() <= maxPercentage) {
+					if (log.getResolutionPercentage() < maxPercentage) {
 
 						if (log.equals(trackingLog)) {
 							correctPercentage = false;
