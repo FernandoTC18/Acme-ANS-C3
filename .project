@@ -36,14 +36,19 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>classes</name>
+			<name>acme-framework-25.3.0</name>
 			<type>2</type>
-			<locationURI>WORKSPACE_LOC/Frameworks/Acme-Framework-25.2.0/target/classes</locationURI>
+			<locationURI>WORKSPACE_LOC/Frameworks/Acme-Framework-25.3.0/target/classes</locationURI>
 		</link>
 		<link>
 			<name>target_classes</name>
 			<type>2</type>
 			<location>//Users/fernando/Documents/Universidad/DP2/Proyecto/Workspace-25/Projects/Acme-ANS-D01/target/classes</location>
+		</link>
+		<link>
+			<name>target/classes</name>
+			<type>2</type>
+			<location>//C:/Mac/Home/Desktop/Workspace-25/Projects/Acme-ANS-D03/target/classes/</location>
 		</link>
 	</linkedResources>
 	<filteredResources>
