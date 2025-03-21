@@ -17,3 +17,4 @@ acme.validation.trackingLog.invalid-resolution-percentage.message = The resoluti
 acme.validation.trackingLog.mandatory-resolution.message = The resolution field is mandatory when the claim status is ACCEPTED or REJECTED.
 acme.validation.technician.invalid-licenseNumber.message = The ‘licenseNumber’ field does not conform to the pattern ‘^[A-Z]{2,3}’ or is null.
 acme.validation.technician.used-licenseNumber.message = The licence number is already in use.
+acme.validation.aircraft.used-registrationNumber.message = The registration number is already in use.
