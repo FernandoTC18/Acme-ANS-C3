@@ -15,3 +15,5 @@ acme.validation.assistanceAgent.invalid-employee-code.message = El código del e
 acme.validation.trackingLog.incorrect-indicator.message = El indicador debe ser ACCEPTED o REJECTED cuando el porcentaje de resolución sea 100%, y PENDING cuando sea inferior a 100%.
 acme.validation.trackingLog.invalid-resolution-percentage.message = El porcentaje de resolución debe ser superior al valor máximo registrado anteriormente.
 acme.validation.trackingLog.mandatory-resolution.message = El campo resolución es obligatorio cuando el estado de la reclamación es ACCEPTED o PENDING.
+acme.validation.technician.invalid-licenseNumber.message = El campo "licenseNumber" no cumple con el patrón "^[A-Z]{2,3}\\d{6}$" o es nulo.
+acme.validation.technician.used-licenseNumber.message = El número de licencia ya está en uso.

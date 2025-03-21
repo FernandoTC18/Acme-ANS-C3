@@ -15,3 +15,5 @@ acme.validation.assistanceAgent.invalid-employee-code.message = The employee cod
 acme.validation.trackingLog.incorrect-indicator.message = The indicator must be ACCEPTED or REJECTED when the resolution percentage is 100%, and PENDING when it is less than 100%.
 acme.validation.trackingLog.invalid-resolution-percentage.message = The resolution percentage must be greater than any previously recorded value.
 acme.validation.trackingLog.mandatory-resolution.message = The resolution field is mandatory when the claim status is ACCEPTED or REJECTED.
+acme.validation.technician.invalid-licenseNumber.message = The ‘licenseNumber’ field does not conform to the pattern ‘^[A-Z]{2,3}’ or is null.
+acme.validation.technician.used-licenseNumber.message = The licence number is already in use.
