@@ -39,7 +39,7 @@ public class AirportValidator extends AbstractValidator<ValidAirport, Airport> {
 				iataCode = airport.getIataCode();
 				correctIataCode = iataCode != null && Pattern.matches("^[A-Z]{3}$", iataCode);
 
-				super.state(context, correctIataCode, "iataCode", "acme.validation.job.invalid-iataCode.message");
+				super.state(context, correctIataCode, "iataCode", "acme.validation.airport.invalid-iataCode.message");
 			}
 
 			{
@@ -49,7 +49,7 @@ public class AirportValidator extends AbstractValidator<ValidAirport, Airport> {
 				existingAirport = this.repository.findAirportByIataCode(airport.getIataCode());
 				uniqueIataCode = existingAirport == null || airport.getIataCode().isBlank() || existingAirport.equals(airport);
 
-				super.state(context, uniqueIataCode, "iataCode", "acme.validation.job.invalid-iataCode.message");
+				super.state(context, uniqueIataCode, "iataCode", "acme.validation.airport.invalid-iataCode.message");
 			}
 
 		}
