@@ -18,3 +18,5 @@ acme.validation.trackingLog.mandatory-resolution.message = El campo resolución 
 acme.validation.technician.invalid-licenseNumber.message = El campo "licenseNumber" no cumple con el patrón "^[A-Z]{2,3}\\d{6}$" o es nulo.
 acme.validation.technician.used-licenseNumber.message = El número de licencia ya está en uso.
 acme.validation.aircraft.used-registrationNumber.message = El número de registro ya está en uso.
+acme.validation.service.correctPattern.message = el código de promoción no tiene el formato correcto
+acme.validation.service.promCodeNotInDb.message = el código de promoción es un valor único
