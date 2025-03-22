@@ -20,3 +20,4 @@ acme.validation.technician.used-licenseNumber.message = The licence number is al
 acme.validation.aircraft.used-registrationNumber.message = The registration number is already in use.
 acme.validation.service.correctPattern.message = the promotional code is not in the correct format
 acme.validation.service.promCodeNotInDb.message = the promotional code  is a unique value
+acme.validation.flightCrew.uniqueEmployeeCode.message = The employee code already exists. Please, try with a new one.
