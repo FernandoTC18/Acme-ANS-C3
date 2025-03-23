@@ -58,7 +58,7 @@ public class FlightCrewValidator extends AbstractValidator<ValidFlightCrew, Flig
 			boolean uniqueEmployeeCode;
 			
 			existingFlightCrew = flightCrewRepository.findFlightCrewByCode(flightCrew.getEmployeeCode());
-			uniqueEmployeeCode = existingFlightCrew == null || existingFlightCrew.equals(flightCrew);
+			uniqueEmployeeCode = existingFlightCrew == null || existingFlightCrew.getEmployeeCode().isBlank() ||  existingFlightCrew.equals(flightCrew);
 			
 			super.state(context, uniqueEmployeeCode, "employeeCode", "acme.validation.flightCrew.uniqueEmployeeC.message");
 			
