@@ -21,3 +21,5 @@ acme.validation.aircraft.used-registrationNumber.message = The registration numb
 acme.validation.service.correctPattern.message = the promotional code is not in the correct format
 acme.validation.service.promCodeNotInDb.message = the promotional code  is a unique value
 acme.validation.flightCrew.uniqueEmployeeCode.message = The employee code already exists. Please, try with a new one.
+acme.validation.airline.invalid-iataCode.message = The IATA code does not exist or it does not follow the pattern ‘^[A-Z]{2,3}’.
+acme.validation.airline.uniqueIataCode.message = This IATA code already belongs to another airline. Please, try with a new one.
