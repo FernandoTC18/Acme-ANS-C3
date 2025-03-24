@@ -1,4 +1,3 @@
-
 package acme.constraints;
 
 import java.util.regex.Pattern;
@@ -43,10 +42,9 @@ public class ServiceValidator extends AbstractValidator<ValidService, Service> {
 				boolean correctPatternPromotionCode;
 				if (service.getPromotionCode() == null)
 					correctPatternPromotionCode = true;
-				else if (Pattern.matches("^[A-Z]{4}-[0-9]{2}$", service.getPromotionCode()))
-					correctPatternPromotionCode = true;
 				else
-					correctPatternPromotionCode = false;
+					correctPatternPromotionCode = Pattern.matches("^[A-Z]{4}-[0-9]{2}$", service.getPromotionCode()) && !service.getPromotionCode().isBlank();
+
 				super.state(context, correctPatternPromotionCode, "promotionCode", "acme.validation.service.correctPattern.message");
 			}
 
@@ -55,7 +53,7 @@ public class ServiceValidator extends AbstractValidator<ValidService, Service> {
 				if (service.getPromotionCode() != null) {
 					Service servInDb;
 					servInDb = this.serviceRepository.computePromCodeInDbNum(service.getPromotionCode());
-					promCodeNotInDb = servInDb == null || servInDb.equals(service);
+					promCodeNotInDb = servInDb == null || service.getPromotionCode().isBlank() || servInDb.equals(service);
 				} else
 					promCodeNotInDb = true;
 				super.state(context, promCodeNotInDb, "promotionCode", "acme.validation.service.promCodeNotInDb.message");
