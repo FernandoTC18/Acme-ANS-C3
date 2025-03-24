@@ -1,0 +1,23 @@
+administrator.airport.list.label.name = Name
+administrator.airport.list.label.iataCode = Iata code
+administrator.airport.list.label.operationalScope = Operational scope
+administrator.airport.list.label.city = City
+administrator.airport.list.label.country = Country
+administrator.airport.list.label.webSite = Web
+administrator.airport.list.label.email = Email
+administrator.airport.list.label.phoneNumber = Phone number
+administrator.airport.list.title = Airports
+administrator.airport.list.button.create = Create
+
+administrator.airport.form.label.name = Name
+administrator.airport.form.label.iataCode = Iata code
+administrator.airport.form.label.operationalScope = Operational Scope
+administrator.airport.form.label.city = City
+administrator.airport.form.label.country = Country
+administrator.airport.form.label.webSite = Web
+administrator.airport.form.label.email = Email
+administrator.airport.form.label.phoneNumber = Phone Number
+administrator.airport.form.title = Airport
+
+administrator.airport.form.label.confirmation = I am agree
+administrator.airport.form.button.create = Create

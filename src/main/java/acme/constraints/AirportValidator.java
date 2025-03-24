@@ -9,12 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.validation.AbstractValidator;
 import acme.entities.airport.Airport;
-import acme.features.authenticated.airport.AuthenticatedAirportRepository;
+import acme.features.administrator.airport.AdministratorAirportRepository;
 
 public class AirportValidator extends AbstractValidator<ValidAirport, Airport> {
 
 	@Autowired
-	private AuthenticatedAirportRepository repository;
+	private AdministratorAirportRepository repository;
 
 
 	@Override
