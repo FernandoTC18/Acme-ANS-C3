@@ -1,0 +1,10 @@
+administrator.airline.list.label.foundation = Foundation Moment
+administrator.airline.list.label.type = Airline type
+administrator.airline.list.label.iataCode = IATA code
+administrator.airline.list.label.name = Name
+administrator.airline.list.title = Airline listing
+administrator.airline.form.label.name = Name
+administrator.airline.form.label.iataCode = IATA code
+administrator.airline.form.label.type = Airline type
+administrator.airline.form.label.foundation = Foundation moment
+administrator.airline.form.title = Airline form

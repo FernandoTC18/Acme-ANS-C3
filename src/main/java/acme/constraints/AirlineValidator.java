@@ -8,14 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.validation.AbstractValidator;
 import acme.entities.airline.Airline;
-
-import acme.features.authenticated.airline.AirlineRepository;
+import acme.features.administrator.airline.AdministratorAirlineRepository;
 
 public class AirlineValidator extends AbstractValidator<ValidAirline, Airline>{
 	
 	
 	@Autowired
-	private AirlineRepository airlineRepository;
+	private AdministratorAirlineRepository airlineRepository;
 	
 	
 	@Override

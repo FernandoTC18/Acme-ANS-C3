@@ -1,0 +1,10 @@
+administrator.airline.list.label.foundation = Momento de fundación
+administrator.airline.list.label.type = Tipo de aerolínea
+administrator.airline.list.label.iataCode = Código IATA
+administrator.airline.list.label.name = Nombre
+administrator.airline.list.title = Listado de aerolíneas
+administrator.airline.form.label.name = Nombre
+administrator.airline.form.label.iataCode = Código IATA
+administrator.airline.form.label.type = Tipo de aerolínea
+administrator.airline.form.label.foundation = Momento de fundación
+administrator.airline.form.title = Formulario de aerolíneas
