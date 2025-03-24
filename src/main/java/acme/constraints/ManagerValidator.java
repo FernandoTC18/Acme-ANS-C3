@@ -5,16 +5,21 @@ import java.util.regex.Pattern;
 
 import javax.validation.ConstraintValidatorContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
 import acme.realms.Manager;
+import acme.realms.ManagerRepository;
 
 @Validator
 public class ManagerValidator extends AbstractValidator<ValidManager, Manager> {
 
 	// Internal state ---------------------------------------------------------
-
+	@Autowired
+	private ManagerRepository managerRepository;
 	// ConstraintValidator interface ------------------------------------------
+
 
 	@Override
 	protected void initialise(final ValidManager annotation) {
@@ -37,6 +42,13 @@ public class ManagerValidator extends AbstractValidator<ValidManager, Manager> {
 
 				super.state(context, correctIdentifierFormat, "identifierNumber", "acme.validation.manager.identifierNumberFormat.message");
 
+			}
+			{
+				boolean idNumberNotInDb;
+				Manager managerInDb;
+				managerInDb = this.managerRepository.computeManagerByIdNumberInDb(manager.getIdentifierNumber());
+				idNumberNotInDb = managerInDb == null || manager.getIdentifierNumber().isBlank() || managerInDb.equals(manager);
+				super.state(context, idNumberNotInDb, "promotionCode", "acme.validation.manager.identifierNumberDB.message");
 			}
 
 			{
