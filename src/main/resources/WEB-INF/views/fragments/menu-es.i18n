@@ -20,6 +20,7 @@ master.menu.anonymous.favourite-link-samtambal = 29542740E: Tamayo Balogh, Samue
 
 master.menu.administrator = Administrador
 master.menu.administrator.list-user-accounts = Ver cuentas de usuario
+master.menu.administrator.list-aircraft = Ver aviones
 master.menu.administrator.populate-db-initial = Poblar BD (inicial)
 master.menu.administrator.populate-db-sample = Poblar BD (ejemplos)
 master.menu.administrator.shut-system-down = Parar el sistema
