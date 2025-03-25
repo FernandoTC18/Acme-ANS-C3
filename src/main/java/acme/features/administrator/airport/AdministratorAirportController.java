@@ -22,11 +22,15 @@ public class AdministratorAirportController extends AbstractGuiController<Admini
 	@Autowired
 	private AdministratorAiportCreateService	createService;
 
+	@Autowired
+	private AdministratorAirportUpdateService	updateService;
+
 
 	@PostConstruct
 	protected void initialise() {
 		super.addBasicCommand("list", this.listService);
 		super.addBasicCommand("show", this.showService);
 		super.addBasicCommand("create", this.createService);
+		super.addBasicCommand("update", this.updateService);
 	}
 }

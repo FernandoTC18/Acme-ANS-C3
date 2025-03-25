@@ -21,3 +21,5 @@ administrator.airport.form.title = Airport
 
 administrator.airport.form.label.confirmation = I am agree
 administrator.airport.form.button.create = Create
+administrator.airport.form.button.delete = Delete
+administrator.airport.form.button.update = Update
