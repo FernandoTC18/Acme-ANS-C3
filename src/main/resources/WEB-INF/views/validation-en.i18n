@@ -26,3 +26,5 @@ acme.validation.airline.uniqueIataCode.message = This IATA code already belongs 
 acme.validation.manager.identifierNumberFormat.message = The identifier number is not in the correct format.
 acme.validation.manager.identifierNumberDB.message = Identifier number is not unique.
 acme.validation.leg.correctFlightNumberPattern.message = The flight number does not have a valid format.
+acme.validation.airport.invalid-iataCode.message = Invalid Iata Code
+acme.validation.airport.repeat-iataCode.message = Iata Code already exists
