@@ -1,18 +1,25 @@
 
 package acme.constraints;
 
+import java.util.regex.Pattern;
+
 import javax.validation.ConstraintValidatorContext;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
 import acme.realms.Manager;
+import acme.realms.ManagerRepository;
 
 @Validator
 public class ManagerValidator extends AbstractValidator<ValidManager, Manager> {
 
 	// Internal state ---------------------------------------------------------
-
+	@Autowired
+	private ManagerRepository managerRepository;
 	// ConstraintValidator interface ------------------------------------------
+
 
 	@Override
 	protected void initialise(final ValidManager annotation) {
@@ -28,26 +35,38 @@ public class ManagerValidator extends AbstractValidator<ValidManager, Manager> {
 		if (manager == null)
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
 		else {
-			String name;
-			String nameIdentifier;
-			String initials;
-			String surname;
-			boolean correctIdentifierNumber;
+			{
+				boolean correctIdentifierFormat;
 
-			name = manager.getIdentity().getName().trim();
-			surname = manager.getIdentity().getSurname().trim();
+				correctIdentifierFormat = manager.getIdentifierNumber() != null && Pattern.matches("^[A-Z]{2,3}\\d{6}$", manager.getIdentifierNumber());
 
-			nameIdentifier = manager.getIdentifierNumber().substring(0, manager.getIdentifierNumber().length() - 6);
+				super.state(context, correctIdentifierFormat, "identifierNumber", "acme.validation.manager.identifierNumberFormat.message");
 
-			if (nameIdentifier.length() == 3)
-				nameIdentifier = nameIdentifier.substring(0, 2);
+			}
+			{
+				boolean idNumberNotInDb;
+				Manager managerInDb;
+				managerInDb = this.managerRepository.computeManagerByIdNumberInDb(manager.getIdentifierNumber());
+				idNumberNotInDb = managerInDb == null || manager.getIdentifierNumber().isBlank() || managerInDb.equals(manager);
+				super.state(context, idNumberNotInDb, "promotionCode", "acme.validation.manager.identifierNumberDB.message");
+			}
 
-			initials = name.substring(0, 1) + surname.substring(0, 1);
+			{
+				String name;
+				String nameIdentifier;
+				String surname;
+				boolean correctIdentifierName;
 
-			correctIdentifierNumber = initials.equals(nameIdentifier);
+				name = manager.getIdentity().getName().trim();
+				surname = manager.getIdentity().getSurname().trim();
 
-			super.state(context, correctIdentifierNumber, "identifierNumber", "acme.validation.manager.identifierNumber.message");
+				nameIdentifier = manager.getIdentifierNumber();
+				if (name != null && surname != null && nameIdentifier != null) {
+					correctIdentifierName = nameIdentifier.charAt(0) == name.charAt(0) && nameIdentifier.charAt(1) == surname.charAt(0);
 
+					super.state(context, correctIdentifierName, "identifierNumber", "acme.validation.manager.identifierNumber.message");
+				}
+			}
 		}
 		result = !super.hasErrors(context);
 
