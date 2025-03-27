@@ -12,10 +12,10 @@ import acme.entities.aircraft.Aircraft;
 import acme.entities.aircraft.AircraftStatus;
 
 @GuiService
-public class AdministratorAircraftShowService extends AbstractGuiService<Administrator, Aircraft> {
+public class AdministratorAircraftCreateService extends AbstractGuiService<Administrator, Aircraft> {
 
 	@Autowired
-	AdministratorAircraftRepository repository;
+	private AdministratorAircraftRepository repository;
 
 
 	@Override
@@ -26,27 +26,44 @@ public class AdministratorAircraftShowService extends AbstractGuiService<Adminis
 	@Override
 	public void load() {
 		Aircraft aircraft;
-		int id;
 
-		id = super.getRequest().getData("id", int.class);
-		aircraft = this.repository.findAircraftById(id);
+		aircraft = new Aircraft();
 
 		super.getBuffer().addData(aircraft);
+	}
+
+	@Override
+	public void bind(final Aircraft aircraft) {
+		super.bindObject(aircraft, "model", "registrationNumber", "capacity", "cargoWeight", "status", "details");
 
 	}
 
 	@Override
+	public void validate(final Aircraft aircraft) {
+		boolean confirmation;
+
+		confirmation = super.getRequest().getData("confirmation", boolean.class);
+		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
+	}
+
+	@Override
+	public void perform(final Aircraft aircraft) {
+		this.repository.save(aircraft);
+	}
+
+	@Override
 	public void unbind(final Aircraft aircraft) {
-		assert aircraft != null;
 		Dataset dataset;
 		SelectChoices aircraftStatus;
 
 		aircraftStatus = SelectChoices.from(AircraftStatus.class, aircraft.getStatus());
 
 		dataset = super.unbindObject(aircraft, "model", "registrationNumber", "capacity", "cargoWeight", "status", "details");
+		dataset.put("confirmation", false);
+		dataset.put("readonly", false);
+		dataset.put("status", aircraftStatus);
 
 		super.getResponse().addData(dataset);
-		dataset.put("status", aircraftStatus);
 	}
 
 }
