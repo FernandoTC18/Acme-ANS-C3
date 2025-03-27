@@ -9,8 +9,8 @@
 	<acme:input-select code="administrator.airport.form.label.operationalScope" path="operationalScope" choices ="${operationalScopes}"/>
 	<acme:input-textbox code="administrator.airport.form.label.city" path="city"/>
 	<acme:input-textbox code="administrator.airport.form.label.country" path="country"/>
-	<acme:input-textbox code="administrator.airport.form.label.webSite" path="webSite"/>
-	<acme:input-textbox code="administrator.airport.form.label.email" path="email"/>
+	<acme:input-url code="administrator.airport.form.label.webSite" path="webSite"/>
+	<acme:input-email code="administrator.airport.form.label.email" path="email"/>
 	<acme:input-textbox code="administrator.airport.form.label.phoneNumber" path="phoneNumber"/>
 	
 	<jstl:if test="${!readonly}">

@@ -1,30 +1,61 @@
 # validation-es.i18n
 
+# Flight Validation
+acme.validation.flight.correctMinScheduleDeparture.message = La salida programada debe ser como mínimo en el momento actual
+acme.validation.flight.correctMinScheduleArrival.message = La llegada programada debe ser como mínimo un minuto después de la salida programada
 acme.validation.flight.overlapped.message = No se pueden solapar los tramos de un vuelo
+
+# Leg Validation
 acme.validation.leg.correctFlightNumber.message = El código iata del tramo debe existir en la base de datos
 acme.validation.leg.correctMinScheduleDeparture.message = La salida programada debe ser como mínimo en el momento actual
 acme.validation.leg.correctMinScheduleArrival.message = La llegada programada debe ser como mínimo un minuto después de la salida programada
+acme.validation.leg.correctFlightNumberPattern.message = El número de vuelo no tiene un formato válido.
+
+# Manager Validation
 acme.validation.manager.identifierNumber.message = Las 2/3 primeras letras del identificador deben corresponderse con las iniciales del manager
+
+# FlightAssigment Validation
 acme.validation.flightassignment.lastupdate.message = La ultima actualización de una asignación de vuelo debe ser previa a la fecha actual.
+
+# ActivityLog Validation
 acme.validation.activitylog.registrationMoment.message = La fecha de registro de un ActivityLog debe ser después de que se haya terminado la escala asociada.
-acme.validation.flight.correctMinScheduleDeparture.message = La salida programada debe ser como mínimo en el momento actual
-acme.validation.flight.correctMinScheduleArrival.message = La llegada programada debe ser como mínimo un minuto después de la salida programada
+
+# FlightCrew Validation
 acme.validation.flightCrew.employeeCode.message = Las 2 primeras letras del código de empleado deben coincidir con las iniciales del Flight Crew
+acme.validation.flightCrew.uniqueEmployeeCode.message = Este código de empleado ya existe. Por favor, intente otro nuevo.
+
+# Service Validation
 acme.validation.service.correctLastTwoNumbers.message = Las últimas dos cifras deben coicidir con el año actual
+acme.validation.service.correctPattern.message = el código de promoción no tiene el formato correcto
+acme.validation.service.promCodeNotInDb.message = el código de promoción es un valor único
+
+# AssistanceAgent Validation
 acme.validation.assistanceAgent.invalid-employee-code.message = El código del empleado debe comenzar con la primera letra del nombre seguida de la primera letra del primer apellido.
+
+# TrackingLog Validation
 acme.validation.trackingLog.incorrect-indicator.message = El indicador debe ser ACCEPTED o REJECTED cuando el porcentaje de resolución sea 100%, y PENDING cuando sea inferior a 100%.
 acme.validation.trackingLog.invalid-resolution-percentage.message = El porcentaje de resolución debe ser superior al valor máximo registrado anteriormente.
 acme.validation.trackingLog.mandatory-resolution.message = El campo resolución es obligatorio cuando el estado de la reclamación es ACCEPTED o PENDING.
+
+# Technician Validation
 acme.validation.technician.invalid-licenseNumber.message = El campo "licenseNumber" no cumple con el patrón "^[A-Z]{2,3}\\d{6}$" o es nulo.
 acme.validation.technician.used-licenseNumber.message = El número de licencia ya está en uso.
+
+# Aircraft Validation
 acme.validation.aircraft.used-registrationNumber.message = El número de registro ya está en uso.
-acme.validation.service.correctPattern.message = el código de promoción no tiene el formato correcto
-acme.validation.service.promCodeNotInDb.message = el código de promoción es un valor único
-acme.validation.flightCrew.uniqueEmployeeCode.message = Este código de empleado ya existe. Por favor, intente otro nuevo.
+
+# Airline Validation
 acme.validation.airline.invalid-iataCode.message = El código IATa no existe o no sigue el patrón ‘^[A-Z]{2,3}’.
 acme.validation.airline.uniqueIataCode.message = Este código IATA ya pertenece a una aerolínea. Por favor, intente con otro nuevo.
+
+# Manager Validation
 acme.validation.manager.identifierNumberFormat.message = El número identificador no tiene el formato correcto.
 acme.validation.manager.identifierNumberDB.message = El número identificador no es único.
-acme.validation.leg.correctFlightNumberPattern.message = El número de vuelo no tiene un formato válido.
+
+# Airport Validation
 acme.validation.airport.invalid-iataCode.message = Código Iata inválido
 acme.validation.airport.repeat-iataCode.message = El código Iata ya existe
+
+# GENERAL ############################
+acme.validation.incorrectly-formatted-phoneNumber.message =  Debe utilizar un formato de número de teléfono correcto, Ej: +34123456789, 123456789
+acme.validation.incorrectly-formatted-iataCode.message =  Debe utilizar un formato de código iata correcto, Ej: JFK, LAX
