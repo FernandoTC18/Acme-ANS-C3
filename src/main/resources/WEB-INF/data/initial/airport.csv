@@ -10,6 +10,9 @@ airport-06,"Lorem ipsum dolor sit amet, consectetur adipiscing",YTM,INTERNATIONA
 airport-07,โลเร็ม อิปซัม,FFF,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,+34898231200
 airport-08,لوريم إيبسوم,WWW,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,+34898231200
 airport-09,洛伦·伊普森,AAA,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,+34898231200
+airport-39,<marquee>Hacked</marquee>,XXX,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,+34898231200
+airport-40,<script>alert(‘Hacked!’)</script>,YYY,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,+34898231200
+airport-41,' or 'A' = 'A,ZZZ,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,+34898231200
 #operationalScope-standard,"","","","","","","",""
 airport-31,Lorem ipsum dolor sit ame,EEE,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,+34898231200
 airport-32,Lorem ipsum dolor sit ame,GGG,DOMESTIC,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,+34898231200

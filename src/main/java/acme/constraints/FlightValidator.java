@@ -1,22 +1,27 @@
 
 package acme.constraints;
 
-import java.time.temporal.ChronoUnit;
-import java.util.Date;
+import java.util.List;
 
 import javax.validation.ConstraintValidatorContext;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
 import acme.client.helpers.MomentHelper;
 import acme.entities.flight.Flight;
+import acme.entities.flight.FlightRepository;
+import acme.entities.leg.Leg;
 
 @Validator
 public class FlightValidator extends AbstractValidator<ValidFlight, Flight> {
 
 	// Internal state ---------------------------------------------------------
-
+	@Autowired
+	FlightRepository flightRepository;
 	// ConstraintValidator interface ------------------------------------------
+
 
 	@Override
 	protected void initialise(final ValidFlight annotation) {
@@ -33,26 +38,20 @@ public class FlightValidator extends AbstractValidator<ValidFlight, Flight> {
 		if (flight == null)
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
 		else {
-
-			{
-				boolean correctMinScheduleDeparture;
-				Date min;
-
-				min = MomentHelper.getCurrentMoment();
-
-				correctMinScheduleDeparture = !MomentHelper.isBefore(flight.getScheduledDeparture(), min);
-				super.state(context, correctMinScheduleDeparture, "scheduledDeparture", "acme.validation.flight.correctMinScheduleDeparture.message");
-
+			boolean notOverlapping;
+			List<Leg> legsByFlight;
+			Leg currentLeg;
+			Leg nextLeg;
+			legsByFlight = this.flightRepository.computeLegsByFlight(flight.getId());
+			int overlappedLegs = 0;
+			for (int i = 0; i < legsByFlight.size() - 1; i++) {
+				currentLeg = legsByFlight.get(i);
+				nextLeg = legsByFlight.get(i + 1);
+				if (MomentHelper.isAfter(currentLeg.getScheduledArrival(), nextLeg.getScheduledDeparture()))
+					overlappedLegs = overlappedLegs + 1;
 			}
-			{
-				boolean correctMinScheduleArrival;
-				Date min;
-
-				min = MomentHelper.deltaFromMoment(flight.getScheduledDeparture(), 1, ChronoUnit.MINUTES);
-
-				correctMinScheduleArrival = !MomentHelper.isBefore(flight.getScheduledArrival(), min);
-				super.state(context, correctMinScheduleArrival, "scheduledArrival", "acme.validation.flight.correctMinScheduleArrival.message");
-			}
+			notOverlapping = overlappedLegs == 0;
+			super.state(context, notOverlapping, "*", "acme.validation.flight.overlapped.message");
 		}
 		result = !super.hasErrors(context);
 
