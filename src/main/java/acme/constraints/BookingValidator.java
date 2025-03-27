@@ -9,12 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.validation.AbstractValidator;
 import acme.entities.booking.Booking;
-import acme.features.authenticated.booking.AuthenticatedBookingRepository;
+import acme.features.customer.booking.CustomerBookingRepository;
 
 public class BookingValidator extends AbstractValidator<ValidBooking, Booking> {
 
 	@Autowired
-	private AuthenticatedBookingRepository repository;
+	private CustomerBookingRepository repository;
 
 
 	@Override

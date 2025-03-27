@@ -56,6 +56,11 @@ public class Booking extends AbstractEntity {
 	@Automapped
 	private Money				price;
 
+	@Mandatory
+	@Valid
+	@Automapped
+	private Boolean				draftMode;
+
 	@Optional
 	@ValidString(pattern = "^\\d{4}$")
 	@Automapped
