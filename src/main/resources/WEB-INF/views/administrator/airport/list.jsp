@@ -9,9 +9,6 @@
 	<acme:list-column code="administrator.airport.list.label.operationalScope" path="operationalScope" width="30%"/>
 	<acme:list-column code="administrator.airport.list.label.city" path="city" width="30%"/>
 	<acme:list-column code="administrator.airport.list.label.country" path="country" width="30%"/>
-	<acme:list-column code="administrator.airport.list.label.webSite" path="webSite" width="30%"/>
-	<acme:list-column code="administrator.airport.list.label.email" path="email" width="30%"/>
-	<acme:list-column code="administrator.airport.list.label.phoneNumber" path="phoneNumber" width="30%"/>
 	<acme:list-payload path="/payload"/>
 </acme:list>
 

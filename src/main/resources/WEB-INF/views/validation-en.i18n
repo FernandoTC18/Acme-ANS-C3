@@ -1,30 +1,59 @@
 # validation-en.i18n
 
+# Flight Validation
 acme.validation.flight.overlapped.message  = The legs of a flight cannot be overlapped
+acme.validation.flight.correctMinScheduleDeparture.message = Schedule departure must be before the current moment
+acme.validation.flight.correctMinScheduleArrival.message = Schedule arrival must be at the very least after one minute of the schedule departure
+
+# Leg Validation
+acme.validation.leg.correctFlightNumberPattern.message = The flight number does not have a valid format.
 acme.validation.leg.correctFlightNumber.message = The iata code of the Leg should exist in the DB
 acme.validation.leg.correctMinScheduleDeparture.message = Schedule departure must be before the current moment
 acme.validation.leg.correctMinScheduleArrival.message = Schedule arrival must be at the very least after one minute of the schedule departure
+
+# Manager Validation
+acme.validation.manager.identifierNumberFormat.message = The identifier number is not in the correct format.
+acme.validation.manager.identifierNumberDB.message = Identifier number is not unique.
 acme.validation.manager.identifierNumber.message = The first 2/3 letters of the identifier must correspond to the manager's initials
+
+# FlightAssigment Validation
 acme.validation.flightassignment.lastupdate.message = The last update of a flight assignment must be prior to the current date.
+
+# ActivityLog Validation
 acme.validation.activitylog.registrationMoment.message = The registration moment of an activity log must be after the leg has taken place.
-acme.validation.flight.correctMinScheduleDeparture.message = Schedule departure must be before the current moment
-acme.validation.flight.correctMinScheduleArrival.message = Schedule arrival must be at the very least after one minute of the schedule departure
+
+# FlightCrew Validation
 acme.validation.flightCrew.employeeCode.message = The first 2 letters of the employee code must correspond to the flight crew's initials.
+acme.validation.flightCrew.uniqueEmployeeCode.message = The employee code already exists. Please, try with a new one.
+
+# Service Validation
 acme.validation.service.correctLastTwoNumbers.message = The last two figures must correspond to the current year
+acme.validation.service.correctPattern.message = the promotional code is not in the correct format
+acme.validation.service.promCodeNotInDb.message = the promotional code  is a unique value
+
+# AssistanceAgent Validation
 acme.validation.assistanceAgent.invalid-employee-code.message = The employee code must begin with the first letter of the name followed by the first letter of the first surname.
+
+# TrackingLog Validation
 acme.validation.trackingLog.incorrect-indicator.message = The indicator must be ACCEPTED or REJECTED when the resolution percentage is 100%, and PENDING when it is less than 100%.
 acme.validation.trackingLog.invalid-resolution-percentage.message = The resolution percentage must be greater than any previously recorded value.
 acme.validation.trackingLog.mandatory-resolution.message = The resolution field is mandatory when the claim status is ACCEPTED or REJECTED.
+
+# Technician validations
 acme.validation.technician.invalid-licenseNumber.message = The ‘licenseNumber’ field does not conform to the pattern ‘^[A-Z]{2,3}’ or is null.
 acme.validation.technician.used-licenseNumber.message = The licence number is already in use.
+
+# Aircraft validations
 acme.validation.aircraft.used-registrationNumber.message = The registration number is already in use.
-acme.validation.service.correctPattern.message = the promotional code is not in the correct format
-acme.validation.service.promCodeNotInDb.message = the promotional code  is a unique value
-acme.validation.flightCrew.uniqueEmployeeCode.message = The employee code already exists. Please, try with a new one.
+
+# Airline validations
 acme.validation.airline.invalid-iataCode.message = The IATA code does not exist or it does not follow the pattern ‘^[A-Z]{2,3}’.
 acme.validation.airline.uniqueIataCode.message = This IATA code already belongs to another airline. Please, try with a new one.
-acme.validation.manager.identifierNumberFormat.message = The identifier number is not in the correct format.
-acme.validation.manager.identifierNumberDB.message = Identifier number is not unique.
-acme.validation.leg.correctFlightNumberPattern.message = The flight number does not have a valid format.
+
+# Airport validations
 acme.validation.airport.invalid-iataCode.message = Invalid Iata Code
 acme.validation.airport.repeat-iataCode.message = Iata Code already exists
+
+# GENERAL #############################
+acme.validation.incorrectly-formatted-phoneNumber.message = You have to use a correct phone number format, Ex: +34123456789, 123456789
+acme.validation.incorrectly-formatted-iataCode.message = You have to use a correct iata code format, Ex: JFK, LAX
