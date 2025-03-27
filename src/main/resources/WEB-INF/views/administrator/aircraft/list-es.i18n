@@ -16,3 +16,4 @@ administrator.aircraft.form.button.delete = Borrar
 administrator.aircraft.form.button.create = Crear
 administrator.aircraft.list.button.create = Crear
 administrator.aircraft.form.label.confirmation = Estoy de acuerdo
+administrator.aircraft.form.button.disable = Deshabilitar
