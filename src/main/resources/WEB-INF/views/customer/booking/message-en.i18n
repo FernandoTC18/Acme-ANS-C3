@@ -7,8 +7,13 @@ customer.booking.list.title = Bookings
 customer.booking.form.label.locatorCode = Locator Code
 customer.booking.form.label.purchaseMoment = Purchase Moment
 customer.booking.form.label.travelClass = Travel Class
-customer.booking.form.label.Price = Price
-customer.booking.form.label.LastCardNibble = Last Card Nibble
+customer.booking.form.label.price = Price
+customer.booking.form.label.flight = Flight
+customer.booking.form.label.lastCardNibble = Last Card Nibble
 customer.booking.form.title = Booking form
 customer.booking.form.button.publish = Publish booking
 customer.booking.form.button.update = Update
+
+acme.validation.lastCardNibble.message = Last Card Nibble is required to publish your booking
+
+customer.booking.form.button.passengers = Show passengers

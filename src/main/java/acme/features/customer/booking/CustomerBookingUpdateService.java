@@ -9,6 +9,7 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.booking.Booking;
 import acme.entities.booking.TravelClass;
+import acme.entities.flight.Flight;
 import acme.realms.Customer;
 
 @GuiService
@@ -40,15 +41,19 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 
 	@Override
 	public void bind(final Booking booking) {
+		int flightId;
+		Flight flight;
+
+		flightId = super.getRequest().getData("flight", int.class);
+		flight = this.repository.findFlightById(flightId);
+
 		super.bindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "price", "lastCardNibble");
+		booking.setFlight(flight);
 	}
 
 	@Override
 	public void validate(final Booking booking) {
-		boolean confirmation;
-
-		confirmation = super.getRequest().getData("confirmation", boolean.class);
-		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
+		;
 	}
 
 	@Override
@@ -63,8 +68,7 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 
 		classes = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 
-		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "price", "draftMode", "lastCardNibble", "customer", "flight");
-		dataset.put("confirmation", false);
+		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "price", "draftMode", "lastCardNibble", "flight");
 		dataset.put("travelClass", classes);
 		dataset.put("readonly", booking.getDraftMode());
 

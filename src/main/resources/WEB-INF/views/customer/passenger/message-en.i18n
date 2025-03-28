@@ -1,0 +1,6 @@
+customer.passenger.list.label.name = Name
+customer.passenger.list.label.email = email
+customer.passenger.list.label.passportNumber = Passport Number
+customer.passenger.list.label.birth = Nacimiento
+
+customer.passenger.list.title = Passengers

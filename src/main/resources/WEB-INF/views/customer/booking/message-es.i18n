@@ -8,7 +8,12 @@ customer.booking.form.label.locatorCode = Código localizador
 customer.booking.form.label.purchaseMoment = Momento de pedido
 customer.booking.form.label.travelClass = Clase
 customer.booking.form.label.price = Precio
+customer.booking.form.label.flight = Vuelo
 customer.booking.form.label.lastCardNibble = Nibble de la tarjeta
 customer.booking.form.title = Formulario de reserva
 customer.booking.form.button.publish = Publicar reserva
 customer.booking.form.button.update = Actualizar
+
+acme.validation.lastCardNibble.message = El último Nibble de la tarjeta es necesario para publicar su reserva 
+
+customer.booking.form.button.passengers = Mostrar pasajeros
