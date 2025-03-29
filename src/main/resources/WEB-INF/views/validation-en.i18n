@@ -57,3 +57,5 @@ acme.validation.airport.repeat-iataCode.message = Iata Code already exists
 # GENERAL #############################
 acme.validation.incorrectly-formatted-phoneNumber.message = You have to use a correct phone number format, Ex: +34123456789, 123456789
 acme.validation.incorrectly-formatted-iataCode.message = You have to use a correct iata code format, Ex: JFK, LAX
+
+acme.validation.unpublishedTasks.message = This Maintenance Record has unpublished Tasks

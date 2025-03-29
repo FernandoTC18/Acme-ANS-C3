@@ -45,3 +45,9 @@ master.menu.user-account.become-provider = Become a provider
 master.menu.user-account.provider-profile = Provider profile
 master.menu.user-account.become-consumer = Become a consumer
 master.menu.user-account.consumer-profile = Consumer profile
+
+# master.menu.technician ###################################################
+
+master.menu.technician = Technician
+master.menu.technician.list-maintenance-records = List maintenance records
+master.menu.technician.list-tasks = List my tasks

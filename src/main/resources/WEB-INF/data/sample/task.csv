@@ -1,56 +1,62 @@
-key,type,description,priority,estimatedDuration,key:technician
+key,type,description,priority,estimatedDuration,key:technician,draftMode
 
 # base entity
 
-task-00,INSPECTION,Lorem ipsum,5,7,technician-01
+task-00,INSPECTION,Lorem ipsum,5,7,technician-01,false
 
 # type - standard variations
 
-task-01,MAINTENANCE,Lorem ipsum,5,7,technician-01
-task-02,INSPECTION,Lorem ipsum,5,7,technician-01
-task-03,REPAIR,Lorem ipsum,5,7,technician-01
-task-04,SYSTEM_CHECK,Lorem ipsum,5,7,technician-01
+task-01,MAINTENANCE,Lorem ipsum,5,7,technician-01,false
+task-02,INSPECTION,Lorem ipsum,5,7,technician-01,false
+task-03,REPAIR,Lorem ipsum,5,7,technician-01,false
+task-04,SYSTEM_CHECK,Lorem ipsum,5,7,technician-01,false
 
 # type - no singular values
 
 # description - standard variations
 
-task-05,INSPECTION,L,5,7,technician-01
-task-06,INSPECTION,Lo,5,7,technician-01
-task-07,INSPECTION,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod te",5,7,technician-01
-task-08,INSPECTION,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",5,7,technician-01
-task-09,INSPECTION,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*",5,7,technician-01
-task-10,INSPECTION,โลเร็ม อิปซัม,5,7,technician-01
-task-11,INSPECTION,لوريم إيبسوم,5,7,technician-01
-task-12,INSPECTION,洛伦·伊普森,5,7,technician-01
-task-13,INSPECTION,<marquee>Hacked</marquee>,5,7,technician-01
-task-14,INSPECTION,<script>alert(‘Hacked!’)</script>,5,7,technician-01
-task-15,INSPECTION,' or 'A' = 'A,5,7,technician-01
+task-05,INSPECTION,L,5,7,technician-01,false
+task-06,INSPECTION,Lo,5,7,technician-01,false
+task-07,INSPECTION,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod te",5,7,technician-01,false
+task-08,INSPECTION,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",5,7,technician-01,false
+task-09,INSPECTION,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*",5,7,technician-01,false
+task-10,INSPECTION,โลเร็ม อิปซัม,5,7,technician-01,false
+task-11,INSPECTION,لوريم إيبسوم,5,7,technician-01,false
+task-12,INSPECTION,洛伦·伊普森,5,7,technician-01,false
+task-13,INSPECTION,<marquee>Hacked</marquee>,5,7,technician-01,false
+task-14,INSPECTION,<script>alert(‘Hacked!’)</script>,5,7,technician-01,false
+task-15,INSPECTION,' or 'A' = 'A,5,7,technician-01,false
 
 # description - no singular values
 
 # priority - standard variations
 
-task-16,INSPECTION,Lorem ipsum,0,7,technician-01
-task-17,INSPECTION,Lorem ipsum,1,7,technician-01
-task-18,INSPECTION,Lorem ipsum,5,7,technician-01
-task-19,INSPECTION,Lorem ipsum,9,7,technician-01
-task-20,INSPECTION,Lorem ipsum,10,7,technician-01
+task-16,INSPECTION,Lorem ipsum,0,7,technician-01,false
+task-17,INSPECTION,Lorem ipsum,1,7,technician-01,false
+task-18,INSPECTION,Lorem ipsum,5,7,technician-01,false
+task-19,INSPECTION,Lorem ipsum,9,7,technician-01,false
+task-20,INSPECTION,Lorem ipsum,10,7,technician-01,false
 
 # priority - no singular values
 
 # estimatedDuration - standard variations
 
-task-21,INSPECTION,Lorem ipsum,5,0,technician-01
-task-22,INSPECTION,Lorem ipsum,5,1,technician-01
-task-23,INSPECTION,Lorem ipsum,5,500,technician-01
-task-24,INSPECTION,Lorem ipsum,5,999,technician-01
-task-25,INSPECTION,Lorem ipsum,5,1000,technician-01
+task-21,INSPECTION,Lorem ipsum,5,0,technician-01,false
+task-22,INSPECTION,Lorem ipsum,5,1,technician-01,false
+task-23,INSPECTION,Lorem ipsum,5,500,technician-01,false
+task-24,INSPECTION,Lorem ipsum,5,999,technician-01,false
+task-25,INSPECTION,Lorem ipsum,5,1000,technician-01,false
 
 # estimatedDuration - no singular values
 
 # technician - standard variations
 
-task-26,INSPECTION,Lorem ipsum,5,7,technician-02
+task-26,INSPECTION,Lorem ipsum,5,7,technician-02,false
 
 # technician - no singular values
+
+# draftMode - standard variations
+
+task-27,INSPECTION,Lorem ipsum,5,7,technician-01,true
+
+# draftMode - no singular values
