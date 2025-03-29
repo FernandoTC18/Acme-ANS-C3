@@ -11,16 +11,16 @@
 	<acme:input-textbox code="technician.maintenance-record.form.label.notes" path="notes"/>
 	<acme:input-textbox code="technician.maintenance-record.form.label.aircraft" path="aircraft"/>
 	<acme:input-textbox code="technician.maintenance-record.form.label.technician" path="technician"/>
-	<acme:input-textbox code="technician.maintenance-record.form.label.draftMode" path="draftMode"/>
 	
 	<jstl:if test="${!readonly}">
-		<acme:input-checkbox code="technician.maintenance-record.form.label.confirmation" path="confirmation"/>	
 			<jstl:choose>
-				<jstl:when test="${acme:anyOf(_command, 'show|update')}">
-					<acme:submit code="technician.maintenance-record.form.button.update" action="/administrator/aircraft/update"/>
+				<jstl:when test="${acme:anyOf(_command, 'show|update|tasks|publish')}">
+					<acme:button code="technician.maintenance-record.form.button.tasks" action="/technician/task/list?id=${id}"/>
+					<acme:submit code="technician.maintenance-record.form.button.publish" action="/technician/maintenance-record/publish"/>
+					<acme:submit code="technician.maintenance-record.form.button.update" action="/technician/maintenance-record/update"/>
 				</jstl:when>
 				<jstl:when test="${_command == 'create'}">
-					<acme:submit code="technician.maintenance-record.form.button.create" action="/administrator/aircraft/create"/>
+					<acme:submit code="technician.maintenance-record.form.button.create" action="/technician/maintenance-record/create"/>
 				</jstl:when>
 			</jstl:choose>
 	</jstl:if>
