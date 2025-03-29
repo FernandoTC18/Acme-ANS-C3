@@ -2,17 +2,17 @@
 
 # Flight Validation
 acme.validation.flight.overlapped.message  = The legs of a flight cannot be overlapped
-acme.validation.flight.correctMinScheduleDeparture.message = Schedule departure must be before the current moment
-acme.validation.flight.correctMinScheduleArrival.message = Schedule arrival must be at the very least after one minute of the schedule departure
+acme.validation.flight.noLegs.message = A flight must have a minimum of 1 leg
+acme.validation.flight.noPublishedLegs.message = To publish a flight, its legs must be previously published
 
 # Leg Validation
-acme.validation.leg.correctFlightNumberPattern.message = The flight number does not have a valid format.
+acme.validation.leg.correctFlightNumberPattern.message = The flight number does not have a valid format,Ex: ZZZ9999,AAAA0000
 acme.validation.leg.correctFlightNumber.message = The iata code of the Leg should exist in the DB
 acme.validation.leg.correctMinScheduleDeparture.message = Schedule departure must be before the current moment
 acme.validation.leg.correctMinScheduleArrival.message = Schedule arrival must be at the very least after one minute of the schedule departure
 
 # Manager Validation
-acme.validation.manager.identifierNumberFormat.message = The identifier number is not in the correct format.
+acme.validation.manager.identifierNumberFormat.message = The identifier number is not in the correct format,Ex: MM0001, MMM9999
 acme.validation.manager.identifierNumberDB.message = Identifier number is not unique.
 acme.validation.manager.identifierNumber.message = The first 2/3 letters of the identifier must correspond to the manager's initials
 
@@ -28,7 +28,7 @@ acme.validation.flightCrew.uniqueEmployeeCode.message = The employee code alread
 
 # Service Validation
 acme.validation.service.correctLastTwoNumbers.message = The last two figures must correspond to the current year
-acme.validation.service.correctPattern.message = the promotional code is not in the correct format
+acme.validation.service.correctPattern.message = the promotional code is not in the correct format,Ex: ABCD-25, ZZZZ-99
 acme.validation.service.promCodeNotInDb.message = the promotional code  is a unique value
 
 # AssistanceAgent Validation

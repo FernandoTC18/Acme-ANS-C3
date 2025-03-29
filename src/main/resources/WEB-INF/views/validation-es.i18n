@@ -4,6 +4,8 @@
 acme.validation.flight.correctMinScheduleDeparture.message = La salida programada debe ser como mínimo en el momento actual
 acme.validation.flight.correctMinScheduleArrival.message = La llegada programada debe ser como mínimo un minuto después de la salida programada
 acme.validation.flight.overlapped.message = No se pueden solapar los tramos de un vuelo
+acme.validation.flight.noLegs.message = Un vuelo debe tener como mínimo 1 tramo
+acme.validation.flight.noPublishedLegs.message = Para publicar un vuelo sus tramos deben ser publicados anteriormente
 
 # Leg Validation
 acme.validation.leg.correctFlightNumber.message = El código iata del tramo debe existir en la base de datos

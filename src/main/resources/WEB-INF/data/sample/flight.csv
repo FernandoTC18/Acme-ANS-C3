@@ -1,50 +1,50 @@
-key,selfTransferRequired,tag,cost,description,key:manager
+key,selfTransferRequired,tag,cost,description,key:manager,draftMode
 #base entity
-flight-01,true,A,USD 150.50,"這是一次附有說明的飛行",manager-01
-flight-02,false,El mejor vuelo,EUR 200.00,,manager-02
+flight-01,true,A,USD 150.50,"這是一次附有說明的飛行",manager-01,true
+flight-02,false,El mejor vuelo,EUR 200.00,,manager-02,true
 
 #tag - standard variations
-flight-03,true,F,EUR 50,,manager-01
-flight-04,false,F4,EUR 70,,manager-01
-flight-05,false,ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrst,EUR 50,,manager-01
-flight-06,true,ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrs,EUR 70,,manager-01
-flight-07,true,Flight number 7,EUR 50,,manager-01
-flight-08,true,你好世界这是一个示例,EUR 50,,manager-01
-flight-09,false,مرحبا بالعالم هذا مثال,EUR 50,,manager-01
+flight-03,true,F,EUR 50,,manager-01,true
+flight-04,false,F4,EUR 70,,manager-01,true
+flight-05,false,ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrst,EUR 50,,manager-01,true
+flight-06,true,ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrs,EUR 70,,manager-01,true
+flight-07,true,Flight number 7,EUR 50,,manager-01,true
+flight-08,true,你好世界这是一个示例,EUR 50,,manager-01,true
+flight-09,false,مرحبا بالعالم هذا مثال,EUR 50,,manager-01,true
 
-flight-10,true,\u202Eمرحبا بالعالم\u202C,EUR 50,,manager-01
-flight-11,false,<h1>Hacked!</h1>,EUR 50,,manager-02
-flight-12,true,'; DROP TABLE users; --,EUR 50,,manager-02
-flight-13,false,<script>alert('Hacked!'),EUR 50,,manager-02
+flight-10,true,\u202Eمرحبا بالعالم\u202C,EUR 50,,manager-01,true
+flight-11,false,<h1>Hacked!</h1>,EUR 50,,manager-02,true
+flight-12,true,'; DROP TABLE users; --,EUR 50,,manager-02,true
+flight-13,false,<script>alert('Hacked!'),EUR 50,,manager-02,true
 
 #selfTransfered - standard variations
-flight-14,true,B,EUR 25,,manager-01
-flight-15,false,B,EUR 25,,manager-02
+flight-14,true,B,EUR 25,,manager-01,true
+flight-15,false,B,EUR 25,,manager-02,true
 
 #cost - standard variations
 
-flight-16,true,C,EUR 0,,manager-01
-flight-17,true,C,EUR 1000000,,manager-01
+flight-16,true,C,EUR 0,,manager-01,true
+flight-17,true,C,EUR 1000000,,manager-01,true
 
-flight-18,true,C,EUR 100,,manager-01
-flight-19,true,C,USD 100,,manager-02
-flight-20,true,C,GBP 100,,manager-02
-flight-21,true,C,JPY 100,,manager-02
+flight-18,true,C,EUR 100,,manager-01,true
+flight-19,true,C,USD 100,,manager-02,true
+flight-20,true,C,GBP 100,,manager-02,true
+flight-21,true,C,JPY 100,,manager-02,true
 
 #description - standard variations
 
-flight-22,true,D,EUR 75,,manager-01
-flight-23,true,D,EUR 75,F,manager-01
-flight-24,true,C,USD 100,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor.,manager-01
-flight-25,true,C,USD 100,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor,manager-01
-flight-26,true,E,EUR 75,null,manager-01
-flight-27,false,E,EUR 75,Descripción de vuelo,manager-01
-flight-28,false,E,EUR 75,你好世界这是一个示例,manager-01
-flight-29,false,E,EUR 75,مرحبا بالعالم هذا مثال,manager-02
-flight-30,false,D,EUR 75,\u202Eمرحبا بالعالم\u202C,manager-02
-flight-31,true,D,EUR 75,'; DROP TABLE users; --,manager-02
-flight-32,true,D,EUR 75,<script>alert('Hacked!');</script>,manager-02
-flight-33,true,D,EUR 75,<h1>Hacked!</h1>,manager-02
+flight-22,true,D,EUR 75,,manager-01,true
+flight-23,true,D,EUR 75,F,manager-01,true
+flight-24,true,C,USD 100,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor.,manager-01,true
+flight-25,true,C,USD 100,Lorem ipsum dolor sit amet  consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor,manager-01,true
+flight-26,true,E,EUR 75,null,manager-01,true
+flight-27,false,E,EUR 75,Descripción de vuelo,manager-01,true
+flight-28,false,E,EUR 75,你好世界这是一个示例,manager-01,true
+flight-29,false,E,EUR 75,مرحبا بالعالم هذا مثال,manager-02,true
+flight-30,false,D,EUR 75,\u202Eمرحبا بالعالم\u202C,manager-02,true
+flight-31,true,D,EUR 75,'; DROP TABLE users; --,manager-02,true
+flight-32,true,D,EUR 75,<script>alert('Hacked!');</script>,manager-02,true
+flight-33,true,D,EUR 75,<h1>Hacked!</h1>,manager-02,true
 
 #manager - standard variations
-flight-34,true,D,EUR 25,,manager-01
+flight-34,true,D,EUR 25,,manager-01,true
