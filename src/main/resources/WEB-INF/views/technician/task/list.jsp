@@ -5,7 +5,6 @@
 
 <acme:list>
 	<acme:list-column code="technician.task.list.label.type" path="type" width="10%"/>
-	<acme:list-column code="technician.task.list.label.description" path="description" width="10%"/>
 	<acme:list-column code="technician.task.list.label.priority" path="priority" width="10%"/>
 	<acme:list-column code="technician.task.list.label.estimatedDuration" path="estimatedDuration" width="10%"/>
 	<acme:list-column code="technician.task.list.label.technician" path="technician" width="10%"/>

@@ -15,4 +15,4 @@ technician.task.form.button.update = Update
 technician.task.form.button.delete = Delete
 technician.task.form.button.create = Create
 technician.task.list.button.create = Create
-technician.task.form.label.confirmation = I agree
+technician.task.form.button.publish = Publish

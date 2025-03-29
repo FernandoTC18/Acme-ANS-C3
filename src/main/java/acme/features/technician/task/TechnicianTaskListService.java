@@ -26,14 +26,18 @@ public class TechnicianTaskListService extends AbstractGuiService<Technician, Ta
 	@Override
 	public void load() {
 		List<Task> tasks;
-		int id;
 
-		id = super.getRequest().getData("id", int.class);
-
-		tasks = this.repository.findTasksByMaintenanceRecord(id);
+		if (super.getRequest().hasData("id")) {
+			int id;
+			id = super.getRequest().getData("id", int.class);
+			tasks = this.repository.findTasksByMaintenanceRecord(id);
+		} else {
+			int techId;
+			techId = super.getRequest().getPrincipal().getActiveRealm().getId();
+			tasks = this.repository.findTasksByTechnicianId(techId);
+		}
 
 		super.getBuffer().addData(tasks);
-
 	}
 
 	@Override

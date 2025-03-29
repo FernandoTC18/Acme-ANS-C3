@@ -11,10 +11,10 @@
 	<acme:input-textbox code="technician.task.form.label.technician" path="technician"/>
 	
 	<jstl:if test="${!readonly}">
-		<acme:input-checkbox code="technician.task.form.label.confirmation" path="confirmation"/>	
 			<jstl:choose>
-				<jstl:when test="${acme:anyOf(_command, 'show|update')}">
+				<jstl:when test="${acme:anyOf(_command, 'show|update|publish')}">
 					<acme:submit code="technician.task.form.button.update" action="/technician/task/update"/>
+					<acme:submit code="technician.task.form.button.publish" action="/technician/task/publish"/>
 				</jstl:when>
 				<jstl:when test="${_command == 'create'}">
 					<acme:submit code="technician.task.form.button.create" action="/technician/task/create"/>
