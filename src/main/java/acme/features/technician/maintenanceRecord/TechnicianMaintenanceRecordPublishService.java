@@ -4,6 +4,7 @@ package acme.features.technician.maintenanceRecord;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.Assert;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
@@ -23,7 +24,28 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 
 	@Override
 	public void authorise() {
+		super.getResponse().setAuthorised(true);
+	}
 
+	@Override
+	public void load() {
+		MaintenanceRecord maintenanceRecord;
+		int id;
+
+		id = super.getRequest().getData("id", int.class);
+		maintenanceRecord = this.repository.findMaintenanceRecordById(id);
+
+		super.getBuffer().addData(maintenanceRecord);
+	}
+
+	@Override
+	public void bind(final MaintenanceRecord maintenanceRecord) {
+		super.bindObject(maintenanceRecord, "moment", "status", "inspectionDueDate", "estimatedCost", "notes", "aircraft", "technician");
+
+	}
+
+	@Override
+	public void validate(final MaintenanceRecord maintenanceRecord) {
 		int id;
 
 		id = super.getRequest().getData("id", int.class);
@@ -50,28 +72,8 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 
 		boolean status = !anyTaskUnpublished && atLeastOnePublishedTask;
 
-		super.getResponse().setAuthorised(status);
-	}
+		Assert.isTrue(status, "The maintenance record has unpublished tasks or no published tasks at all");
 
-	@Override
-	public void load() {
-		MaintenanceRecord maintenanceRecord;
-		int id;
-
-		id = super.getRequest().getData("id", int.class);
-		maintenanceRecord = this.repository.findMaintenanceRecordById(id);
-
-		super.getBuffer().addData(maintenanceRecord);
-	}
-
-	@Override
-	public void bind(final MaintenanceRecord maintenanceRecord) {
-		super.bindObject(maintenanceRecord, "moment", "status", "inspectionDueDate", "estimatedCost", "notes", "aircraft", "technician");
-
-	}
-
-	@Override
-	public void validate(final MaintenanceRecord maintenanceRecord) {
 	}
 
 	@Override
