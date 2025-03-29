@@ -16,3 +16,5 @@ technician.task.form.button.delete = Borrar
 technician.task.form.button.create = Crear
 technician.task.list.button.create = Crear
 technician.task.form.button.publish = Publicar
+technician.task.list.label.draftMode = Borrador
+technician.task.form.button.delete = Borrar
