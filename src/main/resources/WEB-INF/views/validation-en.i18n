@@ -39,20 +39,26 @@ acme.validation.trackingLog.incorrect-indicator.message = The indicator must be 
 acme.validation.trackingLog.invalid-resolution-percentage.message = The resolution percentage must be greater than any previously recorded value.
 acme.validation.trackingLog.mandatory-resolution.message = The resolution field is mandatory when the claim status is ACCEPTED or REJECTED.
 
-# Technician validations
+# Technician Validation
 acme.validation.technician.invalid-licenseNumber.message = The ‘licenseNumber’ field does not conform to the pattern ‘^[A-Z]{2,3}’ or is null.
 acme.validation.technician.used-licenseNumber.message = The licence number is already in use.
 
-# Aircraft validations
+# Aircraft Validation
 acme.validation.aircraft.used-registrationNumber.message = The registration number is already in use.
 
 # Airline validations
 acme.validation.airline.invalid-iataCode.message = The IATA code does not exist or it does not follow the pattern ‘^[A-Z]{2,3}’.
 acme.validation.airline.uniqueIataCode.message = This IATA code already belongs to another airline. Please, try with a new one.
 
-# Airport validations
+# Airport Validation
 acme.validation.airport.invalid-iataCode.message = Invalid Iata Code
 acme.validation.airport.repeat-iataCode.message = Iata Code already exists
+
+# Booking Validation
+acme.validation.booking.invalid-locatorCode.message = Invalid locator Code
+acme.validation.booking.repeat-locatorCode.message = Locator Code already exists
+acme.validation.incorrectly-formatted-locatorCode.message = You have to use a correct locator code format, Ex: A1B2C3, AA11BB22
+acme.validation.incorrectly-formatted-lastCardNibble.message = You have to use a correct last card nibble format, Ex: 1111, A1B2
 
 # GENERAL #############################
 acme.validation.incorrectly-formatted-phoneNumber.message = You have to use a correct phone number format, Ex: +34123456789, 123456789

@@ -17,3 +17,6 @@ customer.booking.form.button.update = Actualizar
 acme.validation.lastCardNibble.message = El último Nibble de la tarjeta es necesario para publicar su reserva 
 
 customer.booking.form.button.passengers = Mostrar pasajeros
+
+customer.booking.list.button.create = Crear una reserva
+customer.booking.form.button.create = Crear reserva

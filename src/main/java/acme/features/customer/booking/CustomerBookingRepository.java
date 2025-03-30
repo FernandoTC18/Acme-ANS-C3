@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import acme.client.repositories.AbstractRepository;
 import acme.entities.booking.Booking;
 import acme.entities.flight.Flight;
+import acme.realms.Customer;
 
 public interface CustomerBookingRepository extends AbstractRepository {
 
@@ -26,5 +27,8 @@ public interface CustomerBookingRepository extends AbstractRepository {
 
 	@Query("select f from Flight f")
 	List<Flight> findAllFlights();
+
+	@Query("select c from Customer c where c.id = :customerId")
+	Customer findCustomerById(int customerId);
 
 }
