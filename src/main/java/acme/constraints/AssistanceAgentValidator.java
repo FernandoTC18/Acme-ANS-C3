@@ -40,7 +40,7 @@ public class AssistanceAgentValidator extends AbstractValidator<ValidAssistanceA
 
 				correctCodeFormat = assistanceAgent.getEmployeeCode() != null && Pattern.matches("^[A-Z]{2,3}\\d{6}$", assistanceAgent.getEmployeeCode());
 
-				super.state(context, correctCodeFormat, "codeFormat", "acme.validation.manager.invalid-employee-code-format.message");
+				super.state(context, correctCodeFormat, "codeFormat", "acme.validation.assistanceAgent.invalid-employee-code-format.message");
 
 			}
 			{
