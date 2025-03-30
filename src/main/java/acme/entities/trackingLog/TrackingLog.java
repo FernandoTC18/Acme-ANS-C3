@@ -62,7 +62,7 @@ public class TrackingLog extends AbstractEntity {
 	@Mandatory
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date				order;
+	private Date				orderDate;
 
 	// Derived attributes -----------------------------------------------------
 

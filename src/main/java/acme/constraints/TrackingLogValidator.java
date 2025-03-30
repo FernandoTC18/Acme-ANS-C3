@@ -52,13 +52,13 @@ public class TrackingLogValidator extends AbstractValidator<ValidTrackingLog, Tr
 				if (!allLogs.contains(trackingLog))
 					allLogs.add(trackingLog);
 
-				allLogs.sort(Comparator.comparing(TrackingLog::getOrder));
+				allLogs.sort(Comparator.comparing(TrackingLog::getOrderDate));
 
 				boolean correctPercentage = true;
 				for (int i = 0; i < allLogs.size() - 1; i++) {
 					TrackingLog currentLog = allLogs.get(i);
 					TrackingLog nextLog = allLogs.get(i + 1);
-					if (currentLog.getResolutionPercentage() >= nextLog.getResolutionPercentage()) {
+					if (currentLog.getResolutionPercentage() > nextLog.getResolutionPercentage()) {
 						correctPercentage = false;
 						break;
 					}
