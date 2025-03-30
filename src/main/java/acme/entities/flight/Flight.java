@@ -54,6 +54,11 @@ public class Flight extends AbstractEntity {
 	@ManyToOne(optional = false)
 	private Manager				manager;
 
+	@Mandatory
+	@Automapped
+
+	private boolean				draftMode;
+
 
 	@Transient
 	public Date getScheduledDeparture() {

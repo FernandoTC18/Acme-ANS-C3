@@ -63,4 +63,9 @@ public class MaintenanceRecord extends AbstractEntity {
 	@Valid
 	@ManyToOne(optional = false)
 	private Technician				technician;
+
+	@Mandatory
+	@Valid
+	@Automapped
+	private Boolean					draftMode;
 }

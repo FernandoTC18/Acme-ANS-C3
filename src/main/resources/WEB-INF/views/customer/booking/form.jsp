@@ -11,10 +11,10 @@
 	<acme:input-select code="customer.booking.form.label.flight" path="flight" choices ="${flights}"/>
 	<acme:input-textbox code="customer.booking.form.label.lastCardNibble" path="lastCardNibble"/>
 	
+	<acme:button code="customer.booking.form.button.passengers" action="/customer/passenger/list?bookingId=${id}"/>
 	<jstl:if test="${!readonly}">
 			<jstl:choose>
-				<jstl:when test="${acme:anyOf(_command, 'show|update|publish')}">
-					<acme:button code="customer.booking.form.button.passengers" action="/customer/passenger/list?bookingId=${id}"/>		
+				<jstl:when test="${acme:anyOf(_command, 'show|update|publish')}">	
 					<acme:submit code="customer.booking.form.button.update" action="/customer/booking/update"/>
 					<acme:submit code="customer.booking.form.button.publish" action="/customer/booking/publish"/>
 				</jstl:when>

@@ -20,6 +20,7 @@ master.menu.anonymous.favourite-link-samtambal = 29542740E: Tamayo Balogh, Samue
 
 master.menu.administrator = Administrador
 master.menu.administrator.list-user-accounts = Ver cuentas de usuario
+master.menu.administrator.list-aircraft = Ver aviones
 master.menu.administrator.list-airline = Ver aerolíneas
 master.menu.administrator.populate-db-initial = Poblar BD (inicial)
 master.menu.administrator.populate-db-sample = Poblar BD (ejemplos)
@@ -49,3 +50,14 @@ master.menu.user-account.become-provider = Hacerse proveedor
 master.menu.user-account.provider-profile = Perfil de proveedor
 master.menu.user-account.become-consumer = Hazte consumidor
 master.menu.user-account.consumer-profile = Perfil de consumidor
+
+# master.menu.technician ###################################################
+
+master.menu.technician = Técnico
+master.menu.technician.list-maintenance-records = Ver Registros de Mantenimiento
+master.menu.technician.list-tasks = Ver mis Tareas
+
+# master.menu.manager ##########################################################
+
+master.menu.manager = Manager
+master.menu.manager.list-my-flights = Lista de vuelos
