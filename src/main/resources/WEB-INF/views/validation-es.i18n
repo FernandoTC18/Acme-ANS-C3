@@ -32,7 +32,9 @@ acme.validation.service.correctPattern.message = el código de promoción no tie
 acme.validation.service.promCodeNotInDb.message = el código de promoción es un valor único
 
 # AssistanceAgent Validation
-acme.validation.assistanceAgent.invalid-employee-code.message = El código del empleado debe comenzar con la primera letra del nombre seguida de la primera letra del primer apellido.
+acme.validation.manager.invalid-employee-code-format.message = El código de empleado no se encuentra en el formato correcto o es nulo.
+acme.validation.assistanceAgent.unique-assistance-agent.message = El código de empleado ya se encuentra en uso.
+acme.validation.assistanceAgent.invalid-employee-code.message = El código de empleado debe comenzar con la primera letra del nombre seguida de la primera letra del primer apellido.
 
 # TrackingLog Validation
 acme.validation.trackingLog.incorrect-indicator.message = El indicador debe ser ACCEPTED o REJECTED cuando el porcentaje de resolución sea 100%, y PENDING cuando sea inferior a 100%.
