@@ -47,31 +47,22 @@ public class TrackingLogValidator extends AbstractValidator<ValidTrackingLog, Tr
 				super.state(context, correctIndicator, "indicator", "acme.validation.trackingLog.incorrect-indicator.message");
 			}
 			{
-				List<TrackingLog> logs;
-				boolean correctPercentage;
-
-				logs = this.repository.findTrackingLogsByClaimId(trackingLog.getClaim().getId());
-
+				List<TrackingLog> logs = this.repository.findTrackingLogsByClaimId(trackingLog.getClaim().getId());
 				List<TrackingLog> allLogs = new ArrayList<>(logs);
 				if (!allLogs.contains(trackingLog))
 					allLogs.add(trackingLog);
 
-				allLogs.sort(Comparator.comparing(TrackingLog::getLastUpdateMoment));
+				allLogs.sort(Comparator.comparing(TrackingLog::getOrder));
 
-				double maxPercentage = 0.0;
-				correctPercentage = true;
-
-				for (TrackingLog log : allLogs)
-
-					if (log.getResolutionPercentage() < maxPercentage) {
-
-						if (log.equals(trackingLog)) {
-							correctPercentage = false;
-							break;
-						}
-					} else
-
-						maxPercentage = log.getResolutionPercentage();
+				boolean correctPercentage = true;
+				for (int i = 0; i < allLogs.size() - 1; i++) {
+					TrackingLog currentLog = allLogs.get(i);
+					TrackingLog nextLog = allLogs.get(i + 1);
+					if (currentLog.getResolutionPercentage() >= nextLog.getResolutionPercentage()) {
+						correctPercentage = false;
+						break;
+					}
+				}
 
 				super.state(context, correctPercentage, "resolutionPercentage", "acme.validation.trackingLog.invalid-resolution-percentage.message");
 
