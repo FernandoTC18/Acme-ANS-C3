@@ -32,6 +32,8 @@ acme.validation.service.correctPattern.message = the promotional code is not in 
 acme.validation.service.promCodeNotInDb.message = the promotional code  is a unique value
 
 # AssistanceAgent Validation
+acme.validation.assistanceAgent.invalid-employee-code-format.message = The employee code is not in the correct format or is null.
+acme.validation.assistanceAgent.unique-assistance-agent.message = The employee code is already in use.
 acme.validation.assistanceAgent.invalid-employee-code.message = The employee code must begin with the first letter of the name followed by the first letter of the first surname.
 
 # TrackingLog Validation
