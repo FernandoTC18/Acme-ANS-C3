@@ -1,0 +1,5 @@
+flight-crew.leg.list.title = Associated legs listing
+flight-crew.leg.list.label.flightNumber = Flight Number
+flight-crew.leg.list.label.scheduledDeparture = Scheduled Departure
+flight-crew.leg.list.label.scheduledArrival = Scheduled Arrival
+flight-crew.leg.list.label.status = Status
