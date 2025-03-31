@@ -71,3 +71,4 @@ acme.validation.incorrectly-formatted-phoneNumber.message =  Debe utilizar un fo
 acme.validation.incorrectly-formatted-iataCode.message =  Debe utilizar un formato de código iata correcto, Ej: JFK, LAX
 
 acme.validation.unpublishedTasks.message = Este Registro de Mantenimiento tiene Tareas sin publicar
+acme.validation.onePublishedTask.message = Este Registro de Mantenimiento no tiene ninguna tarea publicada

@@ -4,7 +4,6 @@ package acme.features.technician.maintenanceRecord;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.Assert;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
@@ -24,7 +23,18 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		int id;
+		MaintenanceRecord maintenanceRecord;
+		Technician technician;
+
+		id = super.getRequest().getData("id", int.class);
+		maintenanceRecord = this.repository.findMaintenanceRecordById(id);
+		technician = maintenanceRecord == null ? null : maintenanceRecord.getTechnician();
+		status = maintenanceRecord != null && maintenanceRecord.isDraftMode() && super.getRequest().getPrincipal().hasRealm(technician);
+
+		super.getResponse().setAuthorised(status);
+
 	}
 
 	@Override
@@ -57,23 +67,22 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 		boolean anyTaskUnpublished = false;
 
 		for (Task t : tasks)
-			if (t.getDraftMode() == true) {
+			if (t.isDraftMode() == true) {
 				anyTaskUnpublished = true;
 				break;
 			}
 
+		super.state(!anyTaskUnpublished, "*", "acme.validation.unpublishedTasks.message");
+
 		boolean atLeastOnePublishedTask = false;
 
 		for (Task t : tasks)
-			if (t.getDraftMode() == false) {
+			if (t.isDraftMode() == false) {
 				atLeastOnePublishedTask = true;
 				break;
 			}
 
-		boolean status = !anyTaskUnpublished && atLeastOnePublishedTask;
-
-		Assert.isTrue(status, "The maintenance record has unpublished tasks or no published tasks at all");
-
+		super.state(atLeastOnePublishedTask, "*", "acme.validation.onePublishedTask.message");
 	}
 
 	@Override

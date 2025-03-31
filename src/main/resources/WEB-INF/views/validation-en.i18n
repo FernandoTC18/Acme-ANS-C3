@@ -67,3 +67,4 @@ acme.validation.incorrectly-formatted-phoneNumber.message = You have to use a co
 acme.validation.incorrectly-formatted-iataCode.message = You have to use a correct iata code format, Ex: JFK, LAX
 
 acme.validation.unpublishedTasks.message = This Maintenance Record has unpublished Tasks
+acme.validation.onePublishedTask.message = This Maintenance Record doesn't have any published Task
