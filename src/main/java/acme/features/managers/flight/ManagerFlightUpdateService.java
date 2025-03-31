@@ -30,7 +30,7 @@ public class ManagerFlightUpdateService extends AbstractGuiService<Manager, Flig
 		masterId = super.getRequest().getData("id", int.class);
 		flight = this.repository.findFlightById(masterId);
 		manager = flight == null ? null : flight.getManager();
-		status = flight != null && flight.isDraftMode() && super.getRequest().getPrincipal().hasRealm(manager);
+		status = flight != null && flight.isDraftMode() || super.getRequest().getPrincipal().hasRealm(manager);
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -72,12 +72,12 @@ public class ManagerFlightUpdateService extends AbstractGuiService<Manager, Flig
 		SelectChoice trueChoice = new SelectChoice();
 		trueChoice.setKey("true");
 		trueChoice.setLabel("Yes");
-		trueChoice.setSelected(flight.getSelfTransferRequired() == Boolean.TRUE);
+		trueChoice.setSelected(flight.getSelfTransferRequired() == true);
 
 		SelectChoice falseChoice = new SelectChoice();
 		falseChoice.setKey("false");
 		falseChoice.setLabel("No");
-		falseChoice.setSelected(flight.getSelfTransferRequired() == Boolean.FALSE);
+		falseChoice.setSelected(flight.getSelfTransferRequired() == false);
 
 		choices = SelectChoices.from(new SelectChoice[] {
 			trueChoice, falseChoice
