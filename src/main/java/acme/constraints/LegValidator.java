@@ -64,7 +64,7 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 				Leg legInDb;
 				legInDb = this.repository.computeLegbyFlightNumber(leg.getFlightNumber());
 				flNumberNotInDb = legInDb == null || leg.getFlightNumber().isBlank() || legInDb.equals(leg);
-				super.state(context, flNumberNotInDb, "promotionCode", "acme.validation.manager.identifierNumberDB.message");
+				super.state(context, flNumberNotInDb, "flightNumber", "acme.validation.manager.identifierNumberDB.message");
 			}
 			{
 				boolean iataInDB;
