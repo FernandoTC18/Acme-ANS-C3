@@ -63,6 +63,9 @@ acme.validation.booking.repeat-locatorCode.message = Locator Code already exists
 acme.validation.incorrectly-formatted-locatorCode.message = You have to use a correct locator code format, Ex: A1B2C3, AA11BB22
 acme.validation.incorrectly-formatted-lastCardNibble.message = You have to use a correct last card nibble format, Ex: 1111, A1B2
 
+# Passenger Validation
+acme.validation.incorrectly-formatted-passportNumber.message = You have to use a correct passportNumber format, Ex: A1B2C3D4, 123456789
+
 # GENERAL #############################
 acme.validation.incorrectly-formatted-phoneNumber.message = You have to use a correct phone number format, Ex: +34123456789, 123456789
 acme.validation.incorrectly-formatted-iataCode.message = You have to use a correct iata code format, Ex: JFK, LAX

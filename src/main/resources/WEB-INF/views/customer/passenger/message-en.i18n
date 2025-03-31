@@ -3,4 +3,17 @@ customer.passenger.list.label.email = email
 customer.passenger.list.label.passportNumber = Passport Number
 customer.passenger.list.label.birth = Nacimiento
 
+
+customer.passenger.form.label.name = Name
+customer.passenger.form.label.email = email
+customer.passenger.form.label.passportNumber = Passport Number
+customer.passenger.form.label.birth = Birth
+customer.passenger.form.label.specialNeeds = Especial needs
+customer.passenger.form.button.update = Update
+
+customer.passenger.list.button.create = Create a passenger
+customer.passenger.form.button.create = Create passenger
+
+
 customer.passenger.list.title = Passengers
+customer.passenger.form.title = Passenger
