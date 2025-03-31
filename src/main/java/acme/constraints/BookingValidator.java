@@ -9,12 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.validation.AbstractValidator;
 import acme.entities.booking.Booking;
-import acme.features.authenticated.booking.AuthenticatedBookingRepository;
+import acme.features.customer.booking.CustomerBookingRepository;
 
 public class BookingValidator extends AbstractValidator<ValidBooking, Booking> {
 
 	@Autowired
-	private AuthenticatedBookingRepository repository;
+	private CustomerBookingRepository repository;
 
 
 	@Override
@@ -47,7 +47,7 @@ public class BookingValidator extends AbstractValidator<ValidBooking, Booking> {
 				existingBooking = this.repository.findBookingByLocatorCode(booking.getLocatorCode());
 				uniqueLocatorCode = existingBooking == null || booking.getLocatorCode().isBlank() || existingBooking.equals(booking);
 
-				super.state(context, uniqueLocatorCode, "locatorCode", "acme.validation.booking.invalid-locatorCode.message");
+				super.state(context, uniqueLocatorCode, "locatorCode", "acme.validation.booking.repeat-locatorCode.message");
 			}
 
 		}

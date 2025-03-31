@@ -47,7 +47,7 @@ public class FlightValidator extends AbstractValidator<ValidFlight, Flight> {
 			for (int i = 0; i < legsByFlight.size() - 1; i++) {
 				currentLeg = legsByFlight.get(i);
 				nextLeg = legsByFlight.get(i + 1);
-				if (MomentHelper.isAfter(currentLeg.getScheduledDeparture(), nextLeg.getScheduledArrival()))
+				if (MomentHelper.isAfter(currentLeg.getScheduledArrival(), nextLeg.getScheduledDeparture()))
 					overlappedLegs = overlappedLegs + 1;
 			}
 			notOverlapping = overlappedLegs == 0;

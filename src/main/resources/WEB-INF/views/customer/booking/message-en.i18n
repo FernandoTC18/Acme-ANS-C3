@@ -1,0 +1,22 @@
+customer.booking.list.label.locatorCode = Locator Code
+customer.booking.list.label.purchaseMoment = Purchase Moment
+customer.booking.list.label.travelClass = Travel Class
+customer.booking.list.label.price = Price
+customer.booking.list.title = Bookings
+
+customer.booking.form.label.locatorCode = Locator Code
+customer.booking.form.label.purchaseMoment = Purchase Moment
+customer.booking.form.label.travelClass = Travel Class
+customer.booking.form.label.price = Price
+customer.booking.form.label.flight = Flight
+customer.booking.form.label.lastCardNibble = Last Card Nibble
+customer.booking.form.title = Booking form
+customer.booking.form.button.publish = Publish booking
+customer.booking.form.button.update = Update
+
+acme.validation.lastCardNibble.message = Last Card Nibble is required to publish your booking
+
+customer.booking.form.button.passengers = Show passengers
+
+customer.booking.list.button.create = Create a booking
+customer.booking.form.button.create = Create booking
