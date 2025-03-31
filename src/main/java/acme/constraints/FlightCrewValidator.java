@@ -8,14 +8,14 @@ import javax.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.validation.AbstractValidator;
+import acme.features.flightCrew.flightAssignment.FlightCrewFlightAssignmentRepository;
 import acme.realms.FlightCrew;
-import acme.realms.FlightCrewRepository;
 
 public class FlightCrewValidator extends AbstractValidator<ValidFlightCrew, FlightCrew> {
 	
 	
 	@Autowired
-	private FlightCrewRepository flightCrewRepository;
+	private FlightCrewFlightAssignmentRepository flightCrewRepository;
 
 	@Override
 	protected void initialise(final ValidFlightCrew annotation) {

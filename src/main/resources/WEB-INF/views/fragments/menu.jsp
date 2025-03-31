@@ -52,6 +52,12 @@
 			<acme:menu-suboption code="master.menu.consumer.favourite-link" action="http://www.example.com/"/>
 		</acme:menu-option>
 		
+
+		<acme:menu-option code="master.menu.flight-crew" access="hasRealm('FlightCrew')">
+			<acme:menu-suboption code="master.menu.flight-crew.flight-assignment.list-completed" action="/flight-crew/flight-assignment/completed-list"/>
+			<acme:menu-suboption code="master.menu.flight-crew.flight-assignment.list-uncompleted" action="/flight-crew/flight-assignment/uncompleted-list"/>
+		</acme:menu-option>
+
 		<acme:menu-option code="master.menu.customer" access="hasRealm('Customer')">
 			<acme:menu-suboption code="master.menu.customer.list-booking" action="/customer/booking/list"/>
 		</acme:menu-option>
@@ -60,6 +66,7 @@
 			<acme:menu-suboption code="master.menu.manager.list-my-flights" action="/manager/flight/list" />
 		</acme:menu-option>
 	
+
 	</acme:menu-left>
 
 	<acme:menu-right>		
