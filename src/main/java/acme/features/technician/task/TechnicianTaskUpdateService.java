@@ -2,7 +2,6 @@
 package acme.features.technician.task;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.Assert;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
@@ -21,7 +20,17 @@ public class TechnicianTaskUpdateService extends AbstractGuiService<Technician, 
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		int id;
+		Task task;
+		Technician technician;
+
+		id = super.getRequest().getData("id", int.class);
+		task = this.repository.findTaskById(id);
+		technician = task == null ? null : task.getTechnician();
+		status = task != null && task.isDraftMode() && super.getRequest().getPrincipal().hasRealm(technician);
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -43,7 +52,11 @@ public class TechnicianTaskUpdateService extends AbstractGuiService<Technician, 
 
 	@Override
 	public void validate(final Task task) {
-		Assert.isTrue(task.getDraftMode(), "You can´t update an published task");
+		boolean status;
+
+		status = task.isDraftMode();
+
+		super.state(status, "*", "acme.validation.updatePublishedTask.message");
 	}
 
 	@Override
@@ -61,7 +74,7 @@ public class TechnicianTaskUpdateService extends AbstractGuiService<Technician, 
 		dataset = super.unbindObject(task, "type", "description", "priority", "estimatedDuration", "technician", "draftMode");
 		dataset.put("confirmation", false);
 		dataset.put("readonly", false);
-		dataset.put("status", taskTypes);
+		dataset.put("type", taskTypes);
 
 		super.getResponse().addData(dataset);
 	}

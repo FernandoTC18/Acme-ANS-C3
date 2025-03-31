@@ -72,3 +72,6 @@ acme.validation.incorrectly-formatted-iataCode.message =  Debe utilizar un forma
 
 acme.validation.unpublishedTasks.message = Este Registro de Mantenimiento tiene Tareas sin publicar
 acme.validation.onePublishedTask.message = Este Registro de Mantenimiento no tiene ninguna tarea publicada
+
+acme.validation.updatePublishedTask.message = No puedes editar una tarea publicada
+acme.validation.deletePublishedTask.message = No puedes borrar una tarea publicada

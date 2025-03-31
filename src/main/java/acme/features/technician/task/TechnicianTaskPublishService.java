@@ -20,7 +20,17 @@ public class TechnicianTaskPublishService extends AbstractGuiService<Technician,
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		int id;
+		Task task;
+		Technician technician;
+
+		id = super.getRequest().getData("id", int.class);
+		task = this.repository.findTaskById(id);
+		technician = task == null ? null : task.getTechnician();
+		status = task != null && task.isDraftMode() && super.getRequest().getPrincipal().hasRealm(technician);
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
