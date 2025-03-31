@@ -11,7 +11,8 @@ customer.passenger.form.label.birth = Birth
 customer.passenger.form.label.specialNeeds = Especial needs
 customer.passenger.form.button.update = Update
 
-customer.passenger.list.button.create = Create a Passenger
+customer.passenger.list.button.create = Create a passenger
+customer.passenger.form.button.create = Create passenger
 
 
 customer.passenger.list.title = Passengers

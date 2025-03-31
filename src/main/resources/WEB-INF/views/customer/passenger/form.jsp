@@ -8,15 +8,15 @@
 	<acme:input-email code="customer.passenger.form.label.email" path="email"/>
 	<acme:input-textbox code="customer.passenger.form.label.passportNumber" path="passportNumber"/>
 	<acme:input-moment code="customer.passenger.form.label.birth" path="birth"/>
-	<acme:input-textbox code="customer.passenger.form.label.specialNeeds" path="specialNeeds"/>
+	<acme:input-textarea code="customer.passenger.form.label.specialNeeds" path="specialNeeds"/>
 	
 	<jstl:if test="${!readonly}">
 	    <jstl:choose>
 	        <jstl:when test="${_command != 'create'}">	
-	            <acme:submit code="customer.passenger.form.button.update" action="/customer/booking/update"/>
+	            <acme:submit code="customer.passenger.form.button.update" action="/customer/passenger/update?bookingId=${bookingId}"/>
 	        </jstl:when>
 	        <jstl:when test="${_command == 'create'}">
-	            <acme:submit code="customer.passenger.form.button.create" action="/customer/booking/create"/>
+	            <acme:submit code="customer.passenger.form.button.create" action="/customer/passenger/create?bookingId=${bookingId}"/>
 	        </jstl:when>
 	    </jstl:choose>
 	</jstl:if>

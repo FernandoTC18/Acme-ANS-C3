@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.entities.booking.Booking;
 import acme.entities.passenger.Passenger;
 import acme.realms.Customer;
 
@@ -24,10 +25,12 @@ public class CustomerPassengerShowService extends AbstractGuiService<Customer, P
 	@Override
 	public void load() {
 		Passenger passenger;
-		int id;
+		String id;
 
-		id = super.getRequest().getData("id", int.class);
-		passenger = this.repository.findPassengerById(id);
+		id = super.getRequest().getData("bookingId", String.class);
+		String[] parts = id.split("\\?id=");
+		int passengerId = Integer.parseInt(parts[1]);
+		passenger = this.repository.findPassengerById(passengerId);
 
 		super.getBuffer().addData(passenger);
 
@@ -36,8 +39,16 @@ public class CustomerPassengerShowService extends AbstractGuiService<Customer, P
 	@Override
 	public void unbind(final Passenger passenger) {
 		Dataset dataset;
+		String id;
+		Booking booking;
+
+		id = super.getRequest().getData("bookingId", String.class);
+		String[] parts = id.split("\\?id=");
+		int bookingId = Integer.parseInt(parts[0]);
+		booking = this.repository.findBookingById(bookingId);
 
 		dataset = super.unbindObject(passenger, "name", "email", "passportNumber", "birth", "specialNeeds");
+		dataset.put("readonly", booking.getDraftMode());
 
 		super.getResponse().addData(dataset);
 	}

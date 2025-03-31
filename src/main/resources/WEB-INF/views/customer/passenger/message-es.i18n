@@ -11,6 +11,7 @@ customer.passenger.form.label.specialNeeds = Necesidades especiales
 customer.passenger.form.button.update = Actualizar
 
 customer.passenger.list.button.create = Crear un pasajero
+customer.passenger.form.button.create = Crear pasajero
 
 customer.passenger.list.title = Pasajeros
 customer.passenger.form.title = Pasajero
