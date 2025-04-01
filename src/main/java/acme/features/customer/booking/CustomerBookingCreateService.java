@@ -1,8 +1,6 @@
 
 package acme.features.customer.booking;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +40,7 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 		booking.setPrice(null);
 		booking.setFlight(null);
 		booking.setLastCardNibble("");
-		booking.setDraftMode(false);
+		booking.setDraftMode(true);
 
 		super.getBuffer().addData(booking);
 	}
@@ -78,26 +76,21 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 	@Override
 	public void unbind(final Booking booking) {
 		Dataset dataset;
-		List<Flight> available = new ArrayList<>();
+		List<Flight> available;
 
-		Date current = new Date();
 		SelectChoices classes;
 		SelectChoices flights;
 
-		List<Flight> fl = this.repository.findAllFlights();
+		available = this.repository.findAllFlights();
 		classes = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 
-		for (Flight f : fl)
-			if (f.getScheduledDeparture().before(current))
-				available.add(f);
-
-		flights = SelectChoices.from(available, "id", booking.getFlight());
+		flights = SelectChoices.from(available, "tag", booking.getFlight());
 
 		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "price", "draftMode", "lastCardNibble", "flight");
 		dataset.put("travelClass", classes);
 		dataset.put("flight", flights.getSelected().getKey());
 		dataset.put("flights", flights);
-		dataset.put("readonly", booking.getDraftMode());
+		dataset.put("readonly", !booking.getDraftMode());
 
 		super.getResponse().addData(dataset);
 	}

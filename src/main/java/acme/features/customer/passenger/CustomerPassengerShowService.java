@@ -48,7 +48,7 @@ public class CustomerPassengerShowService extends AbstractGuiService<Customer, P
 		booking = this.repository.findBookingById(bookingId);
 
 		dataset = super.unbindObject(passenger, "name", "email", "passportNumber", "birth", "specialNeeds");
-		dataset.put("readonly", booking.getDraftMode());
+		dataset.put("readonly", !booking.getDraftMode());
 
 		super.getResponse().addData(dataset);
 	}
