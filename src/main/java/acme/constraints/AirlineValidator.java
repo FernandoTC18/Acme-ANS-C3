@@ -43,11 +43,11 @@ public class AirlineValidator extends AbstractValidator<ValidAirline, Airline>{
 			}
 
 			{
-				Airline existingAirport;
+				Airline existingAirline;
 				boolean uniqueIataCode;
 
-				existingAirport = this.airlineRepository.findAirlineByIataCode(airline.getIataCode());
-				uniqueIataCode = existingAirport == null || airline.getIataCode().isBlank() || existingAirport.equals(airline);
+				existingAirline = this.airlineRepository.findAirlineByIataCode(airline.getIataCode());
+				uniqueIataCode = existingAirline == null || airline.getIataCode().isBlank() || existingAirline.equals(airline);
 
 				super.state(context, uniqueIataCode, "iataCode", "acme.validation.airline.uniqueIataCode.message");
 			}

@@ -17,12 +17,14 @@ import acme.client.components.validation.ValidEmail;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
 import acme.client.components.validation.ValidUrl;
+import acme.constraints.ValidAirline;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
+@ValidAirline
 public class Airline extends AbstractEntity {
 
 	//Serialisation version --------------------------------------------------
@@ -36,7 +38,7 @@ public class Airline extends AbstractEntity {
 	private String				name;
 
 	@Mandatory
-	@ValidString(pattern = "^[A-Z]{3}$")
+	@ValidString(pattern = "^[A-Z]{3}$", message = "{acme.validation.incorrectly-formatted-iataCode.message}")
 	@Column(unique = true)
 	private String				iataCode;
 
@@ -61,7 +63,7 @@ public class Airline extends AbstractEntity {
 	private String				email;
 
 	@Optional
-	@ValidString(pattern = "^\\+?\\d{6,15}$")
+	@ValidString(pattern = "^\\+?\\d{6,15}$", message = "{acme.validation.incorrectly-formatted-phoneNumber.message}")
 	@Automapped
 	private String				phoneNumber;
 
