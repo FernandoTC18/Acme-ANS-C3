@@ -42,9 +42,12 @@ public class FlightCrewLegListService extends AbstractGuiService<FlightCrew, Leg
 	@Override
 	public void unbind(final Leg leg) {
 		Dataset dataset;
+		int assignmentId;
 		
+		assignmentId = super.getRequest().getData("id",int.class);
 		dataset = super.unbindObject(leg, "flightNumber", "scheduledArrival", "scheduledDeparture", "status");
-
+		
+		super.getResponse().addGlobal("assignmentId", assignmentId);
 		super.getResponse().addData(dataset);
 	}
 	
