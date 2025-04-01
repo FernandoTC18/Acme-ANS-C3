@@ -72,7 +72,8 @@ acme.validation.not-lead-attendant.message = Debes ser un lead attendant para ac
 acme.validation.booking.invalid-locatorCode.message = Código localizador inválido
 acme.validation.booking.repeat-locatorCode.message = El código localizador ya existe
 acme.validation.incorrectly-formatted-locatorCode.message = Debes utilizar un formato correcto de código localizador, Ej: A1B2C3, AA11BB22
-acme.validation.incorrectly-formatted-lastCardNibble.message = Debes utilizar un formato correcto de último Nibble de la tarjeta, Ej: 1111, A1B2
+acme.validation.incorrectly-formatted-lastCardNibble.message = Debes utilizar un formato correcto de último Nibble de la tarjeta, Ej: 1111, 1234
+acme.validation.not-has-passengers.message = La reserva no puede ser publicada ya que no contiene pasajeros
 
 # Passenger validation
 acme.validation.incorrectly-formatted-passportNumber.message = Debes utilizar un formato correcto de número de pasaporte, Ej: A1B2C3D4, 123456789
