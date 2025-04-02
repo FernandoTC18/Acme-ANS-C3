@@ -65,7 +65,15 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 
 	@Override
 	public void validate(final Booking booking) {
-		;
+		int flightId;
+		Flight flight;
+		Boolean validFlight = true;
+
+		flightId = super.getRequest().getData("flight", int.class);
+		flight = this.repository.findFlightById(flightId);
+		if (flight == null)
+			validFlight = false;
+		super.state(validFlight, "flight", "acme.validation.booking.invalid-Flight-assigned.message");
 	}
 
 	@Override

@@ -36,7 +36,7 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 		bookingId = super.getRequest().getData("id", int.class);
 		booking = this.repository.findBookingById(bookingId);
 		customer = booking == null ? null : booking.getCustomer();
-		status = super.getRequest().getPrincipal().hasRealm(customer) || booking != null && !booking.getDraftMode();
+		status = super.getRequest().getPrincipal().hasRealm(customer) && booking != null && booking.getDraftMode();
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -81,6 +81,17 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 					break;
 				}
 			super.state(passengersArePublished, "*", "acme.validation.passengers-not-publish.message");
+		}
+		{
+			int flightId;
+			Flight flight;
+			Boolean validFlight = true;
+
+			flightId = super.getRequest().getData("flight", int.class);
+			flight = this.repository.findFlightById(flightId);
+			if (flight == null)
+				validFlight = false;
+			super.state(validFlight, "flight", "acme.validation.booking.invalid-Flight-assigned.message");
 		}
 
 	}
