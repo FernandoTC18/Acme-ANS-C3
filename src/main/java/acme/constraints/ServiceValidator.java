@@ -40,10 +40,10 @@ public class ServiceValidator extends AbstractValidator<ValidService, Service> {
 
 			{
 				boolean correctPatternPromotionCode;
-				if (service.getPromotionCode() == null)
+				if (service.getPromotionCode() == null || service.getPromotionCode().isBlank())
 					correctPatternPromotionCode = true;
 				else
-					correctPatternPromotionCode = Pattern.matches("^[A-Z]{4}-[0-9]{2}$", service.getPromotionCode()) && !service.getPromotionCode().isBlank();
+					correctPatternPromotionCode = Pattern.matches("^[A-Z]{4}-[0-9]{2}$", service.getPromotionCode()) ;
 
 				super.state(context, correctPatternPromotionCode, "promotionCode", "acme.validation.service.correctPattern.message");
 			}
@@ -63,7 +63,7 @@ public class ServiceValidator extends AbstractValidator<ValidService, Service> {
 				boolean correctPromotionCodeNumber;
 				Integer actualYear;
 				Integer lastTwoNumbers;
-				if (service.getPromotionCode() != null) {
+				if (service.getPromotionCode() != null && service.getPromotionCode().length() == 7) {
 					actualYear = Integer.valueOf(MomentHelper.getCurrentMoment().getYear() % 100);
 					lastTwoNumbers = Integer.valueOf(service.getPromotionCode().substring(5, 7));
 					correctPromotionCodeNumber = lastTwoNumbers.equals(actualYear);
