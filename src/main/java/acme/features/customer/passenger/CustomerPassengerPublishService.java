@@ -13,10 +13,14 @@ import acme.entities.passenger.Passenger;
 import acme.realms.Customer;
 
 @GuiService
-public class CustomerPassengerShowService extends AbstractGuiService<Customer, Passenger> {
+public class CustomerPassengerPublishService extends AbstractGuiService<Customer, Passenger> {
+
+	// Internal state ---------------------------------------------------------
 
 	@Autowired
 	private CustomerPassengerRepository repository;
+
+	// AbstractGuiService interface -------------------------------------------
 
 
 	@Override
@@ -37,7 +41,7 @@ public class CustomerPassengerShowService extends AbstractGuiService<Customer, P
 			if (super.getRequest().getPrincipal().hasRealm(customer))
 				passengerIsFromCustomer = true;
 		}
-		status = passengerIsFromCustomer && passenger != null;
+		status = passengerIsFromCustomer && passenger != null && passenger.getDraftMode();
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -51,7 +55,24 @@ public class CustomerPassengerShowService extends AbstractGuiService<Customer, P
 		passenger = this.repository.findPassengerById(id);
 
 		super.getBuffer().addData(passenger);
+	}
 
+	@Override
+	public void bind(final Passenger passenger) {
+
+		super.bindObject(passenger, "name", "email", "passportNumber", "birth", "specialNeeds");
+
+	}
+
+	@Override
+	public void validate(final Passenger passenger) {
+		;
+	}
+
+	@Override
+	public void perform(final Passenger passenger) {
+		passenger.setDraftMode(false);
+		this.repository.save(passenger);
 	}
 
 	@Override
@@ -62,5 +83,4 @@ public class CustomerPassengerShowService extends AbstractGuiService<Customer, P
 		dataset.put("readonly", !passenger.getDraftMode());
 		super.getResponse().addData(dataset);
 	}
-
 }

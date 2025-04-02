@@ -14,6 +14,7 @@
 	    <jstl:choose>
 	        <jstl:when test="${_command != 'create'}">	
 	            <acme:submit code="customer.passenger.form.button.update" action="/customer/passenger/update?bookingId=${bookingId}"/>
+	            <acme:submit code="customer.passenger.form.button.publish" action="/customer/passenger/publish?bookingId=${bookingId}"/>
 	        </jstl:when>
 	        <jstl:when test="${_command == 'create'}">
 	            <acme:submit code="customer.passenger.form.button.create" action="/customer/passenger/create?bookingId=${bookingId}"/>

@@ -17,3 +17,5 @@ customer.passenger.form.button.create = Create passenger
 
 customer.passenger.list.title = Passengers
 customer.passenger.form.title = Passenger
+
+customer.passenger.form.button.publish = Publish passenger
