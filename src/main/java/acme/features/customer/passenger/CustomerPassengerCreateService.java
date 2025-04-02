@@ -40,6 +40,7 @@ public class CustomerPassengerCreateService extends AbstractGuiService<Customer,
 		passenger.setPassportNumber("");
 		passenger.setBirth(null);
 		passenger.setSpecialNeeds("");
+		passenger.setDraftMode(true);
 
 		super.getBuffer().addData(passenger);
 		super.getResponse().addGlobal("bookingId", bookingId);
@@ -76,9 +77,12 @@ public class CustomerPassengerCreateService extends AbstractGuiService<Customer,
 	@Override
 	public void unbind(final Passenger passenger) {
 		Dataset dataset;
+		int bookingId;
 
 		dataset = super.unbindObject(passenger, "name", "email", "passportNumber", "birth", "specialNeeds");
 
+		bookingId = super.getRequest().getData("bookingId", int.class);
+		super.getResponse().addGlobal("bookingId", bookingId);
 		super.getResponse().addData(dataset);
 	}
 }

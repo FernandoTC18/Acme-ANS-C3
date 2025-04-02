@@ -74,6 +74,7 @@ acme.validation.booking.repeat-locatorCode.message = El código localizador ya e
 acme.validation.incorrectly-formatted-locatorCode.message = Debes utilizar un formato correcto de código localizador, Ej: A1B2C3, AA11BB22
 acme.validation.incorrectly-formatted-lastCardNibble.message = Debes utilizar un formato correcto de último Nibble de la tarjeta, Ej: 1111, 1234
 acme.validation.not-has-passengers.message = La reserva no puede ser publicada ya que no contiene pasajeros
+acme.validation.passengers-not-publish.message = Todos los pasajeros de esta reserva deben publicarse antes de publicar esta reserva
 
 # Passenger validation
 acme.validation.incorrectly-formatted-passportNumber.message = Debes utilizar un formato correcto de número de pasaporte, Ej: A1B2C3D4, 123456789
