@@ -75,6 +75,7 @@ acme.validation.incorrectly-formatted-locatorCode.message = Debes utilizar un fo
 acme.validation.incorrectly-formatted-lastCardNibble.message = Debes utilizar un formato correcto de último Nibble de la tarjeta, Ej: 1111, 1234
 acme.validation.not-has-passengers.message = La reserva no puede ser publicada ya que no contiene pasajeros
 acme.validation.passengers-not-publish.message = Todos los pasajeros de esta reserva deben publicarse antes de publicar esta reserva
+acme.validation.booking.invalid-Flight-assigned.message = El vuelo seleccionado no es válido
 
 # Passenger validation
 acme.validation.incorrectly-formatted-passportNumber.message = Debes utilizar un formato correcto de número de pasaporte, Ej: A1B2C3D4, 123456789
