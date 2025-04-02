@@ -1,11 +1,7 @@
 # validation-es.i18n
 
 # Flight Validation
-acme.validation.flight.correctMinScheduleDeparture.message = La salida programada debe ser como mínimo en el momento actual
-acme.validation.flight.correctMinScheduleArrival.message = La llegada programada debe ser como mínimo un minuto después de la salida programada
 acme.validation.flight.overlapped.message = No se pueden solapar los tramos de un vuelo
-acme.validation.flight.noLegs.message = Un vuelo debe tener como mínimo 1 tramo
-acme.validation.flight.noPublishedLegs.message = Para publicar un vuelo sus tramos deben ser publicados anteriormente
 
 # Leg Validation
 acme.validation.leg.correctFlightNumber.message = El código iata del tramo debe existir en la base de datos
@@ -16,6 +12,8 @@ acme.validation.leg.overlapped.message = No se pueden solapar los tramos de un
 
 # Manager Validation
 acme.validation.manager.identifierNumber.message = Las 2/3 primeras letras del identificador deben corresponderse con las iniciales del manager
+acme.validation.manager.identifierNumberDB.message = El número identificador no es único
+acme.validation.manager.identifierNumber.message = Las 2 primeras letras del numero identficador deben coincidir con las iniciales del manager
 
 # FlightAssigment Validation
 acme.validation.flightassignment.lastupdate.message = La ultima actualización de una asignación de vuelo debe ser previa a la fecha actual.
@@ -90,3 +88,5 @@ acme.validation.onePublishedTask.message = Este Registro de Mantenimiento no tie
 acme.validation.updatePublishedTask.message = No puedes editar una tarea publicada
 acme.validation.deletePublishedTask.message = No puedes borrar una tarea publicada
 
+acme.validation.flight.noLegs.message = Un vuelo debe tener como mínimo 1 tramo
+acme.validation.flight.noPublishedLegs.message = Para publicar un vuelo sus tramos deben ser publicados anteriormente
