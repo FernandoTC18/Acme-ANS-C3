@@ -2,8 +2,6 @@
 
 # Flight Validation
 acme.validation.flight.overlapped.message  = The legs of a flight cannot be overlapped
-acme.validation.flight.noLegs.message = A flight must have a minimum of 1 leg
-acme.validation.flight.noPublishedLegs.message = To publish a flight, its legs must be previously published
 
 # Leg Validation
 acme.validation.leg.correctFlightNumberPattern.message = The flight number does not have a valid format,Ex: ZZZ9999,AAAA0000
@@ -14,7 +12,7 @@ acme.validation.leg.overlapped.message  = The legs of a flight cannot be overl
 
 # Manager Validation
 acme.validation.manager.identifierNumberFormat.message = The identifier number is not in the correct format,Ex: MM0001, MMM9999
-acme.validation.manager.identifierNumberDB.message = Identifier number is not unique.
+acme.validation.manager.identifierNumberDB.message = Identifier number is not unique
 acme.validation.manager.identifierNumber.message = The first 2/3 letters of the identifier must correspond to the manager's initials
 
 # FlightAssigment Validation
@@ -85,4 +83,7 @@ acme.validation.onePublishedTask.message = This Maintenance Record doesn't have 
 
 acme.validation.updatePublishedTask.message = You can´t update a published task
 acme.validation.deletePublishedTask.message = You can´t delete a published task
+
+acme.validation.flight.noLegs.message = A flight must have a minimum of 1 leg
+acme.validation.flight.noPublishedLegs.message = To publish a flight, its legs must be previously published
 

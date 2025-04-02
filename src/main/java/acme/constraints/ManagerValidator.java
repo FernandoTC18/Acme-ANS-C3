@@ -61,7 +61,7 @@ public class ManagerValidator extends AbstractValidator<ValidManager, Manager> {
 				surname = manager.getIdentity().getSurname().trim();
 
 				nameIdentifier = manager.getIdentifierNumber();
-				if (name != null && surname != null && nameIdentifier != null) {
+				if (name != null && surname != null && nameIdentifier != null && (manager.getIdentifierNumber().length() == 8 || manager.getIdentifierNumber().length() == 9)) {
 					correctIdentifierName = nameIdentifier.charAt(0) == name.charAt(0) && nameIdentifier.charAt(1) == surname.charAt(0);
 
 					super.state(context, correctIdentifierName, "identifierNumber", "acme.validation.manager.identifierNumber.message");
