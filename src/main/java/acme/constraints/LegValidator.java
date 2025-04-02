@@ -42,11 +42,11 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 
 			{
 				boolean correctMinScheduleDeparture;
-				Date min;
+				Date scheduledDeparture;
 
-				min = MomentHelper.getCurrentMoment();
-				if (min != null) {
-					correctMinScheduleDeparture = !MomentHelper.isBefore(leg.getScheduledDeparture(), min);
+				scheduledDeparture = leg.getScheduledDeparture();
+				if (scheduledDeparture != null) {
+					correctMinScheduleDeparture = !MomentHelper.isBefore(leg.getScheduledDeparture(), MomentHelper.getCurrentMoment());
 					super.state(context, correctMinScheduleDeparture, "scheduledDeparture", "acme.validation.leg.correctMinScheduleDeparture.message");
 				}
 
@@ -56,7 +56,7 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 
 				correctFlightNumber = leg.getFlightNumber() != null && Pattern.matches("^[A-Z]{3}\\d{4}$", leg.getFlightNumber());
 
-				super.state(context, correctFlightNumber, "flightNumber", "aacme.validation.leg.correctFlightNumberPattern.message");
+				super.state(context, correctFlightNumber, "flightNumber", "acme.validation.leg.correctFlightNumberPattern.message");
 
 			}
 			{
@@ -69,19 +69,23 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 			{
 				boolean iataInDB;
 				String iataCodeDB;
+				if (leg.getFlightNumber() != null && leg.getFlightNumber().length() == 7) {
+					iataCodeDB = this.repository.computeAirlineIataCode(leg.getFlightNumber().substring(0, 3));
 
-				iataCodeDB = this.repository.computeAirlineIataCode(leg.getFlightNumber().substring(0, 3));
-
-				iataInDB = iataCodeDB != null && iataCodeDB.equals(leg.getFlightNumber().substring(0, 3));
-				super.state(context, iataInDB, "flightnumber", "acme.validation.leg.correctFlightNumberPattern.message");
+					iataInDB = iataCodeDB != null && iataCodeDB.equals(leg.getFlightNumber().substring(0, 3));
+					super.state(context, iataInDB, "flightNumber", "acme.validation.leg.correctFlightNumberPattern.message");
+				}
 			}
 			{
 				boolean correctMinScheduleArrival;
-				Date min;
+				Date scheduledDeparture;
+				Date scheduledArrival;
 
-				min = MomentHelper.deltaFromMoment(leg.getScheduledDeparture(), 1, ChronoUnit.MINUTES);
-				if (min != null) {
-					correctMinScheduleArrival = !MomentHelper.isBefore(leg.getScheduledArrival(), min);
+				scheduledDeparture = leg.getScheduledDeparture();
+				scheduledArrival = leg.getScheduledArrival();
+
+				if (scheduledArrival != null && scheduledDeparture != null) {
+					correctMinScheduleArrival = !MomentHelper.isBefore(scheduledArrival, MomentHelper.deltaFromMoment(leg.getScheduledDeparture(), 1, ChronoUnit.MINUTES));
 					super.state(context, correctMinScheduleArrival, "scheduledArrival", "acme.validation.leg.correctMinScheduleArrival.message");
 				}
 			}

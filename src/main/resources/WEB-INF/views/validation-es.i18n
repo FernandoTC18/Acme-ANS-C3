@@ -7,7 +7,7 @@ acme.validation.flight.overlapped.message = No se pueden solapar los tramos de u
 acme.validation.leg.correctFlightNumber.message = El código iata del tramo debe existir en la base de datos
 acme.validation.leg.correctMinScheduleDeparture.message = La salida programada debe ser como mínimo en el momento actual
 acme.validation.leg.correctMinScheduleArrival.message = La llegada programada debe ser como mínimo un minuto después de la salida programada
-acme.validation.leg.correctFlightNumberPattern.message = El número de vuelo no tiene un formato válido.
+acme.validation.leg.correctFlightNumberPattern.message = Número de vuelo no válido.
 acme.validation.leg.overlapped.message = No se pueden solapar los tramos de un vuelo
 
 # Manager Validation
@@ -78,7 +78,8 @@ acme.validation.incorrectly-formatted-passportNumber.message = Debes utilizar un
 acme.validation.incorrectly-formatted-phoneNumber.message =  Debe utilizar un formato de número de teléfono correcto, Ej: +34123456789, 123456789
 acme.validation.incorrectly-formatted-iataCode.message =  Debe utilizar un formato de código iata correcto, Ej: JFK, LAX
 acme.validation.incorrectly-formatted-identifierNumber.message = Tiene que utilizar un formato de número identificador correcto, Ej: XX123456,XXY234567
-acme.validation.incorrectly-formatted-promotionCode.message = tiene que utilizar un formato de código promocional correcto, Ex: AZZZ-25,ZAAA-25
+acme.validation.incorrectly-formatted-promotionCode.message = Tiene que utilizar un formato de código promocional correcto, Ej: AZZZ-25,ZAAA-25
+acme.validation.incorrectly-formatted-flightNumber.message = Tiene que utilizar un formato de número de vuelo correcto, Ej: ZZZ9999,AAA0000
 
 acme.validation.unpublishedTasks.message = Este Registro de Mantenimiento tiene Tareas sin publicar
 acme.validation.onePublishedTask.message = Este Registro de Mantenimiento no tiene ninguna tarea publicada
