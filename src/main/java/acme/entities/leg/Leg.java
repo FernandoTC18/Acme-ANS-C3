@@ -33,7 +33,7 @@ public class Leg extends AbstractEntity {
 	public static final long	serialVersionUID	= 1L;
 
 	@Mandatory
-	@ValidString(pattern = "^[A-Z]{3}\\d{4}$")
+	@ValidString(pattern = "^[A-Z]{3}\\d{4}$", message = "{acme.validation.incorrectly-formatted-flightNumber.message}")
 	@Column(unique = true)
 	private String				flightNumber;
 
