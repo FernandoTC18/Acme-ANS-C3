@@ -2,3 +2,11 @@ flight-crew.flight-crew.list.title = Associated Flight Crew members
 flight-crew.member.list.label.employeeCode = Employee code
 flight-crew.member.list.label.phoneNumber = Phone number
 flight-crew.member.list.label.availability = Availability
+
+
+flight-crew.member.form.label.employeeCode = Employee Code
+flight-crew.member.form.label.phoneNumber = Phone Number
+flight-crew.member.form.label.languageSkills = Language Skills
+flight-crew.member.form.label.availability = Availability
+flight-crew.member.form.label.salary = Salary
+flight-crew.member.form.label.experienceYears = Experience Years
