@@ -11,7 +11,7 @@ acme.validation.leg.correctMinScheduleArrival.message = Schedule arrival must be
 acme.validation.leg.overlapped.message  = The legs of a flight cannot be overlapped
 
 # Manager Validation
-acme.validation.manager.identifierNumberFormat.message = The identifier number is not in the correct format,Ex: MM0001, MMM9999
+acme.validation.manager.identifierNumberFormat.message = Invalid identifier number
 acme.validation.manager.identifierNumberDB.message = Identifier number is not unique
 acme.validation.manager.identifierNumber.message = The first 2/3 letters of the identifier must correspond to the manager's initials
 
@@ -27,7 +27,7 @@ acme.validation.flightCrew.uniqueEmployeeCode.message = The employee code alread
 
 # Service Validation
 acme.validation.service.correctLastTwoNumbers.message = The last two figures must correspond to the current year
-acme.validation.service.correctPattern.message = the promotional code is not in the correct format,Ex: ABCD-25, ZZZZ-99
+acme.validation.service.correctPattern.message = Invalid promotional code
 acme.validation.service.promCodeNotInDb.message = the promotional code  is a unique value
 
 # AssistanceAgent Validation
@@ -77,6 +77,8 @@ acme.validation.incorrectly-formatted-passportNumber.message = You have to use a
 # GENERAL #############################
 acme.validation.incorrectly-formatted-phoneNumber.message = You have to use a correct phone number format, Ex: +34123456789, 123456789
 acme.validation.incorrectly-formatted-iataCode.message = You have to use a correct iata code format, Ex: JFK, LAX
+acme.validation.incorrectly-formatted-identifierNumber.message = You have to use a correct flight number format, Ex: XX123456,XXY234567
+acme.validation.incorrectly-formatted-promotionCode.message = You have to use a correct promotion Code format, Ex: AZZZ-25,ZAAA-25
 
 acme.validation.unpublishedTasks.message = This Maintenance Record has unpublished Tasks
 acme.validation.onePublishedTask.message = This Maintenance Record doesn't have any published Task
