@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.flightAssignment.AssignmentStatus;
@@ -48,8 +49,13 @@ public class FlightCrewFlightAssignmentPublishService extends AbstractGuiService
 
 	@Override
 	public void validate(final FlightAssignment assignment) {
-
-		super.state(assignment.getDuty() == Duty.LEAD_ATTENDANT, "duty", "acme.validation.not-lead-attendant.message");
+		int id;
+		FlightAssignment flightAssignment;
+		
+		id = super.getRequest().getData("id", int.class);
+		flightAssignment = this.repository.findAssignmentbyId(id);
+		
+		super.state(MomentHelper.isAfter(flightAssignment.getLeg().getScheduledArrival(), MomentHelper.getCurrentMoment()), "draftMode", "acme-validation-assignment-published");
 	}
 
 	@Override
@@ -78,8 +84,8 @@ public class FlightCrewFlightAssignmentPublishService extends AbstractGuiService
 		memberChoices = SelectChoices.from(members, "employeeCode", assignment.getFlightCrewMember());
 
 		dataset = super.unbindObject(assignment, "duty", "lastUpdate", "status", "remarks", "leg", "flightCrewMember", "draftMode");
-		if (assignment.getDuty() != Duty.LEAD_ATTENDANT)
-			dataset.put("readonly", true);
+		
+		dataset.put("readonly", !assignment.getDraftMode());
 		dataset.put("leg", legChoices.getSelected().getKey());
 		dataset.put("legs", legChoices);
 		dataset.put("status", statusChoices);

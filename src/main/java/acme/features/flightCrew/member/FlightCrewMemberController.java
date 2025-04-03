@@ -14,11 +14,15 @@ public class FlightCrewMemberController extends AbstractGuiController<FlightCrew
 
 	@Autowired
 	private FlightCrewMemberListService listService;
+	
+	@Autowired FlightCrewMemberShowService showService;
 
 
 	@PostConstruct
 	public void initialise() {
 
 		super.addBasicCommand("list", this.listService);
+		super.addBasicCommand("show", this.showService);
+		
 	}
 }

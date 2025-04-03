@@ -2,3 +2,12 @@ flight-crew.flight-crew.list.title = Tripulación de vuelo asociada
 flight-crew.member.list.label.employeeCode = Código de empleado
 flight-crew.member.list.label.phoneNumber = Número de teléfono
 flight-crew.member.list.label.availability = Disponibilidad
+
+
+
+flight-crew.member.form.label.employeeCode = Código de empleado
+flight-crew.member.form.label.phoneNumber = Número de teléfono
+flight-crew.member.form.label.languageSkills = Idiomas
+flight-crew.member.form.label.availability = Disponibilidad
+flight-crew.member.form.label.salary = Salario
+flight-crew.member.form.label.experienceYears = Años de experiencia

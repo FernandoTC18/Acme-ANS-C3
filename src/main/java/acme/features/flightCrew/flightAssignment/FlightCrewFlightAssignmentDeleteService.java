@@ -46,8 +46,13 @@ public class FlightCrewFlightAssignmentDeleteService extends AbstractGuiService<
 
 	@Override
 	public void validate(final FlightAssignment assignment) {
+		int id;
+		FlightAssignment flightAssignment;
 		
-		super.state(assignment.getDuty() == Duty.LEAD_ATTENDANT, "duty", "acme.validation.not-lead-attendant.message");
+		id = super.getRequest().getData("id", int.class);
+		flightAssignment = this.repository.findAssignmentbyId(id);
+		
+		super.state(flightAssignment.getDraftMode() == true, "draftMode", "acme-validation-assignment-published");
 	}
 
 	@Override
@@ -75,8 +80,7 @@ public class FlightCrewFlightAssignmentDeleteService extends AbstractGuiService<
 		memberChoices = SelectChoices.from(members, "employeeCode", assignment.getFlightCrewMember());
 
 		dataset = super.unbindObject(assignment, "duty", "lastUpdate", "status", "remarks", "leg", "flightCrewMember");
-		if (assignment.getDuty() != Duty.LEAD_ATTENDANT || assignment.getDraftMode() != false)
-			dataset.put("readonly", true);
+		dataset.put("readonly", !assignment.getDraftMode());
 		dataset.put("leg", legChoices.getSelected().getKey());
 		dataset.put("legs", legChoices);
 		dataset.put("status", statusChoices);

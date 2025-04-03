@@ -3,3 +3,5 @@ flight-crew.leg.list.label.flightNumber = Número de vuelo
 flight-crew.leg.list.label.scheduledDeparture = Salida prevista
 flight-crew.leg.list.label.scheduledArrival = Llegada prevista
 flight-crew.leg.list.label.status = Estado
+
+flight-crew.leg.form.title = Información de la escala
