@@ -64,6 +64,11 @@ public class TrackingLog extends AbstractEntity {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				orderDate;
 
+	@Mandatory
+	@Valid
+	@Automapped
+	Boolean						draftMode;
+
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------
