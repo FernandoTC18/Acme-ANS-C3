@@ -14,7 +14,7 @@ customer.booking.form.title = Formulario de reserva
 customer.booking.form.button.publish = Publicar reserva
 customer.booking.form.button.update = Actualizar
 
-acme.validation.lastCardNibble.message = El último Nibble de la tarjeta es necesario para publicar su reserva 
+
 
 customer.booking.form.button.passengers = Mostrar pasajeros
 

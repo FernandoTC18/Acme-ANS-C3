@@ -14,7 +14,6 @@ customer.booking.form.title = Booking form
 customer.booking.form.button.publish = Publish booking
 customer.booking.form.button.update = Update
 
-acme.validation.lastCardNibble.message = Last Card Nibble is required to publish your booking
 
 customer.booking.form.button.passengers = Show passengers
 

@@ -109,4 +109,16 @@ public class Flight extends AbstractEntity {
 		result = repository.computeLegsNumberByFlight(this.getId()) - 1;
 		return result;
 	}
+
+	@Transient
+	public String getFlightPath() {
+		String result;
+		String origin;
+		String arrival;
+
+		origin = this.getOriginCity();
+		arrival = this.getArrivalCity();
+		result = origin + " -> " + arrival;
+		return result;
+	}
 }
