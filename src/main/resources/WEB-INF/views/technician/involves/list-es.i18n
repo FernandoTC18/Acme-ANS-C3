@@ -1,0 +1,12 @@
+technician.involves.list.label.aircraft = Avión
+technician.involves.list.label.task = Tarea
+technician.involves.list.label.priority = Prioridad
+technician.involves.list.label.estimatedDuration = Duración Estimada
+technician.involves.list.label.technician = Técnico
+technician.involves.list.label.draftMode = Borrador
+technician.involves.list.title = Listado de Involves
+technician.involves.list.button.create = Crear
+technician.involves.form.title = Formulario de Involves
+technician.involves.form.button.create = Crear
+technician.involves.form.label.task = Tarea
+technician.involves.form.label.maintenanceRecord = Registro de Mantenimiento
