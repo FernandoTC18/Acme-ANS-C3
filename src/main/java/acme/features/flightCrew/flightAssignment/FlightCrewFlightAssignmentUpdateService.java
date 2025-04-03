@@ -58,8 +58,14 @@ public class FlightCrewFlightAssignmentUpdateService extends AbstractGuiService<
 		Collection<Leg> legs;
 		Long pilotNumber;
 		Long copilotNumber;
-
-		super.state(assignment.getDuty() == Duty.LEAD_ATTENDANT, "duty", "acme.validation.not-lead-attendant.message");
+		int id;
+		FlightAssignment flightAssignment;
+		
+		id = super.getRequest().getData("id", int.class);
+		flightAssignment = this.repository.findAssignmentbyId(id);
+		
+		super.state(flightAssignment.getDraftMode() == true, "draftMode", "acme-validation-assignment-published");
+		
 
 		member = super.getRequest().getData("flightCrewMember", FlightCrew.class);
 		super.state(member.getAvailability() == FlightCrewAvailability.AVAILABLE, "flightCrewMember", "acme.validation.unavailable-crew-member.message");
@@ -104,8 +110,8 @@ public class FlightCrewFlightAssignmentUpdateService extends AbstractGuiService<
 		memberChoices = SelectChoices.from(members, "employeeCode", assignment.getFlightCrewMember());
 
 		dataset = super.unbindObject(assignment, "duty", "lastUpdate", "status", "remarks", "leg", "flightCrewMember", "draftMode");
-		if (assignment.getDuty() != Duty.LEAD_ATTENDANT || assignment.getDraftMode() != false)
-			dataset.put("readonly", true);
+		
+		dataset.put("readonly", !assignment.getDraftMode());
 		dataset.put("leg", legChoices.getSelected().getKey());
 		dataset.put("legs", legChoices);
 		dataset.put("status", statusChoices);
