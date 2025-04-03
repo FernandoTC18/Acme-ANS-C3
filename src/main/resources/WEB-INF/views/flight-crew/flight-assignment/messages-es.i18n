@@ -20,3 +20,4 @@ flight-crew.flight-assignment.form.label.flightCrew = Tripulación de vuelo
 flight-crew.flight-assignment.form.submit.delete = Borrar
 flight-crew.flight-assignment.form.submit.publish = Publicar
 flight-crew.flight-assignment.form.submit.create = Crear
+flight-crew.flight-assignment.form.button.logs.list = Logs asociados

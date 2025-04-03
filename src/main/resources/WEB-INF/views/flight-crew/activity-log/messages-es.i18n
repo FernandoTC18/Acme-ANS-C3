@@ -1,0 +1,16 @@
+flight-crew.activity-log.list.title = Registros asociados
+flight-crew.log.list.label.registrationMoment = Momento de registro
+flight-crew.log.list.label.typeOfIncident = Tipo de incidente
+flight-crew.log.list.label.flightAssignment = Asignación de vuelo
+flight-crew.log.list.button.create = Crear
+
+flight-crew.activity-log.form.title = Detalles del registro
+flight-crew.log.form.submit.update = Actualizar
+flight-crew.log.form.submit.publish = Publicar
+flight-crew.log.form.submit.delete = Borrar
+flight-crew.log.form.submit.create = Crear
+flight-crew.log.form.label.registrationMoment = Momento de registro
+flight-crew.log.form.label.typeOfIncident = Tipo de incidente
+flight-crew.log.form.label.description = Descripcióm
+flight-crew.log.form.label.severityLevel = Nivel de peligro
+flight-crew.log.form.label.flightAssignment = Asignación de vuelo

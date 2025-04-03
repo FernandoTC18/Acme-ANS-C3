@@ -6,6 +6,7 @@ flight-crew.flight-assignment.list.label.status = Status
 flight-crew.flight-assignment.list.label.remarks = Remarks
 flight-crew.flight-assignment.list.button.create = Create
 
+
 # Form
 flight-crew.flight-assignment.form.title = Flight assignment details
 flight-crew.flight-assignment.form.label.duty = Duty
@@ -20,3 +21,4 @@ flight-crew.flight-assignment.form.label.flightCrew = Flight Crew Member
 flight-crew.flight-assignment.form.submit.delete = Delete
 flight-crew.flight-assignment.form.submit.publish = Publish
 flight-crew.flight-assignment.form.submit.create = Create
+flight-crew.flight-assignment.form.button.logs.list = Associated logs

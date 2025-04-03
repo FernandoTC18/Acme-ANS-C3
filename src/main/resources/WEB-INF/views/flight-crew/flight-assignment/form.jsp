@@ -13,6 +13,7 @@
 	
 	<acme:button code="flight-crew.flight-assignment.form.button.legs.list" action="/flight-crew/leg/list?id=${id}"/>
 	<acme:button code="flight-crew.flight-assignment.form.button.crew-members.list" action="/flight-crew/flight-crew/list?id=${id}"/>
+	<acme:button code="flight-crew.flight-assignment.form.button.logs.list" action="/flight-crew/activity-log/list?id=${id}"/>
 	
 	<jstl:if test="${!readonly}">
 			<jstl:choose>

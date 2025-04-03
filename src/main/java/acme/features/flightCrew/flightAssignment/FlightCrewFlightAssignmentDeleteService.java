@@ -1,15 +1,12 @@
 package acme.features.flightCrew.flightAssignment;
 
-import java.sql.Timestamp;
+
 import java.util.Collection;
-import java.util.Date;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
-import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.flightAssignment.AssignmentStatus;
@@ -17,7 +14,6 @@ import acme.entities.flightAssignment.Duty;
 import acme.entities.flightAssignment.FlightAssignment;
 import acme.entities.leg.Leg;
 import acme.realms.FlightCrew;
-import acme.realms.FlightCrewAvailability;
 
 @GuiService
 public class FlightCrewFlightAssignmentDeleteService extends AbstractGuiService<FlightCrew,FlightAssignment> {

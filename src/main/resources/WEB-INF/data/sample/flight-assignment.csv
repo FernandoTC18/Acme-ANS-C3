@@ -1,6 +1,6 @@
 key,key:leg,key:flightCrewMember,duty,last-update,status,remarks,draftMode
 #base entity
-flight-assignment-00,leg-01,member-01,PILOT,2022/01/01 10:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut.",true
+flight-assignment-00,leg-01,member-01,PILOT,2021/01/01 10:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut.",true
 #duty - standard variations
 flight-assignment-01,leg-01,member-01,COPILOT,2022/01/01 10:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut.",true
 flight-assignment-02,leg-01,member-01,LEAD_ATTENDANT,2022/01/01 10:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut.",true
