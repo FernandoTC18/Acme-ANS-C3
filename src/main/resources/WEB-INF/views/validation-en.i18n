@@ -71,7 +71,11 @@ acme.validation.not-lead-attendant.message = Must be a lead attendant to update 
 acme.validation.booking.invalid-locatorCode.message = Invalid locator Code
 acme.validation.booking.repeat-locatorCode.message = Locator Code already exists
 acme.validation.incorrectly-formatted-locatorCode.message = You have to use a correct locator code format, Ex: A1B2C3, AA11BB22
-acme.validation.incorrectly-formatted-lastCardNibble.message = You have to use a correct last card nibble format, Ex: 1111, A1B2
+acme.validation.incorrectly-formatted-lastCardNibble.message = You have to use a correct last card nibble format, Ex: 1111, 1234
+acme.validation.not-has-passengers.message = Booking can not be published because it has not got associated passengers
+acme.validation.passengers-not-publish.message = All of passengers of this booking have to be published before publish this booking
+acme.validation.booking.invalid-Flight-assigned.message = Selected flight is not valid
+acme.validation.lastCardNibble.message = The last card number is required to be able to publish a booking.
 
 # Passenger Validation
 acme.validation.incorrectly-formatted-passportNumber.message = You have to use a correct passportNumber format, Ex: A1B2C3D4, 123456789
