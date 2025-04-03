@@ -18,7 +18,7 @@ public interface AssistanceAgentClaimRepository extends AbstractRepository {
 	@Query("select c from Claim c where c.assistanceAgent.id = :id and c.indicator != PENDING")
 	Collection<Claim> findCompletedClaimsById(int id);
 
-	@Query("select c from Claim c where c.assistanceAgent.id = :id and c.indicator == PENDING")
+	@Query("select c from Claim c where c.assistanceAgent.id = :id and c.indicator = PENDING")
 	Collection<Claim> findPendingClaimsById(int id);
 
 	@Query("select l.scheduledArrival from Leg l where l.id = :id")
