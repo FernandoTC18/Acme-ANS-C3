@@ -22,6 +22,9 @@
 				<jstl:when test="${_command == 'create'}">
 					<acme:submit code="technician.maintenance-record.form.button.create" action="/technician/maintenance-record/create"/>
 				</jstl:when>
+				<jstl:when test="${_command != 'create'}">
+					<acme:button code="technician.maintenance-record.form.button.tasks" action="/technician/involves/list?maintenanceRecordId=${id}"/>
+				</jstl:when>
 			</jstl:choose>
 	</jstl:if>
 </acme:form>
