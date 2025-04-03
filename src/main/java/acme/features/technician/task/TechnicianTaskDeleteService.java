@@ -1,21 +1,28 @@
 
 package acme.features.technician.task;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.entities.involves.Involves;
 import acme.entities.task.Task;
 import acme.entities.task.TaskType;
+import acme.features.technician.involves.TechnicianInvolvesRepository;
 import acme.realms.Technician;
 
 @GuiService
 public class TechnicianTaskDeleteService extends AbstractGuiService<Technician, Task> {
 
 	@Autowired
-	private TechnicianTaskRepository repository;
+	private TechnicianTaskRepository		repository;
+
+	@Autowired
+	private TechnicianInvolvesRepository	involvesRepository;
 
 
 	@Override
@@ -61,6 +68,14 @@ public class TechnicianTaskDeleteService extends AbstractGuiService<Technician, 
 
 	@Override
 	public void perform(final Task task) {
+
+		List<Involves> invs;
+
+		invs = this.involvesRepository.findInvolvesByTaskId(task.getId());
+
+		for (Involves i : invs)
+			this.involvesRepository.delete(i);
+
 		this.repository.delete(task);
 	}
 
