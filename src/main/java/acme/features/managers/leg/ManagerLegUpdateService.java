@@ -79,19 +79,60 @@ public class ManagerLegUpdateService extends AbstractGuiService<Manager, Leg> {
 	@Override
 	public void validate(final Leg leg) {
 
-		boolean isValid;
-		List<Leg> legs = new ArrayList<>(this.repository.findLegsByMasterId(leg.getFlight().getId()));
-		legs.removeIf(l -> l.getId() == leg.getId());
+		{
+			boolean isValid;
+			List<Leg> legs = new ArrayList<>(this.repository.findLegsByMasterId(leg.getFlight().getId()));
+			legs.removeIf(l -> l.getId() == leg.getId());
 
-		int overlappedLegs = 0;
-		for (Leg otherLeg : legs)
-			if (MomentHelper.isAfter(otherLeg.getScheduledArrival(), leg.getScheduledDeparture()) && MomentHelper.isBefore(otherLeg.getScheduledDeparture(), leg.getScheduledArrival())) {
-				overlappedLegs += 1;
-				break;
+			int overlappedLegs = 0;
+			if (leg.getScheduledArrival() != null && leg.getScheduledDeparture() != null)
+
+				for (Leg otherLeg : legs)
+					if (MomentHelper.isAfter(otherLeg.getScheduledArrival(), leg.getScheduledDeparture()) && MomentHelper.isBefore(otherLeg.getScheduledDeparture(), leg.getScheduledArrival())) {
+						overlappedLegs += 1;
+						break;
+					}
+
+			isValid = overlappedLegs == 0;
+			super.state(isValid, "*", "acme.validation.flight.overlapped.message");
+		}
+		{
+			int departureAirportId;
+			Airport departureAirport;
+			boolean validDepartureAirport;
+
+			departureAirportId = super.getRequest().getData("departureAirport", int.class);
+			if (departureAirportId != 0) {
+				departureAirport = this.repository.findAirportById(departureAirportId);
+				validDepartureAirport = departureAirport != null;
+				super.state(validDepartureAirport, "departureAirport", "acme.validation.leg.realDepartureAirport.message");
 			}
+		}
+		{
+			int arrivalAirportId;
+			Airport arrivalAirport;
+			boolean validArrivalAirport;
 
-		isValid = overlappedLegs == 0;
-		super.state(isValid, "*", "acme.validation.flight.overlapped.message");
+			arrivalAirportId = super.getRequest().getData("arrivalAirport", int.class);
+			if (arrivalAirportId != 0) {
+				arrivalAirport = this.repository.findAirportById(arrivalAirportId);
+				validArrivalAirport = arrivalAirport != null;
+				super.state(validArrivalAirport, "arrivalAirport", "acme.validation.leg.realArrivalAirport.message");
+			}
+		}
+
+		{
+			int planeId;
+			Aircraft plane;
+			boolean validPlane;
+
+			planeId = super.getRequest().getData("plane", int.class);
+			if (planeId != 0) {
+				plane = this.repository.findAircraftById(planeId);
+				validPlane = plane != null && planeId != 0;
+				super.state(validPlane, "plane", "acme.validation.leg.realPlane.message");
+			}
+		}
 
 	}
 

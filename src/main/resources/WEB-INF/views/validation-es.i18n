@@ -13,6 +13,9 @@ acme.validation.leg.correctMinScheduleDeparture.message = La salida programada d
 acme.validation.leg.correctMinScheduleArrival.message = La llegada programada debe ser como mínimo un minuto después de la salida programada
 acme.validation.leg.correctFlightNumberPattern.message = El número de vuelo no tiene un formato válido.
 acme.validation.leg.overlapped.message = No se pueden solapar los tramos de un vuelo
+acme.validation.leg.realDepartureAirport.message = el aeropuerto de salida no existe
+acme.validation.leg.realArrivalAirport.message = el aeropuerto de llegada no existe
+acme.validation.leg.realPlane.message = el avión no existe
 
 # Manager Validation
 acme.validation.manager.identifierNumber.message = Las 2/3 primeras letras del identificador deben corresponderse con las iniciales del manager
