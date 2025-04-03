@@ -42,6 +42,10 @@ public interface FlightCrewFlightAssignmentRepository extends AbstractRepository
 	@Query("select count(fa.flightCrewMember) from FlightAssignment fa where fa.flightCrewMember.id = :id and fa.duty = :duty")
 	Long countMembersByDuty(int id, Optional<Duty> duty);
 	
+	@Query("select f from FlightCrew f where f.id = :id")
+	FlightCrew findCrewById(int id);
+	
+	
 	
 
 }
