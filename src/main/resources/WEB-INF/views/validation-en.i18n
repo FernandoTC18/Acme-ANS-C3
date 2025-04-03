@@ -22,9 +22,13 @@ acme.validation.manager.identifierNumber.message = The first 2/3 letters of the 
 
 # FlightAssigment Validation
 acme.validation.flightassignment.lastupdate.message = The last update of a flight assignment must be prior to the current date.
+acme.validation.assignment-not-published = The associated assignment has not been published.
 
 # ActivityLog Validation
 acme.validation.activitylog.registrationMoment.message = The registration moment of an activity log must be after the leg has taken place.
+acme.validation.log-published = The log has been published. No changes are possible
+
+
 
 # FlightCrew Validation
 acme.validation.flightCrew.employeeCode.message = The first 2 letters of the employee code must correspond to the flight crew's initials.
