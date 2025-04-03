@@ -12,6 +12,7 @@ import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claim.Claim;
+import acme.entities.claim.ClaimStatus;
 import acme.entities.claim.ClaimType;
 import acme.entities.leg.Leg;
 import acme.realms.AssistanceAgent;
@@ -34,6 +35,7 @@ public class AssistanceAgentClaimCreateService extends AbstractGuiService<Assist
 
 		claim = new Claim();
 		claim.setDraftMode(true);
+		claim.setIndicator(ClaimStatus.PENDING);
 		super.getBuffer().addData(claim);
 
 	}
