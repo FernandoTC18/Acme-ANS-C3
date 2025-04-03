@@ -2,9 +2,11 @@
 
 # Flight Validation
 acme.validation.flight.overlapped.message  = The legs of a flight cannot be overlapped
+acme.validation.flight.noLegs.message = A flight must have a minimum of 1 leg
+acme.validation.flight.noPublishedLegs.message = To publish a flight, its legs must be previously published
 
 # Leg Validation
-acme.validation.leg.correctFlightNumberPattern.message = Invalid flight number
+acme.validation.leg.correctFlightNumberPattern.message = The flight number does not have a valid format,Ex: ZZZ9999,AAAA0000
 acme.validation.leg.correctFlightNumber.message = The iata code of the Leg should exist in the DB
 acme.validation.leg.correctMinScheduleDeparture.message = Schedule departure must be before the current moment
 acme.validation.leg.correctMinScheduleArrival.message = Schedule arrival must be at the very least after one minute of the schedule departure
@@ -14,8 +16,8 @@ acme.validation.leg.realArrivalAirport.message = The arrival airport of the leg 
 acme.validation.leg.realPlane.message = The plane of the leg does not exist
 
 # Manager Validation
-acme.validation.manager.identifierNumberFormat.message = Invalid identifier number
-acme.validation.manager.identifierNumberDB.message = Identifier number is not unique
+acme.validation.manager.identifierNumberFormat.message = The identifier number is not in the correct format,Ex: MM0001, MMM9999
+acme.validation.manager.identifierNumberDB.message = Identifier number is not unique.
 acme.validation.manager.identifierNumber.message = The first 2/3 letters of the identifier must correspond to the manager's initials
 
 # FlightAssigment Validation
@@ -30,7 +32,7 @@ acme.validation.flightCrew.uniqueEmployeeCode.message = The employee code alread
 
 # Service Validation
 acme.validation.service.correctLastTwoNumbers.message = The last two figures must correspond to the current year
-acme.validation.service.correctPattern.message = Invalid promotional code
+acme.validation.service.correctPattern.message = the promotional code is not in the correct format,Ex: ABCD-25, ZZZZ-99
 acme.validation.service.promCodeNotInDb.message = the promotional code  is a unique value
 
 # AssistanceAgent Validation
@@ -51,8 +53,8 @@ acme.validation.technician.used-licenseNumber.message = The licence number is al
 acme.validation.aircraft.used-registrationNumber.message = The registration number is already in use.
 
 # Airline validations
-acme.validation.airline.invalid-iataCode.message = Invalid IATA Code
-acme.validation.airline.uniqueIataCode.message = This IATA code already belongs to another airline. Please, try with a new one
+acme.validation.airline.invalid-iataCode.message = The IATA code does not exist or it does not follow the pattern ‘^[A-Z]{2,3}’.
+acme.validation.airline.uniqueIataCode.message = This IATA code already belongs to another airline. Please, try with a new one.
 
 # Airport Validation
 acme.validation.airport.invalid-iataCode.message = Invalid Iata Code
@@ -69,10 +71,7 @@ acme.validation.not-lead-attendant.message = Must be a lead attendant to update 
 acme.validation.booking.invalid-locatorCode.message = Invalid locator Code
 acme.validation.booking.repeat-locatorCode.message = Locator Code already exists
 acme.validation.incorrectly-formatted-locatorCode.message = You have to use a correct locator code format, Ex: A1B2C3, AA11BB22
-acme.validation.incorrectly-formatted-lastCardNibble.message = You have to use a correct last card nibble format, Ex: 1111, 1234
-acme.validation.not-has-passengers.message = Booking can not be published because it has not got associated passengers
-acme.validation.passengers-not-publish.message = All of passengers of this booking have to be published before publish this booking
-acme.validation.booking.invalid-Flight-assigned.message = Selected flight is not valid
+acme.validation.incorrectly-formatted-lastCardNibble.message = You have to use a correct last card nibble format, Ex: 1111, A1B2
 
 # Passenger Validation
 acme.validation.incorrectly-formatted-passportNumber.message = You have to use a correct passportNumber format, Ex: A1B2C3D4, 123456789
@@ -80,9 +79,6 @@ acme.validation.incorrectly-formatted-passportNumber.message = You have to use a
 # GENERAL #############################
 acme.validation.incorrectly-formatted-phoneNumber.message = You have to use a correct phone number format, Ex: +34123456789, 123456789
 acme.validation.incorrectly-formatted-iataCode.message = You have to use a correct iata code format, Ex: JFK, LAX
-acme.validation.incorrectly-formatted-identifierNumber.message = You have to use a correct identifier number format, Ex: XX123456,XXY234567
-acme.validation.incorrectly-formatted-promotionCode.message = You have to use a correct promotion Code format, Ex: AZZZ-25,ZAAA-25
-acme.validation.incorrectly-formatted-flightNumber.message = You have to use a correct flight number format, Ex: ZZZ9999,AAA0000
 
 acme.validation.unpublishedTasks.message = This Maintenance Record has unpublished Tasks
 acme.validation.onePublishedTask.message = This Maintenance Record doesn't have any published Task
@@ -90,6 +86,4 @@ acme.validation.onePublishedTask.message = This Maintenance Record doesn't have 
 acme.validation.updatePublishedTask.message = You can´t update a published task
 acme.validation.deletePublishedTask.message = You can´t delete a published task
 
-acme.validation.flight.noLegs.message = A flight must have a minimum of 1 leg
-acme.validation.flight.noPublishedLegs.message = To publish a flight, its legs must be previously published
-
+acme.validation.nonExistingTask.message = This task does not exists
