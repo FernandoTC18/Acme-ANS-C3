@@ -87,6 +87,7 @@ acme.validation.incorrectly-formatted-passportNumber.message = You have to use a
 # GENERAL #############################
 acme.validation.incorrectly-formatted-phoneNumber.message = You have to use a correct phone number format, Ex: +34123456789, 123456789
 acme.validation.incorrectly-formatted-iataCode.message = You have to use a correct iata code format, Ex: JFK, LAX
+acme.validation.incorrectly-formatted-flightNumber.message = You have to use a correct flight number format, Ex: XXX9999,LLL1234
 
 acme.validation.unpublishedTasks.message = This Maintenance Record has unpublished Tasks
 acme.validation.onePublishedTask.message = This Maintenance Record doesn't have any published Task
