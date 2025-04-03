@@ -60,38 +60,86 @@ public class ManagerLegPublishService extends AbstractGuiService<Manager, Leg> {
 		Airport departureAirport;
 		Airport arrivalAirport;
 		Aircraft plane;
+		try {
+			departureAirportId = super.getRequest().getData("departureAirport", int.class);
+			departureAirport = this.repository.findAirportById(departureAirportId);
+			leg.setDepartureAirport(departureAirport);
+		} catch (Exception e) {
+		}
 
-		departureAirportId = super.getRequest().getData("departureAirport", int.class);
-		departureAirport = this.repository.findAirportById(departureAirportId);
-
-		arrivalAirportId = super.getRequest().getData("arrivalAirport", int.class);
-		arrivalAirport = this.repository.findAirportById(arrivalAirportId);
-
-		planeId = super.getRequest().getData("plane", int.class);
-		plane = this.repository.findAircraftById(planeId);
-
+		try {
+			arrivalAirportId = super.getRequest().getData("arrivalAirport", int.class);
+			arrivalAirport = this.repository.findAirportById(arrivalAirportId);
+			leg.setArrivalAirport(arrivalAirport);
+		} catch (Exception e) {
+		}
+		try {
+			planeId = super.getRequest().getData("plane", int.class);
+			plane = this.repository.findAircraftById(planeId);
+			leg.setPlane(plane);
+		} catch (Exception e) {
+		}
 		super.bindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "status");
-		leg.setArrivalAirport(arrivalAirport);
-		leg.setDepartureAirport(departureAirport);
-		leg.setPlane(plane);
+
 	}
 
 	@Override
 	public void validate(final Leg leg) {
 
-		boolean isValid;
-		List<Leg> legs = new ArrayList<>(this.repository.findLegsByMasterId(leg.getFlight().getId()));
-		legs.removeIf(l -> l.getId() == leg.getId());
+		{
+			boolean notOverlapped;
+			List<Leg> legs = new ArrayList<>(this.repository.findLegsByMasterId(leg.getFlight().getId()));
+			legs.removeIf(l -> l.getId() == leg.getId());
 
-		int overlappedLegs = 0;
-		for (Leg otherLeg : legs)
-			if (MomentHelper.isAfter(otherLeg.getScheduledArrival(), leg.getScheduledDeparture()) && MomentHelper.isBefore(otherLeg.getScheduledDeparture(), leg.getScheduledArrival())) {
-				overlappedLegs += 1;
-				break;
+			int overlappedLegs = 0;
+			if (leg.getScheduledArrival() != null && leg.getScheduledDeparture() != null)
+
+				for (Leg otherLeg : legs)
+					if (MomentHelper.isAfter(otherLeg.getScheduledArrival(), leg.getScheduledDeparture()) && MomentHelper.isBefore(otherLeg.getScheduledDeparture(), leg.getScheduledArrival())) {
+						overlappedLegs += 1;
+						break;
+					}
+
+			notOverlapped = overlappedLegs == 0;
+			super.state(notOverlapped, "*", "acme.validation.leg.overlapped.message");
+		}
+		{
+			int departureAirportId;
+			Airport departureAirport;
+			boolean validDepartureAirport;
+
+			departureAirportId = super.getRequest().getData("departureAirport", int.class);
+			if (departureAirportId != 0) {
+				departureAirport = this.repository.findAirportById(departureAirportId);
+				validDepartureAirport = departureAirport != null;
+				super.state(validDepartureAirport, "departureAirport", "acme.validation.leg.realDepartureAirport.message");
 			}
+		}
+		{
+			int arrivalAirportId;
+			Airport arrivalAirport;
+			boolean validArrivalAirport;
 
-		isValid = overlappedLegs == 0;
-		super.state(isValid, "*", "acme.validation.leg.overlapped.message");
+			arrivalAirportId = super.getRequest().getData("arrivalAirport", int.class);
+			if (arrivalAirportId != 0) {
+				arrivalAirport = this.repository.findAirportById(arrivalAirportId);
+				validArrivalAirport = arrivalAirport != null;
+				super.state(validArrivalAirport, "arrivalAirport", "acme.validation.leg.realArrivalAirport.message");
+			}
+		}
+
+		{
+			int planeId;
+			Aircraft plane;
+			boolean validPlane;
+
+			planeId = super.getRequest().getData("plane", int.class);
+			if (planeId != 0) {
+				plane = this.repository.findAircraftById(planeId);
+				validPlane = plane != null && planeId != 0;
+				super.state(validPlane, "plane", "acme.validation.leg.realPlane.message");
+			}
+		}
 	}
 
 	@Override
