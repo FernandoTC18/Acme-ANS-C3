@@ -29,7 +29,16 @@ public class FlightCrewFlightAssignmentUpdateService extends AbstractGuiService<
 
 	@Override
 	public void authorise() {
-		Boolean status = super.getRequest().getPrincipal().hasRealmOfType(FlightCrew.class);
+		boolean status;
+		int assignmentId;
+		FlightCrew member;
+		FlightAssignment assignment;
+		
+		assignmentId = super.getRequest().getData("id", int.class);
+		assignment = this.repository.findAssignmentbyId(assignmentId);
+		member = assignment == null ? null : assignment.getFlightCrewMember();
+		status = super.getRequest().getPrincipal().hasRealm(member) && assignment != null && assignment.getDraftMode();
+		
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -58,15 +67,7 @@ public class FlightCrewFlightAssignmentUpdateService extends AbstractGuiService<
 		Collection<Leg> legs;
 		Long pilotNumber;
 		Long copilotNumber;
-		int id;
-		FlightAssignment flightAssignment;
 		
-		id = super.getRequest().getData("id", int.class);
-		flightAssignment = this.repository.findAssignmentbyId(id);
-		
-		super.state(flightAssignment.getDraftMode() == true, "draftMode", "acme-validation-assignment-published");
-		
-
 		member = super.getRequest().getData("flightCrewMember", FlightCrew.class);
 		super.state(member.getAvailability() == FlightCrewAvailability.AVAILABLE, "flightCrewMember", "acme.validation.unavailable-crew-member.message");
 

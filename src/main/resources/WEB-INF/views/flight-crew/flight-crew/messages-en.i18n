@@ -1,9 +1,9 @@
-flight-crew.flight-crew.list.title = Associated Flight Crew members
+flight-crew.flight-crew.list.title = Associated Flight Crew Members
 flight-crew.member.list.label.employeeCode = Employee code
 flight-crew.member.list.label.phoneNumber = Phone number
 flight-crew.member.list.label.availability = Availability
 
-
+flight-crew.flight-crew.form.title = Crew Member Details
 flight-crew.member.form.label.employeeCode = Employee Code
 flight-crew.member.form.label.phoneNumber = Phone Number
 flight-crew.member.form.label.languageSkills = Language Skills

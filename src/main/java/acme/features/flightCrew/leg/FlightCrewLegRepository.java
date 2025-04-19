@@ -38,6 +38,9 @@ public interface FlightCrewLegRepository extends AbstractRepository {
 	@Query("select l from Leg l where l.id = :id")
 	Leg getLegById(int id);
 	
+	@Query("select fa from FlightAssignment fa where fa.id = :id")
+	FlightAssignment findAssignmentbyId(int id);
+	
 	
 
 }
