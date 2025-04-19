@@ -4,7 +4,7 @@ flight-crew.member.list.label.phoneNumber = Número de teléfono
 flight-crew.member.list.label.availability = Disponibilidad
 
 
-
+flight-crew.flight-crew.form.title = Detalles de la tripulación de vuelo
 flight-crew.member.form.label.employeeCode = Código de empleado
 flight-crew.member.form.label.phoneNumber = Número de teléfono
 flight-crew.member.form.label.languageSkills = Idiomas

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.entities.flightAssignment.FlightAssignment;
 import acme.entities.leg.Leg;
 import acme.realms.FlightCrew;
 
@@ -22,9 +23,15 @@ public class FlightCrewLegListService extends AbstractGuiService<FlightCrew, Leg
 	@Override
 	public void authorise() {
 		boolean status;
-
-		status = super.getRequest().getPrincipal().hasRealmOfType(FlightCrew.class);
-
+		int assignmentId;
+		FlightCrew member;
+		FlightAssignment assignment;
+		
+		assignmentId = super.getRequest().getData("id", int.class);
+		assignment = this.repository.findAssignmentbyId(assignmentId);
+		member = assignment == null ? null : assignment.getFlightCrewMember();
+		status = super.getRequest().getPrincipal().hasRealm(member) && assignment != null;
+		
 		super.getResponse().setAuthorised(status);
 	}
 

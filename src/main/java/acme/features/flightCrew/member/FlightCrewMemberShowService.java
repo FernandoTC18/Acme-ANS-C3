@@ -8,6 +8,7 @@ import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.entities.flightAssignment.FlightAssignment;
 import acme.realms.FlightCrew;
 import acme.realms.FlightCrewAvailability;
 import ch.qos.logback.core.status.Status;
@@ -22,9 +23,30 @@ public class FlightCrewMemberShowService extends AbstractGuiService<FlightCrew,F
 	@Override
 	public void authorise() {
 		boolean status;
-
-		status = super.getRequest().getPrincipal().hasRealmOfType(FlightCrew.class);
-
+		boolean assignmentIsFromMember = false;
+		int memberId;
+		FlightCrew member;
+		Collection<FlightAssignment> assignments;
+		
+		memberId = super.getRequest().getData("id", int.class);
+		assignments = this.repository.getAssignmentsByMemberId(memberId);
+		
+		for (FlightAssignment a : assignments) {
+			member = a.getFlightCrewMember();
+			
+			if (super.getRequest().getPrincipal().hasRealm(member)) {
+				assignmentIsFromMember = true;
+			} else {
+				assignmentIsFromMember = false;
+				break;
+			}
+			
+			
+			
+		}
+		
+		status = assignmentIsFromMember;
+		
 		super.getResponse().setAuthorised(status);
 	}
 
