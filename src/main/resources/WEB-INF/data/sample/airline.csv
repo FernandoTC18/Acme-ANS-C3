@@ -25,7 +25,7 @@ airline-18,"Lorem ipsum",AAK,http://lorem.com/ipsum,LUXURY,2000/01/01 10:00,lore
 airline-19,"Lorem ipsum",AAL,http://a,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
 airline-20,"Lorem ipsum",AAM,http://a.b,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
 airline-21,"Lorem ipsum",AAN,https://www.lorem-ipsum.org,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
-airline-22,"Lorem ipsum",AAO,ftp://www.lorem-ipsum.org,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
+airline-22,"Lorem ipsum",AAO,https://www.lorem-ipsum.org,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
 airline-23,"Lorem ipsum",AAP,http://www.lorem-ipsum.org/dolor/sit.html,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
 airline-24,"Lorem ipsum",AAQ,http://www.lorem-ipsum.org/dolor/sit.html#dolor,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
 airline-25,"Lorem ipsum",AAR,http://example.org?a=1&b=2,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
