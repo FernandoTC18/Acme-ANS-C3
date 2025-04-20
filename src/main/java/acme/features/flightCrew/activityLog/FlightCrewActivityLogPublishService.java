@@ -19,7 +19,19 @@ public class FlightCrewActivityLogPublishService extends AbstractGuiService<Flig
 	
 	@Override
     public void authorise() {
-        super.getResponse().setAuthorised(super.getRequest().getPrincipal().hasRealmOfType(FlightCrew.class));
+		boolean status;
+		int logId;
+		ActivityLog log;
+		FlightAssignment assignment;
+		FlightCrew member;
+		
+		logId = super.getRequest().getData("id", int.class);
+		log = this.repository.getLogById(logId);
+		assignment = this.repository.getAssignmentByLogId(logId);
+		member = assignment == null ? null : assignment.getFlightCrewMember();
+		status = super.getRequest().getPrincipal().hasRealm(member) && log != null && log.getDraftMode();
+		
+		super.getResponse().setAuthorised(status);
     }
 	
 	@Override
