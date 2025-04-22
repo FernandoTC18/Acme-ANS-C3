@@ -1,0 +1,3 @@
+customer.bookingRecord.form.label.passengers = pasajero
+customer.bookingRecord.form.label.booking = reserva
+customer.bookingRecord.form.button.create = Añadir pasajero

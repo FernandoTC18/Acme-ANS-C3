@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.entities.booking.Booking;
-import acme.entities.bookingRecord.BookingRecord;
 import acme.entities.passenger.Passenger;
 import acme.realms.Customer;
 
@@ -24,21 +22,12 @@ public class CustomerPassengerCreateService extends AbstractGuiService<Customer,
 
 	@Override
 	public void authorise() {
-		boolean status;
-		Booking booking;
-		int bookingId;
-		bookingId = super.getRequest().getData("bookingId", int.class);
-		booking = this.repository.findBookingById(bookingId);
-		status = booking.getDraftMode();
-		super.getResponse().setAuthorised(status);
+		super.getResponse().setAuthorised(true);
 	}
 
 	@Override
 	public void load() {
 		Passenger passenger;
-		int bookingId;
-
-		bookingId = super.getRequest().getData("bookingId", int.class);
 
 		passenger = new Passenger();
 		passenger.setName("");
@@ -49,12 +38,18 @@ public class CustomerPassengerCreateService extends AbstractGuiService<Customer,
 		passenger.setDraftMode(true);
 
 		super.getBuffer().addData(passenger);
-		super.getResponse().addGlobal("bookingId", bookingId);
 	}
 
 	@Override
 	public void bind(final Passenger passenger) {
+		int customerId;
+		Customer customer;
+
+		customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		customer = this.repository.findCustomerById(customerId);
+
 		super.bindObject(passenger, "name", "email", "passportNumber", "birth", "specialNeeds");
+		passenger.setCustomer(customer);
 
 	}
 
@@ -65,30 +60,15 @@ public class CustomerPassengerCreateService extends AbstractGuiService<Customer,
 
 	@Override
 	public void perform(final Passenger passenger) {
-		BookingRecord bookingRecord;
-		Booking booking;
-		int bookingId;
-
-		bookingId = super.getRequest().getData("bookingId", int.class);
-		booking = this.repository.findBookingById(bookingId);
-
-		bookingRecord = new BookingRecord();
-		bookingRecord.setBooking(booking);
-		bookingRecord.setPassenger(passenger);
-
 		this.repository.save(passenger);
-		this.repository.save(bookingRecord);
 	}
 
 	@Override
 	public void unbind(final Passenger passenger) {
 		Dataset dataset;
-		int bookingId;
 
 		dataset = super.unbindObject(passenger, "name", "email", "passportNumber", "birth", "specialNeeds");
 
-		bookingId = super.getRequest().getData("bookingId", int.class);
-		super.getResponse().addGlobal("bookingId", bookingId);
 		super.getResponse().addData(dataset);
 	}
 }

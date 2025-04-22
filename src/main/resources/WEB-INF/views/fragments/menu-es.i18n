@@ -47,6 +47,7 @@ master.menu.flight-crew.flight-assignment.list-uncompleted = Listado de asignaci
 
 master.menu.customer = Cliente
 master.menu.customer.list-booking = Mis reservas
+master.menu.customer.list-passenger = Mis pasajeros
 
 
 # master.menu.user-account ####################################################
