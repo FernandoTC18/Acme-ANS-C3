@@ -31,7 +31,21 @@ public class TechnicianInvolvesCreateService extends AbstractGuiService<Technici
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+
+		boolean status = true;
+
+		if (super.getRequest().hasData("id") && super.getRequest().getData("task", int.class) != 0) {
+
+			int taskId = super.getRequest().getData("task", int.class);
+			Task task = this.taskRepository.findTaskById(taskId);
+
+			String techUsername = super.getRequest().getPrincipal().getUsername();
+			Technician tech = this.taskRepository.findTechnicianByUsername(techUsername);
+			status = task != null && !task.isDraftMode() && task.getTechnician().equals(tech);
+
+		}
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -60,11 +74,18 @@ public class TechnicianInvolvesCreateService extends AbstractGuiService<Technici
 
 	@Override
 	public void validate(final Involves involves) {
-		int taskId = super.getRequest().getData("task", int.class);
 
-		Task t = this.taskRepository.findTaskById(taskId);
+		boolean status;
 
-		super.state(t != null, "*", "acme.validation.nonExistingTask.message");
+		int taskId = involves.getTask().getId();
+
+		List<Involves> invs = this.repository.findInvolvesByTaskId(taskId);
+
+		invs = invs.stream().filter(i -> i.getMaintenanceRecord().getId() == involves.getMaintenanceRecord().getId()).toList();
+
+		status = invs.isEmpty();
+
+		super.state(status, "task", "acme.validation.involves.alreadyInvolvedTask.message");
 	}
 
 	@Override
@@ -78,7 +99,15 @@ public class TechnicianInvolvesCreateService extends AbstractGuiService<Technici
 		SelectChoices choices;
 		List<Task> tasks;
 
-		tasks = this.taskRepository.findAllTasks();
+		String techUsername = super.getRequest().getPrincipal().getUsername();
+
+		int techId = this.taskRepository.findTechnicianByUsername(techUsername).getId();
+
+		// Cojo las tareas del tecnico logeado y filtro para quedarme con las que ya están publicadas
+
+		tasks = this.taskRepository.findTasksByTechnicianId(techId);
+
+		tasks = tasks.stream().filter(t -> !t.isDraftMode()).toList();
 
 		choices = SelectChoices.from(tasks, "description", involves.getTask());
 

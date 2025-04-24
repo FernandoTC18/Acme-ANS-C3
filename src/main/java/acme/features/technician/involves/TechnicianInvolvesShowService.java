@@ -25,7 +25,8 @@ public class TechnicianInvolvesShowService extends AbstractGuiService<Technician
 
 		id = super.getRequest().getData("id", int.class);
 		involves = this.repository.findInvolvesById(id);
-		status = involves != null && super.getRequest().getPrincipal().hasRealmOfType(Technician.class);
+		Technician tech = involves.getTask().getTechnician();
+		status = involves != null && super.getRequest().getPrincipal().hasRealm(tech);
 
 		super.getResponse().setAuthorised(status);
 	}

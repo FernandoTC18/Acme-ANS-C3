@@ -1,12 +1,16 @@
 
 package acme.features.technician.maintenanceRecord;
 
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.entities.aircraft.Aircraft;
 import acme.entities.maintenanceRecord.MaintenanceRecord;
 import acme.entities.maintenanceRecord.MaintenanceRecordStatus;
 import acme.realms.Technician;
@@ -28,7 +32,11 @@ public class TechnicianMaintenanceRecordUpdateService extends AbstractGuiService
 		id = super.getRequest().getData("id", int.class);
 		maintenanceRecord = this.repository.findMaintenanceRecordById(id);
 		technician = maintenanceRecord == null ? null : maintenanceRecord.getTechnician();
-		status = maintenanceRecord != null && maintenanceRecord.isDraftMode() && super.getRequest().getPrincipal().hasRealm(technician);
+		int aircraftId = super.getRequest().getData("aircraft", int.class);
+
+		Aircraft a = this.repository.findAircraftById(aircraftId);
+
+		status = maintenanceRecord != null && a != null && maintenanceRecord.isDraftMode() && super.getRequest().getPrincipal().hasRealm(technician);
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -46,8 +54,7 @@ public class TechnicianMaintenanceRecordUpdateService extends AbstractGuiService
 
 	@Override
 	public void bind(final MaintenanceRecord maintenanceRecord) {
-		super.bindObject(maintenanceRecord, "moment", "status", "inspectionDueDate", "estimatedCost", "notes", "aircraft", "technician");
-
+		super.bindObject(maintenanceRecord, "moment", "status", "inspectionDueDate", "estimatedCost", "notes", "aircraft");
 	}
 
 	@Override
@@ -56,6 +63,15 @@ public class TechnicianMaintenanceRecordUpdateService extends AbstractGuiService
 
 		status = maintenanceRecord.isDraftMode();
 
+		boolean date;
+
+		Date inspection = maintenanceRecord.getInspectionDueDate();
+
+		Date moment = maintenanceRecord.getMoment();
+
+		date = inspection.after(moment);
+
+		super.state(date, "inspectionDueDate", "acme.validation.maintenanceRecord.nextInspectionPriorMaintenanceMoment.message");
 		super.state(status, "*", "acme.validation.updatePublishedMaintenanceRecord.message");
 	}
 
@@ -68,13 +84,19 @@ public class TechnicianMaintenanceRecordUpdateService extends AbstractGuiService
 	public void unbind(final MaintenanceRecord maintenanceRecord) {
 		Dataset dataset;
 		SelectChoices maintenanceRecordStatus;
+		SelectChoices aircraftChoices;
+
+		List<Aircraft> aircrafts = this.repository.findAllAircrafts();
+
+		aircraftChoices = SelectChoices.from(aircrafts, "registrationNumber", maintenanceRecord.getAircraft());
 
 		maintenanceRecordStatus = SelectChoices.from(MaintenanceRecordStatus.class, maintenanceRecord.getStatus());
 
-		dataset = super.unbindObject(maintenanceRecord, "moment", "status", "inspectionDueDate", "estimatedCost", "notes", "aircraft", "technician", "draftMode");
-		dataset.put("confirmation", false);
-		dataset.put("readonly", false);
+		dataset = super.unbindObject(maintenanceRecord, "moment", "status", "inspectionDueDate", "estimatedCost", "notes");
+		//dataset.put("confirmation", false);
+		//dataset.put("readonly", false);
 		dataset.put("status", maintenanceRecordStatus);
+		dataset.put("aircraft", aircraftChoices);
 
 		super.getResponse().addData(dataset);
 	}
