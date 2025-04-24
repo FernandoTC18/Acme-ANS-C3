@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import acme.client.components.datatypes.Money;
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
@@ -36,7 +37,24 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 		bookingId = super.getRequest().getData("id", int.class);
 		booking = this.repository.findBookingById(bookingId);
 		customer = booking == null ? null : booking.getCustomer();
+
 		status = super.getRequest().getPrincipal().hasRealm(customer) && booking != null && booking.getDraftMode();
+
+		if (super.getRequest().hasData("id")) {
+			int flightId = super.getRequest().getData("flight", int.class);
+			boolean correctFlight = true;
+
+			if (flightId != 0) {
+				Flight flight = this.repository.findFlightById(flightId);
+				correctFlight = flight != null;
+			}
+
+			boolean correctPrice;
+			Money bookingPrice = super.getRequest().getData("price", Money.class);
+			correctPrice = booking != null && bookingPrice.toString().equals(booking.getPrice().toString());
+
+			status = status && correctPrice && correctFlight;
+		}
 
 		super.getResponse().setAuthorised(status);
 	}

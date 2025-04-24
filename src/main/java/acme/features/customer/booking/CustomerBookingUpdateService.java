@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import acme.client.components.datatypes.Money;
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
@@ -35,7 +36,24 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 		bookingId = super.getRequest().getData("id", int.class);
 		booking = this.repository.findBookingById(bookingId);
 		customer = booking == null ? null : booking.getCustomer();
+
 		status = super.getRequest().getPrincipal().hasRealm(customer) && booking != null && booking.getDraftMode();
+
+		if (super.getRequest().hasData("id")) {
+			int flightId = super.getRequest().getData("flight", int.class);
+			boolean correctFlight = true;
+
+			if (flightId != 0) {
+				Flight flight = this.repository.findFlightById(flightId);
+				correctFlight = flight != null;
+			}
+
+			boolean correctPrice;
+			Money bookingPrice = super.getRequest().getData("price", Money.class);
+			correctPrice = booking != null && bookingPrice.toString().equals(booking.getPrice().toString());
+
+			status = correctFlight && correctPrice;
+		}
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -59,21 +77,13 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 		flightId = super.getRequest().getData("flight", int.class);
 		flight = this.repository.findFlightById(flightId);
 
-		super.bindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "price", "lastCardNibble");
+		super.bindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "lastCardNibble");
 		booking.setFlight(flight);
 	}
 
 	@Override
 	public void validate(final Booking booking) {
-		int flightId;
-		Flight flight;
-		Boolean validFlight = true;
-
-		flightId = super.getRequest().getData("flight", int.class);
-		flight = this.repository.findFlightById(flightId);
-		if (flight == null)
-			validFlight = false;
-		super.state(validFlight, "flight", "acme.validation.booking.invalid-Flight-assigned.message");
+		;
 	}
 
 	@Override

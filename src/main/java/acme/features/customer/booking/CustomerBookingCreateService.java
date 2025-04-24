@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import acme.client.components.datatypes.Money;
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
@@ -27,7 +28,28 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status = true;
+		int bookingId;
+
+		if (super.getRequest().hasData("id")) {
+			int flightId = super.getRequest().getData("flight", int.class);
+			boolean correctFlight = true;
+
+			if (flightId != 0) {
+				Flight flight = this.repository.findFlightById(flightId);
+				correctFlight = flight != null;
+			}
+
+			boolean correctPrice;
+			bookingId = super.getRequest().getData("id", int.class);
+			Booking booking = this.repository.findBookingById(bookingId);
+			Money bookingPrice = super.getRequest().getData("price", Money.class);
+			correctPrice = booking != null && bookingPrice.toString().equals(booking.getPrice().toString());
+
+			status = correctFlight && correctPrice;
+		}
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -37,7 +59,6 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 		booking = new Booking();
 		booking.setLocatorCode("");
 		booking.setTravelClass(null);
-		booking.setPrice(null);
 		booking.setFlight(null);
 		booking.setLastCardNibble("");
 		booking.setDraftMode(true);
@@ -58,22 +79,14 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 		customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
 		customer = this.repository.findCustomerById(customerId);
 
-		super.bindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "price", "lastCardNibble");
+		super.bindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "lastCardNibble");
 		booking.setFlight(flight);
 		booking.setCustomer(customer);
 	}
 
 	@Override
 	public void validate(final Booking booking) {
-		int flightId;
-		Flight flight;
-		Boolean validFlight = true;
-
-		flightId = super.getRequest().getData("flight", int.class);
-		flight = this.repository.findFlightById(flightId);
-		if (flight == null)
-			validFlight = false;
-		super.state(validFlight, "flight", "acme.validation.booking.invalid-Flight-assigned.message");
+		;
 	}
 
 	@Override
