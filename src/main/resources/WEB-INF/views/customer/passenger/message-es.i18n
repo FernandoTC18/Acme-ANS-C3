@@ -10,10 +10,14 @@ customer.passenger.form.label.birth = Fecha de nacimiento
 customer.passenger.form.label.specialNeeds = Necesidades especiales
 customer.passenger.form.button.update = Actualizar
 
-customer.passenger.list.button.create = Crear un pasajero
+customer.passenger.list.button.addPassenger = Añadir un pasajero
 customer.passenger.form.button.create = Crear pasajero
 
 customer.passenger.list.title = Pasajeros
 customer.passenger.form.title = Pasajero
 
 customer.passenger.form.button.publish = Publicar pasajero
+
+customer.bookingRecord.list.button.create = Añadir un pasajero
+
+customer.passenger.list.button.create = Crear un pasajero

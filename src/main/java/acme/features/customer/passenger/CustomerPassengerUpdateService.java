@@ -1,14 +1,11 @@
 
 package acme.features.customer.passenger;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.entities.booking.Booking;
 import acme.entities.passenger.Passenger;
 import acme.realms.Customer;
 
@@ -27,21 +24,14 @@ public class CustomerPassengerUpdateService extends AbstractGuiService<Customer,
 	public void authorise() {
 		boolean status;
 		int passengerId;
-		List<Booking> bookingsAssociated;
 		Passenger passenger;
 		Customer customer;
-		boolean passengerIsFromCustomer = false;
 
 		passengerId = super.getRequest().getData("id", int.class);
 		passenger = this.repository.findPassengerById(passengerId);
-		bookingsAssociated = this.repository.findBookingByPassengerId(passengerId);
+		customer = passenger == null ? null : passenger.getCustomer();
 
-		for (Booking b : bookingsAssociated) {
-			customer = b.getCustomer();
-			if (super.getRequest().getPrincipal().hasRealm(customer))
-				passengerIsFromCustomer = true;
-		}
-		status = passengerIsFromCustomer && passenger != null && passenger.getDraftMode();
+		status = super.getRequest().getPrincipal().hasRealm(customer) && passenger != null && passenger.getDraftMode();
 
 		super.getResponse().setAuthorised(status);
 	}

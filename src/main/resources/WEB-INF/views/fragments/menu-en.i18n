@@ -44,6 +44,7 @@ master.menu.flight-crew.flight-assignment.list-uncompleted = Uncompleted flight 
 # master.menu.customer ##########################################################
 master.menu.customer = Customer
 master.menu.customer.list-booking = My bookings
+master.menu.customer.list-passenger = My passengers
 
 # master.menu.user-account ####################################################
 

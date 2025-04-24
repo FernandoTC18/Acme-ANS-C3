@@ -12,7 +12,7 @@
 	<acme:input-textbox code="customer.booking.form.label.lastCardNibble" path="lastCardNibble"/>
 	
 	<jstl:if test="${_command != 'create'}">
-	    <acme:button code="customer.booking.form.button.passengers" action="/customer/passenger/list?bookingId=${id}"/>
+	    <acme:button code="customer.booking.form.button.passengers" action="/customer/passenger/listFromBooking?bookingId=${id}"/>
 	</jstl:if>
 	
 	<jstl:if test="${!readonly}">
