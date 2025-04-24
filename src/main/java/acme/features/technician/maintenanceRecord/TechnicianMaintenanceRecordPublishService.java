@@ -9,6 +9,7 @@ import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.entities.aircraft.Aircraft;
 import acme.entities.maintenanceRecord.MaintenanceRecord;
 import acme.entities.maintenanceRecord.MaintenanceRecordStatus;
 import acme.entities.task.Task;
@@ -50,7 +51,7 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 
 	@Override
 	public void bind(final MaintenanceRecord maintenanceRecord) {
-		super.bindObject(maintenanceRecord, "moment", "status", "inspectionDueDate", "estimatedCost", "notes", "aircraft", "technician");
+		super.bindObject(maintenanceRecord, "moment", "status", "inspectionDueDate", "estimatedCost", "notes", "aircraft");
 
 	}
 
@@ -96,13 +97,19 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 		Dataset dataset;
 
 		SelectChoices maintenanceRecordStatus;
+		SelectChoices aircraftChoices;
+
+		List<Aircraft> aircrafts = this.repository.findAllAircrafts();
+
+		aircraftChoices = SelectChoices.from(aircrafts, "registrationNumber", maintenanceRecord.getAircraft());
 
 		maintenanceRecordStatus = SelectChoices.from(MaintenanceRecordStatus.class, maintenanceRecord.getStatus());
 
-		dataset = super.unbindObject(maintenanceRecord, "moment", "status", "inspectionDueDate", "estimatedCost", "notes", "aircraft", "technician", "draftMode");
-		dataset.put("confirmation", false);
-		dataset.put("readonly", false);
+		dataset = super.unbindObject(maintenanceRecord, "moment", "status", "inspectionDueDate", "estimatedCost", "notes");
+		//dataset.put("confirmation", false);
+		//dataset.put("readonly", false);
 		dataset.put("status", maintenanceRecordStatus);
+		dataset.put("aircraft", aircraftChoices);
 
 		super.getResponse().addData(dataset);
 	}

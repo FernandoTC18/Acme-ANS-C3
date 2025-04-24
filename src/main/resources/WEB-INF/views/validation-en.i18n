@@ -84,6 +84,11 @@ acme.validation.lastCardNibble.message = The last card number is required to be 
 # Passenger Validation
 acme.validation.incorrectly-formatted-passportNumber.message = You have to use a correct passportNumber format, Ex: A1B2C3D4, 123456789
 
+# Maintenance Record Validation
+
+acme.validation.maintenanceRecord.nextInspectionPriorMaintenanceMoment.message = The date of the next inspection cannot be prior to the moment of the maintenance record
+acme.validation.involves.alreadyInvolvedTask.message = This Task is already related to this Maintenance Record
+
 # GENERAL #############################
 acme.validation.incorrectly-formatted-phoneNumber.message = You have to use a correct phone number format, Ex: +34123456789, 123456789
 acme.validation.incorrectly-formatted-iataCode.message = You have to use a correct iata code format, Ex: JFK, LAX
