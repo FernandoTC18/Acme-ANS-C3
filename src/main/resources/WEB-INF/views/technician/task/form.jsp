@@ -6,9 +6,8 @@
 <acme:form>
 	<acme:input-select code="technician.task.form.label.type" path="type" choices="${type}"/>
 	<acme:input-textbox code="technician.task.form.label.description" path="description" />
-	<acme:input-textbox code="technician.task.form.label.priority" path="priority"/>
-	<acme:input-textbox code="technician.task.form.label.estimatedDuration" path="estimatedDuration"/>
-	<acme:input-textbox code="technician.task.form.label.technician" path="technician"/>
+	<acme:input-integer code="technician.task.form.label.priority" path="priority"/>
+	<acme:input-integer code="technician.task.form.label.estimatedDuration" path="estimatedDuration"/>
 	
 	<jstl:if test="${!readonly}">
 			<jstl:choose>

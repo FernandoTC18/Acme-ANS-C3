@@ -20,6 +20,7 @@ public class TechnicianTaskCreateService extends AbstractGuiService<Technician, 
 
 	@Override
 	public void authorise() {
+
 		super.getResponse().setAuthorised(true);
 	}
 
@@ -36,7 +37,14 @@ public class TechnicianTaskCreateService extends AbstractGuiService<Technician, 
 
 	@Override
 	public void bind(final Task task) {
-		super.bindObject(task, "type", "description", "priority", "estimatedDuration", "technician");
+
+		String user = super.getRequest().getPrincipal().getUsername();
+
+		Technician tech = this.repository.findTechnicianByUsername(user);
+
+		super.bindObject(task, "type", "description", "priority", "estimatedDuration");
+
+		task.setTechnician(tech);
 
 	}
 
@@ -53,13 +61,20 @@ public class TechnicianTaskCreateService extends AbstractGuiService<Technician, 
 	public void unbind(final Task task) {
 		Dataset dataset;
 		SelectChoices taskTypes;
+		//SelectChoices technicianChoices;
 
 		taskTypes = SelectChoices.from(TaskType.class, task.getType());
 
-		dataset = super.unbindObject(task, "type", "description", "priority", "estimatedDuration", "technician", "draftMode");
-		dataset.put("confirmation", false);
-		dataset.put("readonly", false);
+		//List<Technician> techs = this.repository.findAllTechnicians();
+
+		//technicianChoices = SelectChoices.from(techs, "userAccount.username", task.getTechnician());
+
+		dataset = super.unbindObject(task, "type", "description", "priority", "estimatedDuration");
+		//dataset.put("confirmation", false);
+		//dataset.put("readonly", false);
 		dataset.put("type", taskTypes);
+		//dataset.put("technician", technicianChoices.getSelected().getKey());
+		//dataset.put("technicians", technicianChoices);
 
 		super.getResponse().addData(dataset);
 	}

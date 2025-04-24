@@ -6,12 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
-import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.involves.Involves;
 import acme.entities.task.Task;
-import acme.entities.task.TaskType;
 import acme.features.technician.involves.TechnicianInvolvesRepository;
 import acme.realms.Technician;
 
@@ -53,7 +51,7 @@ public class TechnicianTaskDeleteService extends AbstractGuiService<Technician, 
 
 	@Override
 	public void bind(final Task task) {
-		super.bindObject(task, "type", "description", "priority", "estimatedDuration", "technician");
+		super.bindObject(task);
 
 	}
 
@@ -82,14 +80,15 @@ public class TechnicianTaskDeleteService extends AbstractGuiService<Technician, 
 	@Override
 	public void unbind(final Task task) {
 		Dataset dataset;
-		SelectChoices taskTypes;
+		//SelectChoices taskTypes;
 
-		taskTypes = SelectChoices.from(TaskType.class, task.getType());
+		//taskTypes = SelectChoices.from(TaskType.class, task.getType());
 
-		dataset = super.unbindObject(task, "type", "description", "priority", "estimatedDuration", "technician", "draftMode");
-		dataset.put("confirmation", false);
-		dataset.put("readonly", false);
-		dataset.put("type", taskTypes);
+		dataset = super.unbindObject(task);
+		//dataset.put("confirmation", false);
+		//dataset.put("readonly", false);
+		//dataset.put("type", taskTypes);
+		//dataset.put("technician", task.getTechnician());
 
 		super.getResponse().addData(dataset);
 	}
