@@ -29,25 +29,29 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 	@Override
 	public void authorise() {
 		boolean status = true;
+		boolean correctFlight = true;
+		boolean correctPrice = true;
 		int bookingId;
 
 		if (super.getRequest().hasData("id")) {
-			int flightId = super.getRequest().getData("flight", int.class);
-			boolean correctFlight = true;
 
-			if (flightId != 0) {
-				Flight flight = this.repository.findFlightById(flightId);
-				correctFlight = flight != null;
+			if (super.getRequest().hasData("flight")) {
+				int flightId = super.getRequest().getData("flight", int.class);
+				if (flightId != 0) {
+					Flight flight = this.repository.findFlightById(flightId);
+					correctFlight = flight != null;
+				}
 			}
 
-			boolean correctPrice;
-			bookingId = super.getRequest().getData("id", int.class);
-			Booking booking = this.repository.findBookingById(bookingId);
-			Money bookingPrice = super.getRequest().getData("price", Money.class);
-			correctPrice = booking != null && bookingPrice.toString().equals(booking.getPrice().toString());
+			if (super.getRequest().hasData("price")) {
+				bookingId = super.getRequest().getData("id", int.class);
+				Booking booking = this.repository.findBookingById(bookingId);
+				Money bookingPrice = super.getRequest().getData("price", Money.class);
+				correctPrice = booking != null && bookingPrice.toString().equals(booking.getPrice().toString());
+			}
 
-			status = correctFlight && correctPrice;
 		}
+		status = correctFlight && correctPrice;
 
 		super.getResponse().setAuthorised(status);
 	}
