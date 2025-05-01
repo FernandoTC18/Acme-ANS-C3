@@ -22,7 +22,7 @@ airline-16,"Lorem ipsum",XXA,http://lorem.com/ipsum,LUXURY,2000/01/01 10:00,lore
 airline-17,"Lorem ipsum",ZZZ,http://lorem.com/ipsum,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
 # website - standard variations
 airline-18,"Lorem ipsum",AAK,http://lorem.com/ipsum,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
-airline-19,"Lorem ipsum",AAL,http://a,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
+airline-19,"Lorem ipsum",AAL,http://a.bc,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
 airline-20,"Lorem ipsum",AAM,http://a.b,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
 airline-21,"Lorem ipsum",AAN,https://www.lorem-ipsum.org,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
 airline-22,"Lorem ipsum",AAO,https://www.lorem-ipsum.org,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789
@@ -57,5 +57,5 @@ airline-46,"Lorem ipsum",ATA,http://lorem.com/ipsum,LUXURY,2000/01/01 10:00,lore
 airline-47,"Lorem ipsum",AUA,http://lorem.com/ipsum,LUXURY,2000/01/01 10:00,lorem@ipsum.com,+123456789012345
 
 # Combination of boundary cases
-airline-48,"L",AYA,http://a,LUXURY,2000/01/01 00:00,a@b.c,+123456
+airline-48,"L",AYA,http://a.bc,LUXURY,2000/01/01 00:00,a@b.c,+123456
 airline-49,"Lorem ipsum dolor sit amet, consectetur adipiscing",AZA,http://www.lorem-ipsum.org/dolor/sit/amet,LOWCOST,2025/01/01 00:00,very.long.email.address.with.many.parts@very-long-domain-name-with-many-parts.com,+123456789012345
