@@ -64,3 +64,9 @@ master.menu.technician.list-tasks = List my tasks
 
 master.menu.manager = Manager
 master.menu.manager.list-my-flights = List of flights
+
+# master.menu.assistance-agent ##########################################################
+
+master.menu.assistance-agent = Assistance Agent
+master.menu.assistance-agent.list-completed-claims = List of completed claims
+master.menu.assistance-agent.list-undergoing-claims = List of undergoing claims

@@ -2,6 +2,7 @@
 package acme.features.assistanceAgent.claim;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -10,6 +11,7 @@ import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claim.Claim;
+import acme.entities.claim.ClaimStatus;
 import acme.entities.claim.ClaimType;
 import acme.entities.leg.Leg;
 import acme.realms.AssistanceAgent;
@@ -41,25 +43,40 @@ public class AssistanceAgentClaimUpdateService extends AbstractGuiService<Assist
 		Claim claim;
 		int id;
 
+		AssistanceAgent assistanceAgent;
+
+		assistanceAgent = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
+
 		id = super.getRequest().getData("id", int.class);
 		claim = this.repository.findClaimById(id);
+		claim.setAssistanceAgent(assistanceAgent);
 
 		super.getBuffer().addData(claim);
 	}
 
 	@Override
 	public void bind(final Claim claim) {
-		super.bindObject(claim, "type", "description", "priority", "estimatedDuration", "technician");
 
+		super.bindObject(claim, "registrationMoment", "passengerEmail", "description", "type", "indicator");
 	}
 
 	@Override
 	public void validate(final Claim claim) {
 		boolean status;
+		Leg leg;
+		Date legTime;
+		Date moment;
+		boolean condition;
 
 		status = claim.getDraftMode();
 
-		super.state(status, "*", "acme.validation.updatePublishedClaim.message");
+		leg = super.getRequest().getData("leg", Leg.class);
+		moment = super.getRequest().getData("registrationMoment", Date.class);
+		legTime = this.repository.findArrivalTimeLegById(leg.getId());
+		condition = moment.after(legTime);
+
+		super.state(condition, "leg", "acme.validation.leg-time.message");
+		super.state(status, "draftMode", "acme.validation.updatePublishedClaim.message");
 	}
 
 	@Override
@@ -69,27 +86,23 @@ public class AssistanceAgentClaimUpdateService extends AbstractGuiService<Assist
 
 	@Override
 	public void unbind(final Claim claim) {
-		assert claim != null;
 		Dataset dataset;
 		Collection<Leg> legs;
-		Collection<AssistanceAgent> agents;
 		SelectChoices legChoices;
 		SelectChoices typeChoices;
-		SelectChoices agentChoices;
+		SelectChoices statusChoices;
 
 		legs = this.repository.findAllLegs();
-		agents = this.repository.findAllAgents();
-		legChoices = SelectChoices.from(legs, "flightNumber", claim.getLeg());
+
 		typeChoices = SelectChoices.from(ClaimType.class, claim.getType());
-		agentChoices = SelectChoices.from(agents, "employeeCode", claim.getAssistanceAgent());
+		statusChoices = SelectChoices.from(ClaimStatus.class, claim.getIndicator());
+		legChoices = SelectChoices.from(legs, "flightNumber", claim.getLeg());
 
 		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "type", "indicator", "assistanceAgent", "leg", "draftMode");
-		if (claim.getDraftMode())
-			dataset.put("readonly", true);
-		dataset.put("leg", legChoices.getSelected().getKey());
+		dataset.put("types", typeChoices);
+		dataset.put("indicators", statusChoices);
 		dataset.put("legs", legChoices);
-		dataset.put("type", typeChoices);
-		dataset.put("assistanceAgent", agentChoices);
+		dataset.put("leg", legChoices.getSelected().getKey());
 
 		super.getResponse().addData(dataset);
 	}

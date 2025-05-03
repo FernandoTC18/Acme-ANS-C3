@@ -42,6 +42,11 @@ acme.validation.assistanceAgent.invalid-employee-code-format.message = El códig
 acme.validation.assistanceAgent.unique-assistance-agent.message = El código de empleado ya se encuentra en uso.
 acme.validation.assistanceAgent.invalid-employee-code.message = El código de empleado debe comenzar con la primera letra del nombre seguida de la primera letra del primer apellido.
 
+#Claim Validation
+acme.validation.leg-time.message = Los reclamos deben estar vinculados a tramos que han ocurrido.
+acme.validation.performPublishedClaim.message = Solo pueden ser actualizados o eliminados reclamos sin publicar.
+acme.validation.updatePublishedClaim.message = Solo pueden ser actualizados reclamos sin publicar.
+
 # TrackingLog Validation
 acme.validation.trackingLog.incorrect-indicator.message = El indicador debe ser ACCEPTED o REJECTED cuando el porcentaje de resolución sea 100%, y PENDING cuando sea inferior a 100%.
 acme.validation.trackingLog.invalid-resolution-percentage.message = El porcentaje de resolución debe ser superior al valor máximo registrado anteriormente.

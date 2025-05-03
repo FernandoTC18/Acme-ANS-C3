@@ -65,7 +65,11 @@
 		<acme:menu-option code="master.menu.manager" access="hasRealm('Manager')">
 			<acme:menu-suboption code="master.menu.manager.list-my-flights" action="/manager/flight/list" />
 		</acme:menu-option>
-	
+		
+		<acme:menu-option code="master.menu.assistance-agent" access="hasRealm('AssistanceAgent')">
+			<acme:menu-suboption code="master.menu.assistance-agent.list-completed-claims" action="/assistance-agent/claim/completed" />
+			<acme:menu-suboption code="master.menu.assistance-agent.list-undergoing-claims" action="/assistance-agent/claim/undergoing" />
+		</acme:menu-option>
 
 	</acme:menu-left>
 

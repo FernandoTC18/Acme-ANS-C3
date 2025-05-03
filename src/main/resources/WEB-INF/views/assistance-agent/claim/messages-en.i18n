@@ -1,0 +1,30 @@
+# List
+assistance-agent.claim.list.title = Listing claims
+assistance-agent.claim.list.label.registrationMoment = Registration Moment
+assistance-agent.claim.list.label.passengerEmail= Passenger Email
+assistance-agent.claim.list.label.description = Description
+assistance-agent.claim.list.label.type = Type
+assistance-agent.claim.list.label.indicator = Indicator
+assistance-agent.claim.list.label.leg = Leg
+assistance-agent.claim.list.label.draftMode = Draft
+assistance-agent.claim.list.button.create = Create
+
+
+# Form
+assistance-agent.claim.form.title = Claim details
+assistance-agent.claim.form.label.registrationMoment = Registration Moment
+assistance-agent.claim.form.label.passengerEmail= Passenger Email
+assistance-agent.claim.form.label.description = Description
+assistance-agent.claim.form.label.type = Type
+assistance-agent.claim.form.label.indicator = Indicator
+assistance-agent.claim.form.label.leg = Leg
+assistance-agent.claim.form.label.draftMode = Draft
+assistance-agent.claim.form.submit.create = Create
+assistance-agent.claim.form.submit.update = Update
+assistance-agent.claim.form.submit.delete = Delete
+assistance-agent.claim.form.submit.publish = Publish
+assistance-agent.claim.form.button.create = Create
+assistance-agent.claim.form.button.update = Update
+assistance-agent.claim.form.button.publish = Publish
+assistance-agent.claim.form.button.delete = Delete
+assistance-agent.claim.form.button.tracking-log.list = Associated Tracking Logs

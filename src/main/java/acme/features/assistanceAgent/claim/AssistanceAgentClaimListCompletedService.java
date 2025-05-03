@@ -9,6 +9,7 @@ import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claim.Claim;
+import acme.entities.claim.ClaimStatus;
 import acme.realms.AssistanceAgent;
 
 @GuiService
@@ -20,7 +21,11 @@ public class AssistanceAgentClaimListCompletedService extends AbstractGuiService
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+
+		status = super.getRequest().getPrincipal().hasRealmOfType(AssistanceAgent.class);
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -29,7 +34,7 @@ public class AssistanceAgentClaimListCompletedService extends AbstractGuiService
 		int assistanceAgent;
 
 		assistanceAgent = super.getRequest().getPrincipal().getActiveRealm().getId();
-		claims = this.repository.findCompletedClaimsById(assistanceAgent);
+		claims = this.repository.findCompletedClaimsById(assistanceAgent, ClaimStatus.PENDING);
 
 		super.getBuffer().addData(claims);
 	}
@@ -38,7 +43,7 @@ public class AssistanceAgentClaimListCompletedService extends AbstractGuiService
 	public void unbind(final Claim claims) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(claims, "registrationMoment", "passengerEmail", "description", "type", "indicator", "assistanceAgent", "leg");
+		dataset = super.unbindObject(claims, "registrationMoment", "passengerEmail", "description", "indicator", "type", "leg", "draftMode");
 
 		super.getResponse().addData(dataset);
 	}

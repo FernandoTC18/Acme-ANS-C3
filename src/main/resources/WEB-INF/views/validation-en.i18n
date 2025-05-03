@@ -28,8 +28,6 @@ acme.validation.assignment-not-published = The associated assignment has not bee
 acme.validation.activitylog.registrationMoment.message = The registration moment of an activity log must be after the leg has taken place.
 acme.validation.log-published = The log has been published. No changes are possible
 
-
-
 # FlightCrew Validation
 acme.validation.flightCrew.employeeCode.message = The first 2 letters of the employee code must correspond to the flight crew's initials.
 acme.validation.flightCrew.uniqueEmployeeCode.message = The employee code already exists. Please, try with a new one.
@@ -43,6 +41,11 @@ acme.validation.service.promCodeNotInDb.message = the promotional code  is a uni
 acme.validation.assistanceAgent.invalid-employee-code-format.message = The employee code is not in the correct format or is null.
 acme.validation.assistanceAgent.unique-assistance-agent.message = The employee code is already in use.
 acme.validation.assistanceAgent.invalid-employee-code.message = The employee code must begin with the first letter of the name followed by the first letter of the first surname.
+
+#Claim Validation
+acme.validation.leg-time.message = Claims must be linked to legs that occurred.
+acme.validation.updatePublishedClaim.message = Only not published claims can be updated.
+acme.validation.deletePublishedClaim.message = Only not published claims can be deleted.
 
 # TrackingLog Validation
 acme.validation.trackingLog.incorrect-indicator.message = The indicator must be ACCEPTED or REJECTED when the resolution percentage is 100%, and PENDING when it is less than 100%.
