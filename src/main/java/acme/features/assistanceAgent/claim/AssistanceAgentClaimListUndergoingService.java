@@ -9,10 +9,11 @@ import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claim.Claim;
+import acme.entities.claim.ClaimStatus;
 import acme.realms.AssistanceAgent;
 
 @GuiService
-public class AssistanceAgentClaimListPendingService extends AbstractGuiService<AssistanceAgent, Claim> {
+public class AssistanceAgentClaimListUndergoingService extends AbstractGuiService<AssistanceAgent, Claim> {
 
 	@Autowired
 	AssistanceAgentClaimRepository repository;
@@ -20,7 +21,11 @@ public class AssistanceAgentClaimListPendingService extends AbstractGuiService<A
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+
+		status = super.getRequest().getPrincipal().hasRealmOfType(AssistanceAgent.class);
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -29,7 +34,7 @@ public class AssistanceAgentClaimListPendingService extends AbstractGuiService<A
 		int assistanceAgent;
 
 		assistanceAgent = super.getRequest().getPrincipal().getActiveRealm().getId();
-		claims = this.repository.findPendingClaimsById(assistanceAgent);
+		claims = this.repository.findPendingClaimsById(assistanceAgent, ClaimStatus.PENDING);
 
 		super.getBuffer().addData(claims);
 	}
@@ -38,7 +43,7 @@ public class AssistanceAgentClaimListPendingService extends AbstractGuiService<A
 	public void unbind(final Claim claims) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(claims, "registrationMoment", "passengerEmail", "description", "type", "indicator", "assistanceAgent", "leg");
+		dataset = super.unbindObject(claims, "registrationMoment", "passengerEmail", "description", "indicator", "type", "leg", "draftMode");
 
 		super.getResponse().addData(dataset);
 	}

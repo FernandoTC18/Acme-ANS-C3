@@ -10,6 +10,7 @@ import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claim.Claim;
+import acme.entities.claim.ClaimStatus;
 import acme.entities.claim.ClaimType;
 import acme.entities.leg.Leg;
 import acme.realms.AssistanceAgent;
@@ -23,7 +24,17 @@ public class AssistanceAgentClaimShowService extends AbstractGuiService<Assistan
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		int id;
+		Claim claim;
+		AssistanceAgent assistanceAgent;
+
+		id = super.getRequest().getData("id", int.class);
+		claim = this.repository.findClaimById(id);
+		assistanceAgent = claim == null ? null : claim.getAssistanceAgent();
+		status = claim != null && super.getRequest().getPrincipal().hasRealm(assistanceAgent);
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -40,27 +51,22 @@ public class AssistanceAgentClaimShowService extends AbstractGuiService<Assistan
 
 	@Override
 	public void unbind(final Claim claim) {
-		assert claim != null;
 		Dataset dataset;
 		Collection<Leg> legs;
-		Collection<AssistanceAgent> agents;
 		SelectChoices legChoices;
 		SelectChoices typeChoices;
-		SelectChoices agentChoices;
+		SelectChoices statusChoices;
 
 		legs = this.repository.findAllLegs();
-		agents = this.repository.findAllAgents();
+
 		legChoices = SelectChoices.from(legs, "flightNumber", claim.getLeg());
 		typeChoices = SelectChoices.from(ClaimType.class, claim.getType());
-		agentChoices = SelectChoices.from(agents, "employeeCode", claim.getAssistanceAgent());
+		statusChoices = SelectChoices.from(ClaimStatus.class, claim.getIndicator());
 
 		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "type", "indicator", "assistanceAgent", "leg", "draftMode");
-		if (claim.getDraftMode() != false)
-			dataset.put("readonly", true);
-		dataset.put("leg", legChoices.getSelected().getKey());
 		dataset.put("legs", legChoices);
-		dataset.put("type", typeChoices);
-		dataset.put("assistanceAgent", agentChoices);
+		dataset.put("types", typeChoices);
+		dataset.put("indicators", statusChoices);
 
 		super.getResponse().addData(dataset);
 	}

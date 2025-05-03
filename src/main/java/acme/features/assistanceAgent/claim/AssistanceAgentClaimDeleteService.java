@@ -10,6 +10,7 @@ import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claim.Claim;
+import acme.entities.claim.ClaimStatus;
 import acme.entities.claim.ClaimType;
 import acme.entities.leg.Leg;
 import acme.realms.AssistanceAgent;
@@ -39,18 +40,30 @@ public class AssistanceAgentClaimDeleteService extends AbstractGuiService<Assist
 	@Override
 	public void load() {
 		Claim claim;
-		int id;
 
-		id = super.getRequest().getData("id", int.class);
-		claim = this.repository.findClaimById(id);
+		AssistanceAgent assistanceAgent;
+
+		assistanceAgent = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
+
+		claim = new Claim();
+		claim.setDraftMode(true);
+		claim.setIndicator(ClaimStatus.PENDING);
+		claim.setAssistanceAgent(assistanceAgent);
 
 		super.getBuffer().addData(claim);
 	}
 
 	@Override
 	public void bind(final Claim claim) {
-		super.bindObject(claim, "registrationMoment", "passengerEmail", "description", "type", "indicator", "assistanceAgent", "leg");
+		int legId;
+		Leg leg;
 
+		legId = super.getRequest().getData("leg", int.class);
+		leg = this.repository.findLegById(legId);
+
+		super.bindObject(claim, "registrationMoment", "passengerEmail", "description", "type", "indicator");
+
+		claim.setLeg(leg);
 	}
 
 	@Override
@@ -59,7 +72,7 @@ public class AssistanceAgentClaimDeleteService extends AbstractGuiService<Assist
 
 		status = claim.getDraftMode();
 
-		super.state(status, "*", "acme.validation.deletePublishedClaim.message");
+		super.state(status, "draftMode", "acme.validation.deletePublishedClaim.message");
 	}
 
 	@Override
@@ -69,27 +82,23 @@ public class AssistanceAgentClaimDeleteService extends AbstractGuiService<Assist
 
 	@Override
 	public void unbind(final Claim claim) {
-		assert claim != null;
 		Dataset dataset;
 		Collection<Leg> legs;
-		Collection<AssistanceAgent> agents;
+
 		SelectChoices legChoices;
 		SelectChoices typeChoices;
-		SelectChoices agentChoices;
+		SelectChoices statusChoices;
 
 		legs = this.repository.findAllLegs();
-		agents = this.repository.findAllAgents();
+
 		legChoices = SelectChoices.from(legs, "flightNumber", claim.getLeg());
 		typeChoices = SelectChoices.from(ClaimType.class, claim.getType());
-		agentChoices = SelectChoices.from(agents, "employeeCode", claim.getAssistanceAgent());
+		statusChoices = SelectChoices.from(ClaimStatus.class, claim.getIndicator());
 
 		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "type", "indicator", "assistanceAgent", "leg", "draftMode");
-		if (claim.getDraftMode())
-			dataset.put("readonly", true);
-		dataset.put("leg", legChoices.getSelected().getKey());
 		dataset.put("legs", legChoices);
-		dataset.put("type", typeChoices);
-		dataset.put("assistanceAgent", agentChoices);
+		dataset.put("types", typeChoices);
+		dataset.put("indicators", statusChoices);
 
 		super.getResponse().addData(dataset);
 	}
