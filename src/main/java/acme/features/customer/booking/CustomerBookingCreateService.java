@@ -1,6 +1,7 @@
 
 package acme.features.customer.booking;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import acme.client.components.datatypes.Money;
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.booking.Booking;
@@ -31,7 +33,7 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 		boolean status = true;
 		boolean correctFlight = true;
 		boolean correctPrice = true;
-		int bookingId;
+		boolean correctMoment = true;
 
 		if (super.getRequest().hasData("id")) {
 
@@ -44,14 +46,16 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 			}
 
 			if (super.getRequest().hasData("price")) {
-				bookingId = super.getRequest().getData("id", int.class);
-				Booking booking = this.repository.findBookingById(bookingId);
+				Booking booking = new Booking();
 				Money bookingPrice = super.getRequest().getData("price", Money.class);
 				correctPrice = booking != null && bookingPrice.toString().equals(booking.getPrice().toString());
 			}
 
+			if (super.getRequest().hasData("purchaseMoment"))
+				correctMoment = super.getRequest().getData("purchaseMoment", Date.class).equals(MomentHelper.getCurrentMoment());
+
 		}
-		status = correctFlight && correctPrice;
+		status = correctFlight && correctPrice && correctMoment;
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -62,6 +66,7 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 
 		booking = new Booking();
 		booking.setLocatorCode("");
+		booking.setPurchaseMoment(MomentHelper.getCurrentMoment());
 		booking.setTravelClass(null);
 		booking.setFlight(null);
 		booking.setLastCardNibble("");
@@ -83,9 +88,10 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 		customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
 		customer = this.repository.findCustomerById(customerId);
 
-		super.bindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "lastCardNibble");
+		super.bindObject(booking, "locatorCode", "travelClass", "lastCardNibble");
 		booking.setFlight(flight);
 		booking.setCustomer(customer);
+		booking.setPurchaseMoment(MomentHelper.getCurrentMoment());
 	}
 
 	@Override
