@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.flightAssignment.AssignmentStatus;
@@ -52,27 +53,30 @@ public class FlightCrewFlightAssignmentShowService extends AbstractGuiService<Fl
 		assert assignment != null;
 		Dataset dataset;
 		Collection<Leg> legs;
-		Collection<FlightCrew> members;
 		SelectChoices legChoices;
 		SelectChoices statusChoices;
 		SelectChoices dutyChoices;
-		SelectChoices memberChoices;
 		
-		legs = this.repository.findAllLegs();
-		members = this.repository.findAllMembers();
+		if (assignment.getDraftMode()) {
+			legs = this.repository.findAllLegs();
+		} else {
+			legs = this.repository.findFutureAndPublishedLegs(MomentHelper.getCurrentMoment());
+		}
+		
+		
 		legChoices = SelectChoices.from(legs,"flightNumber", assignment.getLeg());
 		statusChoices = SelectChoices.from(AssignmentStatus.class, assignment.getStatus());
 		dutyChoices = SelectChoices.from(Duty.class, assignment.getDuty());
-		memberChoices = SelectChoices.from(members, "employeeCode", assignment.getFlightCrewMember());
 		
-		dataset = super.unbindObject(assignment, "duty", "lastUpdate", "status", "remarks", "leg", "flightCrewMember");
+		dataset = super.unbindObject(assignment, "duty", "lastUpdate", "status", "remarks", "draftMode");
 		
 		dataset.put("readonly", !assignment.getDraftMode());
+		dataset.put("lastUpdate", assignment.getLastUpdate());
 		dataset.put("leg", legChoices.getSelected().getKey());
 		dataset.put("legs", legChoices);
 		dataset.put("status", statusChoices);
 		dataset.put("duty", dutyChoices);
-		dataset.put("flightCrewMember", memberChoices);
+		dataset.put("flightCrewMember", assignment.getFlightCrewMember().getEmployeeCode());
 		
 		super.getResponse().addData(dataset);
 		
