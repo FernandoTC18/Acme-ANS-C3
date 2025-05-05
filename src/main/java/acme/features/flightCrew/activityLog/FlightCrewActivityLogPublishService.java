@@ -25,14 +25,33 @@ public class FlightCrewActivityLogPublishService extends AbstractGuiService<Flig
 		FlightAssignment assignment;
 		FlightCrew member;
 		
+		
+		boolean correctMember;
 		logId = super.getRequest().getData("id", int.class);
-		log = this.repository.getLogById(logId);
 		assignment = this.repository.getAssignmentByLogId(logId);
 		member = assignment == null ? null : assignment.getFlightCrewMember();
-		status = super.getRequest().getPrincipal().hasRealm(member) && log != null && log.getDraftMode();
+		correctMember = super.getRequest().getPrincipal().hasRealm(member);
 		
-		super.getResponse().setAuthorised(status);
-    }
+		if (correctMember == true) {
+			
+			boolean draftMode;
+			log = this.repository.getLogById(logId);
+			draftMode = log.getDraftMode();
+			
+			
+			boolean assignmentIsPublished = assignment == null ? null : assignment.getDraftMode();
+			System.out.println(draftMode);
+			System.out.println(assignmentIsPublished);
+			status = draftMode && !assignmentIsPublished; //I don't add correctMember 'cause in this branch of the if is always true, so it won't affect the result
+			
+			super.getResponse().setAuthorised(status);
+			
+		} else {
+			
+			super.getResponse().setAuthorised(false);
+			
+		}	
+	}
 	
 	@Override
 	public void load() {
@@ -55,14 +74,6 @@ public class FlightCrewActivityLogPublishService extends AbstractGuiService<Flig
 	
 	@Override
 	public void validate(final ActivityLog log) {
-		int id;
-		FlightAssignment assignment;
-		
-		id = super.getRequest().getData("id",int.class);
-		assignment = this.repository.getAssignmentByLogId(id);
-		
-		super.state(!assignment.getDraftMode(), "*", "acme.validation.assignment-not-published");
-		
 		
 	}
 	
