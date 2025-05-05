@@ -7,13 +7,15 @@ acme.validation.flight.noPublishedLegs.message = To publish a flight, its legs m
 
 # Leg Validation
 acme.validation.leg.correctFlightNumberPattern.message = The flight number does not have a valid format,Ex: ZZZ9999,AAAA0000
-acme.validation.leg.correctFlightNumber.message = The iata code of the Leg should exist in the DB
-acme.validation.leg.correctMinScheduleDeparture.message = Schedule departure must be before the current moment
+acme.validation.leg.flightNumberNotInDb.message = Flight number must be unique
+acme.validation.leg.correctFlightNumberIataCode.message = The iata code of the Leg should match with the airline´s one
+acme.validation.leg.correctMinScheduleDeparture.message = Schedule departure must be after the current moment
 acme.validation.leg.correctMinScheduleArrival.message = Schedule arrival must be at the very least after one minute of the schedule departure
 acme.validation.leg.overlapped.message  = The legs of a flight cannot be overlapped
-acme.validation.leg.realDepartureAirport.message = The departure airport of the leg does not exist
-acme.validation.leg.realArrivalAirport.message = The arrival airport of the leg does not exist
-acme.validation.leg.realPlane.message = The plane of the leg does not exist
+acme.validation.leg.departureArrivalAirportsDistinct.message = the departure airport can´t be the arrival airport at the same time
+acme.validation.leg.noAvailableAircraft.message = The selected aircraft is already occupied between the dates of the flight
+acme.validation.leg.noAircraftInMaintenance.message = The selected aircraft is under maintenance
+acme.validation.leg.matchAirports.message = The airports of the legs of a flight must be linked together
 
 # Manager Validation
 acme.validation.manager.identifierNumberFormat.message = The identifier number is not in the correct format,Ex: MM0001, MMM9999

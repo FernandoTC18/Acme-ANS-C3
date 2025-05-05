@@ -8,14 +8,16 @@ acme.validation.flight.noLegs.message = Un vuelo debe tener como mínimo 1 tramo
 acme.validation.flight.noPublishedLegs.message = Para publicar un vuelo sus tramos deben ser publicados anteriormente
 
 # Leg Validation
-acme.validation.leg.correctFlightNumber.message = El código iata del tramo debe existir en la base de datos
+acme.validation.leg.IataCode.message = El código iata del tramo debe coincidir con el de la aerolínea
+acme.validation.leg.flightNumberNotInDb.message = El número de vuelo debe ser único
 acme.validation.leg.correctMinScheduleDeparture.message = La salida programada debe ser como mínimo en el momento actual
 acme.validation.leg.correctMinScheduleArrival.message = La llegada programada debe ser como mínimo un minuto después de la salida programada
-acme.validation.leg.correctFlightNumberPattern.message = El número de vuelo no tiene un formato válido.
+acme.validation.leg.correctFlightNumberPattern.message = El número de vuelo no tiene un formato válido
 acme.validation.leg.overlapped.message = No se pueden solapar los tramos de un vuelo
-acme.validation.leg.realDepartureAirport.message = el aeropuerto de salida no existe
-acme.validation.leg.realArrivalAirport.message = el aeropuerto de llegada no existe
-acme.validation.leg.realPlane.message = el avión no existe
+acme.validation.leg.departureArrivalAirportsDistinct.message = El aeropuerto de salida no puede ser el de entrada
+acme.validation.leg.noAvailableAircraft.message = El avión seleccionado ya está ocupado emtre las fechas del vuelo
+acme.validation.leg.noAircraftInMaintenance.message = El avión seleccionado se encuentra en mantenimiento 
+acme.validation.leg.matchAirports.message = Los aeropuertos de los tramos de un vuelo deben concadenarse
 
 # Manager Validation
 acme.validation.manager.identifierNumber.message = Las 2/3 primeras letras del identificador deben corresponderse con las iniciales del manager

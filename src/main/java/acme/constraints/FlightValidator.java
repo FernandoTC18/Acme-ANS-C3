@@ -51,7 +51,7 @@ public class FlightValidator extends AbstractValidator<ValidFlight, Flight> {
 					overlappedLegs = overlappedLegs + 1;
 			}
 			notOverlapping = overlappedLegs == 0;
-			super.state(context, notOverlapping, "*", "acme.validation.flight.overlapped.message");
+			super.state(context, notOverlapping, "scheduledArrival", "acme.validation.flight.overlapped.message");
 		}
 		result = !super.hasErrors(context);
 

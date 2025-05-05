@@ -19,6 +19,7 @@ import acme.client.components.validation.ValidString;
 import acme.client.helpers.MomentHelper;
 import acme.constraints.ValidLeg;
 import acme.entities.aircraft.Aircraft;
+import acme.entities.airline.Airline;
 import acme.entities.airport.Airport;
 import acme.entities.flight.Flight;
 import lombok.Getter;
@@ -73,15 +74,20 @@ public class Leg extends AbstractEntity {
 	private Flight				flight;
 
 	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private Airline				airline;
+
+	@Mandatory
 	@Automapped
 	private boolean				draftMode;
 
 
 	@Transient
-	Double getDuration() {
+	public Double getDuration() {
 		Date scheD = this.scheduledDeparture;
 		Date scheA = this.scheduledArrival;
 
-		return Double.valueOf(MomentHelper.computeDuration(scheD, scheA).getSeconds() / 3600);
+		return scheD != null && scheA != null ? (double) MomentHelper.computeDuration(scheD, scheA).getSeconds() / 3600 : null;
 	}
 }
