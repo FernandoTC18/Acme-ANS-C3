@@ -1,52 +1,57 @@
-key,flightNumber,scheduledDeparture,scheduledArrival,status,key:departureAirport,key:arrivalAirport,key:plane,key:flight,draftMode
+key,flightNumber,scheduledDeparture,scheduledArrival,status,key:departureAirport,key:arrivalAirport,key:plane,key:flight,key:airline,draftMode
 #base entity
-leg-01,AAA2000,2025/01/02 00:00,2025/01/02 00:01,ON_TIME,airport-01,airport-02,aircraft-01,flight-01,true
+leg-00,AAA2000,2025/01/02 00:00,2025/01/02 00:01,ON_TIME,airport-01,airport-02,aircraft-00,flight-00,airline-00,true
 
 #flightNumber - standard variations
-leg-02,AAA2001,2025/01/02 00:00,2025/01/02 00:01,ON_TIME,airport-01,airport-02,aircraft-01,flight-02,true
-leg-03,ABC2000,2025/01/02 00:00,2025/01/02 00:01,ON_TIME,airport-01,airport-02,aircraft-01,flight-03,true
-leg-04,DAW2000,2025/01/02 00:00,2025/01/02 00:01,ON_TIME,airport-01,airport-02,aircraft-01,flight-04,true
-leg-05,ZZZ2000,2025/01/02 00:00,2025/01/02 00:01,ON_TIME,airport-01,airport-02,aircraft-01,flight-05,true
-leg-06,XXA2000,2025/01/02 00:00,2025/01/02 00:01,ON_TIME,airport-01,airport-02,aircraft-01,flight-06,true
-leg-07,XYZ2000,2025/02/02 00:00,2025/02/02 00:01,ON_TIME,airport-01,airport-02,aircraft-01,flight-07,true
-leg-08,AAJ2000,2025/03/02 00:00,2025/03/02 00:01,ON_TIME,airport-01,airport-02,aircraft-01,flight-08,true
-leg-09,ACD2000,2025/01/02 00:00,2025/01/02 00:01,ON_TIME,airport-01,airport-02,aircraft-01,flight-09,true
-leg-10,AAL2000,2025/01/02 00:00,2025/01/02 00:01,ON_TIME,airport-01,airport-02,aircraft-01,flight-10,true
-leg-11,ABA2000,2025/01/02 00:00,2025/01/02 00:01,ON_TIME,airport-01,airport-02,aircraft-01,flight-11,true
-leg-12,AAR2000,2025/01/02 00:00,2025/01/02 00:01,ON_TIME,airport-01,airport-02,aircraft-01,flight-12,true
-leg-13,AAM2000,2025/01/02 00:00,2025/01/02 00:01,ON_TIME,airport-01,airport-02,aircraft-01,flight-13,true
-leg-14,APA2000,2025/01/02 00:00,2025/01/02 00:01,ON_TIME,airport-01,airport-02,aircraft-01,flight-14,true
+leg-01,AAA2001,2025/01/02 00:00,2025/01/02 00:01,ON_TIME,airport-01,airport-02,aircraft-01,flight-01,airline-00,true
+leg-02,ABC2000,2025/01/02 00:00,2025/01/02 00:01,ON_TIME,airport-01,airport-02,aircraft-02,flight-02,airline-12,true
+leg-03,DAW2000,2025/01/02 00:00,2025/01/02 00:01,ON_TIME,airport-01,airport-02,aircraft-03,flight-03,airline-15,true
+leg-04,ZZZ2000,2025/01/02 00:00,2025/01/02 00:01,ON_TIME,airport-01,airport-02,aircraft-04,flight-04,airline-17,true
+leg-05,XXA2000,2025/01/02 00:00,2025/01/02 00:01,ON_TIME,airport-01,airport-02,aircraft-05,flight-05,airline-16,true
+leg-06,XYZ2000,2025/02/02 00:00,2025/02/02 00:01,ON_TIME,airport-01,airport-02,aircraft-06,flight-06,airline-13,true
+leg-07,AAJ2000,2025/03/02 00:00,2025/03/02 00:01,ON_TIME,airport-01,airport-02,aircraft-07,flight-07,airline-11,true
+leg-08,ACD2000,2025/01/02 00:00,2025/01/02 00:01,ON_TIME,airport-01,airport-02,aircraft-08,flight-08,airline-14,true
+leg-09,AAL2000,2025/01/02 00:00,2025/01/02 00:01,ON_TIME,airport-01,airport-02,aircraft-09,flight-09,airline-19,true
+leg-10,ABA2000,2025/01/02 00:00,2025/01/02 00:01,ON_TIME,airport-01,airport-02,aircraft-10,flight-10,airline-32,true
+leg-11,AAR2000,2025/01/02 00:00,2025/01/02 00:01,ON_TIME,airport-01,airport-02,aircraft-11,flight-11,airline-25,true
+leg-12,AAM2000,2025/01/02 00:00,2025/01/02 00:01,ON_TIME,airport-01,airport-02,aircraft-12,flight-12,airline-20,true
+leg-13,APA2000,2025/01/02 00:00,2025/01/02 00:01,ON_TIME,airport-01,airport-02,aircraft-13,flight-13,airline-42,true
 
 #scheduleDeparture - standard variations
-leg-15,AAA2002,2025/01/01 00:00,2025/01/01 00:01,ON_TIME,airport-01,airport-02,aircraft-01,flight-15,true
-leg-16,ACA2001,2025/01/01 00:01,2025/01/01 00:02,ON_TIME,airport-01,airport-02,aircraft-01,flight-16,true
+leg-14,AAA2002,2025/01/01 00:00,2025/01/01 00:01,ON_TIME,airport-01,airport-02,aircraft-00,flight-00,airline-00,true
+leg-15,AAA2003,2025/01/01 00:01,2025/01/01 00:02,ON_TIME,airport-01,airport-02,aircraft-00,flight-00,airline-00,true
 
-leg-17,ACA2002,2200/12/31 23:58,2200/12/31 23:59,ON_TIME,airport-01,airport-02,aircraft-01,flight-17,true
-leg-18,ACA2003,2200/12/31 23:57,2200/12/31 23:58,ON_TIME,airport-01,airport-02,aircraft-01,flight-18,true
+leg-16,AAA2004,2200/12/31 23:58,2200/12/31 23:59,ON_TIME,airport-01,airport-02,aircraft-14,flight-14,airline-00,true
+leg-17,AAA2005,2200/12/31 23:57,2200/12/31 23:58,ON_TIME,airport-01,airport-02,aircraft-14,flight-14,airline-00,true
 
 #scheduledArrival - standard variations
-leg-19,AAA2003,2025/01/01 00:00,2025/01/01 00:01,ON_TIME,airport-01,airport-02,aircraft-01,flight-19,true
-leg-20,ACA2004,2025/01/01 00:01,2025/01/01 00:02,ON_TIME,airport-01,airport-02,aircraft-01,flight-20,true
+leg-18,AAA2006,2025/01/01 00:00,2025/01/01 00:01,ON_TIME,airport-01,airport-02,aircraft-15,flight-15,airline-00,true
+leg-19,AAA2007,2025/01/01 00:01,2025/01/01 00:02,ON_TIME,airport-01,airport-02,aircraft-15,flight-15,airline-00,true
 
-leg-21,DAW2002,2200/12/31 23:58,2200/12/31 23:59,ON_TIME,airport-01,airport-02,aircraft-01,flight-21,true
-leg-22,ACA2005,2200/12/31 23:57,2200/12/31 23:58,ON_TIME,airport-01,airport-02,aircraft-01,flight-22,true
+leg-20,AAA2008,2200/12/31 23:58,2200/12/31 23:59,ON_TIME,airport-01,airport-02,aircraft-16,flight-16,airline-00,true
+leg-21,AAA2009,2200/12/31 23:57,2200/12/31 23:58,ON_TIME,airport-01,airport-02,aircraft-17,flight-17,airline-00,true
 
 #status - standard variations
-leg-23,ZZZ2002,2025/01/02 00:00,2025/01/02 00:01,ON_TIME,airport-01,airport-02,aircraft-01,flight-23,true
-leg-24,AAA2004,2025/01/02 00:00,2025/01/02 00:01,DELAYED,airport-01,airport-02,aircraft-01,flight-24,true
-leg-25,ZZZ2003,2025/01/02 00:00,2025/01/02 00:01,CANCELLED,airport-01,airport-02,aircraft-01,flight-25,true
-leg-26,AAA2005,2025/01/02 00:00,2025/01/02 00:01,LANDED,airport-01,airport-02,aircraft-01,flight-26,true
+leg-22,AAA2010,2025/01/02 00:00,2025/01/02 00:01,ON_TIME,airport-01,airport-02,aircraft-18,flight-18,airline-00,true
+leg-23,AAA2011,2025/01/02 00:00,2025/01/02 00:01,DELAYED,airport-01,airport-02,aircraft-19,flight-19,airline-00,true
+leg-24,AAA2012,2025/01/02 00:00,2025/01/02 00:01,CANCELLED,airport-01,airport-02,aircraft-20,flight-20,airline-00,true
+leg-25,AAA2013,2025/01/02 00:00,2025/01/02 00:01,LANDED,airport-01,airport-02,aircraft-21,flight-21,airline-00,true
 
 #departureAirport - standard variations
-leg-27,AAA2006,2025/01/02 00:00,2025/01/02 00:01,ON_TIME,airport-16,airport-02,aircraft-01,flight-27,true
+leg-26,AAA2014,2025/01/02 00:00,2025/01/02 00:01,ON_TIME,airport-16,airport-02,aircraft-22,flight-22,airline-00,true
 
 #departureArrival - standard variations
-leg-28,AAA2007,2025/01/02 00:00,2025/01/02 00:01,ON_TIME,airport-01,airport-17,aircraft-01,flight-28,true
+leg-27,AAA2015,2025/01/02 00:00,2025/01/02 00:01,ON_TIME,airport-01,airport-17,aircraft-23,flight-23,airline-00,true
 
 #plane - standard variations
-leg-29,AAA2008,2025/01/02 00:00,2025/01/02 00:01,ON_TIME,airport-01,airport-02,aircraft-13,flight-29,true
+leg-28,AAA2016,2025/01/02 00:00,2025/01/02 00:01,ON_TIME,airport-01,airport-02,aircraft-24,flight-24,airline-00,true
 
 #flight - standard variations
-leg-30,AAA2009,2025/01/02 00:00,2025/01/02 00:01,ON_TIME,airport-01,airport-02,aircraft-01,flight-30,true
+leg-29,AAA2017,2025/01/02 00:00,2025/01/02 00:01,ON_TIME,airport-01,airport-02,aircraft-25,flight-25,airline-00,true
 
+#airline - standard variations
+leg-30,AAA2018,2025/01/02 00:00,2025/01/02 00:01,ON_TIME,airport-01,airport-02,aircraft-26,flight-26,airline-00,true
+
+# draft-mode - standard variations
+leg-31,AAA2019,2025/01/02 00:00,2025/01/02 00:01,ON_TIME,airport-01,airport-02,aircraft-27,flight-27,airline-00,false
 

@@ -15,6 +15,8 @@ manager.leg.form.label.status = Status
 manager.leg.form.label.departureAirport = Departure Airport
 manager.leg.form.label.arrivalAirport = Arrival Airport
 manager.leg.form.label.plane = Plane
+manager.leg.form.label.airline = Airline
+manager.leg.form.label.duration = Duration
 
 manager.leg.form.button.publish = Publish
 manager.leg.form.button.create = Create
