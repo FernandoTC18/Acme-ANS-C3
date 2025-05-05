@@ -11,14 +11,16 @@
 	<acme:input-select code="flight-crew.flight-assignment.form.label.status" path="status" choices="${status}"/>
 	<acme:input-textbox code="flight-crew.flight-assignment.form.label.remarks" path="remarks"/>
 	
+	<jstl:if test="${_command != 'create'}">
+		<acme:button code="flight-crew.flight-assignment.form.button.legs.list" action="/flight-crew/leg/list?id=${id}"/>
+		<acme:button code="flight-crew.flight-assignment.form.button.crew-members.list" action="/flight-crew/flight-crew/list?id=${id}"/>
+		<acme:button code="flight-crew.flight-assignment.form.button.logs.list" action="/flight-crew/activity-log/list?id=${id}"/>
+	</jstl:if>
 
 	
 	<jstl:if test="${!readonly}">
 			<jstl:choose>
 				<jstl:when test="${_command != 'create'}">
-					<acme:button code="flight-crew.flight-assignment.form.button.legs.list" action="/flight-crew/leg/list?id=${id}"/>
-					<acme:button code="flight-crew.flight-assignment.form.button.crew-members.list" action="/flight-crew/flight-crew/list?id=${id}"/>
-					<acme:button code="flight-crew.flight-assignment.form.button.logs.list" action="/flight-crew/activity-log/list?id=${id}"/>
 					<acme:submit code="flight-crew.flight-assignment.form.submit.update" action="/flight-crew/flight-assignment/update?id=${id}"/>
 					<acme:submit code="flight-crew.flight-assignment.form.submit.delete" action="/flight-crew/flight-assignment/delete?id=${id}"/>
 					<acme:submit code="flight-crew.flight-assignment.form.submit.publish" action="/flight-crew/flight-assignment/publish?${id}"/>
