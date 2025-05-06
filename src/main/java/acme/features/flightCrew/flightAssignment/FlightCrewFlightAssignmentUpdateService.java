@@ -36,7 +36,7 @@ public class FlightCrewFlightAssignmentUpdateService extends AbstractGuiService<
 		boolean correctMember;
 		assignmentId = super.getRequest().getData("id", int.class);
 		assignment = this.repository.findAssignmentbyId(assignmentId);
-		correctMember = assignment == null ? null : assignment.getFlightCrewMember().getId() == super.getRequest().getPrincipal().getActiveRealm().getId();
+		correctMember = assignment != null && assignment.getFlightCrewMember().getId() == super.getRequest().getPrincipal().getActiveRealm().getId();
 		
 		
 		
@@ -49,7 +49,7 @@ public class FlightCrewFlightAssignmentUpdateService extends AbstractGuiService<
 			
 			legId = super.getRequest().getData("leg", int.class);
 			leg = this.repository.findLegById(legId);
-			correctLeg = leg == null ? null : MomentHelper.isFuture(leg.getScheduledDeparture()) && !leg.isDraftMode();
+			correctLeg = leg != null && MomentHelper.isFuture(leg.getScheduledDeparture()) && !leg.isDraftMode();
 			
 			//Checks if the assignment it's in draft mode
 			boolean draftMode;

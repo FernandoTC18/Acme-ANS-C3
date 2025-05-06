@@ -39,9 +39,7 @@ public class FlightCrewActivityLogPublishService extends AbstractGuiService<Flig
 			draftMode = log.getDraftMode();
 			
 			
-			boolean assignmentIsPublished = assignment == null ? null : assignment.getDraftMode();
-			System.out.println(draftMode);
-			System.out.println(assignmentIsPublished);
+			boolean assignmentIsPublished = assignment != null && assignment.getDraftMode();
 			status = draftMode && !assignmentIsPublished; //I don't add correctMember 'cause in this branch of the if is always true, so it won't affect the result
 			
 			super.getResponse().setAuthorised(status);

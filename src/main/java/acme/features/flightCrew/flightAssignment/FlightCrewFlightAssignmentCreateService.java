@@ -41,17 +41,21 @@ public class FlightCrewFlightAssignmentCreateService extends AbstractGuiService<
 			
 			employeeCode = super.getRequest().getData("flightCrewMember",String.class);
 			member = this.repository.findFlightCrewByCode(employeeCode);
-			correctMember = member == null ? null : super.getRequest().getPrincipal().getActiveRealm().getId() == member.getId();
+			correctMember = member != null && super.getRequest().getPrincipal().getActiveRealm().getId() == member.getId();
 			
 			//Checks if the leg is in the future and published
 			boolean correctLeg;
 			int legId;
 			legId = super.getRequest().getData("leg", int.class);
-			leg = this.repository.findLegById(legId);
-			correctLeg = leg == null ? null : MomentHelper.isFuture(leg.getScheduledDeparture()) && !leg.isDraftMode();
 			
-			
-			status = correctMember && correctLeg;
+			if (legId != 0) {
+				leg = this.repository.findLegById(legId);
+				correctLeg = leg != null && MomentHelper.isFuture(leg.getScheduledDeparture()) && !leg.isDraftMode();
+				
+				status = correctMember && correctLeg;
+			} else {
+				status = correctMember;
+			}
 			
 			super.getResponse().setAuthorised(status);
 

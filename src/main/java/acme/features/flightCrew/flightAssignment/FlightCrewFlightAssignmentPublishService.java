@@ -36,7 +36,7 @@ public class FlightCrewFlightAssignmentPublishService extends AbstractGuiService
 		
 		assignmentId = super.getRequest().getData("id", int.class);
 		assignment = this.repository.findAssignmentbyId(assignmentId);
-		correctMember = assignment == null ? null : assignment.getFlightCrewMember().getId() == super.getRequest().getPrincipal().getActiveRealm().getId();
+		correctMember = assignment != null && assignment.getFlightCrewMember().getId() == super.getRequest().getPrincipal().getActiveRealm().getId();
 		
 		//If it is a hacking request, it can only contain the id in the dataset. This way i assure that a 401 code is returned instead of an AssertionError.
 		if (correctMember == true) {
@@ -46,7 +46,7 @@ public class FlightCrewFlightAssignmentPublishService extends AbstractGuiService
 			
 			legId = super.getRequest().getData("leg", int.class);
 			leg = this.repository.findLegById(legId);
-			correctLeg = leg == null ? null : MomentHelper.isFuture(leg.getScheduledDeparture()) && !leg.isDraftMode();
+			correctLeg = leg != null && MomentHelper.isFuture(leg.getScheduledDeparture()) && !leg.isDraftMode();
 			
 			//Checks if the assignment is in draft mode
 			boolean draftMode;
