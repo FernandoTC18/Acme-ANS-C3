@@ -27,7 +27,7 @@ public class FlightCrewActivityLogDeleteService extends AbstractGuiService<Fligh
 		boolean correctMember;
 		logId = super.getRequest().getData("id", int.class);
 		assignment = this.repository.getAssignmentByLogId(logId);
-		member = assignment != null ? null : assignment.getFlightCrewMember();
+		member = assignment == null ? null : assignment.getFlightCrewMember();
 		correctMember = super.getRequest().getPrincipal().hasRealm(member);
 		
 		if (correctMember == true) {
