@@ -10,10 +10,10 @@ booking-05,MNOP345,2025/01/01 0:00,ECONOMY,1234,true,customer-01,flight-01
 booking-06,7YUIPO0,2012/07/02 0:00,ECONOMY,1234,true,customer-01,flight-01
 booking-07,TGBVF12,2012/07/02 0:00,BUSINESS,1234,true,customer-01,flight-01
 #lastCardNibble-standard
-booking-12,QWERTY7,2012/07/02 0:00,ECONOMY,5678,true,customer-01,flight-01
-booking-13,1ZXCVBN,2012/07/02 0:00,ECONOMY,9101,true,customer-01,flight-01
-booking-14,45TREWQ,2012/07/02 0:00,ECONOMY,2024,true,customer-01,flight-01
-booking-15,PLKIJMN,2012/07/02 0:00,ECONOMY,0001,true,customer-01,flight-01
+booking-12,QWERTY7,2012/07/02 0:00,ECONOMY,5678,true,customer-02,flight-01
+booking-13,1ZXCVBN,2012/07/02 0:00,ECONOMY,9101,true,customer-02,flight-01
+booking-14,45TREWQ,2012/07/02 0:00,ECONOMY,2024,true,customer-02,flight-01
+booking-15,PLKIJMN,2012/07/02 0:00,ECONOMY,0001,true,customer-02,flight-01
 #drafMode-standard
-booking-16,QWERTL7,2012/07/02 0:00,ECONOMY,5678,false,customer-01,flight-01
-booking-17,1ZXCVBP,2012/07/02 0:00,ECONOMY,9101,true,customer-01,flight-01
+booking-16,QWERTL7,2012/07/02 0:00,ECONOMY,5678,false,customer-02,flight-01
+booking-17,1ZXCVBP,2012/07/02 0:00,ECONOMY,9101,true,customer-02,flight-01

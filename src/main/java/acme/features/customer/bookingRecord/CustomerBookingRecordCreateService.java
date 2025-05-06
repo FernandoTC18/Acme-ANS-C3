@@ -45,7 +45,8 @@ public class CustomerBookingRecordCreateService extends AbstractGuiService<Custo
 					Passenger passenger = this.repository.findPassengerById(passengerId);
 					List<Passenger> passengersFromBooking = this.repository.findPassengersByBookingId(bookingId);
 					correctPassenger = passenger != null && !passengersFromBooking.contains(passenger) && super.getRequest().getPrincipal().hasRealm(passenger.getCustomer());
-				}
+				} else
+					correctPassenger = false;
 			}
 
 			if (super.getRequest().hasData("booking")) {
@@ -110,7 +111,7 @@ public class CustomerBookingRecordCreateService extends AbstractGuiService<Custo
 
 		bookingId = super.getRequest().getData("bookingId", int.class);
 
-		available = this.repository.findAvailablePassengers(bookingId);
+		available = this.repository.findAvailablePassengers(bookingId, super.getRequest().getPrincipal().getActiveRealm().getId());
 		passengers = SelectChoices.from(available, "name", bookingRecord.getPassenger());
 		dataset = super.unbindObject(bookingRecord, "booking");
 		booking = this.repository.findBookingById(bookingId);

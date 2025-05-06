@@ -46,14 +46,12 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 			}
 
 			if (super.getRequest().hasData("price")) {
-				Booking booking = new Booking();
 				Money bookingPrice = super.getRequest().getData("price", Money.class);
-				correctPrice = booking != null && bookingPrice.toString().equals(booking.getPrice().toString());
+				correctPrice = bookingPrice.getAmount().equals(0.0);
 			}
 
 			if (super.getRequest().hasData("purchaseMoment"))
 				correctMoment = super.getRequest().getData("purchaseMoment", Date.class).equals(MomentHelper.getCurrentMoment());
-
 		}
 		status = correctFlight && correctPrice && correctMoment;
 
