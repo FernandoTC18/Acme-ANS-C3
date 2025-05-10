@@ -11,7 +11,7 @@
 	
 	<jstl:if test="${!readonly}">
 			<jstl:choose>
-				<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish')}">
+				<jstl:when test="${_command != 'create'}">
 					<acme:submit code="flight-crew.log.form.submit.update" action="/flight-crew/activity-log/update?id=${id}"/>
 					<acme:submit code="flight-crew.log.form.submit.delete" action="/flight-crew/activity-log/delete?id=${id}"/>
 					<acme:submit code="flight-crew.log.form.submit.publish" action="/flight-crew/activity-log/publish?id=${id}"/>
