@@ -45,14 +45,16 @@ acme.validation.assistanceAgent.unique-assistance-agent.message = The employee c
 acme.validation.assistanceAgent.invalid-employee-code.message = The employee code must begin with the first letter of the name followed by the first letter of the first surname.
 
 #Claim Validation
-acme.validation.leg-time.message = Claims must be linked to legs that occurred.
-acme.validation.updatePublishedClaim.message = Only not published claims can be updated.
-acme.validation.deletePublishedClaim.message = Only not published claims can be deleted.
+acme.validation.leg-time.message = Claims must be linked to legs that occurred
 
 # TrackingLog Validation
-acme.validation.trackingLog.incorrect-indicator.message = The indicator must be ACCEPTED or REJECTED when the resolution percentage is 100%, and PENDING when it is less than 100%.
-acme.validation.trackingLog.invalid-resolution-percentage.message = The resolution percentage must be greater than any previously recorded value.
-acme.validation.trackingLog.mandatory-resolution.message = The resolution field is mandatory when the claim status is ACCEPTED or REJECTED.
+acme.validation.trackingLog.incorrect-indicator.message = The indicator must be ACCEPTED or REJECTED when the resolution percentage is 100%, and PENDING when it is less than 100%
+acme.validation.trackingLog.invalid-resolution-percentage.message = The resolution percentage must be equal or greater than any previously recorded value
+acme.validation.trackingLog.mandatory-resolution.message = The resolution field is mandatory when the claim status is ACCEPTED or REJECTED
+acme.validation.trackingLog.invalid-number-completed-logs.message = There is already one tracking log with a 100% resolution percentage. Please publish it before creating a new one
+acme.validation.trackingLog.invalid-number-completed-published-logs.message = Only one new tracking log can be created after a 100% resolution percentage log has been published
+acme.validation.trackingLog.claim-not-published.message = A tracking log cannot be published until its corresponding claim is published
+
 
 # Technician Validation
 acme.validation.technician.invalid-licenseNumber.message = The ‘licenseNumber’ field does not conform to the pattern ‘^[A-Z]{2,3}’ or is null.

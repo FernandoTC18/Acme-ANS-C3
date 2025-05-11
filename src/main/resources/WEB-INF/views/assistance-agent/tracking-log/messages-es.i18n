@@ -1,0 +1,23 @@
+# List
+assistance-agent.tracking-log.list.title = Listado de registros de seguimiento
+assistance-agent.tracking-log.list.label.lastUpdateMoment = Fecha de última actualización
+assistance-agent.tracking-log.list.label.step= Paso
+assistance-agent.tracking-log.list.label.resolutionPercentage = Porcentaje de resolución
+assistance-agent.tracking-log.list.label.indicator = Indicador
+assistance-agent.tracking-log.list.label.resolution = Resolución
+assistance-agent.tracking-log.list.label.orderDate = Fecha de Creación
+assistance-agent.tracking-log.list.label.draftMode = Borrador
+assistance-agent.tracking-log.list.button.create = Crear
+
+# Form
+assistance-agent.tracking-log.form.title = Detalles del registro de seguimiento
+assistance-agent.tracking-log.form.label.lastUpdateMoment = Fecha de última actualización
+assistance-agent.tracking-log.form.label.step= Paso
+assistance-agent.tracking-log.form.label.resolutionPercentage = Porcentaje de resolución
+assistance-agent.tracking-log.form.label.indicator = Indicador
+assistance-agent.tracking-log.form.label.resolution = Resolución
+assistance-agent.tracking-log.form.label.orderDate = Fecha de Creación
+assistance-agent.tracking-log.form.button.publish = Publicar
+assistance-agent.tracking-log.form.button.update = Actualizar
+assistance-agent.tracking-log.form.button.delete = Eliminar
+assistance-agent.tracking-log.form.button.create = Crear

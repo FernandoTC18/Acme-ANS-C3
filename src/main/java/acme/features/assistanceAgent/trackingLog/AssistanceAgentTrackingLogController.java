@@ -17,7 +17,7 @@ public class AssistanceAgentTrackingLogController extends AbstractGuiController<
 	private AssistanceAgentTrackingLogShowService			showService;
 
 	@Autowired
-	private AssistanceAgentTrackingLogListCompletedService	listService;
+	private AssistanceAgentTrackingLogListService	listService;
 
 	@Autowired
 	private AssistanceAgentTrackingLogCreateService			createService;
