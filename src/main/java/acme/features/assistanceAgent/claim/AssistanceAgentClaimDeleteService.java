@@ -10,7 +10,6 @@ import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claim.Claim;
-import acme.entities.claim.ClaimStatus;
 import acme.entities.claim.ClaimType;
 import acme.entities.leg.Leg;
 import acme.realms.AssistanceAgent;
@@ -40,15 +39,10 @@ public class AssistanceAgentClaimDeleteService extends AbstractGuiService<Assist
 	@Override
 	public void load() {
 		Claim claim;
+		int id;
 
-		AssistanceAgent assistanceAgent;
-
-		assistanceAgent = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
-
-		claim = new Claim();
-		claim.setDraftMode(true);
-		claim.setIndicator(ClaimStatus.PENDING);
-		claim.setAssistanceAgent(assistanceAgent);
+		id = super.getRequest().getData("id", int.class);
+		claim = this.repository.findClaimById(id);
 
 		super.getBuffer().addData(claim);
 	}
@@ -61,18 +55,14 @@ public class AssistanceAgentClaimDeleteService extends AbstractGuiService<Assist
 		legId = super.getRequest().getData("leg", int.class);
 		leg = this.repository.findLegById(legId);
 
-		super.bindObject(claim, "registrationMoment", "passengerEmail", "description", "type", "indicator");
+		super.bindObject(claim, "passengerEmail", "description", "type");
 
 		claim.setLeg(leg);
 	}
 
 	@Override
 	public void validate(final Claim claim) {
-		boolean status;
-
-		status = claim.getDraftMode();
-
-		super.state(status, "draftMode", "acme.validation.deletePublishedClaim.message");
+		// Intentionally left blank: no associated requirements.
 	}
 
 	@Override
@@ -87,18 +77,17 @@ public class AssistanceAgentClaimDeleteService extends AbstractGuiService<Assist
 
 		SelectChoices legChoices;
 		SelectChoices typeChoices;
-		SelectChoices statusChoices;
 
 		legs = this.repository.findAllLegs();
 
 		legChoices = SelectChoices.from(legs, "flightNumber", claim.getLeg());
 		typeChoices = SelectChoices.from(ClaimType.class, claim.getType());
-		statusChoices = SelectChoices.from(ClaimStatus.class, claim.getIndicator());
 
-		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "type", "indicator", "assistanceAgent", "leg", "draftMode");
-		dataset.put("legs", legChoices);
+		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "type", "indicator", "leg", "draftMode");
+		dataset.put("type", typeChoices.getSelected().getKey());
 		dataset.put("types", typeChoices);
-		dataset.put("indicators", statusChoices);
+		dataset.put("leg", legChoices.getSelected().getKey());
+		dataset.put("legs", legChoices);
 
 		super.getResponse().addData(dataset);
 	}
