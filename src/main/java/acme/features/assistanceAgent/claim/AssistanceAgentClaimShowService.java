@@ -10,7 +10,6 @@ import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claim.Claim;
-import acme.entities.claim.ClaimStatus;
 import acme.entities.claim.ClaimType;
 import acme.entities.leg.Leg;
 import acme.realms.AssistanceAgent;
@@ -55,19 +54,17 @@ public class AssistanceAgentClaimShowService extends AbstractGuiService<Assistan
 		Collection<Leg> legs;
 		SelectChoices legChoices;
 		SelectChoices typeChoices;
-		SelectChoices statusChoices;
 
 		legs = this.repository.findAllLegs();
 
 		legChoices = SelectChoices.from(legs, "flightNumber", claim.getLeg());
 		typeChoices = SelectChoices.from(ClaimType.class, claim.getType());
-		statusChoices = SelectChoices.from(ClaimStatus.class, claim.getIndicator());
 
-		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "type", "indicator", "assistanceAgent", "leg", "draftMode");
-		dataset.put("legs", legChoices);
+		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "type", "indicator", "leg", "draftMode");
+		dataset.put("type", typeChoices.getSelected().getKey());
 		dataset.put("types", typeChoices);
-		dataset.put("indicators", statusChoices);
-
+		dataset.put("leg", legChoices.getSelected().getKey());
+		dataset.put("legs", legChoices);
 		super.getResponse().addData(dataset);
 	}
 

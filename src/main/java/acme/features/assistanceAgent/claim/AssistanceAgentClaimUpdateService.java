@@ -11,7 +11,6 @@ import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claim.Claim;
-import acme.entities.claim.ClaimStatus;
 import acme.entities.claim.ClaimType;
 import acme.entities.leg.Leg;
 import acme.realms.AssistanceAgent;
@@ -35,6 +34,24 @@ public class AssistanceAgentClaimUpdateService extends AbstractGuiService<Assist
 		assistanceAgent = claim == null ? null : claim.getAssistanceAgent();
 		status = claim != null && claim.getDraftMode() && super.getRequest().getPrincipal().hasRealm(assistanceAgent);
 
+		if (status) {
+			String method;
+			int legId;
+			Leg leg;
+			String type;
+			method = super.getRequest().getMethod();
+
+			if (method.equals("GET"))
+				status = true;
+			else {
+				legId = super.getRequest().getData("leg", int.class);
+				leg = this.repository.findLegById(legId);
+				type = super.getRequest().getData("type", String.class);
+
+				status = leg != null && this.isValidEnum(ClaimType.class, type);
+			}
+		}
+
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -43,40 +60,40 @@ public class AssistanceAgentClaimUpdateService extends AbstractGuiService<Assist
 		Claim claim;
 		int id;
 
-		AssistanceAgent assistanceAgent;
-
-		assistanceAgent = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
-
 		id = super.getRequest().getData("id", int.class);
 		claim = this.repository.findClaimById(id);
-		claim.setAssistanceAgent(assistanceAgent);
 
 		super.getBuffer().addData(claim);
 	}
 
 	@Override
 	public void bind(final Claim claim) {
+		int legId;
+		Leg leg;
 
-		super.bindObject(claim, "registrationMoment", "passengerEmail", "description", "type", "indicator");
+		legId = super.getRequest().getData("leg", int.class);
+		leg = this.repository.findLegById(legId);
+
+		super.bindObject(claim, "passengerEmail", "description", "type");
+
+		claim.setLeg(leg);
 	}
 
 	@Override
 	public void validate(final Claim claim) {
-		boolean status;
-		Leg leg;
-		Date legTime;
-		Date moment;
-		boolean condition;
+		{
+			int legId;
+			Date legTime;
+			Date moment;
+			boolean condition;
 
-		status = claim.getDraftMode();
+			legId = claim.getLeg().getId();
+			moment = claim.getRegistrationMoment();
+			legTime = this.repository.findArrivalTimeLegById(legId);
+			condition = moment.after(legTime);
 
-		leg = super.getRequest().getData("leg", Leg.class);
-		moment = super.getRequest().getData("registrationMoment", Date.class);
-		legTime = this.repository.findArrivalTimeLegById(leg.getId());
-		condition = moment.after(legTime);
-
-		super.state(condition, "leg", "acme.validation.leg-time.message");
-		super.state(status, "draftMode", "acme.validation.updatePublishedClaim.message");
+			super.state(condition, "*", "acme.validation.leg-time.message");
+		}
 	}
 
 	@Override
@@ -90,21 +107,32 @@ public class AssistanceAgentClaimUpdateService extends AbstractGuiService<Assist
 		Collection<Leg> legs;
 		SelectChoices legChoices;
 		SelectChoices typeChoices;
-		SelectChoices statusChoices;
 
 		legs = this.repository.findAllLegs();
 
 		typeChoices = SelectChoices.from(ClaimType.class, claim.getType());
-		statusChoices = SelectChoices.from(ClaimStatus.class, claim.getIndicator());
 		legChoices = SelectChoices.from(legs, "flightNumber", claim.getLeg());
 
-		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "type", "indicator", "assistanceAgent", "leg", "draftMode");
+		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "type", "indicator", "leg", "draftMode");
+		dataset.put("type", typeChoices.getSelected().getKey());
 		dataset.put("types", typeChoices);
-		dataset.put("indicators", statusChoices);
-		dataset.put("legs", legChoices);
 		dataset.put("leg", legChoices.getSelected().getKey());
+		dataset.put("legs", legChoices);
 
 		super.getResponse().addData(dataset);
+	}
+
+	// Ancillary methods ------------------------------------------------------
+
+	private <E extends Enum<E>> boolean isValidEnum(final Class<E> enumClass, final String name) {
+		if (name == null)
+			return false;
+		try {
+			Enum.valueOf(enumClass, name);
+			return true;
+		} catch (IllegalArgumentException e) {
+			return false;
+		}
 	}
 
 }

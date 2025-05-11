@@ -31,10 +31,12 @@ public class AssistanceAgentClaimListCompletedService extends AbstractGuiService
 	@Override
 	public void load() {
 		Collection<Claim> claims;
-		int assistanceAgent;
+		int assistanceAgentId;
 
-		assistanceAgent = super.getRequest().getPrincipal().getActiveRealm().getId();
-		claims = this.repository.findCompletedClaimsById(assistanceAgent, ClaimStatus.PENDING);
+		assistanceAgentId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		claims = this.repository.findClaimsByAgentId(assistanceAgentId);
+
+		claims = claims.stream().filter(c -> c.getIndicator() != ClaimStatus.PENDING).toList();
 
 		super.getBuffer().addData(claims);
 	}
