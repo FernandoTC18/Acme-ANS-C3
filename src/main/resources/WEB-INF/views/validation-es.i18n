@@ -43,14 +43,15 @@ acme.validation.assistanceAgent.unique-assistance-agent.message = El código de 
 acme.validation.assistanceAgent.invalid-employee-code.message = El código de empleado debe comenzar con la primera letra del nombre seguida de la primera letra del primer apellido.
 
 #Claim Validation
-acme.validation.leg-time.message = Los reclamos deben estar vinculados a tramos que han ocurrido.
-acme.validation.performPublishedClaim.message = Solo pueden ser actualizados o eliminados reclamos sin publicar.
-acme.validation.updatePublishedClaim.message = Solo pueden ser actualizados reclamos sin publicar.
+acme.validation.leg-time.message = Los reclamos deben estar vinculados a tramos que han ocurrido
 
 # TrackingLog Validation
-acme.validation.trackingLog.incorrect-indicator.message = El indicador debe ser ACCEPTED o REJECTED cuando el porcentaje de resolución sea 100%, y PENDING cuando sea inferior a 100%.
-acme.validation.trackingLog.invalid-resolution-percentage.message = El porcentaje de resolución debe ser superior al valor máximo registrado anteriormente.
-acme.validation.trackingLog.mandatory-resolution.message = El campo resolución es obligatorio cuando el estado de la reclamación es ACCEPTED o PENDING.
+acme.validation.trackingLog.incorrect-indicator.message = El indicador debe ser ACCEPTED o REJECTED cuando el porcentaje de resolución sea 100%, y PENDING cuando sea inferior a 100%
+acme.validation.trackingLog.invalid-resolution-percentage.message = El porcentaje de resolución debe ser superior al valor máximo registrado anteriormente
+acme.validation.trackingLog.mandatory-resolution.message = El campo resolución es obligatorio cuando el estado de la reclamación es ACCEPTED o PENDING
+acme.validation.trackingLog.invalid-number-completed-logs.message = Ya existe un registro de seguimiento con un porcentaje de resolución del 100 %. Por favor, publíquelo antes de crear uno nuevo
+acme.validation.trackingLog.invalid-number-completed-published-logs.message = Solo se puede crear un nuevo registro de seguimiento después de que se haya publicado un registro con un porcentaje de resolución del 100%
+acme.validation.trackingLog.claim-not-published.message = Un registro de seguimiento no puede publicarse hasta que su reclamación correspondiente esté publicada
 
 # Technician Validation
 acme.validation.technician.invalid-licenseNumber.message = El campo "licenseNumber" no cumple con el patrón "^[A-Z]{2,3}\\d{6}$" o es nulo.
