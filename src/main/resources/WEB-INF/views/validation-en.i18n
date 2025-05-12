@@ -4,6 +4,7 @@
 acme.validation.flight.overlapped.message  = The legs of a flight cannot be overlapped
 acme.validation.flight.noLegs.message = A flight must have a minimum of 1 leg
 acme.validation.flight.noPublishedLegs.message = To publish a flight, its legs must be previously published
+acme.validation.flight.matchAirports.message = The airports of the legs of a flight must be linked together
 
 # Leg Validation
 acme.validation.leg.correctFlightNumberPattern.message = The flight number does not have a valid format,Ex: ZZZ9999,AAAA0000
@@ -54,7 +55,6 @@ acme.validation.trackingLog.mandatory-resolution.message = The resolution field 
 acme.validation.trackingLog.invalid-number-completed-logs.message = There is already one tracking log with a 100% resolution percentage. Please publish it before creating a new one
 acme.validation.trackingLog.invalid-number-completed-published-logs.message = Only one new tracking log can be created after a 100% resolution percentage log has been published
 acme.validation.trackingLog.claim-not-published.message = A tracking log cannot be published until its corresponding claim is published
-
 
 # Technician Validation
 acme.validation.technician.invalid-licenseNumber.message = The ‘licenseNumber’ field does not conform to the pattern ‘^[A-Z]{2,3}’ or is null.

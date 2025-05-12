@@ -5,9 +5,15 @@
 
 <acme:form> 
 	<acme:input-textbox code="manager.flight.form.label.tag" path="tag"/>
-	<acme:input-select code="manager.flight.form.label.selfTransferRequired" path="selfTransferRequired" choices="${selfTransferOptions}"/>	
+	<acme:input-checkbox code="manager.flight.form.label.selfTransferRequired" path="selfTransferRequired"/>	
 	<acme:input-textbox code="manager.flight.form.label.cost" path="cost"/>
 	<acme:input-textbox code="manager.flight.form.label.description" path="description"/>
+	
+	<acme:input-textbox code="manager.flight.form.label.originCity" path="originCity" readonly="true"/>
+	<acme:input-textbox code="manager.flight.form.label.arrivalCity" path="arrivalCity" readonly="true"/>
+	<acme:input-textbox code="manager.flight.form.label.layoversNumber" path="layoversNumber" readonly="true"/>
+	<acme:input-moment code="manager.flight.form.label.scheduledDeparture" path="scheduledDeparture" readonly="true"/>
+	<acme:input-moment code="manager.flight.form.label.scheduledArrival" path="scheduledArrival" readonly="true"/>
 	
 	<jstl:choose>	 
 		<jstl:when test="${_command == 'show' && draftMode == false}">

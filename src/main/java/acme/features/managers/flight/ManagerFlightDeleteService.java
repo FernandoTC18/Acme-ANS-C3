@@ -92,7 +92,7 @@ public class ManagerFlightDeleteService extends AbstractGuiService<Manager, Flig
 			trueChoice, falseChoice
 		});
 
-		dataset = super.unbindObject(flight, "tag", "cost", "description");
+		dataset = super.unbindObject(flight, "tag", "cost", "description", "draftMode", "scheduledDeparture", "scheduledArrival", "originCity", "arrivalCity", "layoversNumber");
 		dataset.put("selfTransfered", choices.getSelected().getKey());
 		dataset.put("options", choices);
 

@@ -153,7 +153,7 @@ public class ManagerLegPublishService extends AbstractGuiService<Manager, Leg> {
 			for (int i = 0; i < legs.size() - 1; i++) {
 				String arriveIataCode = legs.get(i).getArrivalAirport().getIataCode();
 				String departNextIataCode = legs.get(i + 1).getDepartureAirport().getIataCode();
-				if (arriveIataCode.equals(departNextIataCode))
+				if (!arriveIataCode.equals(departNextIataCode))
 					noMatchedAirports += 1;
 			}
 
