@@ -143,7 +143,7 @@ public class ManagerLegPublishService extends AbstractGuiService<Manager, Leg> {
 			super.state(notOverlapped, "*", "acme.validation.leg.overlapped.message");
 		}
 		{
-			if (leg.getArrivalAirport() == null || leg.getDepartureAirport() == null) {
+			if (leg.getArrivalAirport() != null && leg.getDepartureAirport() != null) {
 				boolean correctAirportMatches;
 				List<Leg> legs = new ArrayList<>(this.repository.findDistinctLegsByFlightId(leg.getFlight().getId(), leg.getId()));
 
