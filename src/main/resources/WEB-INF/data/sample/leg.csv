@@ -18,15 +18,15 @@ leg-12,AAM2000,2025/01/02 00:00,2025/01/02 00:01,ON_TIME,airport-01,airport-02,a
 leg-13,APA2000,2025/01/02 00:00,2025/01/02 00:01,ON_TIME,airport-01,airport-02,aircraft-13,flight-13,airline-42,true
 
 #scheduleDeparture - standard variations
-leg-14,AAA2002,2025/01/01 00:00,2025/01/01 00:01,ON_TIME,airport-01,airport-02,aircraft-00,flight-00,airline-00,true
-leg-15,AAA2003,2025/01/01 00:01,2025/01/01 00:02,ON_TIME,airport-01,airport-02,aircraft-00,flight-00,airline-00,true
+leg-14,AAA2002,2025/01/01 00:00,2025/01/01 00:01,ON_TIME,airport-03,airport-04,aircraft-00,flight-00,airline-00,true
+leg-15,AAA2003,2025/01/01 00:01,2025/01/01 00:02,ON_TIME,airport-04,airport-01,aircraft-00,flight-00,airline-00,true
 
-leg-16,AAA2004,2200/12/31 23:58,2200/12/31 23:59,ON_TIME,airport-01,airport-02,aircraft-14,flight-14,airline-00,true
+leg-16,AAA2004,2200/12/31 23:58,2200/12/31 23:59,ON_TIME,airport-02,airport-03,aircraft-14,flight-14,airline-00,true
 leg-17,AAA2005,2200/12/31 23:57,2200/12/31 23:58,ON_TIME,airport-01,airport-02,aircraft-14,flight-14,airline-00,true
 
 #scheduledArrival - standard variations
 leg-18,AAA2006,2025/01/01 00:00,2025/01/01 00:01,ON_TIME,airport-01,airport-02,aircraft-15,flight-15,airline-00,true
-leg-19,AAA2007,2025/01/01 00:01,2025/01/01 00:02,ON_TIME,airport-01,airport-02,aircraft-15,flight-15,airline-00,true
+leg-19,AAA2007,2025/01/01 00:01,2025/01/01 00:02,ON_TIME,airport-02,airport-03,aircraft-15,flight-15,airline-00,true
 
 leg-20,AAA2008,2200/12/31 23:58,2200/12/31 23:59,ON_TIME,airport-01,airport-02,aircraft-16,flight-16,airline-00,true
 leg-21,AAA2009,2200/12/31 23:57,2200/12/31 23:58,ON_TIME,airport-01,airport-02,aircraft-17,flight-17,airline-00,true

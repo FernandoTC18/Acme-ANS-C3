@@ -107,7 +107,7 @@ public class Flight extends AbstractEntity {
 
 		repository = SpringHelper.getBean(FlightRepository.class);
 		result = repository.computeLegsNumberByFlight(this.getId()) - 1;
-		return result;
+		return result > 0 ? result : 0;
 	}
 
 	@Transient
