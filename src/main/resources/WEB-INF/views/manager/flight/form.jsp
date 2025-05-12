@@ -6,7 +6,7 @@
 <acme:form> 
 	<acme:input-textbox code="manager.flight.form.label.tag" path="tag"/>
 	<acme:input-checkbox code="manager.flight.form.label.selfTransferRequired" path="selfTransferRequired"/>	
-	<acme:input-textbox code="manager.flight.form.label.cost" path="cost"/>
+	<acme:input-money code="manager.flight.form.label.cost" path="cost"/>
 	<acme:input-textbox code="manager.flight.form.label.description" path="description"/>
 	
 	<acme:input-textbox code="manager.flight.form.label.originCity" path="originCity" readonly="true"/>

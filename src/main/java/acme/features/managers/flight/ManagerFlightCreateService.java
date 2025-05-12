@@ -39,15 +39,7 @@ public class ManagerFlightCreateService extends AbstractGuiService<Manager, Flig
 	@Override
 	public void bind(final Flight flight) {
 
-		String selfTransferValueSelected;
-		Boolean selfTransferValue;
-
-		selfTransferValueSelected = super.getRequest().getData("selfTransferRequired", String.class);
-
-		selfTransferValue = selfTransferValueSelected != null ? Boolean.valueOf(selfTransferValueSelected) : false;
-
-		super.bindObject(flight, "tag", "cost", "description");
-		flight.setSelfTransferRequired(selfTransferValue);
+		super.bindObject(flight, "tag", "selfTransferRequired", "cost", "description");
 	}
 	@Override
 	public void validate(final Flight flight) {

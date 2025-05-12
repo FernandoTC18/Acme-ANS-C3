@@ -141,24 +141,25 @@ public class ManagerLegCreateService extends AbstractGuiService<Manager, Leg> {
 			super.state(isValid, "*", "acme.validation.leg.overlapped.message");
 		}
 		{
-			boolean correctAirportMatches;
-			List<Leg> legs = new ArrayList<>(this.repository.findDistinctLegsByFlightId(leg.getFlight().getId(), leg.getId()));
+			if (leg.getArrivalAirport() == null || leg.getDepartureAirport() == null) {
+				boolean correctAirportMatches;
+				List<Leg> legs = new ArrayList<>(this.repository.findDistinctLegsByFlightId(leg.getFlight().getId(), leg.getId()));
 
-			legs.add(leg);
-			legs.sort(Comparator.comparing(Leg::getScheduledDeparture));
+				legs.add(leg);
+				legs.sort(Comparator.comparing(Leg::getScheduledDeparture));
 
-			int noMatchedAirports = 0;
-			for (int i = 0; i < legs.size() - 1; i++) {
-				String arriveIataCode = legs.get(i).getArrivalAirport().getIataCode();
-				String departNextIataCode = legs.get(i + 1).getDepartureAirport().getIataCode();
-				if (!arriveIataCode.equals(departNextIataCode))
-					noMatchedAirports += 1;
+				int noMatchedAirports = 0;
+				for (int i = 0; i < legs.size() - 1; i++) {
+					String arriveIataCode = legs.get(i).getArrivalAirport().getIataCode();
+					String departNextIataCode = legs.get(i + 1).getDepartureAirport().getIataCode();
+					if (!arriveIataCode.equals(departNextIataCode))
+						noMatchedAirports += 1;
+				}
+
+				correctAirportMatches = noMatchedAirports == 0;
+
+				super.state(correctAirportMatches, "*", "acme.validation.leg.matchAirports.message");
 			}
-
-			correctAirportMatches = noMatchedAirports == 0;
-
-			super.state(correctAirportMatches, "*", "acme.validation.leg.matchAirports.message");
-
 		}
 	}
 
