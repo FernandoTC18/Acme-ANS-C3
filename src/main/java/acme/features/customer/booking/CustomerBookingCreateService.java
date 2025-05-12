@@ -1,12 +1,10 @@
 
 package acme.features.customer.booking;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import acme.client.components.datatypes.Money;
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
 import acme.client.helpers.MomentHelper;
@@ -32,28 +30,17 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 	public void authorise() {
 		boolean status = true;
 		boolean correctFlight = true;
-		boolean correctPrice = true;
-		boolean correctMoment = true;
 
-		if (super.getRequest().hasData("id")) {
-
+		if (super.getRequest().hasData("id"))
 			if (super.getRequest().hasData("flight")) {
 				int flightId = super.getRequest().getData("flight", int.class);
 				if (flightId != 0) {
 					Flight flight = this.repository.findFlightById(flightId);
-					correctFlight = flight != null;
+					correctFlight = flight != null && flight.getScheduledDeparture().after(MomentHelper.getCurrentMoment());
+					System.out.println(flight.getScheduledDeparture());
 				}
 			}
-
-			if (super.getRequest().hasData("price")) {
-				Money bookingPrice = super.getRequest().getData("price", Money.class);
-				correctPrice = bookingPrice.getAmount().equals(0.0);
-			}
-
-			if (super.getRequest().hasData("purchaseMoment"))
-				correctMoment = super.getRequest().getData("purchaseMoment", Date.class).equals(MomentHelper.getCurrentMoment());
-		}
-		status = correctFlight && correctPrice && correctMoment;
+		status = correctFlight;
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -110,7 +97,7 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 		SelectChoices classes;
 		SelectChoices flights;
 
-		available = this.repository.findAllFlights();
+		available = this.repository.findAllFlights().stream().filter(a -> a.getScheduledDeparture().after(MomentHelper.getCurrentMoment())).toList();
 		classes = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 
 		flights = SelectChoices.from(available, "flightPath", booking.getFlight());

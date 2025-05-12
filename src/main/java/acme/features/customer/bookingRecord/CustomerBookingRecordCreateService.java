@@ -28,7 +28,6 @@ public class CustomerBookingRecordCreateService extends AbstractGuiService<Custo
 	@Override
 	public void authorise() {
 		boolean status = true;
-		boolean correctBooking = true;
 		boolean correctPassenger = true;
 
 		Booking booking;
@@ -37,27 +36,17 @@ public class CustomerBookingRecordCreateService extends AbstractGuiService<Custo
 		bookingId = super.getRequest().getData("bookingId", int.class);
 		booking = this.repository.findBookingById(bookingId);
 
-		if (super.getRequest().hasData("id")) {
-
+		if (super.getRequest().hasData("id"))
 			if (super.getRequest().hasData("passenger")) {
 				int passengerId = super.getRequest().getData("passenger", int.class);
 				if (passengerId != 0) {
 					Passenger passenger = this.repository.findPassengerById(passengerId);
 					List<Passenger> passengersFromBooking = this.repository.findPassengersByBookingId(bookingId);
 					correctPassenger = passenger != null && !passengersFromBooking.contains(passenger) && super.getRequest().getPrincipal().hasRealm(passenger.getCustomer());
-				} else
-					correctPassenger = false;
+				}
 			}
 
-			if (super.getRequest().hasData("booking")) {
-				String bookingLocator;
-				bookingLocator = super.getRequest().getData("booking", String.class);
-				Booking bookingFromLocator = this.repository.findBookingByLocatorCode(bookingLocator);
-				correctBooking = bookingFromLocator != null && booking.equals(bookingFromLocator);
-			}
-		}
-
-		status = booking != null && super.getRequest().getPrincipal().hasRealm(booking.getCustomer()) && booking.getDraftMode() && correctPassenger && correctBooking;
+		status = booking != null && super.getRequest().getPrincipal().hasRealm(booking.getCustomer()) && booking.getDraftMode() && correctPassenger;
 		super.getResponse().setAuthorised(status);
 	}
 
