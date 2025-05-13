@@ -1,14 +1,10 @@
 
 package acme.features.technician.task;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
-import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.entities.involves.Involves;
 import acme.entities.task.Task;
 import acme.features.technician.involves.TechnicianInvolvesRepository;
 import acme.realms.Technician;
@@ -67,30 +63,33 @@ public class TechnicianTaskDeleteService extends AbstractGuiService<Technician, 
 	@Override
 	public void perform(final Task task) {
 
-		List<Involves> invs;
+		//List<Involves> invs;
 
-		invs = this.involvesRepository.findInvolvesByTaskId(task.getId());
+		//invs = this.involvesRepository.findInvolvesByTaskId(task.getId());
 
-		for (Involves i : invs)
-			this.involvesRepository.delete(i);
+		// No debería de haber nada en la lista ya que para borrar una task debe estar sin publicar,
+		// y no se puede relacionar un maintenance record con una task sin publicar.
+
+		//for (Involves i : invs)
+		//this.involvesRepository.delete(i);
 
 		this.repository.delete(task);
 	}
 
 	@Override
 	public void unbind(final Task task) {
-		Dataset dataset;
+		//Dataset dataset;
 		//SelectChoices taskTypes;
 
 		//taskTypes = SelectChoices.from(TaskType.class, task.getType());
 
-		dataset = super.unbindObject(task);
+		//dataset = super.unbindObject(task);
 		//dataset.put("confirmation", false);
 		//dataset.put("readonly", false);
 		//dataset.put("type", taskTypes);
 		//dataset.put("technician", task.getTechnician());
 
-		super.getResponse().addData(dataset);
+		//super.getResponse().addData(dataset);
 	}
 
 }
