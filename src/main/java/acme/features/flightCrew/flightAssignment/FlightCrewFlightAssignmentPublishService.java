@@ -46,7 +46,7 @@ public class FlightCrewFlightAssignmentPublishService extends AbstractGuiService
 			
 			legId = super.getRequest().getData("leg", int.class);
 			leg = this.repository.findLegById(legId);
-			correctLeg = leg != null && MomentHelper.isFuture(leg.getScheduledDeparture()) && !leg.isDraftMode();
+			correctLeg = leg != null && MomentHelper.isFuture(leg.getScheduledDeparture());
 			
 			//Checks if the assignment is in draft mode
 			boolean draftMode;
@@ -101,7 +101,11 @@ public class FlightCrewFlightAssignmentPublishService extends AbstractGuiService
 
 	@Override
 	public void validate(final FlightAssignment assignment) {
-		;
+		int legId = super.getRequest().getData("leg", int.class);
+		Leg leg = this.repository.findLegById(legId);
+		boolean draftMode = leg.isDraftMode();
+		
+		super.state(!draftMode, "leg", "acme.validation.unpublishedLeg.message");
 	}
 
 	@Override

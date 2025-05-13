@@ -102,6 +102,8 @@ acme.validation.incorrectly-formatted-flightNumber.message = You have to use a c
 acme.validation.unpublishedTasks.message = This Maintenance Record has unpublished Tasks
 acme.validation.onePublishedTask.message = This Maintenance Record doesn't have any published Task
 
+acme.validation.unpublishedLeg.message = This leg is not published
+
 acme.validation.updatePublishedTask.message = You can´t update a published task
 acme.validation.deletePublishedTask.message = You can´t delete a published task
 
