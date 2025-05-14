@@ -24,12 +24,12 @@ public class FlightCrewMemberListService extends AbstractGuiService<FlightCrew, 
 		int assignmentId;
 		FlightCrew member;
 		FlightAssignment assignment;
-		
+
 		assignmentId = super.getRequest().getData("id", int.class);
 		assignment = this.repository.findAssignmentbyId(assignmentId);
 		member = assignment == null ? null : assignment.getFlightCrewMember();
-		status = super.getRequest().getPrincipal().hasRealm(member) && assignment != null;
-		
+		status = member == null ? false : super.getRequest().getPrincipal().hasRealm(member) && assignment != null;
+
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -50,11 +50,9 @@ public class FlightCrewMemberListService extends AbstractGuiService<FlightCrew, 
 		int assignmentId;
 
 		assignmentId = super.getRequest().getData("id", int.class);
-		
+
 		dataset = super.unbindObject(member, "employeeCode", "phoneNumber", "languageSkills", "availability", "salary", "experienceYears");
 		super.getResponse().addGlobal("assignmentId", assignmentId);
-		
-		
 
 		super.getResponse().addData(dataset);
 	}
