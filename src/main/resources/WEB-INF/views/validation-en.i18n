@@ -103,6 +103,7 @@ acme.validation.unpublishedTasks.message = This Maintenance Record has unpublish
 acme.validation.onePublishedTask.message = This Maintenance Record doesn't have any published Task
 
 acme.validation.unpublishedLeg.message = This leg is not published
+acme.validation.unpublishedFlightAssignment.message = The assignment related to this activity log has not been published
 
 acme.validation.updatePublishedTask.message = You can´t update a published task
 acme.validation.deletePublishedTask.message = You can´t delete a published task
