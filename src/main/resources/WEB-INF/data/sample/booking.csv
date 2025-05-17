@@ -8,7 +8,7 @@ booking-04,LKJH87Z,2024/12/31 23:59,ECONOMY,1234,true,customer-01,flight-01
 booking-05,MNOP345,2025/01/01 0:00,ECONOMY,1234,true,customer-01,flight-01
 #travelClass-standard
 booking-06,7YUIPO0,2012/07/02 0:00,ECONOMY,1234,true,customer-01,flight-01
-booking-07,TGBVF12,2012/07/02 0:00,BUSINESS,1234,true,customer-01,flight-01
+booking-07,TGBVF12,2012/07/02 0:00,BUSINESS,1234,false,customer-01,flight-01
 #lastCardNibble-standard
 booking-12,QWERTY7,2012/07/02 0:00,ECONOMY,5678,true,customer-02,flight-01
 booking-13,1ZXCVBN,2012/07/02 0:00,ECONOMY,9101,true,customer-02,flight-01

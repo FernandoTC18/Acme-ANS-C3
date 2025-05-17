@@ -13,6 +13,8 @@ customer.passenger.form.button.update = Actualizar
 customer.passenger.list.button.addPassenger = Añadir un pasajero
 customer.passenger.form.button.create = Crear pasajero
 
+customer.passenger.form.button.delete = Borrar
+
 customer.passenger.list.title = Pasajeros
 customer.passenger.form.title = Pasajero
 

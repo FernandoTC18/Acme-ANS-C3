@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 import acme.client.repositories.AbstractRepository;
 import acme.entities.booking.Booking;
+import acme.entities.bookingRecord.BookingRecord;
 import acme.entities.passenger.Passenger;
 import acme.realms.Customer;
 
@@ -30,5 +31,8 @@ public interface CustomerBookingRecordRepository extends AbstractRepository {
 
 	@Query("select br.passenger from BookingRecord br where br.booking.id = :bookingId")
 	List<Passenger> findPassengersByBookingId(int bookingId);
+
+	@Query("select br from BookingRecord br where br.booking.id = :bookingId AND br.passenger.id = :passengerId")
+	BookingRecord findBookingRecordByPassengerAndBooking(int bookingId, int passengerId);
 
 }

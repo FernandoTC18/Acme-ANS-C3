@@ -10,6 +10,8 @@ customer.passenger.form.label.passportNumber = Passport Number
 customer.passenger.form.label.birth = Birth
 customer.passenger.form.label.specialNeeds = Especial needs
 customer.passenger.form.button.update = Update
+customer.passenger.form.button.delete = Delete
+customer.bookingRecord.list.button.delete = Remove a passenger from booking
 
 customer.passenger.list.button.addPassenger = Add a passenger
 customer.passenger.form.button.create = Create passenger

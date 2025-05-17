@@ -13,6 +13,7 @@ customer.booking.form.label.lastCardNibble = Last Card Nibble
 customer.booking.form.title = Booking form
 customer.booking.form.button.publish = Publish booking
 customer.booking.form.button.update = Update
+customer.booking.form.button.delete = Delete
 
 
 customer.booking.form.button.passengers = Show passengers

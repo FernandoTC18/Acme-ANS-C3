@@ -12,26 +12,30 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.booking.Booking;
 import acme.entities.booking.TravelClass;
+import acme.entities.bookingRecord.BookingRecord;
 import acme.entities.flight.Flight;
 import acme.realms.Customer;
 
 @GuiService
-public class CustomerBookingCreateService extends AbstractGuiService<Customer, Booking> {
-
-	// Internal state ---------------------------------------------------------
+public class CustomerBookingDeleteService extends AbstractGuiService<Customer, Booking> {
 
 	@Autowired
 	private CustomerBookingRepository repository;
 
-	// AbstractGuiService interface -------------------------------------------
-
 
 	@Override
 	public void authorise() {
-		boolean status = true;
+		boolean status;
 		boolean correctFlight = true;
+		int bookingId;
+		Booking booking;
+		Customer customer;
 
-		if (super.getRequest().hasData("id"))
+		bookingId = super.getRequest().getData("id", int.class);
+		booking = this.repository.findBookingById(bookingId);
+		customer = booking == null ? null : booking.getCustomer();
+
+		if (bookingId != 0 && super.getRequest().hasData("id"))
 			if (super.getRequest().hasData("flight")) {
 				int flightId = super.getRequest().getData("flight", int.class);
 				if (flightId != 0) {
@@ -39,7 +43,8 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 					correctFlight = flight != null && flight.getScheduledDeparture().after(MomentHelper.getCurrentMoment());
 				}
 			}
-		status = correctFlight;
+
+		status = super.getRequest().getPrincipal().hasRealm(customer) && booking != null && booking.getDraftMode() && correctFlight;
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -47,14 +52,10 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 	@Override
 	public void load() {
 		Booking booking;
+		int id;
 
-		booking = new Booking();
-		booking.setLocatorCode("");
-		booking.setPurchaseMoment(MomentHelper.getCurrentMoment());
-		booking.setTravelClass(null);
-		booking.setFlight(null);
-		booking.setLastCardNibble("");
-		booking.setDraftMode(true);
+		id = super.getRequest().getData("id", int.class);
+		booking = this.repository.findBookingById(id);
 
 		super.getBuffer().addData(booking);
 	}
@@ -85,7 +86,11 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 
 	@Override
 	public void perform(final Booking booking) {
-		this.repository.save(booking);
+		List<BookingRecord> bookingRecords;
+
+		bookingRecords = this.repository.findBookingRecordsByBookingId(booking.getId());
+		this.repository.deleteAll(bookingRecords);
+		this.repository.delete(booking);
 	}
 
 	@Override
@@ -105,7 +110,9 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 		dataset.put("travelClass", classes);
 		dataset.put("flight", flights.getSelected().getKey());
 		dataset.put("flights", flights);
+		dataset.put("readonly", !booking.getDraftMode());
 
 		super.getResponse().addData(dataset);
 	}
+
 }
