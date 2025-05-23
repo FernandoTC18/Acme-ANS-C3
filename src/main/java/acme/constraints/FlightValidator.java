@@ -37,7 +37,7 @@ public class FlightValidator extends AbstractValidator<ValidFlight, Flight> {
 
 		if (flight == null)
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
-		else {
+		else if (!flight.isDraftMode()) {
 			{
 				boolean notOverlapping;
 				List<Leg> legsByFlight;
@@ -59,7 +59,6 @@ public class FlightValidator extends AbstractValidator<ValidFlight, Flight> {
 				List<Leg> legsByFlight;
 
 				legsByFlight = this.flightRepository.computeLegsByFlight(flight.getId());
-				//legsByFlight.sort(Comparator.comparing(Leg::getScheduledDeparture));
 				int noMatchedAirports = 0;
 				for (int i = 0; i < legsByFlight.size() - 1; i++) {
 					String arriveIataCode = legsByFlight.get(i).getArrivalAirport().getIataCode();
@@ -74,5 +73,6 @@ public class FlightValidator extends AbstractValidator<ValidFlight, Flight> {
 		result = !super.hasErrors(context);
 
 		return result;
+
 	}
 }
