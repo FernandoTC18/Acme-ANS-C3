@@ -9,18 +9,30 @@ import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.involves.Involves;
+import acme.entities.maintenanceRecord.MaintenanceRecord;
+import acme.features.technician.maintenanceRecord.TechnicianMaintenanceRecordRepository;
 import acme.realms.Technician;
 
 @GuiService
 public class TechnicianInvolvesListService extends AbstractGuiService<Technician, Involves> {
 
 	@Autowired
-	TechnicianInvolvesRepository repository;
+	TechnicianInvolvesRepository			repository;
+
+	@Autowired
+	TechnicianMaintenanceRecordRepository	mRRepository;
 
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		Boolean status = false;
+		int maintenanceRecordId = super.getRequest().getData("maintenanceRecordId", int.class);
+		MaintenanceRecord mR = this.mRRepository.findMaintenanceRecordById(maintenanceRecordId);
+
+		if (mR != null && super.getRequest().getPrincipal().hasRealm(mR.getTechnician()))
+			status = true;
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -52,7 +64,6 @@ public class TechnicianInvolvesListService extends AbstractGuiService<Technician
 		dataset.put("priority", involves.getTask().getPriority());
 		dataset.put("estimatedDuration", involves.getTask().getEstimatedDuration());
 		dataset.put("technician", involves.getTask().getTechnician());
-		dataset.put("draftMode", involves.getTask().isDraftMode());
 
 		super.getResponse().addGlobal("maintenanceRecordId", maintenanceRecordId);
 

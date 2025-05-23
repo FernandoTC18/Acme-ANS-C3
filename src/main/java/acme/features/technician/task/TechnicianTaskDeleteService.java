@@ -6,17 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.task.Task;
-import acme.features.technician.involves.TechnicianInvolvesRepository;
 import acme.realms.Technician;
 
 @GuiService
 public class TechnicianTaskDeleteService extends AbstractGuiService<Technician, Task> {
 
 	@Autowired
-	private TechnicianTaskRepository		repository;
-
-	@Autowired
-	private TechnicianInvolvesRepository	involvesRepository;
+	private TechnicianTaskRepository repository;
 
 
 	@Override
@@ -48,7 +44,6 @@ public class TechnicianTaskDeleteService extends AbstractGuiService<Technician, 
 	@Override
 	public void bind(final Task task) {
 		super.bindObject(task);
-
 	}
 
 	@Override
