@@ -32,32 +32,40 @@ public class FlightCrewFlightAssignmentPublishService extends AbstractGuiService
 
 		//Checks if the correct member is accessing
 		boolean correctMember;
+		boolean draftMode;
 
 		assignmentId = super.getRequest().getData("id", int.class);
 		assignment = this.repository.findAssignmentbyId(assignmentId);
 		correctMember = assignment != null && assignment.getFlightCrewMember().getId() == super.getRequest().getPrincipal().getActiveRealm().getId();
+		draftMode = assignment.getDraftMode();
 
 		//If it is a hacking request, it can only contain the id in the dataset. This way i assure that a 401 code is returned instead of an AssertionError.
-		if (correctMember == true) {
-			//Checks if the leg is in the future and published
-			boolean correctLeg;
-			int legId;
+		if (correctMember) {
 
-			legId = super.getRequest().getData("leg", int.class);
-			leg = this.repository.findLegById(legId);
-			correctLeg = leg != null && MomentHelper.isFuture(leg.getScheduledDeparture());
+			if (super.getRequest().getMethod().equals("GET") && draftMode)
+				super.getResponse().setAuthorised(true);
+			else {
 
-			//Checks if the assignment is in draft mode
-			boolean draftMode;
+				if (draftMode == false) {
+					super.getResponse().setAuthorised(false);
+					return;
+				}
 
-			assignmentId = super.getRequest().getData("id", int.class);
-			assignment = this.repository.findAssignmentbyId(assignmentId);
-			draftMode = assignment.getDraftMode();
+				//Checks if the leg is in the future and published
+				boolean correctLeg;
+				int legId = super.getRequest().getData("leg", int.class);
 
-			status = correctMember && correctLeg && draftMode;
+				if (legId != 0) {
+					leg = this.repository.findLegById(legId);
+					correctLeg = leg != null && MomentHelper.isFuture(leg.getScheduledDeparture());
 
-			super.getResponse().setAuthorised(status);
+					status = correctLeg && draftMode;
 
+				} else
+					status = draftMode;
+
+				super.getResponse().setAuthorised(status);
+			}
 		} else
 			super.getResponse().setAuthorised(false);
 
@@ -112,7 +120,6 @@ public class FlightCrewFlightAssignmentPublishService extends AbstractGuiService
 
 	@Override
 	public void unbind(final FlightAssignment assignment) {
-		assert assignment != null;
 		Dataset dataset;
 		Collection<Leg> legs;
 
@@ -127,7 +134,7 @@ public class FlightCrewFlightAssignmentPublishService extends AbstractGuiService
 
 		dataset = super.unbindObject(assignment, "duty", "lastUpdate", "status", "remarks", "draftMode");
 
-		dataset.put("readonly", !assignment.getDraftMode());
+		dataset.put("lastUpdate", assignment.getLastUpdate());
 		dataset.put("leg", legChoices.getSelected().getKey());
 		dataset.put("legs", legChoices);
 		dataset.put("status", statusChoices);

@@ -38,7 +38,7 @@ public class FlightCrewLegShowService extends AbstractGuiService<FlightCrew, Leg
 		if (leg == null)
 			status = false;
 		else
-			status = legs.contains(leg) && id == leg.getId();
+			status = legs.contains(leg);
 
 		super.getResponse().setAuthorised(status);
 

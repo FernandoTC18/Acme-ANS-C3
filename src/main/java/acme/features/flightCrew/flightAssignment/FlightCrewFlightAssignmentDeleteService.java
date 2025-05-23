@@ -1,10 +1,16 @@
 
 package acme.features.flightCrew.flightAssignment;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
+import acme.client.components.models.Dataset;
+import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.entities.flightAssignment.AssignmentStatus;
+import acme.entities.flightAssignment.Duty;
 import acme.entities.flightAssignment.FlightAssignment;
 import acme.entities.leg.Leg;
 import acme.realms.FlightCrew;
@@ -22,28 +28,18 @@ public class FlightCrewFlightAssignmentDeleteService extends AbstractGuiService<
 		FlightAssignment assignment;
 		boolean status;
 
-		//Checks if the correct member is accessing
+		//Checks if the correct member is accessing and if it is in draft mode
 		boolean correctMember;
+		boolean draftMode;
 
 		assignmentId = super.getRequest().getData("id", int.class);
 		assignment = this.repository.findAssignmentbyId(assignmentId);
 		correctMember = assignment != null && assignment.getFlightCrewMember().getId() == super.getRequest().getPrincipal().getActiveRealm().getId();
+		draftMode = assignment.getDraftMode();
 
-		//If it is a hacking request, it can only contain the id in the dataset. This way i assure that a 401 code is returned instead of an AssertionError.
-		if (correctMember == true) {
-			//Checks if the assignment is in draft mode
-			boolean draftMode;
+		status = correctMember && draftMode;
 
-			assignmentId = super.getRequest().getData("id", int.class);
-			assignment = this.repository.findAssignmentbyId(assignmentId);
-			draftMode = assignment.getDraftMode();
-
-			status = correctMember && draftMode;
-
-			super.getResponse().setAuthorised(status);
-
-		} else
-			super.getResponse().setAuthorised(false);
+		super.getResponse().setAuthorised(status);
 
 	}
 
@@ -89,27 +85,26 @@ public class FlightCrewFlightAssignmentDeleteService extends AbstractGuiService<
 
 	@Override
 	public void unbind(final FlightAssignment assignment) {
-		//		assert assignment != null;
-		//		Dataset dataset;
-		//		Collection<Leg> legs;
-		//		SelectChoices legChoices;
-		//		SelectChoices statusChoices;
-		//		SelectChoices dutyChoices;
-		//
-		//		legs = this.repository.findAllLegs();
-		//		legChoices = SelectChoices.from(legs, "flightNumber", assignment.getLeg());
-		//		statusChoices = SelectChoices.from(AssignmentStatus.class, assignment.getStatus());
-		//		dutyChoices = SelectChoices.from(Duty.class, assignment.getDuty());
-		//
-		//		dataset = super.unbindObject(assignment, "duty", "lastUpdate", "status", "remarks", "draftMode");
-		//		dataset.put("readonly", !assignment.getDraftMode());
-		//		dataset.put("leg", legChoices.getSelected().getKey());
-		//		dataset.put("legs", legChoices);
-		//		dataset.put("status", statusChoices);
-		//		dataset.put("duty", dutyChoices);
-		//		dataset.put("flightCrewMember", assignment.getFlightCrewMember().getEmployeeCode());
-		//
-		//		super.getResponse().addData(dataset);
+		Dataset dataset;
+		Collection<Leg> legs;
+		SelectChoices legChoices;
+		SelectChoices statusChoices;
+		SelectChoices dutyChoices;
+
+		legs = this.repository.findAllLegs();
+		legChoices = SelectChoices.from(legs, "flightNumber", assignment.getLeg());
+		statusChoices = SelectChoices.from(AssignmentStatus.class, assignment.getStatus());
+		dutyChoices = SelectChoices.from(Duty.class, assignment.getDuty());
+
+		dataset = super.unbindObject(assignment, "duty", "lastUpdate", "status", "remarks", "draftMode");
+		dataset.put("lastUpdate", assignment.getLastUpdate());
+		dataset.put("leg", legChoices.getSelected().getKey());
+		dataset.put("legs", legChoices);
+		dataset.put("status", statusChoices);
+		dataset.put("duty", dutyChoices);
+		dataset.put("flightCrewMember", assignment.getFlightCrewMember().getEmployeeCode());
+
+		super.getResponse().addData(dataset);
 
 	}
 
