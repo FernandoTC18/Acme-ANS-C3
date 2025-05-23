@@ -5,6 +5,8 @@ acme.validation.flight.overlapped.message  = The legs of a flight cannot be over
 acme.validation.flight.noLegs.message = A flight must have a minimum of 1 leg
 acme.validation.flight.noPublishedLegs.message = To publish a flight, its legs must be previously published
 acme.validation.flight.matchAirports.message = The airports of the legs of a flight must be linked together
+acme.validation.flight.noPublishedLegs.message = A flight with one or more published legs can´t be deleted
+acme.validation.flight.noPublishedBookings.message = A flight with one or more published bookings can´t be deleted
 
 # Leg Validation
 acme.validation.leg.correctFlightNumberPattern.message = The flight number does not have a valid format,Ex: ZZZ9999,AAAA0000
@@ -17,6 +19,8 @@ acme.validation.leg.departureArrivalAirportsDistinct.message = the departure air
 acme.validation.leg.noAvailableAircraft.message = The selected aircraft is already occupied between the dates of the flight
 acme.validation.leg.noAircraftInMaintenance.message = The selected aircraft is under maintenance
 acme.validation.leg.matchAirports.message = The airports of the legs of a flight must be linked together
+acme.validation.leg.noPublishedClaims.message = A leg with one or more published claims can´t be deleted
+acme.validation.flight.noPublishedFlightAssignments.message = A leg with one or more published flight assignments can´t be deleted
 
 # Manager Validation
 acme.validation.manager.identifierNumberFormat.message = The identifier number is not in the correct format,Ex: MM0001, MMM9999
