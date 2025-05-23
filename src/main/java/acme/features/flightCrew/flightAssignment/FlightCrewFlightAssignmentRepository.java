@@ -45,6 +45,12 @@ public interface FlightCrewFlightAssignmentRepository extends AbstractRepository
 	@Query("select f from FlightCrew f where f.id = :id")
 	FlightCrew findCrewById(int id);
 	
+	@Query("select l from Leg l where l.id = :id")
+	Leg findLegById(int id);
+	
+	@Query("select l from Leg l where l.scheduledArrival > :date and l.draftMode = false")
+	Collection<Leg> findFutureAndPublishedLegs(Date date);
+	
 	
 	
 

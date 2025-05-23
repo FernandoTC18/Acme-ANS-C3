@@ -12,9 +12,9 @@
 	<jstl:if test="${!readonly}">
 			<jstl:choose>
 				<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish')}">
-					<acme:submit code="flight-crew.log.form.submit.update" action="/flight-crew/activity-log/update"/>
-					<acme:submit code="flight-crew.log.form.submit.delete" action="/flight-crew/activity-log/delete"/>
-					<acme:submit code="flight-crew.log.form.submit.publish" action="/flight-crew/activity-log/publish"/>
+					<acme:submit code="flight-crew.log.form.submit.update" action="/flight-crew/activity-log/update?id=${id}"/>
+					<acme:submit code="flight-crew.log.form.submit.delete" action="/flight-crew/activity-log/delete?id=${id}"/>
+					<acme:submit code="flight-crew.log.form.submit.publish" action="/flight-crew/activity-log/publish?id=${id}"/>
 				</jstl:when>
 				<jstl:when test="${_command == 'create'}">
 					<acme:submit code="flight-crew.log.form.submit.create" action="/flight-crew/activity-log/create?assignmentId=${assignmentId}"/>

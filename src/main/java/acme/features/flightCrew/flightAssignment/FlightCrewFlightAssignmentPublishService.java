@@ -25,17 +25,46 @@ public class FlightCrewFlightAssignmentPublishService extends AbstractGuiService
 
 	@Override
 	public void authorise() {
-		boolean status;
+		Leg leg;
 		int assignmentId;
-		FlightCrew member;
 		FlightAssignment assignment;
+		boolean status;
+	
+
+		//Checks if the correct member is accessing
+		boolean correctMember;
 		
 		assignmentId = super.getRequest().getData("id", int.class);
 		assignment = this.repository.findAssignmentbyId(assignmentId);
-		member = assignment == null ? null : assignment.getFlightCrewMember();
-		status = super.getRequest().getPrincipal().hasRealm(member) && assignment != null && assignment.getDraftMode();
+		correctMember = assignment == null ? null : assignment.getFlightCrewMember().getId() == super.getRequest().getPrincipal().getActiveRealm().getId();
 		
-		super.getResponse().setAuthorised(status);
+		//If it is a hacking request, it can only contain the id in the dataset. This way i assure that a 401 code is returned instead of an AssertionError.
+		if (correctMember == true) {
+			//Checks if the leg is in the future and published
+			boolean correctLeg;
+			int legId;
+			
+			legId = super.getRequest().getData("leg", int.class);
+			leg = this.repository.findLegById(legId);
+			correctLeg = leg == null ? null : MomentHelper.isFuture(leg.getScheduledDeparture()) && !leg.isDraftMode();
+			
+			//Checks if the assignment is in draft mode
+			boolean draftMode;
+			
+			assignmentId = super.getRequest().getData("id", int.class);
+			assignment = this.repository.findAssignmentbyId(assignmentId);
+			draftMode = assignment.getDraftMode();
+			
+			
+			status = correctMember && correctLeg && draftMode;
+			
+			super.getResponse().setAuthorised(status);
+			
+		} else {
+			super.getResponse().setAuthorised(false);
+		}
+		
+		
 	}
 
 	@Override
@@ -52,19 +81,27 @@ public class FlightCrewFlightAssignmentPublishService extends AbstractGuiService
 
 	@Override
 	public void bind(final FlightAssignment assignment) {
-		super.bindObject(assignment, "duty", "lastUpdate", "status", "remarks", "leg", "flightCrewMember");
-		System.out.println(assignment);
+		int legId;
+		String employeeCode;
+		Leg leg;
+		FlightCrew member;
+		
+		legId = super.getRequest().getData("leg", int.class);
+		employeeCode = super.getRequest().getData("flightCrewMember", String.class);
+		
+		leg = this.repository.findLegById(legId);
+		member = this.repository.findFlightCrewByCode(employeeCode);
+		
+		assignment.setFlightCrewMember(member);
+		assignment.setLeg(leg);
+		
+		super.bindObject(assignment, "duty", "lastUpdate", "status", "remarks");
+		
 	}
 
 	@Override
 	public void validate(final FlightAssignment assignment) {
-		int id;
-		FlightAssignment flightAssignment;
-		
-		id = super.getRequest().getData("id", int.class);
-		flightAssignment = this.repository.findAssignmentbyId(id);
-		
-		super.state(MomentHelper.isAfter(flightAssignment.getLeg().getScheduledArrival(), MomentHelper.getCurrentMoment()), "draftMode", "acme-validation-assignment-published");
+		;
 	}
 
 	@Override
@@ -79,27 +116,26 @@ public class FlightCrewFlightAssignmentPublishService extends AbstractGuiService
 		assert assignment != null;
 		Dataset dataset;
 		Collection<Leg> legs;
-		Collection<FlightCrew> members;
+		
 		SelectChoices legChoices;
 		SelectChoices statusChoices;
 		SelectChoices dutyChoices;
-		SelectChoices memberChoices;
+		
 
 		legs = this.repository.findAllLegs();
-		members = this.repository.findAllMembers();
 		legChoices = SelectChoices.from(legs, "flightNumber", assignment.getLeg());
 		statusChoices = SelectChoices.from(AssignmentStatus.class, assignment.getStatus());
 		dutyChoices = SelectChoices.from(Duty.class, assignment.getDuty());
-		memberChoices = SelectChoices.from(members, "employeeCode", assignment.getFlightCrewMember());
+		
 
-		dataset = super.unbindObject(assignment, "duty", "lastUpdate", "status", "remarks", "leg", "flightCrewMember", "draftMode");
+		dataset = super.unbindObject(assignment, "duty", "lastUpdate", "status", "remarks", "draftMode");
 		
 		dataset.put("readonly", !assignment.getDraftMode());
 		dataset.put("leg", legChoices.getSelected().getKey());
 		dataset.put("legs", legChoices);
 		dataset.put("status", statusChoices);
 		dataset.put("duty", dutyChoices);
-		dataset.put("flightCrewMember", memberChoices);
+		dataset.put("flightCrewMember", assignment.getFlightCrewMember().getEmployeeCode());
 
 		super.getResponse().addData(dataset);
 

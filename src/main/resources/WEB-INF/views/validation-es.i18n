@@ -1,24 +1,27 @@
 # validation-es.i18n
 
 # Flight Validation
-acme.validation.flight.correctMinScheduleDeparture.message = La salida programada debe ser como mínimo en el momento actual
-acme.validation.flight.correctMinScheduleArrival.message = La llegada programada debe ser como mínimo un minuto después de la salida programada
 acme.validation.flight.overlapped.message = No se pueden solapar los tramos de un vuelo
 acme.validation.flight.noLegs.message = Un vuelo debe tener como mínimo 1 tramo
 acme.validation.flight.noPublishedLegs.message = Para publicar un vuelo sus tramos deben ser publicados anteriormente
+acme.validation.flight.matchAirports = Los aeropuertos de los tramos de un vuelo deben concadenarse
 
 # Leg Validation
-acme.validation.leg.correctFlightNumber.message = El código iata del tramo debe existir en la base de datos
+acme.validation.leg.correctFlightNumberIataCode.message = El código iata del tramo debe coincidir con el de la aerolínea
+acme.validation.leg.flightNumberNotInDb.message = El número de vuelo debe ser único
 acme.validation.leg.correctMinScheduleDeparture.message = La salida programada debe ser como mínimo en el momento actual
 acme.validation.leg.correctMinScheduleArrival.message = La llegada programada debe ser como mínimo un minuto después de la salida programada
-acme.validation.leg.correctFlightNumberPattern.message = El número de vuelo no tiene un formato válido.
+acme.validation.leg.correctFlightNumberPattern.message = El número de vuelo no tiene un formato,Ex: ZZZ9999,AAAA0000
 acme.validation.leg.overlapped.message = No se pueden solapar los tramos de un vuelo
-acme.validation.leg.realDepartureAirport.message = el aeropuerto de salida no existe
-acme.validation.leg.realArrivalAirport.message = el aeropuerto de llegada no existe
-acme.validation.leg.realPlane.message = el avión no existe
+acme.validation.leg.departureArrivalAirportsDistinct.message = El aeropuerto de salida no puede ser el de entrada
+acme.validation.leg.noAvailableAircraft.message = El avión seleccionado ya está ocupado emtre las fechas del vuelo
+acme.validation.leg.noAircraftInMaintenance.message = El avión seleccionado se encuentra en mantenimiento 
+acme.validation.leg.matchAirports.message = Los aeropuertos de los tramos de un vuelo deben concadenarse
 
 # Manager Validation
 acme.validation.manager.identifierNumber.message = Las 2/3 primeras letras del identificador deben corresponderse con las iniciales del manager
+acme.validation.manager.identifierNumberDB.message = El número identificador no es único
+acme.validation.manager.identifierNumberFormat.message = El número identificador no tiene el formato correcto,Ej: MM0001, MMM9999
 
 # FlightAssigment Validation
 acme.validation.flightassignment.lastupdate.message = La ultima actualización de una asignación de vuelo debe ser previa a la fecha actual.
@@ -43,14 +46,15 @@ acme.validation.assistanceAgent.unique-assistance-agent.message = El código de 
 acme.validation.assistanceAgent.invalid-employee-code.message = El código de empleado debe comenzar con la primera letra del nombre seguida de la primera letra del primer apellido.
 
 #Claim Validation
-acme.validation.leg-time.message = Los reclamos deben estar vinculados a tramos que han ocurrido.
-acme.validation.performPublishedClaim.message = Solo pueden ser actualizados o eliminados reclamos sin publicar.
-acme.validation.updatePublishedClaim.message = Solo pueden ser actualizados reclamos sin publicar.
+acme.validation.leg-time.message = Los reclamos deben estar vinculados a tramos que han ocurrido
 
 # TrackingLog Validation
-acme.validation.trackingLog.incorrect-indicator.message = El indicador debe ser ACCEPTED o REJECTED cuando el porcentaje de resolución sea 100%, y PENDING cuando sea inferior a 100%.
-acme.validation.trackingLog.invalid-resolution-percentage.message = El porcentaje de resolución debe ser superior al valor máximo registrado anteriormente.
-acme.validation.trackingLog.mandatory-resolution.message = El campo resolución es obligatorio cuando el estado de la reclamación es ACCEPTED o PENDING.
+acme.validation.trackingLog.incorrect-indicator.message = El indicador debe ser ACCEPTED o REJECTED cuando el porcentaje de resolución sea 100%, y PENDING cuando sea inferior a 100%
+acme.validation.trackingLog.invalid-resolution-percentage.message = El porcentaje de resolución debe ser superior al valor máximo registrado anteriormente
+acme.validation.trackingLog.mandatory-resolution.message = El campo resolución es obligatorio cuando el estado de la reclamación es ACCEPTED o PENDING
+acme.validation.trackingLog.invalid-number-completed-logs.message = Ya existe un registro de seguimiento con un porcentaje de resolución del 100 %. Por favor, publíquelo antes de crear uno nuevo
+acme.validation.trackingLog.invalid-number-completed-published-logs.message = Solo se puede crear un nuevo registro de seguimiento después de que se haya publicado un registro con un porcentaje de resolución del 100%
+acme.validation.trackingLog.claim-not-published.message = Un registro de seguimiento no puede publicarse hasta que su reclamación correspondiente esté publicada
 
 # Technician Validation
 acme.validation.technician.invalid-licenseNumber.message = El campo "licenseNumber" no cumple con el patrón "^[A-Z]{2,3}\\d{6}$" o es nulo.
@@ -62,10 +66,6 @@ acme.validation.aircraft.used-registrationNumber.message = El número de registr
 # Airline Validation
 acme.validation.airline.invalid-iataCode.message = El código IATa no existe o no sigue el patrón ‘^[A-Z]{2,3}’.
 acme.validation.airline.uniqueIataCode.message = Este código IATA ya pertenece a una aerolínea. Por favor, intente con otro nuevo.
-
-# Manager Validation
-acme.validation.manager.identifierNumberFormat.message = El número identificador no tiene el formato correcto.
-acme.validation.manager.identifierNumberDB.message = El número identificador no es único.
 
 # Airport Validation
 acme.validation.airport.invalid-iataCode.message = Código Iata inválido

@@ -2,22 +2,22 @@ key,lastUpdateMoment,step,resolutionPercentage,indicator,resolution,orderDate,dr
 # base entity
 trackingLog-00,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",50.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:00,true,claim-00
 # lastUpdateMoment - standard variations
-trackingLog-01,2000/01/01 00:00,"Lorem ipsum dolor sit amet, consectetur",50.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:00,true,claim-00
-trackingLog-02,2000/01/01 00:01,"Lorem ipsum dolor sit amet, consectetur",50.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:00,true,claim-00
-trackingLog-03,2024/12/31 23:59,"Lorem ipsum dolor sit amet, consectetur",50.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:00,true,claim-00
-trackingLog-04,2025/01/01 00:00,"Lorem ipsum dolor sit amet, consectetur",50.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:00,true,claim-00
+trackingLog-01,2000/01/01 00:00,"Lorem ipsum dolor sit amet, consectetur",51.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:00,true,claim-00
+trackingLog-02,2000/01/01 00:01,"Lorem ipsum dolor sit amet, consectetur",52.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:00,true,claim-00
+trackingLog-03,2024/12/31 23:59,"Lorem ipsum dolor sit amet, consectetur",53.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:00,true,claim-00
+trackingLog-04,2025/01/01 00:00,"Lorem ipsum dolor sit amet, consectetur",54.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:00,true,claim-00
 # lastUpdateMoment - no singular values
 # step - standard variations
-trackingLog-05,2012/07/02 00:00,L,50.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:00,true,claim-00
-trackingLog-06,2012/07/02 00:00,Lo,50.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:00,true,claim-00
-trackingLog-07,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur adipiscin",50.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:00,true,claim-00
-trackingLog-08,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur adipiscing",50.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:00,true,claim-00
-trackingLog-09,2012/07/02 00:00,โลเร็ม อิปซัม,50.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:00,true,claim-00
-trackingLog-10,2012/07/02 00:00,لوريم إيبسوم,50.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:00,true,claim-00
-trackingLog-11,2012/07/02 00:00,洛伦·伊普森,50.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:00,true,claim-00
-trackingLog-12,2012/07/02 00:00,<marquee>Hacked</marquee>,50.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:00,true,claim-00
-trackingLog-13,2012/07/02 00:00,<script>alert('Hacked!');</script>,50.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:00,true,claim-00
-trackingLog-14,2012/07/02 00:00,' or 'A' = 'A,50.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:00,true,claim-00
+trackingLog-05,2012/07/02 00:00,L,55.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:00,true,claim-00
+trackingLog-06,2012/07/02 00:00,Lo,56.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:00,true,claim-00
+trackingLog-07,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur adipiscin",57.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:00,true,claim-00
+trackingLog-08,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur adipiscing",58.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:00,true,claim-00
+trackingLog-09,2012/07/02 00:00,โลเร็ม อิปซัม,59.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:00,true,claim-00
+trackingLog-10,2012/07/02 00:00,لوريم إيبسوم,60.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:00,true,claim-00
+trackingLog-11,2012/07/02 00:00,洛伦·伊普森,61.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:00,true,claim-00
+trackingLog-12,2012/07/02 00:00,<marquee>Hacked</marquee>,62.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:00,true,claim-00
+trackingLog-13,2012/07/02 00:00,<script>alert('Hacked!');</script>,63.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:00,true,claim-00
+trackingLog-14,2012/07/02 00:00,' or 'A' = 'A,64.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:00,true,claim-00
 # step - no singular values
 # resolutionPercentage - standard variations
 trackingLog-15,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",0.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:00,true,claim-01
@@ -28,21 +28,21 @@ trackingLog-19,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",99.99,
 trackingLog-20,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",100.00,ACCEPTED,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:00,true,claim-01
 # resolutionPercentage - no singular values
 # indicator - standard variations
-trackingLog-21,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",100.00,ACCEPTED,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:00,true,claim-01
-trackingLog-22,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",100.00,REJECTED,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:00,true,claim-01
+trackingLog-21,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",100.00,ACCEPTED,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:00,true,claim-03
+trackingLog-22,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",100.00,REJECTED,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:00,true,claim-04
 # indicator - no singular values
 # resolution - standard variations
-trackingLog-23,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",50.00,PENDING,L,2012/07/02 00:00,true,claim-00
-trackingLog-24,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",50.00,PENDING,Lo,2012/07/02 00:00,true,claim-00
-trackingLog-25,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",50.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",2012/07/02 00:00,true,claim-00
-trackingLog-26,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",50.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor.",2012/07/02 00:00,true,claim-00
-trackingLog-27,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",50.00,PENDING,โลเร็ม อิปซัม,2012/07/02 00:00,true,claim-00
-trackingLog-28,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",50.00,PENDING,لوريم إيبسوم,2012/07/02 00:00,true,claim-00
-trackingLog-29,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",50.00,PENDING,洛伦·伊普森,2012/07/02 00:00,true,claim-00
-trackingLog-30,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",50.00,PENDING,<marquee>Hacked</marquee>,2012/07/02 00:00,true,claim-00
-trackingLog-31,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",50.00,PENDING,<script>alert('Hacked!');</script>,2012/07/02 00:00,true,claim-00
-trackingLog-32,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",50.00,PENDING,' or 'A' = 'A,2012/07/02 00:00,true,claim-00
-trackingLog-33,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",50.00,PENDING,"",2012/07/02 00:00,true,claim-00
+trackingLog-23,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",65.00,PENDING,L,2012/07/02 00:00,true,claim-00
+trackingLog-24,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",66.00,PENDING,Lo,2012/07/02 00:00,true,claim-00
+trackingLog-25,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",67.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",2012/07/02 00:00,true,claim-00
+trackingLog-26,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",68.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor.",2012/07/02 00:00,true,claim-00
+trackingLog-27,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",69.00,PENDING,โลเร็ม อิปซัม,2012/07/02 00:00,true,claim-00
+trackingLog-28,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",70.00,PENDING,لوريم إيبسوم,2012/07/02 00:00,true,claim-00
+trackingLog-29,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",71.00,PENDING,洛伦·伊普森,2012/07/02 00:00,true,claim-00
+trackingLog-30,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",72.00,PENDING,<marquee>Hacked</marquee>,2012/07/02 00:00,true,claim-00
+trackingLog-31,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",73.00,PENDING,<script>alert('Hacked!');</script>,2012/07/02 00:00,true,claim-00
+trackingLog-32,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",74.00,PENDING,' or 'A' = 'A,2012/07/02 00:00,true,claim-00
+trackingLog-33,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",75.00,PENDING,"",2012/07/02 00:00,true,claim-00
 # resolution - no singular values
 # claim - standard variations
 trackingLog-34,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",50.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:00,true,claim-02

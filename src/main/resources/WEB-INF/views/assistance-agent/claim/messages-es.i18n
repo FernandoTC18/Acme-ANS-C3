@@ -1,5 +1,5 @@
 # List
-assistance-agent.claim.list.title = Listado de reclamos
+assistance-agent.claim.list.title = Listado de reclamaciones
 assistance-agent.claim.list.label.registrationMoment = Momento de Registro
 assistance-agent.claim.list.label.passengerEmail= Correo del Pasajero
 assistance-agent.claim.list.label.description = Descripción
@@ -9,20 +9,14 @@ assistance-agent.claim.list.label.leg = Tramo
 assistance-agent.claim.list.label.draftMode = Borrador
 assistance-agent.claim.list.button.create = Crear
 
-
 # Form
-assistance-agent.claim.form.title = Detalles del reclamo
+assistance-agent.claim.form.title = Detalles de la reclamación
 assistance-agent.claim.form.label.registrationMoment = Momento de Registro
 assistance-agent.claim.form.label.passengerEmail= Correo del Pasajero
 assistance-agent.claim.form.label.description = Descripción
 assistance-agent.claim.form.label.type = Tipo
 assistance-agent.claim.form.label.indicator = Indicador
-assistance-agent.claim.form.label.leg = Tramo
-assistance-agent.claim.form.label.draftMode = Borrador
-assistance-agent.claim.form.submit.create = Crear
-assistance-agent.claim.form.submit.publish = Publicar
-assistance-agent.claim.form.submit.update = Actualizar
-assistance-agent.claim.form.submit.delete = Delete
+assistance-agent.claim.form.label.leg = Tramo de Vuelo
 assistance-agent.claim.form.button.create = Crear
 assistance-agent.claim.form.button.publish = Publicar
 assistance-agent.claim.form.button.update = Actualizar

@@ -1,10 +1,8 @@
 
 package acme.features.flightCrew.flightAssignment;
 
-import java.sql.Timestamp;
+
 import java.util.Collection;
-import java.util.Date;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -18,7 +16,6 @@ import acme.entities.flightAssignment.Duty;
 import acme.entities.flightAssignment.FlightAssignment;
 import acme.entities.leg.Leg;
 import acme.realms.FlightCrew;
-import acme.realms.FlightCrewAvailability;
 
 @GuiService
 public class FlightCrewFlightAssignmentUpdateService extends AbstractGuiService<FlightCrew, FlightAssignment> {
@@ -29,17 +26,48 @@ public class FlightCrewFlightAssignmentUpdateService extends AbstractGuiService<
 
 	@Override
 	public void authorise() {
-		boolean status;
+		Leg leg;
 		int assignmentId;
-		FlightCrew member;
 		FlightAssignment assignment;
-		
+		boolean status;
+	
+
+		//Checks if the correct member is accessing	
+		boolean correctMember;
 		assignmentId = super.getRequest().getData("id", int.class);
 		assignment = this.repository.findAssignmentbyId(assignmentId);
-		member = assignment == null ? null : assignment.getFlightCrewMember();
-		status = super.getRequest().getPrincipal().hasRealm(member) && assignment != null && assignment.getDraftMode();
+		correctMember = assignment == null ? null : assignment.getFlightCrewMember().getId() == super.getRequest().getPrincipal().getActiveRealm().getId();
 		
-		super.getResponse().setAuthorised(status);
+		
+		
+		//If it is a hacking request, it can only contain the id in the dataset. This way i assure that a 401 code is returned instead of an AssertionError.
+		if (correctMember == true) { 
+			
+			//Checks if the leg is in the future and published
+			boolean correctLeg;
+			int legId;
+			
+			legId = super.getRequest().getData("leg", int.class);
+			leg = this.repository.findLegById(legId);
+			correctLeg = leg == null ? null : MomentHelper.isFuture(leg.getScheduledDeparture()) && !leg.isDraftMode();
+			
+			//Checks if the assignment it's in draft mode
+			boolean draftMode;
+			
+
+			draftMode = assignment.getDraftMode();
+			
+			
+			status = correctMember && correctLeg && draftMode;
+			
+			super.getResponse().setAuthorised(status);
+			
+		} else {
+			super.getResponse().setAuthorised(false);
+		}
+		
+		
+
 	}
 
 	@Override
@@ -56,34 +84,20 @@ public class FlightCrewFlightAssignmentUpdateService extends AbstractGuiService<
 
 	@Override
 	public void bind(final FlightAssignment assignment) {
-		super.bindObject(assignment, "duty", "lastUpdate", "status", "remarks", "leg", "flightCrewMember", "draftMode");
+		int legId;
+		Leg leg;
+		
+		legId = super.getRequest().getData("leg", int.class);
+		leg = this.repository.findLegById(legId);
+		
+		assignment.setLeg(leg);
+		super.bindObject(assignment, "duty", "status", "remarks");
 		
 	}
 
 	@Override
 	public void validate(final FlightAssignment assignment) {
-
-		FlightCrew member;
-		Collection<Leg> legs;
-		Long pilotNumber;
-		Long copilotNumber;
-		
-		member = super.getRequest().getData("flightCrewMember", FlightCrew.class);
-		super.state(member.getAvailability() == FlightCrewAvailability.AVAILABLE, "flightCrewMember", "acme.validation.unavailable-crew-member.message");
-
-		Date currentMoment = MomentHelper.getCurrentMoment();
-		Timestamp moment = Timestamp.from(currentMoment.toInstant());
-		legs = this.repository.getLegsByMemberId(moment, member.getId());
-		super.state(legs.isEmpty(), "leg", "acme.validation.assigned-leg.message");
-
-		pilotNumber = this.repository.countMembersByDuty(member.getId(), Optional.of(Duty.PILOT));
-		copilotNumber = this.repository.countMembersByDuty(member.getId(), Optional.of(Duty.COPILOT));
-
-		if (assignment.getDuty() == Duty.PILOT)
-			super.state(pilotNumber < 1, "flightCrewMember", "acme.validation.number-of-pilot.message");
-
-		if (assignment.getDuty() == Duty.COPILOT)
-			super.state(copilotNumber < 1, "flightCrewMember", "acme.validation.number-of-copilot.message");
+		;
 	}
 
 	@Override
@@ -97,27 +111,32 @@ public class FlightCrewFlightAssignmentUpdateService extends AbstractGuiService<
 		assert assignment != null;
 		Dataset dataset;
 		Collection<Leg> legs;
-		Collection<FlightCrew> members;
+
+
 		SelectChoices legChoices;
 		SelectChoices statusChoices;
 		SelectChoices dutyChoices;
-		SelectChoices memberChoices;
+
+
 
 		legs = this.repository.findAllLegs();
-		members = this.repository.findAllMembers();
 		legChoices = SelectChoices.from(legs, "flightNumber", assignment.getLeg());
 		statusChoices = SelectChoices.from(AssignmentStatus.class, assignment.getStatus());
 		dutyChoices = SelectChoices.from(Duty.class, assignment.getDuty());
-		memberChoices = SelectChoices.from(members, "employeeCode", assignment.getFlightCrewMember());
 
-		dataset = super.unbindObject(assignment, "duty", "lastUpdate", "status", "remarks", "leg", "flightCrewMember", "draftMode");
 		
+
+		dataset = super.unbindObject(assignment, "duty", "status", "remarks", "draftMode");
+		
+		dataset.put("id", assignment.getId());
 		dataset.put("readonly", !assignment.getDraftMode());
 		dataset.put("leg", legChoices.getSelected().getKey());
 		dataset.put("legs", legChoices);
 		dataset.put("status", statusChoices);
 		dataset.put("duty", dutyChoices);
-		dataset.put("flightCrewMember", memberChoices);
+		dataset.put("flightCrewMember", assignment.getFlightCrewMember().getEmployeeCode());
+
+
 
 		super.getResponse().addData(dataset);
 

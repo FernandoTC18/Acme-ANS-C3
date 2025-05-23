@@ -8,6 +8,7 @@ import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.activitylog.ActivityLog;
+import acme.entities.flightAssignment.FlightAssignment;
 import acme.realms.FlightCrew;
 
 @GuiService
@@ -19,7 +20,20 @@ public class FlightCrewActivityLogListService extends AbstractGuiService<FlightC
 
 	@Override
     public void authorise() {
-        super.getResponse().setAuthorised(super.getRequest().getPrincipal().hasRealmOfType(FlightCrew.class));
+        int assignmentId;
+        FlightAssignment assignment;
+        FlightCrew member;
+        boolean status;
+        
+        boolean correctMember;
+        assignmentId = super.getRequest().getData("id", int.class);
+        assignment = this.repository.getAssignmentById(assignmentId);
+        member = assignment == null ? null : assignment.getFlightCrewMember();
+        correctMember = super.getRequest().getPrincipal().hasRealm(member);
+        
+        status = correctMember;
+        
+        super.getResponse().setAuthorised(status);
     }
 
     @Override
