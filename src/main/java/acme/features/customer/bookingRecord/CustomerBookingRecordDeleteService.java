@@ -81,6 +81,8 @@ public class CustomerBookingRecordDeleteService extends AbstractGuiService<Custo
 
 	@Override
 	public void validate(final BookingRecord bookingRecord) {
+		boolean hasAPassenger = bookingRecord.getPassenger() != null;
+		super.state(hasAPassenger, "passenger", "acme.validation.not-has-passenger-selected.message");
 		;
 	}
 

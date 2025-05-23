@@ -4,7 +4,6 @@ package acme.features.customer.bookingRecord;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 import acme.client.repositories.AbstractRepository;
 import acme.entities.booking.Booking;
@@ -16,9 +15,6 @@ public interface CustomerBookingRecordRepository extends AbstractRepository {
 
 	@Query("select b from Booking b where b.id = :bookingId")
 	Booking findBookingById(int bookingId);
-
-	@Query("select b from Booking b where b.locatorCode = :locatorCode")
-	Booking findBookingByLocatorCode(@Param("locatorCode") String locatorCode);
 
 	@Query("select c from Customer c where c.id = :customerId")
 	Customer findCustomerById(int customerId);
