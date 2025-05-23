@@ -35,9 +35,12 @@ public class ManagerLegShowService extends AbstractGuiService<Manager, Leg> {
 
 		legId = super.getRequest().getData("id", int.class);
 		leg = this.repository.findLegById(legId);
-		flight = leg.getFlight();
-		status = flight != null && flight.isDraftMode() || super.getRequest().getPrincipal().hasRealm(flight.getManager());
 
+		if (leg != null) {
+			flight = leg.getFlight();
+			status = flight != null && flight.isDraftMode() || super.getRequest().getPrincipal().hasRealm(flight.getManager());
+		} else
+			status = false;
 		super.getResponse().setAuthorised(status);
 	}
 

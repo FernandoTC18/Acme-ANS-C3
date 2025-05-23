@@ -1,16 +1,12 @@
 
 package acme.features.managers.leg;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Comparator;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
-import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
@@ -123,44 +119,6 @@ public class ManagerLegUpdateService extends AbstractGuiService<Manager, Leg> {
 
 	@Override
 	public void validate(final Leg leg) {
-
-		{
-			boolean isValid;
-			List<Leg> legs = new ArrayList<>(this.repository.findDistinctLegsByFlightId(leg.getFlight().getId(), leg.getId()));
-
-			int overlappedLegs = 0;
-			if (leg.getScheduledArrival() != null && leg.getScheduledDeparture() != null)
-
-				for (Leg otherLeg : legs)
-					if (MomentHelper.isAfter(otherLeg.getScheduledArrival(), leg.getScheduledDeparture()) && MomentHelper.isBefore(otherLeg.getScheduledDeparture(), leg.getScheduledArrival())) {
-						overlappedLegs += 1;
-						break;
-					}
-
-			isValid = overlappedLegs == 0;
-			super.state(isValid, "*", "acme.validation.flight.overlapped.message");
-		}
-		{
-			if (leg.getArrivalAirport() != null && leg.getDepartureAirport() != null) {
-				boolean correctAirportMatches;
-				List<Leg> legs = new ArrayList<>(this.repository.findDistinctLegsByFlightId(leg.getFlight().getId(), leg.getId()));
-
-				legs.add(leg);
-				legs.sort(Comparator.comparing(Leg::getScheduledDeparture));
-
-				int noMatchedAirports = 0;
-				for (int i = 0; i < legs.size() - 1; i++) {
-					String arriveIataCode = legs.get(i).getArrivalAirport().getIataCode();
-					String departNextIataCode = legs.get(i + 1).getDepartureAirport().getIataCode();
-					if (!arriveIataCode.equals(departNextIataCode))
-						noMatchedAirports += 1;
-				}
-
-				correctAirportMatches = noMatchedAirports == 0;
-
-				super.state(correctAirportMatches, "*", "acme.validation.leg.matchAirports.message");
-			}
-		}
 
 	}
 
