@@ -10,6 +10,11 @@ manager.flight.form.label.tag = Etiqueta
 manager.flight.form.label.selfTransferRequired = Autotransferido
 manager.flight.form.label.cost = Coste
 manager.flight.form.label.description = Descripción
+manager.flight.form.label.originCity = Ciudad de origen
+manager.flight.form.label.arrivalCity = Ciudad de llegada
+manager.flight.form.label.layoversNumber = Número de escalas
+manager.flight.form.label.scheduledDeparture = Salida programada
+manager.flight.form.label.scheduledArrival = Llegada programada
 
 manager.flight.form.button.publish  = Publicar
 manager.flight.form.button.create = Crear

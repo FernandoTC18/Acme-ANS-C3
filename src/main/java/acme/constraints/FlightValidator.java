@@ -37,24 +37,42 @@ public class FlightValidator extends AbstractValidator<ValidFlight, Flight> {
 
 		if (flight == null)
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
-		else {
-			boolean notOverlapping;
-			List<Leg> legsByFlight;
-			Leg currentLeg;
-			Leg nextLeg;
-			legsByFlight = this.flightRepository.computeLegsByFlight(flight.getId());
-			int overlappedLegs = 0;
-			for (int i = 0; i < legsByFlight.size() - 1; i++) {
-				currentLeg = legsByFlight.get(i);
-				nextLeg = legsByFlight.get(i + 1);
-				if (MomentHelper.isAfter(currentLeg.getScheduledArrival(), nextLeg.getScheduledDeparture()))
-					overlappedLegs = overlappedLegs + 1;
+		else if (!flight.isDraftMode()) {
+			{
+				boolean notOverlapping;
+				List<Leg> legsByFlight;
+				Leg currentLeg;
+				Leg nextLeg;
+				legsByFlight = this.flightRepository.computeLegsByFlight(flight.getId());
+				int overlappedLegs = 0;
+				for (int i = 0; i < legsByFlight.size() - 1; i++) {
+					currentLeg = legsByFlight.get(i);
+					nextLeg = legsByFlight.get(i + 1);
+					if (MomentHelper.isAfter(currentLeg.getScheduledArrival(), nextLeg.getScheduledDeparture()))
+						overlappedLegs = overlappedLegs + 1;
+				}
+				notOverlapping = overlappedLegs == 0;
+				super.state(context, notOverlapping, "*", "acme.validation.flight.overlapped.message");
 			}
-			notOverlapping = overlappedLegs == 0;
-			super.state(context, notOverlapping, "scheduledArrival", "acme.validation.flight.overlapped.message");
+			{
+				boolean correctAirportMatches;
+				List<Leg> legsByFlight;
+
+				legsByFlight = this.flightRepository.computeLegsByFlight(flight.getId());
+				int noMatchedAirports = 0;
+				for (int i = 0; i < legsByFlight.size() - 1; i++) {
+					String arriveIataCode = legsByFlight.get(i).getArrivalAirport().getIataCode();
+					String departNextIataCode = legsByFlight.get(i + 1).getDepartureAirport().getIataCode();
+					if (!arriveIataCode.equals(departNextIataCode))
+						noMatchedAirports += 1;
+				}
+				correctAirportMatches = noMatchedAirports == 0;
+				super.state(context, correctAirportMatches, "*", "acme.validation.flight.matchAirports.message");
+			}
 		}
 		result = !super.hasErrors(context);
 
 		return result;
+
 	}
 }

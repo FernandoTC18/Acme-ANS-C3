@@ -86,7 +86,7 @@ public class Flight extends AbstractEntity {
 		FlightRepository repository;
 
 		repository = SpringHelper.getBean(FlightRepository.class);
-		result = repository.computeOriginCityByFlight(this.getId());
+		result = repository.computeOriginCityByFlight(this.getId()).get(0);
 		return result;
 	}
 
@@ -96,7 +96,7 @@ public class Flight extends AbstractEntity {
 		FlightRepository repository;
 
 		repository = SpringHelper.getBean(FlightRepository.class);
-		result = repository.computeArrivalCityByFlight(this.getId());
+		result = repository.computeArrivalCityByFlight(this.getId()).get(0);
 		return result;
 	}
 
@@ -107,7 +107,7 @@ public class Flight extends AbstractEntity {
 
 		repository = SpringHelper.getBean(FlightRepository.class);
 		result = repository.computeLegsNumberByFlight(this.getId()) - 1;
-		return result;
+		return result > 0 ? result : 0;
 	}
 
 	@Transient
