@@ -3,7 +3,7 @@
 # Flight Validation
 acme.validation.flight.overlapped.message = No se pueden solapar los tramos de un vuelo
 acme.validation.flight.noLegs.message = Un vuelo debe tener como mínimo 1 tramo
-acme.validation.flight.noPublishedLegs.message = Para publicar un vuelo sus tramos deben ser publicados anteriormente
+acme.validation.flight.noDraftModeLegs.message = Para publicar un vuelo sus tramos deben ser publicados anteriormente
 acme.validation.flight.matchAirports = Los aeropuertos de los tramos de un vuelo deben concadenarse
 acme.validation.flight.noPublishedLegs.message = No se puede eliminar un vuelo con uno o más tramos publicados
 acme.validation.flight.noPublishedBookings.message = No se puede eliminar un vuelo con una o más reservas publicadas
