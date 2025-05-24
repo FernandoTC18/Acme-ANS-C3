@@ -90,6 +90,7 @@ public class Claim extends AbstractEntity {
 	private AssistanceAgent	assistanceAgent;
 
 	@Mandatory
+	@Valid
 	@ManyToOne(optional = false)
 	private Leg				leg;
 }
