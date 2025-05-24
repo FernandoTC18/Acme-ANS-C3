@@ -55,6 +55,8 @@ acme.validation.leg-time.message = Los reclamos deben estar vinculados a tramos 
 # TrackingLog Validation
 acme.validation.trackingLog.incorrect-indicator.message = El indicador debe ser ACCEPTED o REJECTED cuando el porcentaje de resolución sea 100%, y PENDING cuando sea inferior a 100%
 acme.validation.trackingLog.invalid-resolution-percentage.message = El porcentaje de resolución debe ser superior al valor máximo registrado anteriormente
+acme.validation.trackingLog.invalid-resolution-percentage-greater.message = El porcentaje de resolución debe ser mayor que el porcentaje del registro de seguimiento anterior
+acme.validation.trackingLog.invalid-resolution-percentage-lesser.message = El porcentaje de resolución debe ser menor que el porcentaje del siguiente registro de seguimiento
 acme.validation.trackingLog.mandatory-resolution.message = El campo resolución es obligatorio cuando el estado de la reclamación es ACCEPTED o PENDING
 acme.validation.trackingLog.invalid-number-completed-logs.message = Ya existe un registro de seguimiento con un porcentaje de resolución del 100 %. Por favor, publíquelo antes de crear uno nuevo
 acme.validation.trackingLog.invalid-number-completed-published-logs.message = Solo se puede crear un nuevo registro de seguimiento después de que se haya publicado un registro con un porcentaje de resolución del 100%

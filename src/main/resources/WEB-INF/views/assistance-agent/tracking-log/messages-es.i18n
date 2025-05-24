@@ -17,6 +17,7 @@ assistance-agent.tracking-log.form.label.resolutionPercentage = Porcentaje de re
 assistance-agent.tracking-log.form.label.indicator = Indicador
 assistance-agent.tracking-log.form.label.resolution = Resolución
 assistance-agent.tracking-log.form.label.orderDate = Fecha de Creación
+assistance-agent.tracking-log.form.label.draftMode = Borrador
 assistance-agent.tracking-log.form.button.publish = Publicar
 assistance-agent.tracking-log.form.button.update = Actualizar
 assistance-agent.tracking-log.form.button.delete = Eliminar

@@ -72,7 +72,7 @@ public class TrackingLogValidator extends AbstractValidator<ValidTrackingLog, Tr
 			{
 				boolean correctResolution;
 
-				if (!trackingLog.getIndicator().equals(ClaimStatus.PENDING)) {
+				if (trackingLog.getIndicator() != null && !trackingLog.getIndicator().equals(ClaimStatus.PENDING)) {
 					correctResolution = trackingLog.getResolution() != null && !trackingLog.getResolution().trim().isEmpty();
 					super.state(context, correctResolution, "resolution", "acme.validation.trackingLog.mandatory-resolution.message");
 				}

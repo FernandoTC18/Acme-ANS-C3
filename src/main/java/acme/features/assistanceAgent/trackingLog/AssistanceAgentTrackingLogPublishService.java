@@ -28,7 +28,7 @@ public class AssistanceAgentTrackingLogPublishService extends AbstractGuiService
 		trackingLogId = super.getRequest().getData("id", int.class);
 		trackingLog = this.repository.findTrackingLogById(trackingLogId);
 		assistanceAgent = trackingLog == null ? null : trackingLog.getClaim().getAssistanceAgent();
-		status = trackingLog != null && super.getRequest().getPrincipal().hasRealm(assistanceAgent);
+		status = trackingLog != null && trackingLog.getDraftMode() && super.getRequest().getPrincipal().hasRealm(assistanceAgent);
 
 		if (status) {
 			String method;
@@ -40,7 +40,7 @@ public class AssistanceAgentTrackingLogPublishService extends AbstractGuiService
 			else {
 				indicator = super.getRequest().getData("indicator", String.class);
 
-				status = this.isValidEnum(ClaimStatus.class, indicator);
+				status = indicator.equals("0") || this.isValidEnum(ClaimStatus.class, indicator);
 			}
 		}
 
