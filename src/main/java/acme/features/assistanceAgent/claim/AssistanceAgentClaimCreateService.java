@@ -12,7 +12,6 @@ import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claim.Claim;
-import acme.entities.claim.ClaimStatus;
 import acme.entities.claim.ClaimType;
 import acme.entities.leg.Leg;
 import acme.realms.AssistanceAgent;
@@ -30,6 +29,23 @@ public class AssistanceAgentClaimCreateService extends AbstractGuiService<Assist
 
 		status = super.getRequest().getPrincipal().hasRealmOfType(AssistanceAgent.class);
 
+		if (status) {
+			String method;
+			int legId;
+			Leg leg;
+			String type;
+			method = super.getRequest().getMethod();
+
+			if (method.equals("GET"))
+				status = true;
+			else {
+				legId = super.getRequest().getData("leg", int.class);
+				leg = this.repository.findLegById(legId);
+				type = super.getRequest().getData("type", String.class);
+				status = (legId == 0 || leg != null) && (type.equals("0") || this.isValidEnum(ClaimType.class, type));
+			}
+		}
+
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -45,7 +61,6 @@ public class AssistanceAgentClaimCreateService extends AbstractGuiService<Assist
 		claim = new Claim();
 		claim.setRegistrationMoment(moment);
 		claim.setDraftMode(true);
-		claim.setIndicator(ClaimStatus.PENDING);
 		claim.setAssistanceAgent(assistanceAgent);
 
 		super.getBuffer().addData(claim);
@@ -59,25 +74,28 @@ public class AssistanceAgentClaimCreateService extends AbstractGuiService<Assist
 		legId = super.getRequest().getData("leg", int.class);
 		leg = this.repository.findLegById(legId);
 
-		super.bindObject(claim, "registrationMoment", "passengerEmail", "description", "type", "indicator");
+		super.bindObject(claim, "passengerEmail", "description", "type");
 
 		claim.setLeg(leg);
 	}
 
 	@Override
 	public void validate(final Claim claim) {
-		Leg leg;
-		Date legTime;
-		Date moment;
-		boolean condition;
+		{
+			int legId;
+			Date legTime;
+			Date moment;
+			boolean condition;
 
-		leg = super.getRequest().getData("leg", Leg.class);
-		moment = super.getRequest().getData("registrationMoment", Date.class);
-		legTime = this.repository.findArrivalTimeLegById(leg.getId());
-		condition = moment.after(legTime);
+			if (claim.getLeg() != null) {
+				legId = claim.getLeg().getId();
+				moment = claim.getRegistrationMoment();
+				legTime = this.repository.findArrivalTimeLegById(legId);
+				condition = moment.after(legTime);
 
-		super.state(condition, "leg", "acme.validation.leg-time.message");
-
+				super.state(condition, "*", "acme.validation.leg-time.message");
+			}
+		}
 	}
 
 	@Override
@@ -92,21 +110,32 @@ public class AssistanceAgentClaimCreateService extends AbstractGuiService<Assist
 
 		SelectChoices legChoices;
 		SelectChoices typeChoices;
-		SelectChoices statusChoices;
 
 		legs = this.repository.findAllLegs();
 
 		legChoices = SelectChoices.from(legs, "flightNumber", claim.getLeg());
 		typeChoices = SelectChoices.from(ClaimType.class, claim.getType());
-		statusChoices = SelectChoices.from(ClaimStatus.class, claim.getIndicator());
 
-		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "type", "indicator", "assistanceAgent", "leg", "draftMode");
+		dataset = super.unbindObject(claim, "passengerEmail", "description", "type", "leg");
+		dataset.put("type", typeChoices.getSelected().getKey());
 		dataset.put("types", typeChoices);
-		dataset.put("indicators", statusChoices);
-		dataset.put("legs", legChoices);
 		dataset.put("leg", legChoices.getSelected().getKey());
+		dataset.put("legs", legChoices);
 
 		super.getResponse().addData(dataset);
+	}
+
+	// Ancillary methods ------------------------------------------------------
+
+	private <E extends Enum<E>> boolean isValidEnum(final Class<E> enumClass, final String name) {
+		if (name == null)
+			return false;
+		try {
+			Enum.valueOf(enumClass, name);
+			return true;
+		} catch (IllegalArgumentException e) {
+			return false;
+		}
 	}
 
 }

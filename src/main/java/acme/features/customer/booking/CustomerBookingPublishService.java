@@ -1,14 +1,13 @@
 
 package acme.features.customer.booking;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import acme.client.components.datatypes.Money;
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.booking.Booking;
@@ -32,8 +31,6 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 	public void authorise() {
 		boolean status;
 		boolean correctFlight = true;
-		boolean correctPrice = true;
-		boolean correctMoment = true;
 		int bookingId;
 		Booking booking;
 		Customer customer;
@@ -42,27 +39,16 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 		booking = this.repository.findBookingById(bookingId);
 		customer = booking == null ? null : booking.getCustomer();
 
-		if (bookingId != 0 && super.getRequest().hasData("id")) {
-
+		if (bookingId != 0 && super.getRequest().hasData("id"))
 			if (super.getRequest().hasData("flight")) {
 				int flightId = super.getRequest().getData("flight", int.class);
 				if (flightId != 0) {
 					Flight flight = this.repository.findFlightById(flightId);
-					correctFlight = flight != null;
+					correctFlight = flight != null && flight.getScheduledDeparture().after(MomentHelper.getCurrentMoment()) && !flight.isDraftMode();
 				}
 			}
 
-			if (super.getRequest().hasData("price")) {
-				Money bookingPrice = super.getRequest().getData("price", Money.class);
-				correctPrice = booking != null && bookingPrice.toString().equals(booking.getPrice().toString());
-			}
-
-			if (super.getRequest().hasData("purchaseMoment"))
-				correctMoment = booking != null && super.getRequest().getData("purchaseMoment", Date.class).equals(booking.getPurchaseMoment());
-
-		}
-
-		status = super.getRequest().getPrincipal().hasRealm(customer) && booking != null && booking.getDraftMode() && correctFlight && correctPrice && correctMoment;
+		status = super.getRequest().getPrincipal().hasRealm(customer) && booking != null && booking.getDraftMode() && correctFlight;
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -80,7 +66,14 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 
 	@Override
 	public void bind(final Booking booking) {
-		super.bindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "price", "lastCardNibble");
+		int flightId;
+		Flight flight;
+
+		flightId = super.getRequest().getData("flight", int.class);
+		flight = this.repository.findFlightById(flightId);
+
+		super.bindObject(booking, "locatorCode", "travelClass", "lastCardNibble");
+		booking.setFlight(flight);
 	}
 
 	@Override
@@ -108,17 +101,6 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 				}
 			super.state(passengersArePublished, "*", "acme.validation.passengers-not-publish.message");
 		}
-		{
-			int flightId;
-			Flight flight;
-			Boolean validFlight = true;
-
-			flightId = super.getRequest().getData("flight", int.class);
-			flight = this.repository.findFlightById(flightId);
-			if (flight == null)
-				validFlight = false;
-			super.state(validFlight, "flight", "acme.validation.booking.invalid-Flight-assigned.message");
-		}
 
 	}
 
@@ -136,7 +118,7 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 		SelectChoices classes;
 		SelectChoices flights;
 
-		available = this.repository.findAllFlights();
+		available = this.repository.findAllFlights().stream().filter(a -> a.getScheduledDeparture().after(MomentHelper.getCurrentMoment())).toList();
 		classes = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 
 		flights = SelectChoices.from(available, "flightPath", booking.getFlight());

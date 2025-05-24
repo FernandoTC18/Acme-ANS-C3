@@ -4,8 +4,6 @@ package acme.features.managers.flight;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
-import acme.client.components.views.SelectChoice;
-import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.flight.Flight;
@@ -44,13 +42,7 @@ public class ManagerFlightUpdateService extends AbstractGuiService<Manager, Flig
 	}
 	@Override
 	public void bind(final Flight flight) {
-		String selfTransferValueSelected;
-		Boolean selfTransferValue;
-
-		selfTransferValueSelected = super.getRequest().getData("selfTransferRequired", String.class);
-		selfTransferValue = Boolean.valueOf(selfTransferValueSelected);
-		super.bindObject(flight, "tag", "cost", "description");
-		flight.setSelfTransferRequired(selfTransferValue);
+		super.bindObject(flight, "tag", "cost", "description", "selfTransferRequired");
 
 	}
 	@Override
@@ -66,26 +58,9 @@ public class ManagerFlightUpdateService extends AbstractGuiService<Manager, Flig
 	@Override
 	public void unbind(final Flight flight) {
 
-		SelectChoices choices;
 		Dataset dataset;
 
-		SelectChoice trueChoice = new SelectChoice();
-		trueChoice.setKey("true");
-		trueChoice.setLabel("Yes");
-		trueChoice.setSelected(flight.getSelfTransferRequired() == true);
-
-		SelectChoice falseChoice = new SelectChoice();
-		falseChoice.setKey("false");
-		falseChoice.setLabel("No");
-		falseChoice.setSelected(flight.getSelfTransferRequired() == false);
-
-		choices = SelectChoices.from(new SelectChoice[] {
-			trueChoice, falseChoice
-		});
-
-		dataset = super.unbindObject(flight, "tag", "cost", "description");
-		dataset.put("selfTransfered", choices.getSelected().getKey());
-		dataset.put("options", choices);
+		dataset = super.unbindObject(flight, "tag", "selfTransferRequired", "cost", "description", "draftMode", "scheduledDeparture", "scheduledArrival", "originCity", "arrivalCity", "layoversNumber");
 
 		super.getResponse().addData(dataset);
 	}

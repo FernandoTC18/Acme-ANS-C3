@@ -47,7 +47,6 @@ public class TechnicianTaskShowService extends AbstractGuiService<Technician, Ta
 
 	@Override
 	public void unbind(final Task task) {
-		assert task != null;
 		Dataset dataset;
 		SelectChoices taskTypes;
 

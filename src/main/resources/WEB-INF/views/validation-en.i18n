@@ -3,7 +3,10 @@
 # Flight Validation
 acme.validation.flight.overlapped.message  = The legs of a flight cannot be overlapped
 acme.validation.flight.noLegs.message = A flight must have a minimum of 1 leg
-acme.validation.flight.noPublishedLegs.message = To publish a flight, its legs must be previously published
+acme.validation.flight.noDraftModeLegs.message = To publish a flight, its legs must be previously published
+acme.validation.flight.matchAirports.message = The airports of the legs of a flight must be linked together
+acme.validation.flight.noPublishedLegs.message = A flight with one or more published legs can´t be deleted
+acme.validation.flight.noPublishedBookings.message = A flight with one or more published bookings can´t be deleted
 
 # Leg Validation
 acme.validation.leg.correctFlightNumberPattern.message = The flight number does not have a valid format,Ex: ZZZ9999,AAAA0000
@@ -16,6 +19,8 @@ acme.validation.leg.departureArrivalAirportsDistinct.message = the departure air
 acme.validation.leg.noAvailableAircraft.message = The selected aircraft is already occupied between the dates of the flight
 acme.validation.leg.noAircraftInMaintenance.message = The selected aircraft is under maintenance
 acme.validation.leg.matchAirports.message = The airports of the legs of a flight must be linked together
+acme.validation.leg.noPublishedClaims.message = A leg with one or more published claims can´t be deleted
+acme.validation.flight.noPublishedFlightAssignments.message = A leg with one or more published flight assignments can´t be deleted
 
 # Manager Validation
 acme.validation.manager.identifierNumberFormat.message = The identifier number is not in the correct format,Ex: MM0001, MMM9999
@@ -45,14 +50,17 @@ acme.validation.assistanceAgent.unique-assistance-agent.message = The employee c
 acme.validation.assistanceAgent.invalid-employee-code.message = The employee code must begin with the first letter of the name followed by the first letter of the first surname.
 
 #Claim Validation
-acme.validation.leg-time.message = Claims must be linked to legs that occurred.
-acme.validation.updatePublishedClaim.message = Only not published claims can be updated.
-acme.validation.deletePublishedClaim.message = Only not published claims can be deleted.
+acme.validation.leg-time.message = Claims must be linked to legs that occurred
 
 # TrackingLog Validation
-acme.validation.trackingLog.incorrect-indicator.message = The indicator must be ACCEPTED or REJECTED when the resolution percentage is 100%, and PENDING when it is less than 100%.
-acme.validation.trackingLog.invalid-resolution-percentage.message = The resolution percentage must be greater than any previously recorded value.
-acme.validation.trackingLog.mandatory-resolution.message = The resolution field is mandatory when the claim status is ACCEPTED or REJECTED.
+acme.validation.trackingLog.incorrect-indicator.message = The indicator must be ACCEPTED or REJECTED when the resolution percentage is 100%, and PENDING when it is less than 100%
+acme.validation.trackingLog.invalid-resolution-percentage.message = The resolution percentage must be greater than any previously recorded value
+acme.validation.trackingLog.invalid-resolution-percentage-greater.message = Resolution percentage must be greater than the previous tracking log’s percentage
+acme.validation.trackingLog.invalid-resolution-percentage-lesser.message = Resolution percentage must be less than the next tracking log’s percentage
+acme.validation.trackingLog.mandatory-resolution.message = The resolution field is mandatory when the claim status is ACCEPTED or REJECTED
+acme.validation.trackingLog.invalid-number-completed-logs.message = There is already one tracking log with a 100% resolution percentage. Please publish it before creating a new one
+acme.validation.trackingLog.invalid-number-completed-published-logs.message = Only one new tracking log can be created after a 100% resolution percentage log has been published
+acme.validation.trackingLog.claim-not-published.message = A tracking log cannot be published until its corresponding claim is published
 
 # Technician Validation
 acme.validation.technician.invalid-licenseNumber.message = The ‘licenseNumber’ field does not conform to the pattern ‘^[A-Z]{2,3}’ or is null.
@@ -88,6 +96,7 @@ acme.validation.lastCardNibble.message = The last card number is required to be 
 
 # Passenger Validation
 acme.validation.incorrectly-formatted-passportNumber.message = You have to use a correct passportNumber format, Ex: A1B2C3D4, 123456789
+acme.validation.not-has-passenger-selected.message = You have to select a passenger to remove it
 
 # Maintenance Record Validation
 

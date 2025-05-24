@@ -42,9 +42,10 @@ public class TrackingLogValidator extends AbstractValidator<ValidTrackingLog, Tr
 				boolean correctIndicator;
 				Double resolutionPercentage = trackingLog.getResolutionPercentage();
 				ClaimStatus indicator = trackingLog.getIndicator();
-
-				correctIndicator = resolutionPercentage == 100.0 && (indicator == ClaimStatus.ACCEPTED || indicator == ClaimStatus.REJECTED) || resolutionPercentage < 100.0 && indicator == ClaimStatus.PENDING;
-				super.state(context, correctIndicator, "indicator", "acme.validation.trackingLog.incorrect-indicator.message");
+				if (resolutionPercentage != null) {
+					correctIndicator = resolutionPercentage == 100.0 && (indicator == ClaimStatus.ACCEPTED || indicator == ClaimStatus.REJECTED) || resolutionPercentage < 100.0 && indicator == ClaimStatus.PENDING;
+					super.state(context, correctIndicator, "indicator", "acme.validation.trackingLog.incorrect-indicator.message");
+				}
 			}
 			{
 				List<TrackingLog> logs = this.repository.findTrackingLogsByClaimId(trackingLog.getClaim().getId());
@@ -58,7 +59,8 @@ public class TrackingLogValidator extends AbstractValidator<ValidTrackingLog, Tr
 				for (int i = 0; i < allLogs.size() - 1; i++) {
 					TrackingLog currentLog = allLogs.get(i);
 					TrackingLog nextLog = allLogs.get(i + 1);
-					if (currentLog.getResolutionPercentage() > nextLog.getResolutionPercentage()) {
+					if (currentLog.getResolutionPercentage() != null && nextLog.getResolutionPercentage() != null && currentLog.getResolutionPercentage() >= nextLog.getResolutionPercentage()
+						&& !currentLog.getResolutionPercentage().equals(Double.valueOf(100.00))) {
 						correctPercentage = false;
 						break;
 					}
@@ -70,7 +72,7 @@ public class TrackingLogValidator extends AbstractValidator<ValidTrackingLog, Tr
 			{
 				boolean correctResolution;
 
-				if (!trackingLog.getIndicator().equals(ClaimStatus.PENDING)) {
+				if (trackingLog.getIndicator() != null && !trackingLog.getIndicator().equals(ClaimStatus.PENDING)) {
 					correctResolution = trackingLog.getResolution() != null && !trackingLog.getResolution().trim().isEmpty();
 					super.state(context, correctResolution, "resolution", "acme.validation.trackingLog.mandatory-resolution.message");
 				}

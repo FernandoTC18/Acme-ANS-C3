@@ -18,16 +18,13 @@ public class CustomerPassengerShowService extends AbstractGuiService<Customer, P
 
 	@Override
 	public void authorise() {
-		boolean status = true;
+		boolean status;
 		int passengerId;
 		Passenger passenger;
-		Customer customer;
 
 		passengerId = super.getRequest().getData("id", int.class);
 		passenger = this.repository.findPassengerById(passengerId);
-
-		customer = passenger == null ? null : passenger.getCustomer();
-		status = passenger != null && super.getRequest().getPrincipal().hasRealm(customer);
+		status = passenger != null && super.getRequest().getPrincipal().hasRealm(passenger.getCustomer());
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -47,9 +44,13 @@ public class CustomerPassengerShowService extends AbstractGuiService<Customer, P
 	@Override
 	public void unbind(final Passenger passenger) {
 		Dataset dataset;
+		boolean canBeDeleted;
+
+		canBeDeleted = this.repository.findBookingByPassengerId(passenger.getId()).isEmpty();
 
 		dataset = super.unbindObject(passenger, "name", "email", "passportNumber", "birth", "specialNeeds");
 		dataset.put("readonly", !passenger.getDraftMode());
+		dataset.put("canBeDeleted", canBeDeleted);
 		super.getResponse().addData(dataset);
 	}
 

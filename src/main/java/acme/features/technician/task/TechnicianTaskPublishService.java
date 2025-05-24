@@ -3,7 +3,6 @@ package acme.features.technician.task;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.task.Task;
@@ -60,18 +59,18 @@ public class TechnicianTaskPublishService extends AbstractGuiService<Technician,
 
 	@Override
 	public void unbind(final Task task) {
-		Dataset dataset;
+		//Dataset dataset;
 
 		//SelectChoices taskTypes;
 
 		//taskTypes = SelectChoices.from(TaskType.class, task.getType());
 
-		dataset = super.unbindObject(task);
+		//dataset = super.unbindObject(task);
 		//dataset.put("confirmation", false);
 		//dataset.put("readonly", false);
 		// dataset.put("status", taskTypes);
 
-		super.getResponse().addData(dataset);
+		//super.getResponse().addData(dataset);
 	}
 
 }

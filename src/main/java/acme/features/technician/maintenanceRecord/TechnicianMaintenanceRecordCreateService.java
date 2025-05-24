@@ -31,6 +31,8 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 			int aircraftId = super.getRequest().getData("aircraft", int.class);
 			Aircraft a = this.repository.findAircraftById(aircraftId);
 			status = a != null;
+			@SuppressWarnings("unused")
+			MaintenanceRecordStatus maintenanceRecordStatus = super.getRequest().getData("status", MaintenanceRecordStatus.class);
 		}
 
 		super.getResponse().setAuthorised(status);

@@ -75,15 +75,19 @@ public class TechnicianInvolvesCreateService extends AbstractGuiService<Technici
 	@Override
 	public void validate(final Involves involves) {
 
-		boolean status;
+		boolean status = true;
 
-		int taskId = involves.getTask().getId();
+		if (involves.getTask() != null) {
 
-		List<Involves> invs = this.repository.findInvolvesByTaskId(taskId);
+			int taskId = involves.getTask().getId();
 
-		invs = invs.stream().filter(i -> i.getMaintenanceRecord().getId() == involves.getMaintenanceRecord().getId()).toList();
+			List<Involves> invs = this.repository.findInvolvesByTaskId(taskId);
 
-		status = invs.isEmpty();
+			invs = invs.stream().filter(i -> i.getMaintenanceRecord().getId() == involves.getMaintenanceRecord().getId()).toList();
+
+			status = invs.isEmpty();
+
+		}
 
 		super.state(status, "task", "acme.validation.involves.alreadyInvolvedTask.message");
 	}

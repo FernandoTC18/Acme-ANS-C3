@@ -4,7 +4,9 @@ package acme.entities.flight;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.Valid;
 
@@ -24,6 +26,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
+@Table(indexes = {
+	@Index(columnList = "draftMode"), @Index(columnList = "id")
+})
 @ValidFlight
 public class Flight extends AbstractEntity {
 
@@ -86,7 +91,7 @@ public class Flight extends AbstractEntity {
 		FlightRepository repository;
 
 		repository = SpringHelper.getBean(FlightRepository.class);
-		result = repository.computeOriginCityByFlight(this.getId());
+		result = repository.computeOriginCityByFlight(this.getId()).get(0);
 		return result;
 	}
 
@@ -96,7 +101,7 @@ public class Flight extends AbstractEntity {
 		FlightRepository repository;
 
 		repository = SpringHelper.getBean(FlightRepository.class);
-		result = repository.computeArrivalCityByFlight(this.getId());
+		result = repository.computeArrivalCityByFlight(this.getId()).get(0);
 		return result;
 	}
 
@@ -107,7 +112,7 @@ public class Flight extends AbstractEntity {
 
 		repository = SpringHelper.getBean(FlightRepository.class);
 		result = repository.computeLegsNumberByFlight(this.getId()) - 1;
-		return result;
+		return result > 0 ? result : 0;
 	}
 
 	@Transient
