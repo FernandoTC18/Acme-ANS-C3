@@ -2,10 +2,11 @@
 package acme.features.assistanceAgent.trackingLog;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.OptionalInt;
+import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -35,7 +36,7 @@ public class AssistanceAgentTrackingLogUpdateService extends AbstractGuiService<
 		trackingLogId = super.getRequest().getData("id", int.class);
 		trackingLog = this.repository.findTrackingLogById(trackingLogId);
 		assistanceAgent = trackingLog == null ? null : trackingLog.getClaim().getAssistanceAgent();
-		status = trackingLog != null && super.getRequest().getPrincipal().hasRealm(assistanceAgent);
+		status = trackingLog != null && trackingLog.getDraftMode() && super.getRequest().getPrincipal().hasRealm(assistanceAgent);
 
 		if (status) {
 			String method;
@@ -46,7 +47,7 @@ public class AssistanceAgentTrackingLogUpdateService extends AbstractGuiService<
 				status = true;
 			else {
 				indicator = super.getRequest().getData("indicator", String.class);
-				status = this.isValidEnum(ClaimStatus.class, indicator);
+				status = indicator.equals("0") || this.isValidEnum(ClaimStatus.class, indicator);
 			}
 		}
 
@@ -66,40 +67,41 @@ public class AssistanceAgentTrackingLogUpdateService extends AbstractGuiService<
 
 	@Override
 	public void bind(final TrackingLog trackingLog) {
-		Date moment;
-
 		super.bindObject(trackingLog, "step", "resolutionPercentage", "indicator", "resolution");
-		moment = MomentHelper.getCurrentMoment();
-		trackingLog.setLastUpdateMoment(moment);
 	}
 
 	@Override
 	public void validate(final TrackingLog trackingLog) {
 		{
-			boolean correctPercentage;
-			Collection<TrackingLog> oldLogs;
-			List<TrackingLog> logs;
+			if (trackingLog.getResolutionPercentage() != null) {
+				Double newPerc;
+				OptionalInt optid;
+				int idx;
+				boolean isGreater;
+				boolean isLesser;
 
-			oldLogs = this.repository.findTrackingLogsByClaimId(trackingLog.getClaim().getId());
-			logs = new ArrayList<>(oldLogs);
-			logs.removeIf(log -> log.getId() == trackingLog.getId());
-			logs.add(trackingLog);
-			logs.sort(Comparator.comparing(TrackingLog::getOrderDate));
-			correctPercentage = true;
-			for (int i = 0; i < logs.size() - 1; i++) {
-				TrackingLog currentLog = logs.get(i);
-				TrackingLog nextLog = logs.get(i + 1);
-				if (currentLog.getResolutionPercentage() > nextLog.getResolutionPercentage()) {
-					correctPercentage = false;
-					break;
+				newPerc = trackingLog.getResolutionPercentage();
+
+				List<TrackingLog> sortedLogs = this.loadAndSortLogs(trackingLog);
+				optid = this.findIndexOf(trackingLog, sortedLogs);
+
+				if (optid.isPresent()) {
+					idx = optid.getAsInt();
+					isGreater = this.isGreaterThanPrevious(idx, newPerc, sortedLogs);
+					isLesser = this.isLessThanNext(idx, newPerc, sortedLogs);
+					super.state(isGreater, "resolutionPercentage", "acme.validation.trackingLog.invalid-resolution-percentage-greater.message");
+					super.state(isLesser, "resolutionPercentage", "acme.validation.trackingLog.invalid-resolution-percentage-lesser.message");
 				}
 			}
-			super.state(correctPercentage, "resolutionPercentage", "acme.validation.trackingLog.invalid-resolution-percentage.message");
 		}
 	}
 
 	@Override
 	public void perform(final TrackingLog trackingLog) {
+		Date moment;
+
+		moment = MomentHelper.getCurrentMoment();
+		trackingLog.setLastUpdateMoment(moment);
 		this.repository.save(trackingLog);
 	}
 
@@ -128,6 +130,32 @@ public class AssistanceAgentTrackingLogUpdateService extends AbstractGuiService<
 		} catch (IllegalArgumentException e) {
 			return false;
 		}
+	}
+
+	private List<TrackingLog> loadAndSortLogs(final TrackingLog trackingLog) {
+		List<TrackingLog> logs = this.repository.findTrackingLogsByClaimId(trackingLog.getClaim().getId());
+		List<TrackingLog> all = new ArrayList<>(logs);
+
+		all.sort(Comparator.comparing(TrackingLog::getOrderDate).thenComparing(TrackingLog::getResolutionPercentage));
+		return all;
+	}
+
+	private OptionalInt findIndexOf(final TrackingLog target, final List<TrackingLog> sorted) {
+		return IntStream.range(0, sorted.size()).filter(i -> sorted.get(i).getId() == target.getId()).findFirst();
+	}
+
+	private boolean isGreaterThanPrevious(final int idx, final Double newPerc, final List<TrackingLog> logs) {
+		if (idx == 0)
+			return true;
+		Double prev = logs.get(idx - 1).getResolutionPercentage();
+		return newPerc > prev;
+	}
+
+	private boolean isLessThanNext(final int idx, final Double newPerc, final List<TrackingLog> logs) {
+		if (idx >= logs.size() - 1)
+			return true;
+		Double next = logs.get(idx + 1).getResolutionPercentage();
+		return newPerc < next;
 	}
 
 }

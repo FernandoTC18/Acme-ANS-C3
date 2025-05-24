@@ -45,7 +45,7 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 				status = true;
 			else {
 				indicator = super.getRequest().getData("indicator", String.class);
-				status = this.isValidEnum(ClaimStatus.class, indicator);
+				status = indicator.equals("0") || this.isValidEnum(ClaimStatus.class, indicator);
 			}
 		}
 

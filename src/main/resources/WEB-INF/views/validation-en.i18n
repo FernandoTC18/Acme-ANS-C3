@@ -54,7 +54,9 @@ acme.validation.leg-time.message = Claims must be linked to legs that occurred
 
 # TrackingLog Validation
 acme.validation.trackingLog.incorrect-indicator.message = The indicator must be ACCEPTED or REJECTED when the resolution percentage is 100%, and PENDING when it is less than 100%
-acme.validation.trackingLog.invalid-resolution-percentage.message = The resolution percentage must be equal or greater than any previously recorded value
+acme.validation.trackingLog.invalid-resolution-percentage.message = The resolution percentage must be greater than any previously recorded value
+acme.validation.trackingLog.invalid-resolution-percentage-greater.message = Resolution percentage must be greater than the previous tracking log’s percentage
+acme.validation.trackingLog.invalid-resolution-percentage-lesser.message = Resolution percentage must be less than the next tracking log’s percentage
 acme.validation.trackingLog.mandatory-resolution.message = The resolution field is mandatory when the claim status is ACCEPTED or REJECTED
 acme.validation.trackingLog.invalid-number-completed-logs.message = There is already one tracking log with a 100% resolution percentage. Please publish it before creating a new one
 acme.validation.trackingLog.invalid-number-completed-published-logs.message = Only one new tracking log can be created after a 100% resolution percentage log has been published

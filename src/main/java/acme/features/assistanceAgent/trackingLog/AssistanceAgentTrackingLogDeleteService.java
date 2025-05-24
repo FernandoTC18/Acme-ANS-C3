@@ -7,7 +7,6 @@ import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.entities.claim.Claim;
 import acme.entities.claim.ClaimStatus;
 import acme.entities.trackingLog.TrackingLog;
 import acme.realms.AssistanceAgent;
@@ -24,14 +23,12 @@ public class AssistanceAgentTrackingLogDeleteService extends AbstractGuiService<
 		boolean status;
 		int trackingLogId;
 		TrackingLog trackingLog;
-		Claim claim;
 		AssistanceAgent assistanceAgent;
 
 		trackingLogId = super.getRequest().getData("id", int.class);
 		trackingLog = this.repository.findTrackingLogById(trackingLogId);
-		claim = trackingLog.getClaim();
-		assistanceAgent = claim == null ? null : claim.getAssistanceAgent();
-		status = claim != null && trackingLog.getDraftMode() && super.getRequest().getPrincipal().hasRealm(assistanceAgent);
+		assistanceAgent = trackingLog == null ? null : trackingLog.getClaim().getAssistanceAgent();
+		status = trackingLog != null && trackingLog.getDraftMode() && super.getRequest().getPrincipal().hasRealm(assistanceAgent);
 
 		super.getResponse().setAuthorised(status);
 	}

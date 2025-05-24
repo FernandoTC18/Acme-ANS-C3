@@ -17,6 +17,7 @@ assistance-agent.tracking-log.form.label.resolutionPercentage = Resolution Perce
 assistance-agent.tracking-log.form.label.indicator = Indicator
 assistance-agent.tracking-log.form.label.resolution = Resolution
 assistance-agent.tracking-log.form.label.orderDate = Order Date
+assistance-agent.tracking-log.form.label.draftMode = Draft
 assistance-agent.tracking-log.form.button.publish = Publish
 assistance-agent.tracking-log.form.button.update = Update
 assistance-agent.tracking-log.form.button.delete = Delete
