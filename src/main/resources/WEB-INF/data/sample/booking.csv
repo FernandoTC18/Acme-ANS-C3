@@ -1,19 +1,23 @@
 key,locatorCode,purchaseMoment,travelClass,lastCardNibble,draftMode,key:customer,key:flight
 #base-entity
-booking-01,A7B9C3,2012/07/02 0:00,ECONOMY,1234,true,customer-01,flight-01
+booking-01,A7B9C3,2012/07/02 0:00,ECONOMY,1234,true,customer-01,flight-30
+#locatorCode-standard
+booking-02,123456,2000/01/01 0:00,ECONOMY,1234,true,customer-01,flight-31
+booking-03,1234567,2000/01/01 0:01,ECONOMY,1234,true,customer-01,flight-32
+booking-04,12345678,2024/12/31 23:59,ECONOMY,1234,true,customer-01,flight-32
 #purchaseMoment-standard
-booking-02,XZ12MNO,2000/01/01 0:00,ECONOMY,1234,true,customer-01,flight-01
-booking-03,89QWER6,2000/01/01 0:01,ECONOMY,1234,true,customer-01,flight-01
-booking-04,LKJH87Z,2024/12/31 23:59,ECONOMY,1234,true,customer-01,flight-01
-booking-05,MNOP345,2025/01/01 0:00,ECONOMY,1234,true,customer-01,flight-01
+booking-05,XZ12MN,2000/01/01 0:00,ECONOMY,1234,true,customer-01,flight-31
+booking-06,89QWER6,2000/01/01 0:01,ECONOMY,1234,true,customer-01,flight-32
+booking-07,LKJH87Z8,2024/12/31 23:59,ECONOMY,1234,true,customer-01,flight-32
+booking-08,MNOP345,2025/01/01 0:00,ECONOMY,1234,true,customer-01,flight-31
 #travelClass-standard
-booking-06,7YUIPO0,2012/07/02 0:00,ECONOMY,1234,true,customer-01,flight-01
-booking-07,TGBVF12,2012/07/02 0:00,BUSINESS,1234,false,customer-01,flight-01
+booking-09,7YUIPO0,2012/07/02 0:00,ECONOMY,1234,true,customer-01,flight-33
+booking-10,TGBVF12,2012/07/02 0:00,BUSINESS,1234,false,customer-01,flight-34
 #lastCardNibble-standard
-booking-12,QWERTY7,2012/07/02 0:00,ECONOMY,5678,true,customer-02,flight-01
-booking-13,1ZXCVBN,2012/07/02 0:00,ECONOMY,9101,true,customer-02,flight-01
-booking-14,45TREWQ,2012/07/02 0:00,ECONOMY,2024,true,customer-02,flight-01
-booking-15,PLKIJMN,2012/07/02 0:00,ECONOMY,0001,true,customer-02,flight-01
+booking-11,QWERTY7,2012/07/02 0:00,ECONOMY,5678,true,customer-02,flight-31
+booking-12,1ZXCVBN,2012/07/02 0:00,ECONOMY,9101,true,customer-02,flight-31
+booking-13,45TREWQ,2012/07/02 0:00,ECONOMY,2024,true,customer-02,flight-31
+booking-14,PLKIJMN,2012/07/02 0:00,ECONOMY,0001,true,customer-02,flight-32
 #drafMode-standard
-booking-16,QWERTL7,2012/07/02 0:00,ECONOMY,5678,false,customer-02,flight-01
-booking-17,1ZXCVBP,2012/07/02 0:00,ECONOMY,9101,true,customer-02,flight-01
+booking-15,QWERTL7,2012/07/02 0:00,ECONOMY,5678,false,customer-02,flight-31
+booking-16,1ZXCVBP,2012/07/02 0:00,ECONOMY,9101,true,customer-02,flight-32
