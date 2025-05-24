@@ -72,7 +72,7 @@ public class ManagerFlightPublishService extends AbstractGuiService<Manager, Fli
 						noPublishedFlights += 1;
 			allLegsPublished = noPublishedFlights == 0;
 
-			super.state(allLegsPublished, "*", "acme.validation.flight.noPublishedLegs.message");
+			super.state(allLegsPublished, "*", "acme.validation.flight.noDraftModeLegs.message");
 		}
 	}
 

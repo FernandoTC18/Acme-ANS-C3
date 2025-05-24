@@ -3,7 +3,7 @@
 # Flight Validation
 acme.validation.flight.overlapped.message  = The legs of a flight cannot be overlapped
 acme.validation.flight.noLegs.message = A flight must have a minimum of 1 leg
-acme.validation.flight.noPublishedLegs.message = To publish a flight, its legs must be previously published
+acme.validation.flight.noDraftModeLegs.message = To publish a flight, its legs must be previously published
 acme.validation.flight.matchAirports.message = The airports of the legs of a flight must be linked together
 acme.validation.flight.noPublishedLegs.message = A flight with one or more published legs can´t be deleted
 acme.validation.flight.noPublishedBookings.message = A flight with one or more published bookings can´t be deleted

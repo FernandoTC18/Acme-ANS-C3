@@ -45,17 +45,6 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 		else {
 
 			{
-				boolean correctMinScheduleDeparture;
-				Date scheduledDeparture;
-
-				scheduledDeparture = leg.getScheduledDeparture();
-				if (scheduledDeparture != null) {
-					correctMinScheduleDeparture = !MomentHelper.isBefore(leg.getScheduledDeparture(), MomentHelper.getCurrentMoment());
-					super.state(context, correctMinScheduleDeparture, "scheduledDeparture", "acme.validation.leg.correctMinScheduleDeparture.message");
-				}
-
-			}
-			{
 				boolean correctFlightNumber;
 
 				correctFlightNumber = leg.getFlightNumber() != null && Pattern.matches("^[A-Z]{3}\\d{4}$", leg.getFlightNumber());
