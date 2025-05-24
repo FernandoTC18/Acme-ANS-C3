@@ -4,9 +4,11 @@ package acme.features.technician.task;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
+import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.task.Task;
+import acme.entities.task.TaskType;
 import acme.realms.Technician;
 
 @GuiService
@@ -24,6 +26,8 @@ public class TechnicianTaskUpdateService extends AbstractGuiService<Technician, 
 		Technician technician;
 
 		id = super.getRequest().getData("id", int.class);
+		@SuppressWarnings("unused")
+		TaskType type = super.getRequest().getData("type", TaskType.class);
 		task = this.repository.findTaskById(id);
 		technician = task == null ? null : task.getTechnician();
 		status = task != null && task.isDraftMode() && super.getRequest().getPrincipal().hasRealm(technician);
@@ -55,6 +59,7 @@ public class TechnicianTaskUpdateService extends AbstractGuiService<Technician, 
 		status = task.isDraftMode();
 
 		super.state(status, "*", "acme.validation.updatePublishedTask.message");
+
 	}
 
 	@Override
@@ -65,14 +70,14 @@ public class TechnicianTaskUpdateService extends AbstractGuiService<Technician, 
 	@Override
 	public void unbind(final Task task) {
 		Dataset dataset;
-		//SelectChoices taskTypes;
+		SelectChoices taskTypes;
 
-		//taskTypes = SelectChoices.from(TaskType.class, task.getType());
+		taskTypes = SelectChoices.from(TaskType.class, task.getType());
 
 		dataset = super.unbindObject(task, "type", "description", "priority", "estimatedDuration");
 		//dataset.put("confirmation", false);
 		//dataset.put("readonly", false);
-		//dataset.put("type", taskTypes);
+		dataset.put("type", taskTypes);
 
 		super.getResponse().addData(dataset);
 	}

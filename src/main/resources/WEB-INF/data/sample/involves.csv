@@ -1,9 +1,3 @@
 key,key:maintenanceRecord,key:task
 # base entity
-involves-01,maintenance-record-01,task-01
-# maintenanceRecord - standard variations
-involves-02,maintenance-record-02,task-01
-# maintenanceRecord - no singular values
-# task - standard variations
-involves-03,maintenance-record-01,task-02
-# task - no singular values
+involves-01,maintenance-record-32,task-27

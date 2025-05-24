@@ -20,6 +20,11 @@ public class TechnicianTaskCreateService extends AbstractGuiService<Technician, 
 
 	@Override
 	public void authorise() {
+		
+		if (super.getRequest().hasData("id")) {
+			@SuppressWarnings("unused")
+			TaskType type = super.getRequest().getData("type", TaskType.class);
+		}
 
 		super.getResponse().setAuthorised(true);
 	}

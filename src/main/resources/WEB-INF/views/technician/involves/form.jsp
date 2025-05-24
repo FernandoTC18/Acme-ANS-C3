@@ -4,9 +4,10 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form>
-	<jstl:if test="${_command == 'show'}">
+	<jstl:if test="${acme:anyOf(_command, 'show|delete')}">
 		<acme:input-textbox code="technician.involves.form.label.maintenanceRecord" path="maintenanceRecord"/>
 		<acme:input-textbox code="technician.involves.form.label.task" path="task"/>
+		<acme:submit code="technician.involves.form.button.delete" action="/technician/involves/delete"/>
 	</jstl:if>
 	<jstl:if test="${!readonly}">
 		<jstl:choose>
