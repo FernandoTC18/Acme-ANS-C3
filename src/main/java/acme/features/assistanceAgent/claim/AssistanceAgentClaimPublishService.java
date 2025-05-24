@@ -31,7 +31,7 @@ public class AssistanceAgentClaimPublishService extends AbstractGuiService<Assis
 		id = super.getRequest().getData("id", int.class);
 		claim = this.repository.findClaimById(id);
 		assistanceAgent = claim == null ? null : claim.getAssistanceAgent();
-		status = claim != null && super.getRequest().getPrincipal().hasRealm(assistanceAgent);
+		status = claim != null && claim.getDraftMode() && super.getRequest().getPrincipal().hasRealm(assistanceAgent);
 
 		if (status) {
 			String method;
@@ -47,7 +47,7 @@ public class AssistanceAgentClaimPublishService extends AbstractGuiService<Assis
 				leg = this.repository.findLegById(legId);
 				type = super.getRequest().getData("type", String.class);
 
-				status = leg != null && this.isValidEnum(ClaimType.class, type);
+				status = (legId == 0 || leg != null) && (type.equals("0") || this.isValidEnum(ClaimType.class, type));
 			}
 		}
 

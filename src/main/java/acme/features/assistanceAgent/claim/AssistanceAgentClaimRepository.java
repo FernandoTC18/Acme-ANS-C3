@@ -4,6 +4,9 @@ package acme.features.assistanceAgent.claim;
 import java.util.Collection;
 import java.util.Date;
 
+import javax.transaction.Transactional;
+
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -31,5 +34,10 @@ public interface AssistanceAgentClaimRepository extends AbstractRepository {
 
 	@Query("select c.leg from Claim c where c.id = :id")
 	Leg findLegByClaimId(int id);
+
+	@Modifying
+	@Transactional
+	@Query("delete from TrackingLog tl where tl.claim.id = :id")
+	void deleteTrackingLogsByClaimId(int id);
 
 }
