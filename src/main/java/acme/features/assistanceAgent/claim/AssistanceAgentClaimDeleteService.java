@@ -67,6 +67,7 @@ public class AssistanceAgentClaimDeleteService extends AbstractGuiService<Assist
 
 	@Override
 	public void perform(final Claim claim) {
+		this.repository.deleteTrackingLogsByClaimId(claim.getId());
 		this.repository.delete(claim);
 	}
 

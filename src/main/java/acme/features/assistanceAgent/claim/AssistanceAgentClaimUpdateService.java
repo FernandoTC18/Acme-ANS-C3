@@ -48,7 +48,7 @@ public class AssistanceAgentClaimUpdateService extends AbstractGuiService<Assist
 				leg = this.repository.findLegById(legId);
 				type = super.getRequest().getData("type", String.class);
 
-				status = leg != null && this.isValidEnum(ClaimType.class, type);
+				status = (legId == 0 || leg != null) && (type.equals("0") || this.isValidEnum(ClaimType.class, type));
 			}
 		}
 
@@ -87,12 +87,14 @@ public class AssistanceAgentClaimUpdateService extends AbstractGuiService<Assist
 			Date moment;
 			boolean condition;
 
-			legId = claim.getLeg().getId();
-			moment = claim.getRegistrationMoment();
-			legTime = this.repository.findArrivalTimeLegById(legId);
-			condition = moment.after(legTime);
+			if (claim.getLeg() != null) {
+				legId = claim.getLeg().getId();
+				moment = claim.getRegistrationMoment();
+				legTime = this.repository.findArrivalTimeLegById(legId);
+				condition = moment.after(legTime);
 
-			super.state(condition, "*", "acme.validation.leg-time.message");
+				super.state(condition, "*", "acme.validation.leg-time.message");
+			}
 		}
 	}
 
