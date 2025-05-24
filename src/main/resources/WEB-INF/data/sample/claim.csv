@@ -32,10 +32,10 @@ claim-21,2012/07/02 00:00,acme16@lorem-ipsum.org,"Lorem ipsum dolor sit amet, co
 claim-22,2012/07/02 00:00,acme17@lorem-ipsum.org,"Lorem ipsum dolor sit amet, consectetur adipiscing",SECURITY_INCIDENT,true,agent-01,leg-01
 claim-23,2012/07/02 00:00,acme18@lorem-ipsum.org,"Lorem ipsum dolor sit amet, consectetur adipiscing",OTHER_ISSUES,true,agent-01,leg-01
 # type - no singular values
-# indicator - standard variations
+# draftMode - standard variations
 claim-24,2012/07/02 00:00,acme19@lorem-ipsum.org,"Lorem ipsum dolor sit amet, consectetur adipiscing",FLIGHT_ISSUES,true,agent-01,leg-01
-claim-25,2012/07/02 00:00,acme20@lorem-ipsum.org,"Lorem ipsum dolor sit amet, consectetur adipiscing",FLIGHT_ISSUES,true,agent-01,leg-01
-# indicator - no singular values
+claim-25,2012/07/02 00:00,acme20@lorem-ipsum.org,"Lorem ipsum dolor sit amet, consectetur adipiscing",FLIGHT_ISSUES,false,agent-01,leg-01
+# draftMode - no singular values
 # assistanceAgent - standard variations
 claim-26,2012/07/02 00:00,acme21@lorem-ipsum.org,"Lorem ipsum dolor sit amet, consectetur adipiscing",FLIGHT_ISSUES,true,agent-02,leg-01
 # assistanceAgent - no singular values
