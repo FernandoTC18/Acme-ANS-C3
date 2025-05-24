@@ -96,6 +96,7 @@ acme.validation.lastCardNibble.message = The last card number is required to be 
 
 # Passenger Validation
 acme.validation.incorrectly-formatted-passportNumber.message = You have to use a correct passportNumber format, Ex: A1B2C3D4, 123456789
+acme.validation.not-has-passenger-selected.message = You have to select a passenger to remove it
 
 # Maintenance Record Validation
 

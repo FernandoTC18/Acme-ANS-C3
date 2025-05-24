@@ -13,7 +13,8 @@ customer.booking.form.label.lastCardNibble = Nibble de la tarjeta
 customer.booking.form.title = Formulario de reserva
 customer.booking.form.button.publish = Publicar reserva
 customer.booking.form.button.update = Actualizar
-
+customer.booking.form.button.delete = Borrar
+customer.bookingRecord.list.button.delete = Eliminar un pasajero de la reserva
 
 
 customer.booking.form.button.passengers = Mostrar pasajeros

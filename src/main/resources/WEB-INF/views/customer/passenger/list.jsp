@@ -16,6 +16,7 @@
         <jstl:when test="${_command == 'listFromBooking'}">	
         	<jstl:if test="${!isPublished}">
             <acme:button code="customer.bookingRecord.list.button.create" action="/customer/booking-record/create?bookingId=${bookingId}"/>
+            <acme:button code="customer.bookingRecord.list.button.delete" action="/customer/booking-record/delete?bookingId=${bookingId}"/>
             </jstl:if>
         </jstl:when>
         <jstl:when test="${_command == 'list'}">

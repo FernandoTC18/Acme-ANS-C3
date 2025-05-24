@@ -96,6 +96,7 @@ acme.validation.lastCardNibble.message = Es necesario el último nibble de la ta
 
 # Passenger validation
 acme.validation.incorrectly-formatted-passportNumber.message = Debes utilizar un formato correcto de número de pasaporte, Ej: A1B2C3D4, 123456789
+acme.validation.not-has-passenger-selected.message = Tienes que seleccionar un pasajero para poder borrarlo.
 
 # Maintenance Record Validation
 

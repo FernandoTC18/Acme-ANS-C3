@@ -10,21 +10,27 @@ import acme.entities.passenger.Passenger;
 import acme.realms.Customer;
 
 @GuiService
-public class CustomerPassengerShowService extends AbstractGuiService<Customer, Passenger> {
+public class CustomerPassengerDeleteService extends AbstractGuiService<Customer, Passenger> {
+
+	// Internal state ---------------------------------------------------------
 
 	@Autowired
 	private CustomerPassengerRepository repository;
+
+	// AbstractGuiService interface -------------------------------------------
 
 
 	@Override
 	public void authorise() {
 		boolean status;
 		int passengerId;
+		boolean canBeDeleted;
 		Passenger passenger;
 
 		passengerId = super.getRequest().getData("id", int.class);
 		passenger = this.repository.findPassengerById(passengerId);
-		status = passenger != null && super.getRequest().getPrincipal().hasRealm(passenger.getCustomer());
+		canBeDeleted = this.repository.findBookingByPassengerId(passenger.getId()).isEmpty();
+		status = passenger != null && passenger.getDraftMode() && super.getRequest().getPrincipal().hasRealm(passenger.getCustomer()) && canBeDeleted;
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -38,7 +44,21 @@ public class CustomerPassengerShowService extends AbstractGuiService<Customer, P
 		passenger = this.repository.findPassengerById(id);
 
 		super.getBuffer().addData(passenger);
+	}
 
+	@Override
+	public void bind(final Passenger passenger) {
+		super.bindObject(passenger, "name", "email", "passportNumber", "birth", "specialNeeds");
+	}
+
+	@Override
+	public void validate(final Passenger passenger) {
+		;
+	}
+
+	@Override
+	public void perform(final Passenger passenger) {
+		this.repository.delete(passenger);
 	}
 
 	@Override

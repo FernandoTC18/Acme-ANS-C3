@@ -12,19 +12,15 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.booking.Booking;
 import acme.entities.booking.TravelClass;
+import acme.entities.bookingRecord.BookingRecord;
 import acme.entities.flight.Flight;
-import acme.entities.passenger.Passenger;
 import acme.realms.Customer;
 
 @GuiService
-public class CustomerBookingPublishService extends AbstractGuiService<Customer, Booking> {
-
-	// Internal state ---------------------------------------------------------
+public class CustomerBookingDeleteService extends AbstractGuiService<Customer, Booking> {
 
 	@Autowired
 	private CustomerBookingRepository repository;
-
-	// AbstractGuiService interface -------------------------------------------
 
 
 	@Override
@@ -67,47 +63,34 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 	@Override
 	public void bind(final Booking booking) {
 		int flightId;
+		int customerId;
 		Flight flight;
+		Customer customer;
 
 		flightId = super.getRequest().getData("flight", int.class);
 		flight = this.repository.findFlightById(flightId);
 
+		customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		customer = this.repository.findCustomerById(customerId);
+
 		super.bindObject(booking, "locatorCode", "travelClass", "lastCardNibble");
 		booking.setFlight(flight);
+		booking.setCustomer(customer);
+		booking.setPurchaseMoment(MomentHelper.getCurrentMoment());
 	}
 
 	@Override
 	public void validate(final Booking booking) {
-		{
-			Boolean hasNibble;
-			hasNibble = !booking.getLastCardNibble().isBlank() || booking.getLastCardNibble() == null;
-			super.state(hasNibble, "lastCardNibble", "acme.validation.lastCardNibble.message");
-		}
-		{
-			List<Passenger> passengers;
-			Boolean hasPassengers;
-			passengers = this.repository.findPassengersByBookingId(booking.getId());
-			hasPassengers = !passengers.isEmpty();
-			super.state(hasPassengers, "*", "acme.validation.not-has-passengers.message");
-		}
-		{
-			List<Passenger> passengers;
-			Boolean passengersArePublished = true;
-			passengers = this.repository.findPassengersByBookingId(booking.getId());
-			for (Passenger p : passengers)
-				if (p.getDraftMode()) {
-					passengersArePublished = false;
-					break;
-				}
-			super.state(passengersArePublished, "*", "acme.validation.passengers-not-publish.message");
-		}
-
+		;
 	}
 
 	@Override
 	public void perform(final Booking booking) {
-		booking.setDraftMode(false);
-		this.repository.save(booking);
+		List<BookingRecord> bookingRecords;
+
+		bookingRecords = this.repository.findBookingRecordsByBookingId(booking.getId());
+		this.repository.deleteAll(bookingRecords);
+		this.repository.delete(booking);
 	}
 
 	@Override
