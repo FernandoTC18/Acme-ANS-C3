@@ -47,7 +47,6 @@ public class TechnicianInvolvesShowService extends AbstractGuiService<Technician
 
 	@Override
 	public void unbind(final Involves involves) {
-		assert involves != null;
 		Dataset dataset;
 
 		dataset = super.unbindObject(involves, "maintenanceRecord", "task");

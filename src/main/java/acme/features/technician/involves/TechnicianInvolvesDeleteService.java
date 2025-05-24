@@ -53,8 +53,4 @@ public class TechnicianInvolvesDeleteService extends AbstractGuiService<Technici
 		this.repository.delete(involves);
 	}
 
-	@Override
-	public void unbind(final Involves involves) {
-	}
-
 }
