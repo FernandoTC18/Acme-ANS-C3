@@ -24,16 +24,16 @@ public class FlightCrewActivityLogPublishService extends AbstractGuiService<Flig
 		ActivityLog log;
 		FlightAssignment assignment;
 		FlightCrew member;
+		boolean draftMode;
 
 		boolean correctMember;
 		logId = super.getRequest().getData("id", int.class);
 		assignment = this.repository.getAssignmentByLogId(logId);
 		member = assignment == null ? null : assignment.getFlightCrewMember();
-		correctMember = super.getRequest().getPrincipal().hasRealm(member);
+		correctMember = member != null ? super.getRequest().getPrincipal().hasRealm(member) : false;
 
 		if (correctMember == true) {
 
-			boolean draftMode;
 			log = this.repository.getLogById(logId);
 			draftMode = log.getDraftMode();
 
@@ -80,11 +80,9 @@ public class FlightCrewActivityLogPublishService extends AbstractGuiService<Flig
 
 	@Override
 	public void unbind(final ActivityLog log) {
-		assert log != null;
 		Dataset dataset;
 
 		dataset = super.unbindObject(log, "registrationMoment", "typeOfIncident", "description", "severityLevel", "flightAssignment", "draftMode");
-		dataset.put("readonly", !log.getDraftMode());
 
 		super.getResponse().addData(dataset);
 	}

@@ -29,7 +29,7 @@ public class FlightCrewActivityLogUpdateService extends AbstractGuiService<Fligh
 		logId = super.getRequest().getData("id", int.class);
 		assignment = this.repository.getAssignmentByLogId(logId);
 		member = assignment == null ? null : assignment.getFlightCrewMember();
-		correctMember = super.getRequest().getPrincipal().hasRealm(member);
+		correctMember = member != null ? super.getRequest().getPrincipal().hasRealm(member) : false;
 
 		if (correctMember == true) {
 
@@ -81,7 +81,6 @@ public class FlightCrewActivityLogUpdateService extends AbstractGuiService<Fligh
 
 	@Override
 	public void unbind(final ActivityLog log) {
-		assert log != null;
 		Dataset dataset;
 
 		dataset = super.unbindObject(log, "registrationMoment", "typeOfIncident", "description", "severityLevel", "flightAssignment", "draftMode");

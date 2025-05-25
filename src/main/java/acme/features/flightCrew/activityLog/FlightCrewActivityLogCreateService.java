@@ -24,17 +24,12 @@ public class FlightCrewActivityLogCreateService extends AbstractGuiService<Fligh
 		FlightAssignment assignment;
 		FlightCrew member;
 
-		if (super.getRequest().hasData("id")) {
+		assignmentId = super.getRequest().getData("assignmentId", int.class);
+		assignment = this.repository.getAssignmentById(assignmentId);
+		member = assignment == null ? null : assignment.getFlightCrewMember();
+		status = member != null ? super.getRequest().getPrincipal().hasRealm(member) && assignment != null : false;
 
-			assignmentId = super.getRequest().getData("assignmentId", int.class);
-			assignment = this.repository.getAssignmentById(assignmentId);
-			member = assignment == null ? null : assignment.getFlightCrewMember();
-			status = super.getRequest().getPrincipal().hasRealm(member) && assignment != null;
-
-			super.getResponse().setAuthorised(status);
-
-		} else
-			super.getResponse().setAuthorised(true);
+		super.getResponse().setAuthorised(status);
 
 	}
 
@@ -78,7 +73,6 @@ public class FlightCrewActivityLogCreateService extends AbstractGuiService<Fligh
 
 	@Override
 	public void unbind(final ActivityLog log) {
-		assert log != null;
 		Dataset dataset;
 		int assignmentId;
 

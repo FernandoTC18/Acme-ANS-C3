@@ -41,14 +41,17 @@ public class FlightCrewFlightAssignmentCreateService extends AbstractGuiService<
 			member = this.repository.findFlightCrewByCode(employeeCode);
 			correctMember = member != null && super.getRequest().getPrincipal().getActiveRealm().getId() == member.getId();
 
-			//Checks if the leg is in the future and published
+			//To prevent hacking the duty attribute
+			Duty duty = super.getRequest().getData("duty", Duty.class);
+
+			//Checks if the leg exists.
 			boolean correctLeg;
 			int legId;
 			legId = super.getRequest().getData("leg", int.class);
 
 			if (legId != 0) {
 				leg = this.repository.findLegById(legId);
-				correctLeg = leg != null && MomentHelper.isFuture(leg.getScheduledDeparture()) && !leg.isDraftMode();
+				correctLeg = leg != null;
 
 				status = correctMember && correctLeg;
 			} else

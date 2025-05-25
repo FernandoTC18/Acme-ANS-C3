@@ -3,6 +3,7 @@ package acme.features.flightCrew.activityLog;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.activitylog.ActivityLog;
@@ -28,7 +29,7 @@ public class FlightCrewActivityLogDeleteService extends AbstractGuiService<Fligh
 		logId = super.getRequest().getData("id", int.class);
 		assignment = this.repository.getAssignmentByLogId(logId);
 		member = assignment == null ? null : assignment.getFlightCrewMember();
-		correctMember = super.getRequest().getPrincipal().hasRealm(member);
+		correctMember = member != null ? super.getRequest().getPrincipal().hasRealm(member) : false;
 
 		if (correctMember == true) {
 
@@ -80,14 +81,11 @@ public class FlightCrewActivityLogDeleteService extends AbstractGuiService<Fligh
 
 	@Override
 	public void unbind(final ActivityLog log) {
-		//		assert log != null;
-		//		Dataset dataset;
-		//
-		//		dataset = super.unbindObject(log, "registrationMoment", "typeOfIncident", "description", "severityLevel", "flightAssignment", "draftMode");
-		//		dataset.put("readonly", !log.getDraftMode());
-		//
-		//
-		//		super.getResponse().addData(dataset);
+		Dataset dataset;
+
+		dataset = super.unbindObject(log, "registrationMoment", "typeOfIncident", "description", "severityLevel", "flightAssignment", "draftMode");
+
+		super.getResponse().addData(dataset);
 	}
 
 }

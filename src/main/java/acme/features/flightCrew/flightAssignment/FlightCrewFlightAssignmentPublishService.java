@@ -37,10 +37,11 @@ public class FlightCrewFlightAssignmentPublishService extends AbstractGuiService
 		assignmentId = super.getRequest().getData("id", int.class);
 		assignment = this.repository.findAssignmentbyId(assignmentId);
 		correctMember = assignment != null && assignment.getFlightCrewMember().getId() == super.getRequest().getPrincipal().getActiveRealm().getId();
-		draftMode = assignment.getDraftMode();
 
 		//If it is a hacking request, it can only contain the id in the dataset. This way i assure that a 401 code is returned instead of an AssertionError.
 		if (correctMember) {
+
+			draftMode = assignment.getDraftMode();
 
 			if (super.getRequest().getMethod().equals("GET") && draftMode)
 				super.getResponse().setAuthorised(true);
@@ -51,13 +52,13 @@ public class FlightCrewFlightAssignmentPublishService extends AbstractGuiService
 					return;
 				}
 
-				//Checks if the leg is in the future and published
+				//Checks if the leg exists
 				boolean correctLeg;
 				int legId = super.getRequest().getData("leg", int.class);
 
 				if (legId != 0) {
 					leg = this.repository.findLegById(legId);
-					correctLeg = leg != null && MomentHelper.isFuture(leg.getScheduledDeparture());
+					correctLeg = leg != null;
 
 					status = correctLeg && draftMode;
 
@@ -106,9 +107,14 @@ public class FlightCrewFlightAssignmentPublishService extends AbstractGuiService
 	public void validate(final FlightAssignment assignment) {
 		int legId = super.getRequest().getData("leg", int.class);
 		Leg leg = this.repository.findLegById(legId);
-		boolean draftMode = leg.isDraftMode();
+		if (legId != 0) {
+			boolean draftMode = leg.isDraftMode();
 
-		super.state(!draftMode, "leg", "acme.validation.unpublishedLeg.message");
+			super.state(MomentHelper.isFuture(leg.getScheduledDeparture()), "leg", "acme.validation.legNotFuture.message");
+
+			super.state(!draftMode, "leg", "acme.validation.unpublishedLeg.message");
+
+		}
 	}
 
 	@Override

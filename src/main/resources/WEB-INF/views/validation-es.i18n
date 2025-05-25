@@ -113,6 +113,7 @@ acme.validation.onePublishedTask.message = Este Registro de Mantenimiento no tie
 
 acme.validation.unpublishedLeg.message = Esta escala no está publicada
 acme.validation.unpublishedFlightAssignment.message = La asignación de vuela relacionada con este informe de actividad no ha sido publicada
+acme.validation.legNotFuture.message = Esta escala está en el pasado
 
 acme.validation.updatePublishedTask.message = No puedes editar una tarea publicada
 acme.validation.deletePublishedTask.message = No puedes borrar una tarea publicada
