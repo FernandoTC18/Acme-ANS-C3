@@ -111,6 +111,10 @@ acme.validation.incorrectly-formatted-flightNumber.message = Debe utilizar un fo
 acme.validation.unpublishedTasks.message = Este Registro de Mantenimiento tiene Tareas sin publicar
 acme.validation.onePublishedTask.message = Este Registro de Mantenimiento no tiene ninguna tarea publicada
 
+acme.validation.unpublishedLeg.message = Esta escala no está publicada
+acme.validation.unpublishedFlightAssignment.message = La asignación de vuela relacionada con este informe de actividad no ha sido publicada
+acme.validation.legNotFuture.message = Esta escala está en el pasado
+
 acme.validation.updatePublishedTask.message = No puedes editar una tarea publicada
 acme.validation.deletePublishedTask.message = No puedes borrar una tarea publicada
 

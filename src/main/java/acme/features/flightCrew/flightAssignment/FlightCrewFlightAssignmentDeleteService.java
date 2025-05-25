@@ -1,5 +1,5 @@
-package acme.features.flightCrew.flightAssignment;
 
+package acme.features.flightCrew.flightAssignment;
 
 import java.util.Collection;
 
@@ -9,6 +9,7 @@ import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.entities.activitylog.ActivityLog;
 import acme.entities.flightAssignment.AssignmentStatus;
 import acme.entities.flightAssignment.Duty;
 import acme.entities.flightAssignment.FlightAssignment;
@@ -16,8 +17,8 @@ import acme.entities.leg.Leg;
 import acme.realms.FlightCrew;
 
 @GuiService
-public class FlightCrewFlightAssignmentDeleteService extends AbstractGuiService<FlightCrew,FlightAssignment> {
-	
+public class FlightCrewFlightAssignmentDeleteService extends AbstractGuiService<FlightCrew, FlightAssignment> {
+
 	@Autowired
 	FlightCrewFlightAssignmentRepository repository;
 
@@ -27,34 +28,20 @@ public class FlightCrewFlightAssignmentDeleteService extends AbstractGuiService<
 		int assignmentId;
 		FlightAssignment assignment;
 		boolean status;
-	
 
-		//Checks if the correct member is accessing
+		//Checks if the correct member is accessing and if it is in draft mode
 		boolean correctMember;
+		boolean draftMode;
 
 		assignmentId = super.getRequest().getData("id", int.class);
 		assignment = this.repository.findAssignmentbyId(assignmentId);
-		correctMember = assignment == null ? null : assignment.getFlightCrewMember().getId() == super.getRequest().getPrincipal().getActiveRealm().getId();
-		
-		//If it is a hacking request, it can only contain the id in the dataset. This way i assure that a 401 code is returned instead of an AssertionError.
-		if (correctMember == true) {
-			//Checks if the assignment is in draft mode
-			boolean draftMode;
-			
-			assignmentId = super.getRequest().getData("id", int.class);
-			assignment = this.repository.findAssignmentbyId(assignmentId);
-			draftMode = assignment.getDraftMode();
-			
-			
-			status = correctMember && draftMode;
-			
-			super.getResponse().setAuthorised(status);
-			
-		} else {
-			super.getResponse().setAuthorised(false);
-		}
-		
-		
+		correctMember = assignment != null && assignment.getFlightCrewMember().getId() == super.getRequest().getPrincipal().getActiveRealm().getId();
+		draftMode = correctMember && assignment != null ? assignment.getDraftMode() : false;
+
+		status = correctMember && draftMode;
+
+		super.getResponse().setAuthorised(status);
+
 	}
 
 	@Override
@@ -74,15 +61,13 @@ public class FlightCrewFlightAssignmentDeleteService extends AbstractGuiService<
 		String employeeCode;
 		Leg leg;
 		FlightCrew member;
-		
+
 		legId = super.getRequest().getData("leg", int.class);
 		employeeCode = super.getRequest().getData("flightCrewMember", String.class);
-		
+
 		leg = this.repository.findLegById(legId);
 		member = this.repository.findFlightCrewByCode(employeeCode);
-		
-		
-		
+
 		assignment.setLeg(leg);
 		assignment.setFlightCrewMember(member);
 		super.bindObject(assignment, "duty", "lastUpdate", "status", "remarks");
@@ -90,18 +75,20 @@ public class FlightCrewFlightAssignmentDeleteService extends AbstractGuiService<
 
 	@Override
 	public void validate(final FlightAssignment assignment) {
-	
+
 	}
 
 	@Override
 	public void perform(final FlightAssignment assignment) {
+		Collection<ActivityLog> relatedLogs = this.repository.findLogsByAssignmentId(assignment.getId());
+
+		this.repository.deleteAll(relatedLogs);
 		this.repository.delete(assignment);
 
 	}
 
 	@Override
 	public void unbind(final FlightAssignment assignment) {
-		assert assignment != null;
 		Dataset dataset;
 		Collection<Leg> legs;
 		SelectChoices legChoices;
@@ -114,7 +101,7 @@ public class FlightCrewFlightAssignmentDeleteService extends AbstractGuiService<
 		dutyChoices = SelectChoices.from(Duty.class, assignment.getDuty());
 
 		dataset = super.unbindObject(assignment, "duty", "lastUpdate", "status", "remarks", "draftMode");
-		dataset.put("readonly", !assignment.getDraftMode());
+		dataset.put("lastUpdate", assignment.getLastUpdate());
 		dataset.put("leg", legChoices.getSelected().getKey());
 		dataset.put("legs", legChoices);
 		dataset.put("status", statusChoices);

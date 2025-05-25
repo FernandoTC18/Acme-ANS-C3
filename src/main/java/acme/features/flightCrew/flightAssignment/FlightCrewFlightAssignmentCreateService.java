@@ -1,9 +1,7 @@
 
 package acme.features.flightCrew.flightAssignment;
 
-
 import java.util.Collection;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -31,35 +29,39 @@ public class FlightCrewFlightAssignmentCreateService extends AbstractGuiService<
 		FlightCrew member;
 		Leg leg;
 		boolean status;
-	
+
 		//When the create service is called via a button, the request has no id.
 		//When it's called via a submit, the request has id = 0.
-		if(super.getRequest().hasData("id")) { 
-			
+		if (super.getRequest().hasData("id")) {
+
 			//Checks if the correct member is accessing
 			boolean correctMember;
-			
-			employeeCode = super.getRequest().getData("flightCrewMember",String.class);
+
+			employeeCode = super.getRequest().getData("flightCrewMember", String.class);
 			member = this.repository.findFlightCrewByCode(employeeCode);
-			correctMember = member == null ? null : super.getRequest().getPrincipal().getActiveRealm().getId() == member.getId();
-			
-			//Checks if the leg is in the future and published
+			correctMember = member != null && super.getRequest().getPrincipal().getActiveRealm().getId() == member.getId();
+
+			//To prevent hacking the duty attribute
+			Duty duty = super.getRequest().getData("duty", Duty.class);
+
+			//Checks if the leg exists.
 			boolean correctLeg;
 			int legId;
 			legId = super.getRequest().getData("leg", int.class);
-			leg = this.repository.findLegById(legId);
-			correctLeg = leg == null ? null : MomentHelper.isFuture(leg.getScheduledDeparture()) && !leg.isDraftMode();
-			
-			
-			status = correctMember && correctLeg;
-			
+
+			if (legId != 0) {
+				leg = this.repository.findLegById(legId);
+				correctLeg = leg != null;
+
+				status = correctMember && correctLeg;
+			} else
+				status = correctMember;
+
 			super.getResponse().setAuthorised(status);
 
-		} else { 
+		} else
 			super.getResponse().setAuthorised(true);
-		}
-		
-		
+
 	}
 
 	@Override
@@ -67,10 +69,9 @@ public class FlightCrewFlightAssignmentCreateService extends AbstractGuiService<
 		FlightAssignment assignment;
 		int id;
 		FlightCrew member;
-		
+
 		id = super.getRequest().getPrincipal().getActiveRealm().getId();
 		member = this.repository.findCrewById(id);
-		
 
 		assignment = new FlightAssignment();
 		assignment.setDuty(null);
@@ -88,10 +89,10 @@ public class FlightCrewFlightAssignmentCreateService extends AbstractGuiService<
 	public void bind(final FlightAssignment assignment) {
 		int legId;
 		Leg leg;
-		
+
 		legId = super.getRequest().getData("leg", int.class);
 		leg = this.repository.findLegById(legId);
-		
+
 		assignment.setLeg(leg);
 		super.bindObject(assignment, "duty", "status", "remarks");
 	}
@@ -99,7 +100,7 @@ public class FlightCrewFlightAssignmentCreateService extends AbstractGuiService<
 	@Override
 	public void validate(final FlightAssignment assignment) {
 		boolean confirmation;
-		
+
 		confirmation = super.getRequest().getData("confirmation", boolean.class);
 		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
 	}
@@ -112,7 +113,6 @@ public class FlightCrewFlightAssignmentCreateService extends AbstractGuiService<
 
 	@Override
 	public void unbind(final FlightAssignment assignment) {
-		assert assignment != null;
 		Dataset dataset;
 		Collection<Leg> legs;
 		SelectChoices legChoices;
@@ -132,9 +132,8 @@ public class FlightCrewFlightAssignmentCreateService extends AbstractGuiService<
 		dataset.put("duty", dutyChoices);
 		dataset.put("flightCrewMember", assignment.getFlightCrewMember().getEmployeeCode());
 		dataset.put("lastUpdate", assignment.getLastUpdate());
-		
+
 		super.getResponse().addData(dataset);
-		
 
 	}
 }

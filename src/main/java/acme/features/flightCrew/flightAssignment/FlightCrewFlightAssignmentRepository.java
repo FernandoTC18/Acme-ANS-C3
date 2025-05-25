@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
+import acme.entities.activitylog.ActivityLog;
 import acme.entities.flightAssignment.Duty;
 import acme.entities.flightAssignment.FlightAssignment;
 import acme.entities.leg.Leg;
@@ -20,38 +21,38 @@ public interface FlightCrewFlightAssignmentRepository extends AbstractRepository
 
 	@Query("select f from FlightCrew f where f.employeeCode = :employeeCode")
 	FlightCrew findFlightCrewByCode(String employeeCode);
-	
+
 	@Query("select fa from FlightAssignment fa where fa.id = :id")
 	FlightAssignment findAssignmentbyId(int id);
 
 	@Query("select fa from FlightAssignment fa where fa.flightCrewMember.id = :memberId and fa.leg.scheduledArrival < :arrivalDate")
 	Collection<FlightAssignment> getCompletedAssignmentsByMemberId(int memberId, Date arrivalDate);
-	
+
 	@Query("select fa from FlightAssignment fa where fa.flightCrewMember.id = :memberId and fa.leg.scheduledArrival >= :arrivalDate")
 	Collection<FlightAssignment> getUncompletedAssignmentsByMemberId(int memberId, Date arrivalDate);
-	
+
 	@Query("select fa.leg from FlightAssignment fa where fa.leg.scheduledArrival >:date and fa.flightCrewMember.id =:id ")
 	Collection<Leg> getLegsByMemberId(Timestamp date, int id);
-	
+
 	@Query("select l from Leg l")
 	Collection<Leg> findAllLegs();
-	
+
 	@Query("select m from FlightCrew m")
 	Collection<FlightCrew> findAllMembers();
-	
+
 	@Query("select count(fa.flightCrewMember) from FlightAssignment fa where fa.flightCrewMember.id = :id and fa.duty = :duty")
 	Long countMembersByDuty(int id, Optional<Duty> duty);
-	
+
 	@Query("select f from FlightCrew f where f.id = :id")
 	FlightCrew findCrewById(int id);
-	
+
 	@Query("select l from Leg l where l.id = :id")
 	Leg findLegById(int id);
-	
+
 	@Query("select l from Leg l where l.scheduledArrival > :date and l.draftMode = false")
 	Collection<Leg> findFutureAndPublishedLegs(Date date);
-	
-	
-	
+
+	@Query("select al from ActivityLog al where al.flightAssignment.id = :id")
+	Collection<ActivityLog> findLogsByAssignmentId(int id);
 
 }
