@@ -60,13 +60,14 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 
 	@Override
 	public void validate(final MaintenanceRecord maintenanceRecord) {
-		boolean status;
+		boolean status = true;
 
 		Date inspection = maintenanceRecord.getInspectionDueDate();
 
 		Date moment = maintenanceRecord.getMoment();
 
-		status = inspection.after(moment);
+		if (inspection != null && moment != null)
+			status = inspection.after(moment);
 
 		super.state(status, "inspectionDueDate", "acme.validation.maintenanceRecord.nextInspectionPriorMaintenanceMoment.message");
 	}
