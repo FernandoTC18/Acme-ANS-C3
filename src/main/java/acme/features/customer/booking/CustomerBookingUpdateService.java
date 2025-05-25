@@ -30,6 +30,7 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 	public void authorise() {
 		boolean status;
 		boolean correctFlight = true;
+		boolean flightNotPublished = true;
 		int bookingId;
 		int flightId;
 		Booking booking;
@@ -39,16 +40,18 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 		booking = this.repository.findBookingById(bookingId);
 		customer = booking == null ? null : booking.getCustomer();
 
-		if (bookingId != 0 && super.getRequest().hasData("id")) {
-			flightId = super.getRequest().getData("flight", int.class);
-			if (flightId != 0) {
-				Flight flight = this.repository.findFlightById(flightId);
-				correctFlight = flight != null && flight.getScheduledDeparture().after(MomentHelper.getCurrentMoment()) && !flight.isDraftMode();
+		if (super.getRequest().hasData("id"))
+			if (super.getRequest().hasData("flight")) {
+				flightId = super.getRequest().getData("flight", int.class);
+				if (flightId != 0) {
+					Flight flight = this.repository.findFlightById(flightId);
+					correctFlight = flight != null && flight.getScheduledDeparture().after(MomentHelper.getCurrentMoment());
+					flightNotPublished = flight != null && !flight.isDraftMode();
+				}
+				super.getRequest().getData("travelClass", TravelClass.class);
 			}
-			super.getRequest().getData("travelClass", TravelClass.class);
-		}
 
-		status = booking != null && super.getRequest().getPrincipal().hasRealm(customer) && booking.getDraftMode() && correctFlight;
+		status = booking != null && super.getRequest().getPrincipal().hasRealm(customer) && booking.getDraftMode() && correctFlight && flightNotPublished;
 
 		super.getResponse().setAuthorised(status);
 	}
