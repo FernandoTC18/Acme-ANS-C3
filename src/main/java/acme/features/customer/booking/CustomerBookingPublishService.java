@@ -31,7 +31,9 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 	public void authorise() {
 		boolean status;
 		boolean correctFlight = true;
+		boolean flightNotPublished = true;
 		int bookingId;
+		int flightId;
 		Booking booking;
 		Customer customer;
 
@@ -39,16 +41,18 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 		booking = this.repository.findBookingById(bookingId);
 		customer = booking == null ? null : booking.getCustomer();
 
-		if (bookingId != 0 && super.getRequest().hasData("id"))
+		if (super.getRequest().hasData("id"))
 			if (super.getRequest().hasData("flight")) {
-				int flightId = super.getRequest().getData("flight", int.class);
+				flightId = super.getRequest().getData("flight", int.class);
 				if (flightId != 0) {
 					Flight flight = this.repository.findFlightById(flightId);
-					correctFlight = flight != null && flight.getScheduledDeparture().after(MomentHelper.getCurrentMoment()) && !flight.isDraftMode();
+					correctFlight = flight != null && flight.getScheduledDeparture().after(MomentHelper.getCurrentMoment());
+					flightNotPublished = flight != null && !flight.isDraftMode();
 				}
+				super.getRequest().getData("travelClass", TravelClass.class);
 			}
 
-		status = super.getRequest().getPrincipal().hasRealm(customer) && booking != null && booking.getDraftMode() && correctFlight;
+		status = booking != null && super.getRequest().getPrincipal().hasRealm(customer) && booking.getDraftMode() && correctFlight && flightNotPublished;
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -80,7 +84,7 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 	public void validate(final Booking booking) {
 		{
 			Boolean hasNibble;
-			hasNibble = !booking.getLastCardNibble().isBlank() || booking.getLastCardNibble() == null;
+			hasNibble = !booking.getLastCardNibble().isBlank();
 			super.state(hasNibble, "lastCardNibble", "acme.validation.lastCardNibble.message");
 		}
 		{
@@ -118,7 +122,7 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 		SelectChoices classes;
 		SelectChoices flights;
 
-		available = this.repository.findAllFlights().stream().filter(a -> a.getScheduledDeparture().after(MomentHelper.getCurrentMoment())).toList();
+		available = this.repository.findAvailableFlights().stream().filter(a -> a.getScheduledDeparture().after(MomentHelper.getCurrentMoment())).toList();
 		classes = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 
 		flights = SelectChoices.from(available, "flightPath", booking.getFlight());
@@ -127,7 +131,6 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 		dataset.put("travelClass", classes);
 		dataset.put("flight", flights.getSelected().getKey());
 		dataset.put("flights", flights);
-		dataset.put("readonly", !booking.getDraftMode());
 
 		super.getResponse().addData(dataset);
 	}

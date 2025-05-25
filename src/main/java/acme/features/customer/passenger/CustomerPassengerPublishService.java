@@ -70,7 +70,6 @@ public class CustomerPassengerPublishService extends AbstractGuiService<Customer
 		canBeDeleted = this.repository.findBookingByPassengerId(passenger.getId()).isEmpty();
 
 		dataset = super.unbindObject(passenger, "name", "email", "passportNumber", "birth", "specialNeeds");
-		dataset.put("readonly", !passenger.getDraftMode());
 		dataset.put("canBeDeleted", canBeDeleted);
 		super.getResponse().addData(dataset);
 	}

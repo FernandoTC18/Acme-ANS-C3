@@ -57,7 +57,7 @@ public class CustomerBookingShowService extends AbstractGuiService<Customer, Boo
 		SelectChoices classes;
 		SelectChoices flights;
 
-		available = this.repository.findAllFlights().stream().filter(a -> a.getScheduledDeparture().after(MomentHelper.getCurrentMoment())).toList();
+		available = this.repository.findAvailableFlights().stream().filter(a -> a.getScheduledDeparture().after(MomentHelper.getCurrentMoment())).toList();
 		classes = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 
 		flights = SelectChoices.from(available, "flightPath", booking.getFlight());
