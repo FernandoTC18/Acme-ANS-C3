@@ -31,6 +31,7 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 		boolean status;
 		boolean correctFlight = true;
 		int bookingId;
+		int flightId;
 		Booking booking;
 		Customer customer;
 
@@ -38,16 +39,16 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 		booking = this.repository.findBookingById(bookingId);
 		customer = booking == null ? null : booking.getCustomer();
 
-		if (bookingId != 0 && super.getRequest().hasData("id"))
-			if (super.getRequest().hasData("flight")) {
-				int flightId = super.getRequest().getData("flight", int.class);
-				if (flightId != 0) {
-					Flight flight = this.repository.findFlightById(flightId);
-					correctFlight = flight != null && flight.getScheduledDeparture().after(MomentHelper.getCurrentMoment()) && !flight.isDraftMode();
-				}
+		if (bookingId != 0 && super.getRequest().hasData("id")) {
+			flightId = super.getRequest().getData("flight", int.class);
+			if (flightId != 0) {
+				Flight flight = this.repository.findFlightById(flightId);
+				correctFlight = flight != null && flight.getScheduledDeparture().after(MomentHelper.getCurrentMoment()) && !flight.isDraftMode();
 			}
+			super.getRequest().getData("travelClass", TravelClass.class);
+		}
 
-		status = super.getRequest().getPrincipal().hasRealm(customer) && booking != null && booking.getDraftMode() && correctFlight;
+		status = booking != null && super.getRequest().getPrincipal().hasRealm(customer) && booking.getDraftMode() && correctFlight;
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -93,7 +94,7 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 		SelectChoices classes;
 		SelectChoices flights;
 
-		available = this.repository.findAllFlights().stream().filter(a -> a.getScheduledDeparture().after(MomentHelper.getCurrentMoment())).toList();
+		available = this.repository.findAvailableFlights().stream().filter(a -> a.getScheduledDeparture().after(MomentHelper.getCurrentMoment())).toList();
 		classes = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 
 		flights = SelectChoices.from(available, "flightPath", booking.getFlight());
@@ -102,7 +103,6 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 		dataset.put("travelClass", classes);
 		dataset.put("flight", flights.getSelected().getKey());
 		dataset.put("flights", flights);
-		dataset.put("readonly", !booking.getDraftMode());
 
 		super.getResponse().addData(dataset);
 
