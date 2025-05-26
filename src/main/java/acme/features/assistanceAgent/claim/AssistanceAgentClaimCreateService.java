@@ -82,16 +82,14 @@ public class AssistanceAgentClaimCreateService extends AbstractGuiService<Assist
 	@Override
 	public void validate(final Claim claim) {
 		{
-			int legId;
 			Date legTime;
 			Date moment;
 			boolean condition;
 
 			if (claim.getLeg() != null) {
-				legId = claim.getLeg().getId();
 				moment = claim.getRegistrationMoment();
-				legTime = this.repository.findArrivalTimeLegById(legId);
-				condition = moment.after(legTime);
+				legTime = claim.getLeg().getScheduledArrival();
+				condition = !moment.before(legTime);
 
 				super.state(condition, "*", "acme.validation.leg-time.message");
 			}

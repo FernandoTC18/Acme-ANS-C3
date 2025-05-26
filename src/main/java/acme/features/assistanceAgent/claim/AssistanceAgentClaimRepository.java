@@ -2,7 +2,6 @@
 package acme.features.assistanceAgent.claim;
 
 import java.util.Collection;
-import java.util.Date;
 
 import javax.transaction.Transactional;
 
@@ -22,9 +21,6 @@ public interface AssistanceAgentClaimRepository extends AbstractRepository {
 
 	@Query("select c from Claim c where c.id = :id")
 	Claim findClaimById(int id);
-
-	@Query("select l.scheduledArrival from Leg l where l.id = :id")
-	Date findArrivalTimeLegById(int id);
 
 	@Query("select l from Leg l")
 	Collection<Leg> findAllLegs();

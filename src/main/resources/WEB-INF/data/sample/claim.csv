@@ -2,8 +2,8 @@ key,registrationMoment,passengerEmail,description,type,draftMode,key:assistanceA
 # base entity
 claim-00,2012/07/02 00:00,acme@lorem-ipsum.org,"Lorem ipsum dolor sit amet, consectetur adipiscing",FLIGHT_ISSUES,true,agent-01,leg-14
 # registrationMoment
-claim-01,2000/01/01 00:00,acme1@lorem-ipsum.org,"Lorem ipsum dolor sit amet, consectetur adipiscing",FLIGHT_ISSUES,true,agent-01,leg-14
-claim-02,2000/01/01 00:01,acme3@lorem-ipsum.org,"Lorem ipsum dolor sit amet, consectetur adipiscing",FLIGHT_ISSUES,true,agent-01,leg-14
+claim-01,2000/01/01 00:01,acme1@lorem-ipsum.org,"Lorem ipsum dolor sit amet, consectetur adipiscing",FLIGHT_ISSUES,true,agent-01,leg-14
+claim-02,2000/01/01 00:02,acme3@lorem-ipsum.org,"Lorem ipsum dolor sit amet, consectetur adipiscing",FLIGHT_ISSUES,true,agent-01,leg-14
 claim-03,2024/12/31 23:59,acme4@lorem-ipsum.org,"Lorem ipsum dolor sit amet, consectetur adipiscing",FLIGHT_ISSUES,true,agent-01,leg-14
 claim-04,2025/01/01 00:00,acme5@lorem-ipsum.org,"Lorem ipsum dolor sit amet, consectetur adipiscing",FLIGHT_ISSUES,true,agent-01,leg-14
 # registrationMoment - no singular values

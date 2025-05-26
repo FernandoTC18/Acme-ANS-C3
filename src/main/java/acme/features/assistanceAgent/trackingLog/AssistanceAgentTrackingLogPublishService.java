@@ -1,10 +1,18 @@
 
 package acme.features.assistanceAgent.trackingLog;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
+import java.util.OptionalInt;
+import java.util.stream.IntStream;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claim.ClaimStatus;
@@ -65,15 +73,43 @@ public class AssistanceAgentTrackingLogPublishService extends AbstractGuiService
 
 	@Override
 	public void validate(final TrackingLog trackingLog) {
-		boolean status;
+		{
+			boolean status;
 
-		status = !trackingLog.getClaim().getDraftMode();
+			status = !trackingLog.getClaim().getDraftMode();
 
-		super.state(status, "*", "acme.validation.trackingLog.claim-not-published.message");
+			super.state(status, "*", "acme.validation.trackingLog.claim-not-published.message");
+		}
+		{
+			if (trackingLog.getResolutionPercentage() != null) {
+				Double newPerc;
+				OptionalInt optid;
+				int idx;
+				boolean isGreater;
+				boolean isLesser;
+
+				newPerc = trackingLog.getResolutionPercentage();
+
+				List<TrackingLog> sortedLogs = this.loadAndSortLogs(trackingLog);
+				optid = this.findIndexOf(trackingLog, sortedLogs);
+
+				if (optid.isPresent()) {
+					idx = optid.getAsInt();
+					isGreater = this.isGreaterThanPrevious(idx, newPerc, sortedLogs);
+					isLesser = this.isLessThanNext(idx, newPerc, sortedLogs);
+					super.state(isGreater, "resolutionPercentage", "acme.validation.trackingLog.invalid-resolution-percentage-greater.message");
+					super.state(isLesser, "resolutionPercentage", "acme.validation.trackingLog.invalid-resolution-percentage-lesser.message");
+				}
+			}
+		}
 	}
 
 	@Override
 	public void perform(final TrackingLog trackingLog) {
+		Date moment;
+
+		moment = MomentHelper.getCurrentMoment();
+		trackingLog.setLastUpdateMoment(moment);
 		trackingLog.setDraftMode(false);
 		this.repository.save(trackingLog);
 	}
@@ -103,6 +139,34 @@ public class AssistanceAgentTrackingLogPublishService extends AbstractGuiService
 		} catch (IllegalArgumentException e) {
 			return false;
 		}
+	}
+
+	private List<TrackingLog> loadAndSortLogs(final TrackingLog trackingLog) {
+		List<TrackingLog> logs = this.repository.findTrackingLogsByClaimId(trackingLog.getClaim().getId());
+		List<TrackingLog> all = new ArrayList<>(logs);
+
+		all.sort(Comparator.comparing(TrackingLog::getOrderDate).thenComparing(TrackingLog::getResolutionPercentage));
+		return all;
+	}
+
+	private OptionalInt findIndexOf(final TrackingLog target, final List<TrackingLog> sorted) {
+		return IntStream.range(0, sorted.size()).filter(i -> sorted.get(i).getId() == target.getId()).findFirst();
+	}
+
+	private boolean isGreaterThanPrevious(final int idx, final Double newPerc, final List<TrackingLog> logs) {
+		if (idx == 0)
+			return true;
+		Double prev = logs.get(idx - 1).getResolutionPercentage();
+		if (prev.equals(Double.valueOf(100.00)))
+			return prev.equals(newPerc);
+		return newPerc > prev;
+	}
+
+	private boolean isLessThanNext(final int idx, final Double newPerc, final List<TrackingLog> logs) {
+		if (idx >= logs.size() - 1)
+			return true;
+		Double next = logs.get(idx + 1).getResolutionPercentage();
+		return newPerc < next;
 	}
 
 }
