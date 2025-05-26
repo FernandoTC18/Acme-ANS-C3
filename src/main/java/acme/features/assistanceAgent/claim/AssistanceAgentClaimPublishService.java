@@ -2,6 +2,7 @@
 package acme.features.assistanceAgent.claim;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -80,7 +81,19 @@ public class AssistanceAgentClaimPublishService extends AbstractGuiService<Assis
 
 	@Override
 	public void validate(final Claim claim) {
-		// Intentionally left blank: no associated requirements.
+		{
+			Date legTime;
+			Date moment;
+			boolean condition;
+
+			if (claim.getLeg() != null) {
+				moment = claim.getRegistrationMoment();
+				legTime = claim.getLeg().getScheduledArrival();
+				condition = !moment.before(legTime);
+
+				super.state(condition, "*", "acme.validation.leg-time.message");
+			}
+		}
 	}
 
 	@Override
