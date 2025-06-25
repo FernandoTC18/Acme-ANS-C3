@@ -1,3 +1,4 @@
 key,key:userAccount,licenseNumber,phoneNumber,specialisation,annualHealthTest,yearsOfExperience,certifications
 technician-01,user-account-technician-01,AAA000000,+34000000000,specialization1,true,0,cert1
 technician-02,user-account-technician-02,ZZ999999,+34999999999,specialization2,false,99,cert2
+technician-03,user-account-technician-03,ABC123456,+34123456789,specialization3,true,20,cert3
