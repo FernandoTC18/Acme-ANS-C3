@@ -4,9 +4,9 @@ maintenance-record-00,2000/01/01 00:00,PENDING,2200/12/31 23:59,EUR 500000.00,Lo
 # moment - standard variations,""
 maintenance-record-01,2000/01/01 00:00,PENDING,2200/12/31 23:59,EUR 500000.00,Lorem ipsum,aircraft-01,technician-01,true
 maintenance-record-02,2000/01/01 00:01,PENDING,2200/12/31 23:59,EUR 500000.00,Lorem ipsum,aircraft-01,technician-01,true
-maintenance-record-03,2025/09/01 10:00,PENDING,2200/12/31 23:59,EUR 500000.00,Lorem ipsum,aircraft-01,technician-01,true
-maintenance-record-04,2200/12/31 23:58,PENDING,2200/12/31 23:59,EUR 500000.00,Lorem ipsum,aircraft-01,technician-01,true
-maintenance-record-05,2200/12/31 23:59,PENDING,2200/12/31 23:59,EUR 500000.00,Lorem ipsum,aircraft-01,technician-01,true
+maintenance-record-03,2015/09/01 10:00,PENDING,2200/12/31 23:59,EUR 500000.00,Lorem ipsum,aircraft-01,technician-01,true
+maintenance-record-04,2024/12/31 23:59,PENDING,2200/12/31 23:59,EUR 500000.00,Lorem ipsum,aircraft-01,technician-01,true
+maintenance-record-05,2025/01/01 00:00,PENDING,2200/12/31 23:59,EUR 500000.00,Lorem ipsum,aircraft-01,technician-01,true
 # moment - no singular values
 # status - standard variations
 maintenance-record-06,2000/01/01 00:00,PENDING,2200/12/31 23:59,EUR 500000.00,Lorem ipsum,aircraft-01,technician-01,true
@@ -14,9 +14,9 @@ maintenance-record-07,2000/01/01 00:00,IN_PROGRESS,2200/12/31 23:59,EUR 500000.0
 maintenance-record-08,2000/01/01 00:00,COMPLETED,2200/12/31 23:59,EUR 500000.00,Lorem ipsum,aircraft-01,technician-01,true
 # status - no singular values
 # inspectionDueDate - standard variations
-maintenance-record-09,2000/01/01 00:00,PENDING,2000/01/01 00:00,EUR 500000.00,Lorem ipsum,aircraft-01,technician-01,true
-maintenance-record-10,2000/01/01 00:00,PENDING,2000/01/01 00:01,EUR 500000.00,Lorem ipsum,aircraft-01,technician-01,true
-maintenance-record-11,2000/01/01 00:00,PENDING,2025/09/01 10:00,EUR 500000.00,Lorem ipsum,aircraft-01,technician-01,true
+maintenance-record-09,2000/01/01 00:00,PENDING,2025/01/01 00:00,EUR 500000.00,Lorem ipsum,aircraft-01,technician-01,true
+maintenance-record-10,2000/01/01 00:00,PENDING,2025/01/01 00:01,EUR 500000.00,Lorem ipsum,aircraft-01,technician-01,true
+maintenance-record-11,2000/01/01 00:00,PENDING,2065/09/01 10:00,EUR 500000.00,Lorem ipsum,aircraft-01,technician-01,true
 maintenance-record-12,2000/01/01 00:00,PENDING,2200/12/31 23:58,EUR 500000.00,Lorem ipsum,aircraft-01,technician-01,true
 maintenance-record-13,2000/01/01 00:00,PENDING,2200/12/31 23:59,EUR 500000.00,Lorem ipsum,aircraft-01,technician-01,true
 # inspectionDueDate - no singular values

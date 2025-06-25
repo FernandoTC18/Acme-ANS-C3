@@ -1,4 +1,5 @@
 technician.maintenance-record.list.label.moment = Momento
+technician.maintenance-record.list.label.notes = Notas
 technician.maintenance-record.list.label.status = Estado
 technician.maintenance-record.list.label.inspectionDueDate = Fecha inspección
 technician.maintenance-record.list.label.estimatedCost = Coste estimado

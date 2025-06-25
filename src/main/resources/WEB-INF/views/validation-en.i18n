@@ -63,7 +63,7 @@ acme.validation.trackingLog.invalid-number-completed-published-logs.message = On
 acme.validation.trackingLog.claim-not-published.message = A tracking log cannot be published until its corresponding claim is published
 
 # Technician Validation
-acme.validation.technician.invalid-licenseNumber.message = The ‘licenseNumber’ field does not conform to the pattern ‘^[A-Z]{2,3}’ or is null.
+acme.validation.technician.invalid-licenseNumber.message = The ‘licenseNumber’ field does not conform to the pattern ‘^[A-Z]{2,3}\\d{6}$’ or is null.
 acme.validation.technician.used-licenseNumber.message = The licence number is already in use.
 
 # Aircraft Validation
@@ -102,6 +102,8 @@ acme.validation.not-has-passenger-selected.message = You have to select a passen
 
 acme.validation.maintenanceRecord.nextInspectionPriorMaintenanceMoment.message = The date of the next inspection cannot be prior to the moment of the maintenance record
 acme.validation.involves.alreadyInvolvedTask.message = This Task is already related to this Maintenance Record
+acme.validation.maintenanceRecord.futureInspection.message = The date of the next inspection should be in the future
+acme.validation.maintenanceRecord.pastMoment.message = The moment of the maintenance record must be actual or in the past
 
 # GENERAL #############################
 acme.validation.incorrectly-formatted-phoneNumber.message = You have to use a correct phone number format, Ex: +34123456789, 123456789
