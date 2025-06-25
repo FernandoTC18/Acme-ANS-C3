@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
@@ -61,20 +62,25 @@ public class TechnicianMaintenanceRecordUpdateService extends AbstractGuiService
 
 	@Override
 	public void validate(final MaintenanceRecord maintenanceRecord) {
-		boolean status;
 
-		status = maintenanceRecord.isDraftMode();
+		boolean notPublished = maintenanceRecord.isDraftMode();
 
-		boolean date;
+		boolean futureInspection = true;
+		boolean pastMoment = true;
 
 		Date inspection = maintenanceRecord.getInspectionDueDate();
 
 		Date moment = maintenanceRecord.getMoment();
 
-		date = inspection.after(moment);
+		if (inspection != null && moment != null) {
+			futureInspection = inspection.after(MomentHelper.getCurrentMoment());
+			pastMoment = moment.before(MomentHelper.getCurrentMoment()) || moment.equals(MomentHelper.getCurrentMoment());
 
-		super.state(date, "inspectionDueDate", "acme.validation.maintenanceRecord.nextInspectionPriorMaintenanceMoment.message");
-		super.state(status, "*", "acme.validation.updatePublishedMaintenanceRecord.message");
+			super.state(futureInspection, "inspectionDueDate", "acme.validation.maintenanceRecord.futureInspection.message");
+			super.state(pastMoment, "moment", "acme.validation.maintenanceRecord.pastMoment.message");
+		}
+
+		super.state(notPublished, "*", "acme.validation.updatePublishedMaintenanceRecord.message");
 	}
 
 	@Override

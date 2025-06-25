@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
@@ -60,16 +61,23 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 
 	@Override
 	public void validate(final MaintenanceRecord maintenanceRecord) {
-		boolean status = true;
+		//boolean inspectionAfterMoment = true;
+		boolean futureInspection = true;
+		boolean pastMoment = true;
 
 		Date inspection = maintenanceRecord.getInspectionDueDate();
 
 		Date moment = maintenanceRecord.getMoment();
 
-		if (inspection != null && moment != null)
-			status = inspection.after(moment);
+		if (inspection != null && moment != null) {
+			//inspectionAfterMoment = inspection.after(moment);
+			futureInspection = inspection.after(MomentHelper.getCurrentMoment());
+			pastMoment = moment.before(MomentHelper.getCurrentMoment()) || moment.equals(MomentHelper.getCurrentMoment());
+		}
 
-		super.state(status, "inspectionDueDate", "acme.validation.maintenanceRecord.nextInspectionPriorMaintenanceMoment.message");
+		//super.state(inspectionAfterMoment, "inspectionDueDate", "acme.validation.maintenanceRecord.nextInspectionPriorMaintenanceMoment.message");
+		super.state(futureInspection, "inspectionDueDate", "acme.validation.maintenanceRecord.futureInspection.message");
+		super.state(pastMoment, "moment", "acme.validation.maintenanceRecord.pastMoment.message");
 	}
 
 	@Override

@@ -102,6 +102,8 @@ acme.validation.not-has-passenger-selected.message = Tienes que seleccionar un p
 
 acme.validation.maintenanceRecord.nextInspectionPriorMaintenanceMoment.message = La fecha de la próxima inspección no puede ser previa al momento del registro de mantenimiento
 acme.validation.involves.alreadyInvolvedTask.message = Esta Tarea ya está relacionada con este Registro de Mantenimiento
+acme.validation.maintenanceRecord.futureInspection.message = La fecha de la próxima inspección debe ser futura
+acme.validation.maintenanceRecord.pastMoment.message = La fecha del momento del registro debe ser pasada o actual
 
 # GENERAL ############################
 acme.validation.incorrectly-formatted-phoneNumber.message =  Debe utilizar un formato de número de teléfono correcto, Ej: +34123456789, 123456789

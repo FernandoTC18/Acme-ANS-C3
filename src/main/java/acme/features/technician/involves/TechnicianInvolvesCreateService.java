@@ -39,9 +39,9 @@ public class TechnicianInvolvesCreateService extends AbstractGuiService<Technici
 			int taskId = super.getRequest().getData("task", int.class);
 			Task task = this.taskRepository.findTaskById(taskId);
 
-			String techUsername = super.getRequest().getPrincipal().getUsername();
-			Technician tech = this.taskRepository.findTechnicianByUsername(techUsername);
-			status = task != null && !task.isDraftMode() && task.getTechnician().equals(tech);
+			//String techUsername = super.getRequest().getPrincipal().getUsername();
+			//Technician tech = this.taskRepository.findTechnicianByUsername(techUsername);
+			status = task != null && !task.isDraftMode(); // && task.getTechnician().equals(tech);
 
 		}
 
@@ -103,15 +103,7 @@ public class TechnicianInvolvesCreateService extends AbstractGuiService<Technici
 		SelectChoices choices;
 		List<Task> tasks;
 
-		String techUsername = super.getRequest().getPrincipal().getUsername();
-
-		int techId = this.taskRepository.findTechnicianByUsername(techUsername).getId();
-
-		// Cojo las tareas del tecnico logeado y filtro para quedarme con las que ya están publicadas
-
-		tasks = this.taskRepository.findTasksByTechnicianId(techId);
-
-		tasks = tasks.stream().filter(t -> !t.isDraftMode()).toList();
+		tasks = this.taskRepository.findPublishedTasks();
 
 		choices = SelectChoices.from(tasks, "description", involves.getTask());
 
