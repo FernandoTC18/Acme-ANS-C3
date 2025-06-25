@@ -23,7 +23,7 @@ public class TechnicianMaintenanceRecordShowService extends AbstractGuiService<T
 
 	@Override
 	public void authorise() {
-		boolean status;
+		boolean status = false;
 		int id;
 		MaintenanceRecord maintenanceRecord;
 		Technician technician;
@@ -31,7 +31,13 @@ public class TechnicianMaintenanceRecordShowService extends AbstractGuiService<T
 		id = super.getRequest().getData("id", int.class);
 		maintenanceRecord = this.repository.findMaintenanceRecordById(id);
 		technician = maintenanceRecord == null ? null : maintenanceRecord.getTechnician();
-		status = maintenanceRecord != null && super.getRequest().getPrincipal().hasRealm(technician);
+
+		if (maintenanceRecord != null && maintenanceRecord.isDraftMode()) {
+			status = super.getRequest().getPrincipal().hasRealm(technician);
+		}
+		else if (maintenanceRecord != null && !maintenanceRecord.isDraftMode()) {
+			status = true;
+		}
 
 		super.getResponse().setAuthorised(status);
 	}

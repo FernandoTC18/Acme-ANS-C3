@@ -25,13 +25,23 @@ public class TechnicianTaskUpdateService extends AbstractGuiService<Technician, 
 		Task task;
 		Technician technician;
 
-		id = super.getRequest().getData("id", int.class);
-		@SuppressWarnings("unused")
-		TaskType type = super.getRequest().getData("type", TaskType.class);
-		task = this.repository.findTaskById(id);
-		technician = task == null ? null : task.getTechnician();
-		status = task != null && task.isDraftMode() && super.getRequest().getPrincipal().hasRealm(technician);
+		if (super.getRequest().hasData("id")) {
 
+			id = super.getRequest().getData("id", int.class);
+			task = this.repository.findTaskById(id);
+
+			// Para comprobar que no se introduzca un tipo de tarea que no exista
+			if (super.getRequest().hasData("type")) {
+				@SuppressWarnings("unused")
+				TaskType type = super.getRequest().getData("type", TaskType.class);
+			}
+
+			technician = task == null ? null : task.getTechnician();
+
+			status = task != null && task.isDraftMode() && super.getRequest().getPrincipal().hasRealm(technician);
+
+		} else
+			status = false;
 		super.getResponse().setAuthorised(status);
 	}
 
