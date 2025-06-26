@@ -26,7 +26,6 @@
 					<acme:submit code="flight-crew.flight-assignment.form.submit.publish" action="/flight-crew/flight-assignment/publish?id=${id}"/>
 				</jstl:when>
 				<jstl:when test="${_command == 'create'}">
-					<acme:input-checkbox code="flight-crew.flight-assignment.form.confirmation" path="confirmation"/>
 					<acme:submit code="flight-crew.flight-assignment.form.submit.create" action="/flight-crew/flight-assignment/create"/>
 				</jstl:when>
 			</jstl:choose>

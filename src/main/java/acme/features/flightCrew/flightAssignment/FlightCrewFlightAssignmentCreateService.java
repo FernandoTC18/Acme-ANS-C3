@@ -15,6 +15,7 @@ import acme.entities.flightAssignment.Duty;
 import acme.entities.flightAssignment.FlightAssignment;
 import acme.entities.leg.Leg;
 import acme.realms.FlightCrew;
+import acme.realms.FlightCrewAvailability;
 
 @GuiService
 public class FlightCrewFlightAssignmentCreateService extends AbstractGuiService<FlightCrew, FlightAssignment> {
@@ -41,8 +42,9 @@ public class FlightCrewFlightAssignmentCreateService extends AbstractGuiService<
 			member = this.repository.findFlightCrewByCode(employeeCode);
 			correctMember = member != null && super.getRequest().getPrincipal().getActiveRealm().getId() == member.getId();
 
-			//To prevent hacking the duty attribute
+			//To prevent hacking the duty or the status attribute
 			Duty duty = super.getRequest().getData("duty", Duty.class);
+			AssignmentStatus assignmentStatus = super.getRequest().getData("status", AssignmentStatus.class);
 
 			//Checks if the leg exists.
 			boolean correctLeg;
@@ -51,7 +53,7 @@ public class FlightCrewFlightAssignmentCreateService extends AbstractGuiService<
 
 			if (legId != 0) {
 				leg = this.repository.findLegById(legId);
-				correctLeg = leg != null;
+				correctLeg = leg != null && !leg.isDraftMode();
 
 				status = correctMember && correctLeg;
 			} else
@@ -99,10 +101,40 @@ public class FlightCrewFlightAssignmentCreateService extends AbstractGuiService<
 
 	@Override
 	public void validate(final FlightAssignment assignment) {
-		boolean confirmation;
 
-		confirmation = super.getRequest().getData("confirmation", boolean.class);
-		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
+		int legId = super.getRequest().getData("leg", int.class);
+		Leg leg = this.repository.findLegById(legId);
+		FlightCrew member = assignment.getFlightCrewMember();
+		Collection<FlightAssignment> memberAssignments = this.repository.getAssignmentsByMemberId(member.getId());
+		Collection<FlightAssignment> assignmentsByLeg = this.repository.getAssignmentsByLegId(legId);
+		assignmentsByLeg.removeIf(a -> a.getId() == assignment.getId());
+
+		//Leg must be in the future
+		if (legId != 0) {
+
+			super.state(MomentHelper.isFuture(leg.getScheduledDeparture()), "leg", "acme.validation.legNotFuture.message");
+
+			//Checks if the member is assigned to a leg that overlaps with the selected one
+			boolean simultaneousLegs = memberAssignments.stream()
+				.anyMatch(x -> MomentHelper.isBefore(x.getLeg().getScheduledDeparture(), assignment.getLeg().getScheduledArrival()) && MomentHelper.isBefore(assignment.getLeg().getScheduledDeparture(), x.getLeg().getScheduledArrival()));
+
+			super.state(!simultaneousLegs, "leg", "acme.validation.member.overlappingLegs.message");
+		}
+
+		//Checks if the member is available
+		boolean availableMember = member.getAvailability().equals(FlightCrewAvailability.AVAILABLE);
+		super.state(availableMember, "*", "acme.validation.memberNotAvailable.message");
+
+		//		//Checks if there is already a pilot/copilot assigned to the selected leg
+		//		boolean legHasPilot = assignmentsByLeg.stream().anyMatch(x -> x.getDuty().equals(Duty.PILOT));
+		//		boolean legHasCopilot = assignmentsByLeg.stream().anyMatch(x -> x.getDuty().equals(Duty.COPILOT));
+		//
+		//		boolean additionalPilot = legHasPilot && assignment.getDuty().equals(Duty.PILOT);
+		//		boolean additionalCopilot = legHasCopilot && assignment.getDuty().equals(Duty.COPILOT);
+		//
+		//		super.state(!additionalPilot, "duty", "acme.validation.member.extraPilot.message");
+		//		super.state(!additionalCopilot, "duty", "acme.validation.member.extraCopilot.message");
+
 	}
 
 	@Override
@@ -125,7 +157,6 @@ public class FlightCrewFlightAssignmentCreateService extends AbstractGuiService<
 		dutyChoices = SelectChoices.from(Duty.class, assignment.getDuty());
 
 		dataset = super.unbindObject(assignment, "status", "remarks");
-		dataset.put("confirmation", false);
 		dataset.put("leg", legChoices.getSelected().getKey());
 		dataset.put("legs", legChoices);
 		dataset.put("status", statusChoices);

@@ -32,12 +32,17 @@ acme.validation.flightassignment.lastupdate.message = La ultima actualización d
 acme.validation.assignment-not-published = La asignación relacionada no ha sido publicada.
 
 # ActivityLog Validation
-acme.validation.activitylog.registrationMoment.message = La fecha de registro de un ActivityLog debe ser después de que se haya terminado la escala asociada.
+acme.validation.activitylog.registrationMoment.message = La fecha de registro de un ActivityLog debe ser después de que se haya terminado el tramo asociado.
 acme.validation.log-published = El registro ha sido publicado. Ningún cambio es posible
 
 # FlightCrew Validation
 acme.validation.flightCrew.employeeCode.message = Las 2 primeras letras del código de empleado deben coincidir con las iniciales del Flight Crew
 acme.validation.flightCrew.uniqueEmployeeCode.message = Este código de empleado ya existe. Por favor, intente otro nuevo.
+acme.validation.incorrectly-formatted-employeeCode.message = El código de empleado debe seguir un patrón determinado. Ej: AB123456, JRP56789
+acme.validation.memberNotAvailable.message = El miembro de la tripulación de vuelo no está disponible para ser asignado
+acme.validation.member.overlappingLegs.message = El miembro de la tripulación ya está asignado a un tramo que coincide con el tramo seleccionado. Por favor, cambie el tramo a asignar
+acme.validation.member.extraPilot.message = Ya hay un piloto asignado a este tramo
+acme.validation.member.extraCopilot.message = Ya hay un copiloto asignado a este tramo
 
 # Service Validation
 acme.validation.service.correctLastTwoNumbers.message = Las últimas dos cifras deben coicidir con el año actual
@@ -77,13 +82,6 @@ acme.validation.airline.uniqueIataCode.message = Este código IATA ya pertenece 
 acme.validation.airport.invalid-iataCode.message = Código Iata inválido
 acme.validation.airport.repeat-iataCode.message = El código Iata ya existe
 
-acme.validation.unavailable-crew-member.message = El tripulante de vuelo seleccionado no está disponible
-acme.validation.assigned-leg.message = El tripulante de vuelo seleccionado está asociado a una escala.
-acme.validation.number-of-pilot.message = Ya hay un piloto asignado.
-acme.validation.number-of-copilot.message = Ya hay un copiloto asignado.
-acme.validation.not-lead-attendant.message = Debes ser un lead attendant para actualizar una asignación de vuelo.
-
-
 # Booking Validation
 acme.validation.booking.invalid-locatorCode.message = Código localizador inválido
 acme.validation.booking.repeat-locatorCode.message = El código localizador ya existe
@@ -113,9 +111,9 @@ acme.validation.incorrectly-formatted-flightNumber.message = Debe utilizar un fo
 acme.validation.unpublishedTasks.message = Este Registro de Mantenimiento tiene Tareas sin publicar
 acme.validation.onePublishedTask.message = Este Registro de Mantenimiento no tiene ninguna tarea publicada
 
-acme.validation.unpublishedLeg.message = Esta escala no está publicada
+acme.validation.unpublishedLeg.message = Esta tramo no está publicado
 acme.validation.unpublishedFlightAssignment.message = La asignación de vuela relacionada con este informe de actividad no ha sido publicada
-acme.validation.legNotFuture.message = Esta escala está en el pasado
+acme.validation.legNotFuture.message = Esta tramo está en el pasado
 
 acme.validation.updatePublishedTask.message = No puedes editar una tarea publicada
 acme.validation.deletePublishedTask.message = No puedes borrar una tarea publicada
