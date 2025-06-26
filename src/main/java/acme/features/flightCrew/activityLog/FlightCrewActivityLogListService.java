@@ -43,8 +43,10 @@ public class FlightCrewActivityLogListService extends AbstractGuiService<FlightC
 		int assignmentId;
 
 		assignmentId = super.getRequest().getData("id", int.class);
+		FlightAssignment assignment = this.repository.getAssignmentById(assignmentId);
 		logs = this.repository.getLogsByAssignmentId(assignmentId);
 
+		super.getResponse().addGlobal("draftMode", assignment.getDraftMode());
 		super.getResponse().addGlobal("assignmentId", assignmentId);
 		super.getBuffer().addData(logs);
 	}
@@ -55,9 +57,11 @@ public class FlightCrewActivityLogListService extends AbstractGuiService<FlightC
 		int assignmentId;
 
 		assignmentId = super.getRequest().getData("id", int.class);
+		FlightAssignment assignment = this.repository.getAssignmentById(assignmentId);
 
 		dataset = super.unbindObject(al, "flightAssignment", "registrationMoment", "typeOfIncident", "description", "severityLevel", "draftMode");
 		super.getResponse().addGlobal("assignmentId", assignmentId);
+		super.getResponse().addGlobal("draftMode", assignment.getDraftMode());
 		super.getResponse().addData(dataset);
 	}
 

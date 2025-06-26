@@ -10,5 +10,6 @@
 	<acme:list-payload path="/payload"/>
 </acme:list>
 
-<acme:button code="flight-crew.log.list.button.create" action="/flight-crew/activity-log/create?assignmentId=${assignmentId}"/>
-
+<jstl:if test="${draftMode}">
+	<acme:button code="flight-crew.log.list.button.create" action="/flight-crew/activity-log/create?assignmentId=${assignmentId}"/>
+</jstl:if>
