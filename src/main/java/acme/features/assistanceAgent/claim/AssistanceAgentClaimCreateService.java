@@ -33,6 +33,7 @@ public class AssistanceAgentClaimCreateService extends AbstractGuiService<Assist
 			String method;
 			int legId;
 			Leg leg;
+			Date moment;
 			String type;
 			method = super.getRequest().getMethod();
 
@@ -41,8 +42,13 @@ public class AssistanceAgentClaimCreateService extends AbstractGuiService<Assist
 			else {
 				legId = super.getRequest().getData("leg", int.class);
 				leg = this.repository.findLegById(legId);
+				moment = MomentHelper.getCurrentMoment();
 				type = super.getRequest().getData("type", String.class);
-				status = (legId == 0 || leg != null) && (type.equals("0") || this.isValidEnum(ClaimType.class, type));
+
+				if (leg == null || leg.isDraftMode() || moment.before(leg.getScheduledArrival()) || legId != 0 && !this.isValidEnum(ClaimType.class, type))
+					status = false;
+				else
+					status = true;
 			}
 		}
 
@@ -81,19 +87,7 @@ public class AssistanceAgentClaimCreateService extends AbstractGuiService<Assist
 
 	@Override
 	public void validate(final Claim claim) {
-		{
-			Date legTime;
-			Date moment;
-			boolean condition;
-
-			if (claim.getLeg() != null) {
-				moment = claim.getRegistrationMoment();
-				legTime = claim.getLeg().getScheduledArrival();
-				condition = !moment.before(legTime);
-
-				super.state(condition, "*", "acme.validation.leg-time.message");
-			}
-		}
+		// Intentionally left blank: no associated requirements.
 	}
 
 	@Override
@@ -109,7 +103,7 @@ public class AssistanceAgentClaimCreateService extends AbstractGuiService<Assist
 		SelectChoices legChoices;
 		SelectChoices typeChoices;
 
-		legs = this.repository.findAllLegs();
+		legs = this.repository.findAllPublishedPastLegs(MomentHelper.getCurrentMoment());
 
 		legChoices = SelectChoices.from(legs, "flightNumber", claim.getLeg());
 		typeChoices = SelectChoices.from(ClaimType.class, claim.getType());
