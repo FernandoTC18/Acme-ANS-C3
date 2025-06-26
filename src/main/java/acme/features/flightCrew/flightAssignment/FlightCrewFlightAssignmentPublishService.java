@@ -137,16 +137,6 @@ public class FlightCrewFlightAssignmentPublishService extends AbstractGuiService
 		//Checks if the member is available
 		boolean availableMember = member.getAvailability().equals(FlightCrewAvailability.AVAILABLE);
 		super.state(availableMember, "*", "acme.validation.memberNotAvailable.message");
-
-		//		//Checks if there is already a pilot/copilot assigned to the selected leg
-		//		boolean legHasPilot = assignmentsByLeg.stream().anyMatch(x -> x.getDuty().equals(Duty.PILOT));
-		//		boolean legHasCopilot = assignmentsByLeg.stream().anyMatch(x -> x.getDuty().equals(Duty.COPILOT));
-		//
-		//		boolean additionalPilot = legHasPilot && assignment.getDuty().equals(Duty.PILOT);
-		//		boolean additionalCopilot = legHasCopilot && assignment.getDuty().equals(Duty.COPILOT);
-		//
-		//		super.state(!additionalPilot, "duty", "acme.validation.member.extraPilot.message");
-		//		super.state(!additionalCopilot, "duty", "acme.validation.member.extraCopilot.message");
 	}
 
 	@Override
