@@ -38,6 +38,7 @@ public class ManagerLegUpdateService extends AbstractGuiService<Manager, Leg> {
 		int legId;
 		Leg leg;
 		Flight flight;
+		Manager manager;
 
 		if (super.getRequest().hasData("departureAirport")) {
 			int airportId = super.getRequest().getData("departureAirport", int.class);
@@ -73,8 +74,39 @@ public class ManagerLegUpdateService extends AbstractGuiService<Manager, Leg> {
 
 		legId = super.getRequest().getData("id", int.class);
 		leg = this.repository.findLegById(legId);
-		flight = leg.getFlight();
-		status = flight != null && leg.isDraftMode() && super.getRequest().getPrincipal().hasRealm(flight.getManager()) && correctDepartureAirport && correctArrivalAirport && correctPlane && correctAirline;
+
+		flight = leg == null ? null : leg.getFlight();
+		manager = flight == null ? null : flight.getManager();
+
+		if (super.getRequest().getMethod().equals("GET"))
+			status = leg != null && flight.isDraftMode() && super.getRequest().getPrincipal().hasRealm(manager);
+		else {
+
+			int departureAirportId = super.getRequest().getData("departureAirport", int.class);
+			if (departureAirportId != 0) {
+				Airport airport = this.repository.findAirportById(departureAirportId);
+				correctDepartureAirport = airport != null;
+			}
+
+			int arrivalAirportId = super.getRequest().getData("arrivalAirport", int.class);
+			if (arrivalAirportId != 0) {
+				Airport airport = this.repository.findAirportById(arrivalAirportId);
+				correctArrivalAirport = airport != null;
+			}
+
+			int planeId = super.getRequest().getData("plane", int.class);
+			if (planeId != 0) {
+				Aircraft aircraft = this.repository.findAircraftById(planeId);
+				correctPlane = aircraft != null;
+			}
+
+			int airlineId = super.getRequest().getData("airline", int.class);
+			if (airlineId != 0) {
+				Airline airline = this.repository.findAirlineById(airlineId);
+				correctAirline = airline != null;
+			}
+			status = leg != null && leg.isDraftMode() && super.getRequest().getPrincipal().hasRealm(manager) && correctDepartureAirport && correctArrivalAirport && correctPlane && correctAirline;
+		}
 		super.getResponse().setAuthorised(status);
 	}
 

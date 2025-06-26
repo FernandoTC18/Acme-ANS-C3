@@ -2,7 +2,6 @@
 package acme.features.managers.leg;
 
 import java.util.Collection;
-import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -11,9 +10,7 @@ import acme.client.repositories.AbstractRepository;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.airline.Airline;
 import acme.entities.airport.Airport;
-import acme.entities.claim.Claim;
 import acme.entities.flight.Flight;
-import acme.entities.flightAssignment.FlightAssignment;
 import acme.entities.leg.Leg;
 
 @Repository
@@ -49,9 +46,4 @@ public interface ManagerLegRepository extends AbstractRepository {
 	@Query("select a from Airline a where a.id = :id")
 	Airline findAirlineById(int id);
 
-	@Query("select c from Claim c where c.leg.id= :legId")
-	List<Claim> findClaimsByLegId(int legId);
-
-	@Query("select fa from FlightAssignment fa where fa.leg.id= :legId ")
-	List<FlightAssignment> findFlightAssignmentsByLegId(int legId);
 }

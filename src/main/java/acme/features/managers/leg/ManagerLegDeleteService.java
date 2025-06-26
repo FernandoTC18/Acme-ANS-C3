@@ -31,11 +31,13 @@ public class ManagerLegDeleteService extends AbstractGuiService<Manager, Leg> {
 		int legId;
 		Leg leg;
 		Flight flight;
+		Manager manager;
 
 		legId = super.getRequest().getData("id", int.class);
 		leg = this.repository.findLegById(legId);
-		flight = leg.getFlight();
-		status = flight != null && leg.isDraftMode() && super.getRequest().getPrincipal().hasRealm(flight.getManager());
+		flight = leg == null ? null : leg.getFlight();
+		manager = flight == null ? null : flight.getManager();
+		status = flight != null && leg.isDraftMode() && super.getRequest().getPrincipal().hasRealm(manager);
 
 		super.getResponse().setAuthorised(status);
 	}

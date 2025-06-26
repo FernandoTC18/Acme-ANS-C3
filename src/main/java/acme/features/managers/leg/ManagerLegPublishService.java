@@ -43,6 +43,7 @@ public class ManagerLegPublishService extends AbstractGuiService<Manager, Leg> {
 		int legId;
 		Leg leg;
 		Flight flight;
+		Manager manager;
 
 		if (super.getRequest().hasData("departureAirport")) {
 			int airportId = super.getRequest().getData("departureAirport", int.class);
@@ -78,8 +79,11 @@ public class ManagerLegPublishService extends AbstractGuiService<Manager, Leg> {
 
 		legId = super.getRequest().getData("id", int.class);
 		leg = this.repository.findLegById(legId);
-		flight = leg.getFlight();
-		status = flight != null && leg.isDraftMode() && super.getRequest().getPrincipal().hasRealm(flight.getManager()) && correctDepartureAirport && correctArrivalAirport && correctPlane && correctAirline;
+
+		flight = leg == null ? null : leg.getFlight();
+		manager = flight == null ? null : flight.getManager();
+
+		status = leg != null && leg.isDraftMode() && super.getRequest().getPrincipal().hasRealm(manager) && correctDepartureAirport && correctArrivalAirport && correctPlane && correctAirline;
 
 		super.getResponse().setAuthorised(status);
 	}
