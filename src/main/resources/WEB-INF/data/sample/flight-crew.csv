@@ -1,5 +1,6 @@
 key,employee-code,phone-number,language-skills,availability,salary,experience-years,key:airline,key:userAccount
-member-01,JD123456,+34000000000,l,AVAILABLE,EUR 0.00,0,airline-01,user-account-member-01
-member-02,AW567890,+34123456789,lo,AVAILABLE,USD 1.00,1,airline-02,user-account-member-02
-member-03,PP000000,+34555555555,天飽雲馬消根清歡寫尾做兒幫,AVAILABLE,GBP 500.00,10,airline-03,user-account-member-03
-member-04,MK111111,+34888888888,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor.",AVAILABLE,USD 999999.00,119,airline-04,user-account-member-04
+member-01,JD123456,123456,l,AVAILABLE,EUR 0.00,0,airline-01,user-account-member-01
+member-02,AW567890,+123456,lo,ON_LEAVE,USD 0.01,1,airline-02,user-account-member-02
+member-03,PP000000,12345678901234,天飽雲馬消根清歡寫尾做兒幫,ON_VACATION,GBP 500.00,10,airline-03,user-account-member-03
+member-04,MK111111,+12345678901234,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor.",AVAILABLE,USD 999999.99,119,airline-04,user-account-member-04
+member-05,AA111111,+123456789012345,l,AVAILABLE,EUR 1000000.00,120,airline-01,user-account-member-05
