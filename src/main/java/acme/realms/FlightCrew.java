@@ -21,9 +21,6 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(indexes = {
-	@Index(columnList = "employeeCode", unique = true)
-})
 public class FlightCrew extends AbstractRole {
 
 	//Serialisation version --------------------------------------------------
