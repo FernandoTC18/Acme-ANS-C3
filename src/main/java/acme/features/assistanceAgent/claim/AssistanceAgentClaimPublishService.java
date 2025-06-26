@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claim.Claim;
@@ -38,7 +39,9 @@ public class AssistanceAgentClaimPublishService extends AbstractGuiService<Assis
 			String method;
 			int legId;
 			Leg leg;
+			Date moment;
 			String type;
+
 			method = super.getRequest().getMethod();
 
 			if (method.equals("GET"))
@@ -46,9 +49,13 @@ public class AssistanceAgentClaimPublishService extends AbstractGuiService<Assis
 			else {
 				legId = super.getRequest().getData("leg", int.class);
 				leg = this.repository.findLegById(legId);
+				moment = claim.getRegistrationMoment();
 				type = super.getRequest().getData("type", String.class);
 
-				status = (legId == 0 || leg != null) && (type.equals("0") || this.isValidEnum(ClaimType.class, type));
+				if (leg == null || leg.isDraftMode() || moment.before(leg.getScheduledArrival()) || legId != 0 && !this.isValidEnum(ClaimType.class, type))
+					status = false;
+				else
+					status = true;
 			}
 		}
 
@@ -81,19 +88,7 @@ public class AssistanceAgentClaimPublishService extends AbstractGuiService<Assis
 
 	@Override
 	public void validate(final Claim claim) {
-		{
-			Date legTime;
-			Date moment;
-			boolean condition;
-
-			if (claim.getLeg() != null) {
-				moment = claim.getRegistrationMoment();
-				legTime = claim.getLeg().getScheduledArrival();
-				condition = !moment.before(legTime);
-
-				super.state(condition, "*", "acme.validation.leg-time.message");
-			}
-		}
+		// Intentionally left blank: no associated requirements.
 	}
 
 	@Override
@@ -110,7 +105,7 @@ public class AssistanceAgentClaimPublishService extends AbstractGuiService<Assis
 		SelectChoices legChoices;
 		SelectChoices typeChoices;
 
-		legs = this.repository.findAllLegs();
+		legs = this.repository.findAllPublishedPastLegs(MomentHelper.getCurrentMoment());
 
 		legChoices = SelectChoices.from(legs, "flightNumber", claim.getLeg());
 		typeChoices = SelectChoices.from(ClaimType.class, claim.getType());
