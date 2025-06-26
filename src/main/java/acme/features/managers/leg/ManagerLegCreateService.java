@@ -28,12 +28,17 @@ public class ManagerLegCreateService extends AbstractGuiService<Manager, Leg> {
 	// AbstractGuiService interface -------------------------------------------
 	@Override
 	public void authorise() {
-		boolean status = true;
+		boolean status;
+		int masterId;
+		Flight flight;
 
 		boolean correctDepartureAirport = true;
 		boolean correctArrivalAirport = true;
 		boolean correctPlane = true;
 		boolean correctAirline = true;
+
+		masterId = super.getRequest().getData("masterId", int.class);
+		flight = this.repository.findFlightById(masterId);
 
 		if (super.getRequest().hasData("departureAirport")) {
 			int airportId = super.getRequest().getData("departureAirport", int.class);
@@ -67,7 +72,7 @@ public class ManagerLegCreateService extends AbstractGuiService<Manager, Leg> {
 			}
 		}
 
-		status = correctDepartureAirport && correctArrivalAirport && correctPlane && correctAirline;
+		status = flight != null && flight.isDraftMode() && super.getRequest().getPrincipal().hasRealm(flight.getManager()) && correctDepartureAirport && correctArrivalAirport && correctPlane && correctAirline;
 		super.getResponse().setAuthorised(status);
 	}
 

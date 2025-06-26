@@ -44,8 +44,8 @@ flight-28,true,A,USD 150.50,"Lorem ipsum dolor sit amet, consectetur adipiscing"
 flight-29,true,A,USD 150.50,"Lorem ipsum dolor sit amet, consectetur adipiscing",manager-02,true
 
 #draft mode - standard variations 
-flight-30,true,A,USD 150.50,"Lorem ipsum dolor sit amet, consectetur adipiscing",manager-02,false
-flight-31,true,A,USD 150.50,"Lorem ipsum dolor sit amet, consectetur adipiscing",manager-02,false
-flight-32,true,A,USD 150.50,"Lorem ipsum dolor sit amet, consectetur adipiscing",manager-02,false
+flight-30,true,A,USD 150.50,"Lorem ipsum dolor sit amet, consectetur adipiscing",manager-01,false
+flight-31,true,A,USD 150.50,"Lorem ipsum dolor sit amet, consectetur adipiscing",manager-01,false
+flight-32,true,A,USD 150.50,"Lorem ipsum dolor sit amet, consectetur adipiscing",manager-01,false
 flight-33,true,A,USD 150.50,"Lorem ipsum dolor sit amet, consectetur adipiscing",manager-02,false
 flight-34,true,A,USD 150.50,"Lorem ipsum dolor sit amet, consectetur adipiscing",manager-02,false

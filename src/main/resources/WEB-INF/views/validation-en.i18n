@@ -9,7 +9,7 @@ acme.validation.flight.noPublishedLegs.message = A flight with one or more publi
 acme.validation.flight.noPublishedBookings.message = A flight with one or more published bookings can´t be deleted
 
 # Leg Validation
-acme.validation.leg.correctFlightNumberPattern.message = The flight number does not have a valid format,Ex: ZZZ9999,AAAA0000
+acme.validation.leg.correctFlightNumberPattern.message = Invalid flight number
 acme.validation.leg.flightNumberNotInDb.message = Flight number must be unique
 acme.validation.leg.correctFlightNumberIataCode.message = The iata code of the Leg should match with the airline´s one
 acme.validation.leg.correctMinScheduleDeparture.message = Schedule departure must be after the current moment
