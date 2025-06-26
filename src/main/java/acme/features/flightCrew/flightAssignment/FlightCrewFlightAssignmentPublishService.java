@@ -15,6 +15,7 @@ import acme.entities.flightAssignment.Duty;
 import acme.entities.flightAssignment.FlightAssignment;
 import acme.entities.leg.Leg;
 import acme.realms.FlightCrew;
+import acme.realms.FlightCrewAvailability;
 
 @GuiService
 public class FlightCrewFlightAssignmentPublishService extends AbstractGuiService<FlightCrew, FlightAssignment> {
@@ -51,6 +52,10 @@ public class FlightCrewFlightAssignmentPublishService extends AbstractGuiService
 					super.getResponse().setAuthorised(false);
 					return;
 				}
+
+				//To prevent hacking the duty or the status attribute
+				Duty duty = super.getRequest().getData("duty", Duty.class);
+				AssignmentStatus assignmentStatus = super.getRequest().getData("status", AssignmentStatus.class);
 
 				//Checks if the leg exists
 				boolean correctLeg;
@@ -107,6 +112,13 @@ public class FlightCrewFlightAssignmentPublishService extends AbstractGuiService
 	public void validate(final FlightAssignment assignment) {
 		int legId = super.getRequest().getData("leg", int.class);
 		Leg leg = this.repository.findLegById(legId);
+		FlightCrew member = assignment.getFlightCrewMember();
+		Collection<FlightAssignment> memberAssignments = this.repository.getAssignmentsByMemberId(member.getId()); //Assignments of the member
+		Collection<FlightAssignment> assignmentsByLeg = this.repository.getAssignmentsByLegId(legId); //Assignments associated to the selected leg
+		//Remove the assignment that it's being published. If not, validation errors will pop up when they shouldn't
+		memberAssignments.removeIf(a -> a.getId() == assignment.getId());
+		assignmentsByLeg.removeIf(a -> a.getId() == assignment.getId());
+
 		if (legId != 0) {
 			boolean draftMode = leg.isDraftMode();
 
@@ -114,14 +126,23 @@ public class FlightCrewFlightAssignmentPublishService extends AbstractGuiService
 
 			super.state(!draftMode, "leg", "acme.validation.unpublishedLeg.message");
 
+			//Checks if the member is assigned to a leg that overlaps with the selected one
+			boolean simultaneousLegs = memberAssignments.stream()
+				.anyMatch(x -> MomentHelper.isBefore(x.getLeg().getScheduledDeparture(), assignment.getLeg().getScheduledArrival()) && MomentHelper.isBefore(assignment.getLeg().getScheduledDeparture(), x.getLeg().getScheduledArrival()));
+
+			super.state(!simultaneousLegs, "leg", "acme.validation.member.overlappingLegs.message");
+
 		}
+
+		//Checks if the member is available
+		boolean availableMember = member.getAvailability().equals(FlightCrewAvailability.AVAILABLE);
+		super.state(availableMember, "*", "acme.validation.memberNotAvailable.message");
 	}
 
 	@Override
 	public void perform(final FlightAssignment assignment) {
 		assignment.setDraftMode(false);
 		this.repository.save(assignment);
-
 	}
 
 	@Override

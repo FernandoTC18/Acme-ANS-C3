@@ -28,6 +28,12 @@ public interface FlightCrewFlightAssignmentRepository extends AbstractRepository
 	@Query("select fa from FlightAssignment fa where fa.flightCrewMember.id = :memberId and fa.leg.scheduledArrival >= :arrivalDate")
 	Collection<FlightAssignment> getUncompletedAssignmentsByMemberId(int memberId, Date arrivalDate);
 
+	@Query("select fa from FlightAssignment fa where fa.flightCrewMember.id = :memberId")
+	Collection<FlightAssignment> getAssignmentsByMemberId(int memberId);
+
+	@Query("select fa from FlightAssignment fa where fa.leg.id = :legId")
+	Collection<FlightAssignment> getAssignmentsByLegId(int legId);
+
 	@Query("select l from Leg l")
 	Collection<Leg> findAllLegs();
 
