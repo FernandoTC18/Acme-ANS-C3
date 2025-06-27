@@ -2,7 +2,6 @@
 package acme.features.managers.leg;
 
 import java.util.Collection;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,9 +11,7 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.airport.Airport;
-import acme.entities.claim.Claim;
 import acme.entities.flight.Flight;
-import acme.entities.flightAssignment.FlightAssignment;
 import acme.entities.leg.Leg;
 import acme.entities.leg.LegStatus;
 import acme.realms.Manager;
@@ -34,11 +31,13 @@ public class ManagerLegDeleteService extends AbstractGuiService<Manager, Leg> {
 		int legId;
 		Leg leg;
 		Flight flight;
+		Manager manager;
 
 		legId = super.getRequest().getData("id", int.class);
 		leg = this.repository.findLegById(legId);
-		flight = leg.getFlight();
-		status = flight != null && leg.isDraftMode() && super.getRequest().getPrincipal().hasRealm(flight.getManager());
+		flight = leg == null ? null : leg.getFlight();
+		manager = flight == null ? null : flight.getManager();
+		status = flight != null && leg.isDraftMode() && super.getRequest().getPrincipal().hasRealm(manager);
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -78,39 +77,12 @@ public class ManagerLegDeleteService extends AbstractGuiService<Manager, Leg> {
 
 	@Override
 	public void validate(final Leg leg) {
-		List<Claim> claims;
-		List<FlightAssignment> flightAssignments;
 
-		boolean noPublishedClaims = true;
-		boolean noPublishedFlightAssignments = true;
-		{
-			claims = this.repository.findClaimsByLegId(leg.getId());
-
-			for (int i = 0; i < claims.size(); i++)
-
-				noPublishedClaims = noPublishedClaims && claims.get(i).getDraftMode();
-
-			super.state(noPublishedClaims, "*", "acme.validation.leg.noPublishedClaims.message");
-		}
-		{
-			flightAssignments = this.repository.findFlightAssignmentsByLegId(leg.getId());
-
-			for (int i = 0; i < flightAssignments.size(); i++)
-
-				noPublishedFlightAssignments = noPublishedFlightAssignments && flightAssignments.get(i).getDraftMode();
-
-			super.state(noPublishedFlightAssignments, "*", "acme.validation.leg.noPublishedFlightAssignments.message");
-		}
 	}
 
 	@Override
 	public void perform(final Leg leg) {
-		Collection<Claim> claims;
-		Collection<FlightAssignment> flightAssignments;
-		claims = this.repository.findClaimsByLegId(leg.getId());
-		flightAssignments = this.repository.findFlightAssignmentsByLegId(leg.getId());
-		this.repository.deleteAll(claims);
-		this.repository.deleteAll(flightAssignments);
+
 		this.repository.delete(leg);
 	}
 

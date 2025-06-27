@@ -28,46 +28,50 @@ public class ManagerLegCreateService extends AbstractGuiService<Manager, Leg> {
 	// AbstractGuiService interface -------------------------------------------
 	@Override
 	public void authorise() {
-		boolean status = true;
+		boolean status;
+		int masterId;
+		Flight flight;
+		Manager manager;
 
 		boolean correctDepartureAirport = true;
 		boolean correctArrivalAirport = true;
 		boolean correctPlane = true;
 		boolean correctAirline = true;
 
-		if (super.getRequest().hasData("departureAirport")) {
-			int airportId = super.getRequest().getData("departureAirport", int.class);
-			if (airportId != 0) {
-				Airport airport = this.repository.findAirportById(airportId);
+		masterId = super.getRequest().getData("masterId", int.class);
+		flight = this.repository.findFlightById(masterId);
+		manager = flight == null ? null : flight.getManager();
+
+		if (super.getRequest().getMethod().equals("GET"))
+			status = flight != null && flight.isDraftMode() && super.getRequest().getPrincipal().hasRealm(manager);
+		else {
+
+			int departureAirportId = super.getRequest().getData("departureAirport", int.class);
+			if (departureAirportId != 0) {
+				Airport airport = this.repository.findAirportById(departureAirportId);
 				correctDepartureAirport = airport != null;
 			}
-		}
 
-		if (super.getRequest().hasData("arrivalAirport")) {
-			int airportId = super.getRequest().getData("arrivalAirport", int.class);
-			if (airportId != 0) {
-				Airport airport = this.repository.findAirportById(airportId);
+			int arrivalAirportId = super.getRequest().getData("arrivalAirport", int.class);
+			if (arrivalAirportId != 0) {
+				Airport airport = this.repository.findAirportById(arrivalAirportId);
 				correctArrivalAirport = airport != null;
 			}
-		}
 
-		if (super.getRequest().hasData("plane")) {
 			int planeId = super.getRequest().getData("plane", int.class);
 			if (planeId != 0) {
 				Aircraft aircraft = this.repository.findAircraftById(planeId);
 				correctPlane = aircraft != null;
 			}
-		}
 
-		if (super.getRequest().hasData("airline")) {
 			int airlineId = super.getRequest().getData("airline", int.class);
 			if (airlineId != 0) {
 				Airline airline = this.repository.findAirlineById(airlineId);
 				correctAirline = airline != null;
 			}
+			status = flight != null && flight.isDraftMode() && super.getRequest().getPrincipal().hasRealm(manager) && correctDepartureAirport && correctArrivalAirport && correctPlane && correctAirline;
 		}
 
-		status = correctDepartureAirport && correctArrivalAirport && correctPlane && correctAirline;
 		super.getResponse().setAuthorised(status);
 	}
 
