@@ -38,6 +38,11 @@ acme.validation.log-published = The log has been published. No changes are possi
 # FlightCrew Validation
 acme.validation.flightCrew.employeeCode.message = The first 2 letters of the employee code must correspond to the flight crew's initials.
 acme.validation.flightCrew.uniqueEmployeeCode.message = The employee code already exists. Please, try with a new one.
+acme.validation.incorrectly-formatted-employeeCode.message = The employee code must follow a strict pattern. Ex: AB123456, JRP56789
+acme.validation.memberNotAvailable.message = The flight crew member is not available for assignments
+acme.validation.member.overlappingLegs.message = The member is already assigned to a leg that overlaps with the selected leg. Please, change the leg to assign
+acme.validation.member.extraPilot.message = There is already a pilot assigned to this leg
+acme.validation.member.extraCopilot.message = There is already a copilot assigned to this leg
 
 # Service Validation
 acme.validation.service.correctLastTwoNumbers.message = The last two figures must correspond to the current year
@@ -45,9 +50,9 @@ acme.validation.service.correctPattern.message = the promotional code is not in 
 acme.validation.service.promCodeNotInDb.message = the promotional code  is a unique value
 
 # AssistanceAgent Validation
-acme.validation.assistanceAgent.invalid-employee-code-format.message = The employee code is not in the correct format or is null.
-acme.validation.assistanceAgent.unique-assistance-agent.message = The employee code is already in use.
-acme.validation.assistanceAgent.invalid-employee-code.message = The employee code must begin with the first letter of the name followed by the first letter of the first surname.
+acme.validation.assistanceAgent.invalid--employeeCode-format.message = The employee code is not in the correct format or is null
+acme.validation.assistanceAgent.unique-assistance-agent.message = The employee code is already in use
+acme.validation.assistanceAgent.invalid-employee-code.message = The employee code must begin with the first letter of the name followed by the first letter of the first surname
 
 #Claim Validation
 acme.validation.leg-time.message = Claims must be linked to legs that occurred
@@ -76,12 +81,6 @@ acme.validation.airline.uniqueIataCode.message = This IATA code already belongs 
 # Airport Validation
 acme.validation.airport.invalid-iataCode.message = Invalid Iata Code
 acme.validation.airport.repeat-iataCode.message = Iata Code already exists
-
-acme.validation.unavailable-crew-member.message = The flight crew that you selected is unavailable.
-acme.validation.assigned-leg.message = The flight crew member is already assigned to other leg.
-acme.validation.number-of-pilot.message = There is already a pilot assigned.
-acme.validation.number-of-copilot.message = There is already a copilot assigned.
-acme.validation.not-lead-attendant.message = Must be a lead attendant to update a flight assignment.
 
 
 # Booking Validation

@@ -18,7 +18,7 @@ user-account-member-01,true,"UserIdentity{name: 'John', surname:'Doe', email:'do
 user-account-member-02,true,"UserIdentity{name: 'Alice', surname:'Wallace', email:'wallace@acme.com'}",member2,member2
 user-account-member-03,true,"UserIdentity{name: 'Pete', surname:'Perez', email:'天飽雲馬消根清歡寫尾做兒幫@acme.com'}",member3,member3
 user-account-member-04,true,"UserIdentity{name: 'Manolo', surname:'Key', email:'manolo@acme.com'}",member4,member4
-user-account-member-05,true,"UserIdentity{name: 'Antonio', surname:'Aløzå', email:'antonio@acme.com'}",member5,member5
+user-account-member-05,true,"UserIdentity{name: 'Antonio', surname:'Aløzå', email:'antonio@acme.com'}",member,member
 user-account-agent-01,true,"UserIdentity{name: 'John', surname:'Doe', email:'johndoedoe@acme.com'}",agent1,agent1
 user-account-agent-02,true,"UserIdentity{name: 'Jane', surname:'Doe Fernandez', email:'简@acme.com'}",agent2,agent2
 user-account-agent-03,true,"UserIdentity{name: 'Antonio', surname:'Aløzå Dominguez', email:'أنطونيوألوز@acme.com'}",agent3,agent3
