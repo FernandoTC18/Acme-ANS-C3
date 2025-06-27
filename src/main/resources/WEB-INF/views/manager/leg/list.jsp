@@ -12,4 +12,6 @@
 	<acme:list-payload path="/payload"/>
 </acme:list>
 
-<acme:button code="manager.leg.form.button.create" action="/manager/leg/create?masterId=${masterId}"/>
+<jstl:if test="${flightDraftMode}">
+	<acme:button code="manager.leg.form.button.create" action="/manager/leg/create?masterId=${masterId}"/>
+</jstl:if>

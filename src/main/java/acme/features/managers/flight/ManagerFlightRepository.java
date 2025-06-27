@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
-import acme.entities.booking.Booking;
 import acme.entities.flight.Flight;
 import acme.entities.leg.Leg;
 
@@ -23,8 +22,5 @@ public interface ManagerFlightRepository extends AbstractRepository {
 
 	@Query("select l from Leg l where l.flight.id= :flightId")
 	List<Leg> findLegsByFlightId(int flightId);
-
-	@Query("select b from Booking b where b.flight.id= :flightId")
-	List<Booking> findBookingsByFlightId(int flightId);
 
 }

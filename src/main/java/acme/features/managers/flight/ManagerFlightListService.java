@@ -42,8 +42,7 @@ public class ManagerFlightListService extends AbstractGuiService<Manager, Flight
 	public void unbind(final Flight flight) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(flight, "tag", "cost", "description");
-		dataset.put("selfTransferRequired", flight.getSelfTransferRequired() ? "Yes" : "No");
+		dataset = super.unbindObject(flight, "tag", "selfTransferRequired", "cost", "description");
 
 		super.getResponse().addData(dataset);
 	}
