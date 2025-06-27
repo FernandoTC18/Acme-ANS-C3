@@ -40,38 +40,6 @@ public class ManagerLegUpdateService extends AbstractGuiService<Manager, Leg> {
 		Flight flight;
 		Manager manager;
 
-		if (super.getRequest().hasData("departureAirport")) {
-			int airportId = super.getRequest().getData("departureAirport", int.class);
-			if (airportId != 0) {
-				Airport airport = this.repository.findAirportById(airportId);
-				correctDepartureAirport = airport != null;
-			}
-		}
-
-		if (super.getRequest().hasData("arrivalAirport")) {
-			int airportId = super.getRequest().getData("arrivalAirport", int.class);
-			if (airportId != 0) {
-				Airport airport = this.repository.findAirportById(airportId);
-				correctArrivalAirport = airport != null;
-			}
-		}
-
-		if (super.getRequest().hasData("plane")) {
-			int planeId = super.getRequest().getData("plane", int.class);
-			if (planeId != 0) {
-				Aircraft aircraft = this.repository.findAircraftById(planeId);
-				correctPlane = aircraft != null;
-			}
-		}
-
-		if (super.getRequest().hasData("airline")) {
-			int airlineId = super.getRequest().getData("airline", int.class);
-			if (airlineId != 0) {
-				Airline airline = this.repository.findAirlineById(airlineId);
-				correctAirline = airline != null;
-			}
-		}
-
 		legId = super.getRequest().getData("id", int.class);
 		leg = this.repository.findLegById(legId);
 
