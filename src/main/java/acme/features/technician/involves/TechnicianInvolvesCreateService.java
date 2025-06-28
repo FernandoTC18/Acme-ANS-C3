@@ -80,10 +80,9 @@ public class TechnicianInvolvesCreateService extends AbstractGuiService<Technici
 		if (involves.getTask() != null) {
 
 			int taskId = involves.getTask().getId();
+			int mRId = involves.getMaintenanceRecord().getId();
 
-			List<Involves> invs = this.repository.findInvolvesByTaskId(taskId);
-
-			invs = invs.stream().filter(i -> i.getMaintenanceRecord().getId() == involves.getMaintenanceRecord().getId()).toList();
+			List<Involves> invs = this.repository.findMRInvolvesByTaskId(taskId, mRId);
 
 			status = invs.isEmpty();
 
