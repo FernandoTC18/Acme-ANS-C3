@@ -63,7 +63,7 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 
 		List<Task> tasks;
 
-		tasks = this.repository.findTasksByMaintenanceRecordId(id);
+		tasks = this.repository.findPublishedTasksByMaintenanceRecordId(id);
 
 		// No se puede relacionar una tarea que no esté publicada con un maintenance record
 
@@ -77,13 +77,13 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 
 		//super.state(!anyTaskUnpublished, "*", "acme.validation.unpublishedTasks.message");
 
-		boolean atLeastOnePublishedTask = false;
+		boolean atLeastOnePublishedTask = !tasks.isEmpty();
 
-		for (Task t : tasks)
-			if (t.isDraftMode() == false) {
-				atLeastOnePublishedTask = true;
-				break;
-			}
+		//for (Task t : tasks)
+		//	if (t.isDraftMode() == false) {
+		//		atLeastOnePublishedTask = true;
+		//		break;
+		//	}
 
 		super.state(atLeastOnePublishedTask, "*", "acme.validation.onePublishedTask.message");
 	}
