@@ -59,6 +59,6 @@ leg-33,AAA2021,2025/01/04 00:00,2025/01/04 00:01,ON_TIME,airport-03,airport-04,a
 leg-34,AAA2022,2025/01/05 00:00,2025/01/05 00:01,ON_TIME,airport-04,airport-05,aircraft-35,flight-30,airline-00,false
 leg-35,AAA2023,2025/01/06 00:00,2025/01/06 00:01,ON_TIME,airport-05,airport-06,aircraft-36,flight-31,airline-00,false
 leg-36,AAA2024,2025/01/07 00:00,2025/01/07 00:01,ON_TIME,airport-06,airport-07,aircraft-37,flight-32,airline-00,false
-leg-37,AAA2025,2024/12/31 00:00,2024/12/31 00:30,ON_TIME,airport-07,airport-08,aircraft-38,flight-33,airline-00,false
-leg-38,AAA2026,2024/12/31 00:30,2025/01/02 00:45,ON_TIME,airport-08,airport-09,aircraft-38,flight-33,airline-00,false
-leg-39,AAA2027,2024/12/31 00:00,2024/12/31 00:30,ON_TIME,airport-09,airport-01,aircraft-39,flight-34,airline-00,false
+leg-37,AAA2025,2000/01/01 00:00,2000/01/01 00:01,ON_TIME,airport-07,airport-08,aircraft-38,flight-33,airline-00,false
+leg-38,AAA2026,2000/01/01 00:00,2000/01/01 00:01,ON_TIME,airport-08,airport-09,aircraft-39,flight-34,airline-00,false
+leg-39,AAA2027,2000/01/01 00:01,2000/01/01 00:02,ON_TIME,airport-09,airport-01,aircraft-39,flight-34,airline-00,fals
