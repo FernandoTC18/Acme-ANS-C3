@@ -22,9 +22,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @ValidAirport
-@Table(indexes = {
-	@Index(columnList = "iataCode", unique = true)
-})
 public class Airport extends AbstractEntity {
 
 	public static final long	serialVersionUID	= 1L;

@@ -27,9 +27,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @ValidAirline
-@Table(indexes = {
-	@Index(columnList = "iataCode", unique = true)
-})
 public class Airline extends AbstractEntity {
 
 	//Serialisation version --------------------------------------------------
