@@ -10,6 +10,7 @@ import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
+import acme.entities.airline.Airline;
 import acme.entities.airport.Airport;
 import acme.entities.flight.Flight;
 import acme.entities.leg.Leg;
@@ -37,7 +38,7 @@ public class ManagerLegDeleteService extends AbstractGuiService<Manager, Leg> {
 		leg = this.repository.findLegById(legId);
 		flight = leg == null ? null : leg.getFlight();
 		manager = flight == null ? null : flight.getManager();
-		status = flight != null && leg.isDraftMode() && super.getRequest().getPrincipal().hasRealm(manager);
+		status = leg != null && leg.isDraftMode() && super.getRequest().getPrincipal().hasRealm(manager);
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -55,10 +56,12 @@ public class ManagerLegDeleteService extends AbstractGuiService<Manager, Leg> {
 		int departureAirportId;
 		int arrivalAirportId;
 		int planeId;
+		int airlineId;
 
 		Airport departureAirport;
 		Airport arrivalAirport;
 		Aircraft plane;
+		Airline airline;
 
 		departureAirportId = super.getRequest().getData("departureAirport", int.class);
 		departureAirport = this.repository.findAirportById(departureAirportId);
@@ -69,10 +72,14 @@ public class ManagerLegDeleteService extends AbstractGuiService<Manager, Leg> {
 		planeId = super.getRequest().getData("plane", int.class);
 		plane = this.repository.findAircraftById(planeId);
 
+		airlineId = super.getRequest().getData("airline", int.class);
+		airline = this.repository.findAirlineById(airlineId);
+
 		super.bindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "status");
 		leg.setArrivalAirport(arrivalAirport);
 		leg.setDepartureAirport(departureAirport);
 		leg.setPlane(plane);
+		leg.setAirline(airline);
 	}
 
 	@Override
