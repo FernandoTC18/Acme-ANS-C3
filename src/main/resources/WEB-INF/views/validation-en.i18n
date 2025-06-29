@@ -68,8 +68,9 @@ acme.validation.trackingLog.invalid-number-completed-published-logs.message = On
 acme.validation.trackingLog.claim-not-published.message = A tracking log cannot be published until its corresponding claim is published
 
 # Technician Validation
-acme.validation.technician.invalid-licenseNumber.message = The ‘licenseNumber’ field does not conform to the pattern ‘^[A-Z]{2,3}\\d{6}$’ or is null.
-acme.validation.technician.used-licenseNumber.message = The licence number is already in use.
+acme.validation.technician.incorrectly-formatted-licenseNumber.message = The ‘licenseNumber’ field does not conform to the pattern "AB123456" or "ABC123456".
+acme.validation.technician.used-licenseNumber.message = The license number is already in use.
+acme.validation.technician.invalid-licenseNumber.message = Invalid License Number
 
 # Aircraft Validation
 acme.validation.aircraft.used-registrationNumber.message = The registration number is already in use.
