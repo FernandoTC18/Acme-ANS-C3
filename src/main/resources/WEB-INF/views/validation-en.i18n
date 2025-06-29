@@ -23,7 +23,6 @@ acme.validation.leg.noPublishedClaims.message = A leg with one or more published
 acme.validation.flight.noPublishedFlightAssignments.message = A leg with one or more published flight assignments can´t be deleted
 
 # Manager Validation
-acme.validation.manager.identifierNumberFormat.message = The identifier number is not in the correct format,Ex: MM0001, MMM9999
 acme.validation.manager.identifierNumberDB.message = Identifier number is not unique.
 acme.validation.manager.identifierNumber.message = The first 2/3 letters of the identifier must correspond to the manager's initials
 
@@ -109,6 +108,7 @@ acme.validation.maintenanceRecord.pastMoment.message = The moment of the mainten
 acme.validation.incorrectly-formatted-phoneNumber.message = You have to use a correct phone number format, Ex: +34123456789, 123456789
 acme.validation.incorrectly-formatted-iataCode.message = You have to use a correct iata code format, Ex: JFK, LAX
 acme.validation.incorrectly-formatted-flightNumber.message = You have to use a correct flight number format, Ex: XXX9999,LLL1234
+acme.validation.incorrectly-formatted-identifierNumber.message = The identifier number is not in the correct format,Ex: MM0001, MMM9999
 
 acme.validation.unpublishedTasks.message = This Maintenance Record has unpublished Tasks
 acme.validation.onePublishedTask.message = This Maintenance Record doesn't have any published Task
