@@ -68,8 +68,9 @@ acme.validation.trackingLog.invalid-number-completed-published-logs.message = So
 acme.validation.trackingLog.claim-not-published.message = Un registro de seguimiento no puede publicarse hasta que su reclamación correspondiente esté publicada
 
 # Technician Validation
-acme.validation.technician.invalid-licenseNumber.message = El campo "licenseNumber" no cumple con el patrón "^[A-Z]{2,3}\\d{6}$" o es nulo.
+acme.validation.technician.incorrectly-formatted-licenseNumber.message = El campo "licenseNumber" no cumple con el patrón "AB123456" o "ABC123456".
 acme.validation.technician.used-licenseNumber.message = El número de licencia ya está en uso.
+acme.validation.technician.invalid-licenseNumber.message = Número de licencia no válido.
 
 # Aircraft Validation
 acme.validation.aircraft.used-registrationNumber.message = El número de registro ya está en uso.

@@ -28,7 +28,7 @@ public class Technician extends AbstractRole {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$", message = "{acme.validation.technician.invalid-licenseNumber.message}")
+	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$", message = "{acme.validation.technician.incorrectly-formatted-licenseNumber.message}")
 	@Column(unique = true)
 	private String				licenseNumber;
 
