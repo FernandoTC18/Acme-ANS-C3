@@ -36,9 +36,9 @@ acme.validation.activitylog.registrationMoment.message = La fecha de registro de
 acme.validation.log-published = El registro ha sido publicado. Ningún cambio es posible
 
 # FlightCrew Validation
-acme.validation.flightCrew.employeeCode.message = Las 2 primeras letras del código de empleado deben coincidir con las iniciales del Flight Crew
+acme.validation.flightCrew.employeeCode.message = El código de empleado no sigue este patrón: "^[A-Z]{2,3}\\d{6}$" o las 2-3 primeras letras no corresponden con las iniciales del miembro de la tripulación de vuelo.
 acme.validation.flightCrew.uniqueEmployeeCode.message = Este código de empleado ya existe. Por favor, intente otro nuevo.
-acme.validation.incorrectly-formatted-employeeCode.message = El código de empleado debe seguir un patrón determinado. Ej: AB123456, JRP56789
+acme.validation.incorrectly-formatted-employeeCode.message = El código de empleado debe seguir un patrón determinado. Además, asegúrese de que las 2-3 primeras letras coinciden con sus iniciales. Ej: AB123456, JRP56789
 acme.validation.memberNotAvailable.message = El miembro de la tripulación de vuelo no está disponible para ser asignado
 acme.validation.member.overlappingLegs.message = El miembro de la tripulación ya está asignado a un tramo que coincide con el tramo seleccionado. Por favor, cambie el tramo a asignar
 acme.validation.member.extraPilot.message = Ya hay un piloto asignado a este tramo
