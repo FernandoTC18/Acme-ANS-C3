@@ -36,9 +36,9 @@ acme.validation.activitylog.registrationMoment.message = The registration moment
 acme.validation.log-published = The log has been published. No changes are possible
 
 # FlightCrew Validation
-acme.validation.flightCrew.employeeCode.message = The first 2 letters of the employee code must correspond to the flight crew's initials.
+acme.validation.flightCrew.employeeCode.message = The employee code does not follow this pattern: "^[A-Z]{2,3}\\d{6}$" or the first 2 letters of the code aren't the same as the flight crew's initials.
 acme.validation.flightCrew.uniqueEmployeeCode.message = The employee code already exists. Please, try with a new one.
-acme.validation.incorrectly-formatted-employeeCode.message = The employee code must follow a strict pattern. Ex: AB123456, JRP56789
+acme.validation.incorrectly-formatted-employeeCode.message = The employee code must follow a strict pattern. Also, make sure that the first 2-3 letters of the code are the same as your initials. Ex: AB123456, JRP567890
 acme.validation.memberNotAvailable.message = The flight crew member is not available for assignments
 acme.validation.member.overlappingLegs.message = The member is already assigned to a leg that overlaps with the selected leg. Please, change the leg to assign
 acme.validation.member.extraPilot.message = There is already a pilot assigned to this leg
