@@ -106,8 +106,6 @@ public class FlightCrewFlightAssignmentCreateService extends AbstractGuiService<
 		Leg leg = this.repository.findLegById(legId);
 		FlightCrew member = assignment.getFlightCrewMember();
 		Collection<FlightAssignment> memberAssignments = this.repository.getAssignmentsByMemberId(member.getId());
-		Collection<FlightAssignment> assignmentsByLeg = this.repository.getAssignmentsByLegId(legId);
-		assignmentsByLeg.removeIf(a -> a.getId() == assignment.getId());
 
 		//Leg must be in the future
 		if (legId != 0) {
