@@ -72,8 +72,8 @@ public class Claim extends AbstractEntity {
 		ClaimRepository repository;
 
 		repository = SpringHelper.getBean(ClaimRepository.class);
-		logs = repository.findTrackingLogsByClaimId(this.getId());
-		Optional<TrackingLog> optionalLog = logs.stream().filter(tl -> !tl.getDraftMode() && tl.getResolutionPercentage().equals(Double.valueOf(100.00))).max(Comparator.comparing(TrackingLog::getOrderDate));
+		logs = repository.findPublishedTrackingLogsByClaimId(this.getId(), false);
+		Optional<TrackingLog> optionalLog = logs.stream().max(Comparator.comparing(TrackingLog::getOrderDate));
 
 		if (optionalLog.isPresent())
 			return optionalLog.get().getIndicator();
