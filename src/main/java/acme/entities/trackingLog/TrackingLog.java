@@ -15,9 +15,9 @@ import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
+import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidScore;
 import acme.client.components.validation.ValidString;
-import acme.constraints.ValidRegistrationMoment;
 import acme.constraints.ValidTrackingLog;
 import acme.entities.claim.Claim;
 import acme.entities.claim.ClaimStatus;
@@ -29,8 +29,7 @@ import lombok.Setter;
 @Setter
 @ValidTrackingLog
 @Table(indexes = {
-	@Index(columnList = "draftMode"),
-	@Index(columnList = "resolutionPercentage")
+	@Index(columnList = "draftMode"), @Index(columnList = "resolutionPercentage")
 })
 public class TrackingLog extends AbstractEntity {
 
@@ -41,7 +40,7 @@ public class TrackingLog extends AbstractEntity {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	@ValidRegistrationMoment
+	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				lastUpdateMoment;
 
@@ -66,7 +65,7 @@ public class TrackingLog extends AbstractEntity {
 	private String				resolution;
 
 	@Mandatory
-	@ValidRegistrationMoment
+	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				orderDate;
 
