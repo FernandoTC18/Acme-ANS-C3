@@ -18,9 +18,9 @@ import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidEmail;
+import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
 import acme.client.helpers.SpringHelper;
-import acme.constraints.ValidRegistrationMoment;
 import acme.entities.leg.Leg;
 import acme.entities.trackingLog.TrackingLog;
 import acme.realms.AssistanceAgent;
@@ -39,7 +39,7 @@ public class Claim extends AbstractEntity {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	@ValidRegistrationMoment
+	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				registrationMoment;
 
