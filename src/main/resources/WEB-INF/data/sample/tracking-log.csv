@@ -46,16 +46,14 @@ trackingLog-33,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",60.00,
 # resolution - no singular values
 # draftMode - standard variations
 trackingLog-34,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",50.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:00,false,claim-24
-trackingLog-35,2012/07/02 00:01,"Lorem ipsum dolor sit amet, consectetur",75.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:01,false,claim-24
-trackingLog-36,2012/07/02 00:02,"Lorem ipsum dolor sit amet, consectetur",100.00,ACCEPTED,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:02,false,claim-24
-trackingLog-37,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",50.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:00,false,claim-25
+trackingLog-35,2012/07/02 00:01,"Lorem ipsum dolor sit amet, consectetur",100.00,ACCEPTED,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:01,false,claim-24
 # draftMode - no singular values
 # orderDate - standard variations
-trackingLog-38,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",50.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2000/01/01 00:00,true,claim-20
-trackingLog-39,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",50.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2000/01/01 00:01,true,claim-21
-trackingLog-40,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",50.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2024/12/31 23:59,true,claim-22
-trackingLog-41,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",50.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2025/01/01 00:00,true,claim-23
+trackingLog-36,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",50.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2000/01/01 00:00,true,claim-20
+trackingLog-37,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",50.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2000/01/01 00:01,true,claim-21
+trackingLog-38,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",50.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2024/12/31 23:59,true,claim-22
+trackingLog-39,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",50.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2025/01/01 00:00,true,claim-23
 # orderDate - no singular values
 # claim - standard variations
-trackingLog-42,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",50.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:00,true,claim-27
+trackingLog-40,2012/07/02 00:00,"Lorem ipsum dolor sit amet, consectetur",50.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing",2012/07/02 00:00,true,claim-27
 # claim - no singular values
