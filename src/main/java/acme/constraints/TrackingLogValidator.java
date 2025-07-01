@@ -59,15 +59,19 @@ public class TrackingLogValidator extends AbstractValidator<ValidTrackingLog, Tr
 				for (int i = 0; i < allLogs.size() - 1; i++) {
 					TrackingLog currentLog = allLogs.get(i);
 					TrackingLog nextLog = allLogs.get(i + 1);
-					if (currentLog.getResolutionPercentage() != null && nextLog.getResolutionPercentage() != null && currentLog.getResolutionPercentage() >= nextLog.getResolutionPercentage()
-						&& !currentLog.getResolutionPercentage().equals(Double.valueOf(100.00))) {
-						correctPercentage = false;
-						break;
+					if (currentLog.getResolutionPercentage() != null && nextLog.getResolutionPercentage() != null) {
+						if (currentLog.getResolutionPercentage().equals(Double.valueOf(100.00))) {
+							correctPercentage = nextLog.getResolutionPercentage().equals(Double.valueOf(100.00));
+							break;
+						}
+						if (currentLog.getResolutionPercentage() >= nextLog.getResolutionPercentage()) {
+							correctPercentage = false;
+							break;
+						}
 					}
 				}
 
 				super.state(context, correctPercentage, "resolutionPercentage", "acme.validation.trackingLog.invalid-resolution-percentage.message");
-
 			}
 			{
 				boolean correctResolution;
