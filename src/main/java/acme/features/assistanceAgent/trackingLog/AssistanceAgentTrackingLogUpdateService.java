@@ -148,6 +148,8 @@ public class AssistanceAgentTrackingLogUpdateService extends AbstractGuiService<
 		if (idx == 0)
 			return true;
 		Double prev = logs.get(idx - 1).getResolutionPercentage();
+		if (prev.equals(Double.valueOf(100.00)))
+			return prev.equals(newPerc);
 		return newPerc > prev;
 	}
 
