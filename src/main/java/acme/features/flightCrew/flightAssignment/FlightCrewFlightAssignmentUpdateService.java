@@ -105,10 +105,8 @@ public class FlightCrewFlightAssignmentUpdateService extends AbstractGuiService<
 		Leg leg = this.repository.findLegById(legId);
 		FlightCrew member = assignment.getFlightCrewMember();
 		Collection<FlightAssignment> memberAssignments = this.repository.getAssignmentsByMemberId(member.getId()); //Assignments of the member
-		Collection<FlightAssignment> assignmentsByLeg = this.repository.getAssignmentsByLegId(legId); //Assignments associated to the selected leg
 		//Remove the assignment that it's being updated. If not, validation errors will pop up when they shouldn't
 		memberAssignments.removeIf(a -> a.getId() == assignment.getId());
-		assignmentsByLeg.removeIf(a -> a.getId() == assignment.getId());
 
 		if (legId != 0) {
 			boolean draftMode = leg.isDraftMode();

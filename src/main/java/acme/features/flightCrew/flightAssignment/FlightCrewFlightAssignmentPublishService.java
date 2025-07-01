@@ -91,20 +91,13 @@ public class FlightCrewFlightAssignmentPublishService extends AbstractGuiService
 	@Override
 	public void bind(final FlightAssignment assignment) {
 		int legId;
-		String employeeCode;
 		Leg leg;
-		FlightCrew member;
 
 		legId = super.getRequest().getData("leg", int.class);
-		employeeCode = super.getRequest().getData("flightCrewMember", String.class);
-
 		leg = this.repository.findLegById(legId);
-		member = this.repository.findFlightCrewByCode(employeeCode);
 
-		assignment.setFlightCrewMember(member);
 		assignment.setLeg(leg);
-
-		super.bindObject(assignment, "duty", "lastUpdate", "status", "remarks");
+		super.bindObject(assignment, "duty", "status", "remarks");
 
 	}
 
@@ -114,10 +107,8 @@ public class FlightCrewFlightAssignmentPublishService extends AbstractGuiService
 		Leg leg = this.repository.findLegById(legId);
 		FlightCrew member = assignment.getFlightCrewMember();
 		Collection<FlightAssignment> memberAssignments = this.repository.getAssignmentsByMemberId(member.getId()); //Assignments of the member
-		Collection<FlightAssignment> assignmentsByLeg = this.repository.getAssignmentsByLegId(legId); //Assignments associated to the selected leg
 		//Remove the assignment that it's being published. If not, validation errors will pop up when they shouldn't
 		memberAssignments.removeIf(a -> a.getId() == assignment.getId());
-		assignmentsByLeg.removeIf(a -> a.getId() == assignment.getId());
 
 		if (legId != 0) {
 			boolean draftMode = leg.isDraftMode();
