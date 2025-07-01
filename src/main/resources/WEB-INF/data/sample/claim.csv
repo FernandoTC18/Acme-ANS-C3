@@ -33,7 +33,7 @@ claim-22,2012/07/02 00:00,acme17@lorem-ipsum.org,"Lorem ipsum dolor sit amet, co
 claim-23,2012/07/02 00:00,acme18@lorem-ipsum.org,"Lorem ipsum dolor sit amet, consectetur adipiscing",OTHER_ISSUES,true,agent-01,leg-37
 # type - no singular values
 # draftMode - standard variations
-claim-24,2012/07/02 00:00,acme19@lorem-ipsum.org,"Lorem ipsum dolor sit amet, consectetur adipiscing",FLIGHT_ISSUES,true,agent-01,leg-37
+claim-24,2012/07/02 00:00,acme19@lorem-ipsum.org,"Lorem ipsum dolor sit amet, consectetur adipiscing",FLIGHT_ISSUES,false,agent-01,leg-37
 claim-25,2012/07/02 00:00,acme20@lorem-ipsum.org,"Lorem ipsum dolor sit amet, consectetur adipiscing",FLIGHT_ISSUES,false,agent-01,leg-37
 # draftMode - no singular values
 # assistanceAgent - standard variations
