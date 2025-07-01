@@ -85,17 +85,15 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 		{
 			boolean correctlogs;
 			Collection<TrackingLog> logs;
-			Predicate<TrackingLog> isCompleted;
 			Predicate<TrackingLog> isPublished;
 			long totalCompletedLogs;
 			long publishedCompletedLogs;
 
-			logs = this.repository.findTrackingLogsByClaimId(trackingLog.getClaim().getId());
-			isCompleted = log -> Double.valueOf(100.00).equals(log.getResolutionPercentage());
+			logs = this.repository.findFinishedTrackingLogsByClaimId(trackingLog.getClaim().getId(), 100.00);
 			isPublished = log -> !log.getDraftMode();
 
-			totalCompletedLogs = logs.stream().filter(isCompleted).count();
-			publishedCompletedLogs = logs.stream().filter(isCompleted.and(isPublished)).count();
+			totalCompletedLogs = logs.stream().count();
+			publishedCompletedLogs = logs.stream().filter(isPublished).count();
 
 			if (publishedCompletedLogs == 0) {
 				correctlogs = totalCompletedLogs < 1;
