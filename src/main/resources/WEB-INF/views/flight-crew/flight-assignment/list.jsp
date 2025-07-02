@@ -10,5 +10,8 @@
 	<acme:list-payload path="/payload"/>
 </acme:list>
 
-<acme:button code="flight-crew.flight-assignment.list.button.create" action="/flight-crew/flight-assignment/create"/>
-
+<jstl:choose>
+	<jstl:when test="${_command != 'completed-list'}">
+	<acme:button code="flight-crew.flight-assignment.list.button.create" action="/flight-crew/flight-assignment/create"/>
+	</jstl:when>
+</jstl:choose>

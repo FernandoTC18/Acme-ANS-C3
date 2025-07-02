@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.flightAssignment.AssignmentStatus;
@@ -44,6 +45,7 @@ public class FlightCrewFlightAssignmentShowService extends AbstractGuiService<Fl
 
 		id = super.getRequest().getData("id", int.class);
 		assignment = this.repository.findAssignmentbyId(id);
+		super.getResponse().addGlobal("legIsPast", MomentHelper.isPast(assignment.getLeg().getScheduledDeparture()));
 
 		super.getBuffer().addData(assignment);
 
@@ -57,7 +59,11 @@ public class FlightCrewFlightAssignmentShowService extends AbstractGuiService<Fl
 		SelectChoices statusChoices;
 		SelectChoices dutyChoices;
 
-		legs = this.repository.findAllLegs();
+		if (MomentHelper.isPast(assignment.getLeg().getScheduledDeparture()))
+			legs = this.repository.findAllLegs();
+		else
+			legs = this.repository.findFutureAndPublishedLegs(MomentHelper.getCurrentMoment());
+
 		legChoices = SelectChoices.from(legs, "flightNumber", assignment.getLeg());
 		statusChoices = SelectChoices.from(AssignmentStatus.class, assignment.getStatus());
 		dutyChoices = SelectChoices.from(Duty.class, assignment.getDuty());
@@ -71,6 +77,7 @@ public class FlightCrewFlightAssignmentShowService extends AbstractGuiService<Fl
 		dataset.put("status", statusChoices);
 		dataset.put("duty", dutyChoices);
 		dataset.put("flightCrewMember", assignment.getFlightCrewMember().getEmployeeCode());
+		super.getResponse().addGlobal("legIsPast", MomentHelper.isPast(assignment.getLeg().getScheduledDeparture()));
 
 		super.getResponse().addData(dataset);
 

@@ -14,6 +14,9 @@
 	<jstl:if test="${_command != 'create'}">
 		<acme:button code="flight-crew.flight-assignment.form.button.legs.list" action="/flight-crew/leg/list?id=${id}"/>
 		<acme:button code="flight-crew.flight-assignment.form.button.crew-members.list" action="/flight-crew/flight-crew/list?id=${id}"/>
+	</jstl:if>
+	
+	<jstl:if test="${readonly}">
 		<acme:button code="flight-crew.flight-assignment.form.button.logs.list" action="/flight-crew/activity-log/list?id=${id}"/>
 	</jstl:if>
 
@@ -21,9 +24,11 @@
 	<jstl:if test="${!readonly}">
 			<jstl:choose>
 				<jstl:when test="${_command != 'create'}">
-					<acme:submit code="flight-crew.flight-assignment.form.submit.update" action="/flight-crew/flight-assignment/update?id=${id}"/>
-					<acme:submit code="flight-crew.flight-assignment.form.submit.delete" action="/flight-crew/flight-assignment/delete?id=${id}"/>
-					<acme:submit code="flight-crew.flight-assignment.form.submit.publish" action="/flight-crew/flight-assignment/publish?id=${id}"/>
+					<jstl:if test="${!legIsPast}">
+						<acme:submit code="flight-crew.flight-assignment.form.submit.update" action="/flight-crew/flight-assignment/update?id=${id}"/>
+						<acme:submit code="flight-crew.flight-assignment.form.submit.delete" action="/flight-crew/flight-assignment/delete?id=${id}"/>
+						<acme:submit code="flight-crew.flight-assignment.form.submit.publish" action="/flight-crew/flight-assignment/publish?id=${id}"/>
+					</jstl:if>
 				</jstl:when>
 				<jstl:when test="${_command == 'create'}">
 					<acme:submit code="flight-crew.flight-assignment.form.submit.create" action="/flight-crew/flight-assignment/create"/>
