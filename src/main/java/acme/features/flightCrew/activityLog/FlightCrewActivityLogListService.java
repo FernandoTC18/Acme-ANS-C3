@@ -6,6 +6,7 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.activitylog.ActivityLog;
@@ -30,9 +31,9 @@ public class FlightCrewActivityLogListService extends AbstractGuiService<FlightC
 		assignmentId = super.getRequest().getData("id", int.class);
 		assignment = this.repository.getAssignmentById(assignmentId);
 		member = assignment == null ? null : assignment.getFlightCrewMember();
-		correctMember = member == null ? false : super.getRequest().getPrincipal().hasRealm(member);
+		correctMember = member == null ? false : super.getRequest().getPrincipal().hasRealm(member) && !assignment.getDraftMode();
 
-		status = correctMember;
+		status = correctMember && MomentHelper.isPast(assignment.getLeg().getScheduledDeparture());
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -46,8 +47,8 @@ public class FlightCrewActivityLogListService extends AbstractGuiService<FlightC
 		FlightAssignment assignment = this.repository.getAssignmentById(assignmentId);
 		logs = this.repository.getLogsByAssignmentId(assignmentId);
 
-		super.getResponse().addGlobal("draftMode", assignment.getDraftMode());
 		super.getResponse().addGlobal("assignmentId", assignmentId);
+		super.getResponse().addGlobal("pastLeg", MomentHelper.isPast(assignment.getLeg().getScheduledArrival()));
 		super.getBuffer().addData(logs);
 	}
 
@@ -61,7 +62,7 @@ public class FlightCrewActivityLogListService extends AbstractGuiService<FlightC
 
 		dataset = super.unbindObject(al, "flightAssignment", "registrationMoment", "typeOfIncident", "description", "severityLevel", "draftMode");
 		super.getResponse().addGlobal("assignmentId", assignmentId);
-		super.getResponse().addGlobal("draftMode", assignment.getDraftMode());
+		super.getResponse().addGlobal("pastLeg", MomentHelper.isPast(assignment.getLeg().getScheduledArrival()));
 		super.getResponse().addData(dataset);
 	}
 

@@ -4,6 +4,7 @@ package acme.features.flightCrew.activityLog;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.activitylog.ActivityLog;
@@ -37,7 +38,7 @@ public class FlightCrewActivityLogPublishService extends AbstractGuiService<Flig
 			log = this.repository.getLogById(logId);
 			draftMode = log.getDraftMode();
 
-			status = draftMode;//I don't add correctMember 'cause in this branch of the if is always true, so it won't affect the result
+			status = draftMode && MomentHelper.isPast(assignment.getLeg().getScheduledDeparture());//I don't add correctMember 'cause in this branch of the if is always true, so it won't affect the result
 
 			super.getResponse().setAuthorised(status);
 
