@@ -1,12 +1,14 @@
 
 package acme.features.technician.maintenanceRecord;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
@@ -86,6 +88,21 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 		//	}
 
 		super.state(atLeastOnePublishedTask, "*", "acme.validation.onePublishedTask.message");
+
+		boolean futureInspection = true;
+		boolean pastMoment = true;
+
+		Date inspection = maintenanceRecord.getInspectionDueDate();
+
+		Date moment = maintenanceRecord.getMoment();
+
+		if (inspection != null && moment != null) {
+			futureInspection = inspection.after(MomentHelper.getCurrentMoment());
+			pastMoment = moment.before(MomentHelper.getCurrentMoment()) || moment.equals(MomentHelper.getCurrentMoment());
+		}
+
+		super.state(futureInspection, "inspectionDueDate", "acme.validation.maintenanceRecord.futureInspection.message");
+		super.state(pastMoment, "moment", "acme.validation.maintenanceRecord.pastMoment.message");
 	}
 
 	@Override
