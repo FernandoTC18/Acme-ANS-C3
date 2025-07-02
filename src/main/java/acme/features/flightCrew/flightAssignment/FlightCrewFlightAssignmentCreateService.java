@@ -53,7 +53,7 @@ public class FlightCrewFlightAssignmentCreateService extends AbstractGuiService<
 
 			if (legId != 0) {
 				leg = this.repository.findLegById(legId);
-				correctLeg = leg != null && !leg.isDraftMode();
+				correctLeg = leg != null && !leg.isDraftMode() && MomentHelper.isFuture(leg.getScheduledDeparture());
 
 				status = correctMember && correctLeg;
 			} else

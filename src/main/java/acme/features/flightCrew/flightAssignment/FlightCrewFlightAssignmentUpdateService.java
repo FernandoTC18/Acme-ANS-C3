@@ -29,7 +29,7 @@ public class FlightCrewFlightAssignmentUpdateService extends AbstractGuiService<
 		Leg leg;
 		int assignmentId;
 		FlightAssignment assignment;
-		boolean status;
+		boolean status = false;
 
 		//Checks if the correct member is accessing	
 		boolean correctMember;
@@ -43,7 +43,7 @@ public class FlightCrewFlightAssignmentUpdateService extends AbstractGuiService<
 
 			draftMode = assignment.getDraftMode();
 
-			if (super.getRequest().getMethod().equals("GET") && draftMode)
+			if (super.getRequest().getMethod().equals("GET") && draftMode && MomentHelper.isFuture(assignment.getLeg().getScheduledDeparture()))
 				//If its a GET a request, i'll allow it
 				super.getResponse().setAuthorised(true);
 
@@ -53,23 +53,26 @@ public class FlightCrewFlightAssignmentUpdateService extends AbstractGuiService<
 					return;
 				}
 
-				//To prevent hacking the duty or the status attribute
-				Duty duty = super.getRequest().getData("duty", Duty.class);
-				AssignmentStatus assignmentStatus = super.getRequest().getData("status", AssignmentStatus.class);
+				if (super.getRequest().getMethod().equals("POST")) {
 
-				//Checks if the leg exists
-				boolean correctLeg = true;
-				int legId;
+					//To prevent hacking the duty or the status attribute
+					Duty duty = super.getRequest().getData("duty", Duty.class);
+					AssignmentStatus assignmentStatus = super.getRequest().getData("status", AssignmentStatus.class);
 
-				legId = super.getRequest().getData("leg", int.class);
-				if (legId != 0) {
-					leg = this.repository.findLegById(legId);
-					correctLeg = leg != null;
+					//Checks if the leg exists
+					boolean correctLeg = true;
+					int legId;
+
+					legId = super.getRequest().getData("leg", int.class);
+					if (legId != 0) {
+						leg = this.repository.findLegById(legId);
+						correctLeg = leg != null && MomentHelper.isFuture(assignment.getLeg().getScheduledDeparture());
+					}
+
+					status = correctLeg && draftMode;
+
+					super.getResponse().setAuthorised(status);
 				}
-
-				status = correctLeg && draftMode;
-
-				super.getResponse().setAuthorised(status);
 			}
 		} else
 			super.getResponse().setAuthorised(false);
@@ -143,7 +146,11 @@ public class FlightCrewFlightAssignmentUpdateService extends AbstractGuiService<
 		SelectChoices statusChoices;
 		SelectChoices dutyChoices;
 
-		legs = this.repository.findAllLegs();
+		if (MomentHelper.isPast(assignment.getLeg().getScheduledDeparture()))
+			legs = this.repository.findAllLegs();
+		else
+			legs = this.repository.findFutureAndPublishedLegs(MomentHelper.getCurrentMoment());
+
 		legChoices = SelectChoices.from(legs, "flightNumber", assignment.getLeg());
 		statusChoices = SelectChoices.from(AssignmentStatus.class, assignment.getStatus());
 		dutyChoices = SelectChoices.from(Duty.class, assignment.getDuty());

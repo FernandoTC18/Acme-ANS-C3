@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.activitylog.ActivityLog;
@@ -38,7 +39,7 @@ public class FlightCrewFlightAssignmentDeleteService extends AbstractGuiService<
 		correctMember = assignment != null && assignment.getFlightCrewMember().getId() == super.getRequest().getPrincipal().getActiveRealm().getId();
 		draftMode = correctMember && assignment != null ? assignment.getDraftMode() : false;
 
-		status = correctMember && draftMode;
+		status = correctMember && draftMode && MomentHelper.isFuture(assignment.getLeg().getScheduledDeparture());
 
 		super.getResponse().setAuthorised(status);
 
@@ -95,7 +96,11 @@ public class FlightCrewFlightAssignmentDeleteService extends AbstractGuiService<
 		SelectChoices statusChoices;
 		SelectChoices dutyChoices;
 
-		legs = this.repository.findAllLegs();
+		if (MomentHelper.isPast(assignment.getLeg().getScheduledDeparture()))
+			legs = this.repository.findAllLegs();
+		else
+			legs = this.repository.findFutureAndPublishedLegs(MomentHelper.getCurrentMoment());
+
 		legChoices = SelectChoices.from(legs, "flightNumber", assignment.getLeg());
 		statusChoices = SelectChoices.from(AssignmentStatus.class, assignment.getStatus());
 		dutyChoices = SelectChoices.from(Duty.class, assignment.getDuty());
