@@ -17,7 +17,9 @@
 	</jstl:if>
 	
 	<jstl:if test="${readonly}">
-		<acme:button code="flight-crew.flight-assignment.form.button.logs.list" action="/flight-crew/activity-log/list?id=${id}"/>
+		<jstl:if test="${legIsPast}">
+			<acme:button code="flight-crew.flight-assignment.form.button.logs.list" action="/flight-crew/activity-log/list?id=${id}"/>
+		</jstl:if>
 	</jstl:if>
 
 	

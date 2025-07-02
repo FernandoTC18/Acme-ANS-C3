@@ -26,4 +26,4 @@ flight-assignment-18,leg-31,member-01,PILOT,2022/01/01 10:00,CONFIRMED,<marquee>
 flight-assignment-19,leg-31,member-01,PILOT,2022/01/01 10:00,CONFIRMED,<script>alert(‘Hacked!’);</script>,true
 flight-assignment-20,leg-31,member-01,PILOT,2022/01/01 10:00,CONFIRMED,' or 'A' = 'A,true
 #draft mode-standard variations
-flight-assignment-21,leg-31,member-01,PILOT,2022/01/01 10:00,CONFIRMED,L,false
+flight-assignment-21,leg-38,member-01,PILOT,2022/01/01 10:00,CONFIRMED,L,false
