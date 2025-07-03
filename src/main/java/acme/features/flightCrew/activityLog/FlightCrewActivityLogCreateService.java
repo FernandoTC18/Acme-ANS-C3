@@ -1,6 +1,8 @@
 
 package acme.features.flightCrew.activityLog;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
@@ -63,7 +65,15 @@ public class FlightCrewActivityLogCreateService extends AbstractGuiService<Fligh
 
 	@Override
 	public void validate(final ActivityLog log) {
-		;
+		int id = super.getRequest().getData("assignmentId", int.class);
+		FlightAssignment assignment = this.repository.getAssignmentById(id);
+
+		if (log.getRegistrationMoment() != null) {
+			Date logDate = log.getRegistrationMoment();
+			boolean logDateAfterLegDate = MomentHelper.isBefore(logDate, assignment.getLeg().getScheduledArrival());
+			super.state(!logDateAfterLegDate, "registrationMoment", "acme.validation.activitylog.registrationMoment.message");
+		}
+
 	}
 
 	@Override
