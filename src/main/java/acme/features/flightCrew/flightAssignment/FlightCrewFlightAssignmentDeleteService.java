@@ -96,10 +96,7 @@ public class FlightCrewFlightAssignmentDeleteService extends AbstractGuiService<
 		SelectChoices statusChoices;
 		SelectChoices dutyChoices;
 
-		if (MomentHelper.isPast(assignment.getLeg().getScheduledDeparture()))
-			legs = this.repository.findAllLegs();
-		else
-			legs = this.repository.findFutureAndPublishedLegs(MomentHelper.getCurrentMoment());
+		legs = this.repository.findFutureAndPublishedLegs(MomentHelper.getCurrentMoment());
 
 		legChoices = SelectChoices.from(legs, "flightNumber", assignment.getLeg());
 		statusChoices = SelectChoices.from(AssignmentStatus.class, assignment.getStatus());
