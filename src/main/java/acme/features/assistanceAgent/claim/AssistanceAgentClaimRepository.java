@@ -23,7 +23,7 @@ public interface AssistanceAgentClaimRepository extends AbstractRepository {
 	@Query("select c from Claim c where c.id = :id")
 	Claim findClaimById(int id);
 
-	@Query("select l from Leg l where l.scheduledArrival < :date and l.draftMode = false ")
+	@Query("select l from Leg l where l.scheduledArrival <= :date and l.draftMode = false ")
 	Collection<Leg> findAllPublishedPastLegs(Date date);
 
 	@Query("select l from Leg l where l.id = :id")

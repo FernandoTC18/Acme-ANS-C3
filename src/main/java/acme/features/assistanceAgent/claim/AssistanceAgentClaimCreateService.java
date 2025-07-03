@@ -45,7 +45,7 @@ public class AssistanceAgentClaimCreateService extends AbstractGuiService<Assist
 				moment = MomentHelper.getCurrentMoment();
 				type = super.getRequest().getData("type", String.class);
 
-				if (leg == null || leg.isDraftMode() || moment.before(leg.getScheduledArrival()) || legId != 0 && !this.isValidEnum(ClaimType.class, type))
+				if (legId != 0 && leg == null || leg != null && (leg.isDraftMode() || moment.before(leg.getScheduledArrival())) || !type.equals("0") && !this.isValidEnum(ClaimType.class, type))
 					status = false;
 				else
 					status = true;
@@ -119,11 +119,11 @@ public class AssistanceAgentClaimCreateService extends AbstractGuiService<Assist
 
 	// Ancillary methods ------------------------------------------------------
 
-	private <E extends Enum<E>> boolean isValidEnum(final Class<E> enumClass, final String name) {
-		if (name == null)
+	private <E extends Enum<E>> boolean isValidEnum(final Class<E> enumClass, final String value) {
+		if (value == null)
 			return false;
 		try {
-			Enum.valueOf(enumClass, name);
+			Enum.valueOf(enumClass, value);
 			return true;
 		} catch (IllegalArgumentException e) {
 			return false;
