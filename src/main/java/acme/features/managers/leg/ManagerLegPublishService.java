@@ -51,35 +51,41 @@ public class ManagerLegPublishService extends AbstractGuiService<Manager, Leg> {
 		flight = leg == null ? null : leg.getFlight();
 		manager = flight == null ? null : flight.getManager();
 
-		if (super.getRequest().getMethod().equals("GET"))
-			status = leg != null && leg.isDraftMode() && super.getRequest().getPrincipal().hasRealm(manager);
-		else {
+		if (leg == null)
+			status = false;
 
-			int departureAirportId = super.getRequest().getData("departureAirport", int.class);
-			if (departureAirportId != 0) {
-				Airport airport = this.repository.findAirportById(departureAirportId);
-				correctDepartureAirport = airport != null;
-			}
+		else if (leg.isDraftMode() && super.getRequest().getPrincipal().hasRealm(manager))
+			if (super.getRequest().getMethod().equals("GET"))
+				status = true;
+			else {
+				int departureAirportId = super.getRequest().getData("departureAirport", int.class);
+				if (departureAirportId != 0) {
+					Airport airport = this.repository.findAirportById(departureAirportId);
+					correctDepartureAirport = airport != null;
+				}
 
-			int arrivalAirportId = super.getRequest().getData("arrivalAirport", int.class);
-			if (arrivalAirportId != 0) {
-				Airport airport = this.repository.findAirportById(arrivalAirportId);
-				correctArrivalAirport = airport != null;
-			}
+				int arrivalAirportId = super.getRequest().getData("arrivalAirport", int.class);
+				if (arrivalAirportId != 0) {
+					Airport airport = this.repository.findAirportById(arrivalAirportId);
+					correctArrivalAirport = airport != null;
+				}
 
-			int planeId = super.getRequest().getData("plane", int.class);
-			if (planeId != 0) {
-				Aircraft aircraft = this.repository.findAircraftById(planeId);
-				correctPlane = aircraft != null;
-			}
+				int planeId = super.getRequest().getData("plane", int.class);
+				if (planeId != 0) {
+					Aircraft aircraft = this.repository.findAircraftById(planeId);
+					correctPlane = aircraft != null;
+				}
 
-			int airlineId = super.getRequest().getData("airline", int.class);
-			if (airlineId != 0) {
-				Airline airline = this.repository.findAirlineById(airlineId);
-				correctAirline = airline != null;
+				int airlineId = super.getRequest().getData("airline", int.class);
+				if (airlineId != 0) {
+					Airline airline = this.repository.findAirlineById(airlineId);
+					correctAirline = airline != null;
+				}
+				status = correctDepartureAirport && correctArrivalAirport && correctPlane && correctAirline;
 			}
-			status = leg != null && leg.isDraftMode() && super.getRequest().getPrincipal().hasRealm(manager) && correctDepartureAirport && correctArrivalAirport && correctPlane && correctAirline;
-		}
+		else
+			status = false;
+
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -153,7 +159,7 @@ public class ManagerLegPublishService extends AbstractGuiService<Manager, Leg> {
 			super.state(notOverlapped, "*", "acme.validation.leg.overlapped.message");
 		}
 		{
-			if (leg.getArrivalAirport() != null && leg.getDepartureAirport() != null) {
+			if (leg.getArrivalAirport() != null && leg.getDepartureAirport() != null && leg.getScheduledDeparture() != null) {
 				boolean correctAirportMatches;
 				List<Leg> legs = new ArrayList<>(this.repository.findDistinctLegsByFlightId(leg.getFlight().getId(), leg.getId()));
 

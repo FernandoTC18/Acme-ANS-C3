@@ -56,7 +56,7 @@ public class ManagerFlightPublishService extends AbstractGuiService<Manager, Fli
 			Collection<Leg> legs;
 
 			legs = this.repository.findLegsByFlightId(flight.getId());
-			oneLegMin = legs != null && !legs.isEmpty();
+			oneLegMin = !legs.isEmpty();
 			super.state(oneLegMin, "*", "acme.validation.flight.noLegs.message");
 		}
 		{
@@ -65,11 +65,10 @@ public class ManagerFlightPublishService extends AbstractGuiService<Manager, Fli
 			Collection<Leg> legs;
 			int noPublishedFlights = 0;
 			legs = this.repository.findLegsByFlightId(flight.getId());
-			if (legs != null)
 
-				for (Leg l : legs)
-					if (l.isDraftMode())
-						noPublishedFlights += 1;
+			for (Leg l : legs)
+				if (l.isDraftMode())
+					noPublishedFlights += 1;
 			allLegsPublished = noPublishedFlights == 0;
 
 			super.state(allLegsPublished, "*", "acme.validation.flight.noDraftModeLegs.message");

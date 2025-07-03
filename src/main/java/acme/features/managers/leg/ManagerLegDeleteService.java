@@ -98,30 +98,35 @@ public class ManagerLegDeleteService extends AbstractGuiService<Manager, Leg> {
 		Dataset dataset;
 		Collection<Airport> airports;
 		Collection<Aircraft> planes;
+		Collection<Airline> airlines;
 		SelectChoices choicesDepartureAirport;
 		SelectChoices choicesArrivalAirport;
 		SelectChoices choicesPlane;
 		SelectChoices choicesStatus;
+		SelectChoices choicesAirline;
 
 		airports = this.repository.findAllAirports();
 		planes = this.repository.findAllPlanes();
+		airlines = this.repository.findAllAirlines();
 
 		choicesDepartureAirport = SelectChoices.from(airports, "iataCode", leg.getDepartureAirport());
 		choicesArrivalAirport = SelectChoices.from(airports, "iataCode", leg.getArrivalAirport());
 		choicesPlane = SelectChoices.from(planes, "registrationNumber", leg.getPlane());
 		choicesStatus = SelectChoices.from(LegStatus.class, leg.getStatus());
+		choicesAirline = SelectChoices.from(airlines, "iataCode", leg.getAirline());
 
 		dataset = super.unbindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "duration", "status", "draftMode");
 
 		dataset.put("departureAirport", choicesDepartureAirport.getSelected().getKey());
 		dataset.put("arrivalAirport", choicesArrivalAirport.getSelected().getKey());
 		dataset.put("plane", choicesPlane.getSelected().getKey());
+		dataset.put("airline", choicesAirline);
 
 		dataset.put("departureAirports", choicesDepartureAirport);
 		dataset.put("arrivalAirports", choicesArrivalAirport);
 		dataset.put("planes", choicesPlane);
 		dataset.put("statusOptions", choicesStatus);
-
+		dataset.put("airlines", choicesAirline);
 		dataset.put("masterId", leg.getFlight().getId());
 
 		super.getResponse().addData(dataset);

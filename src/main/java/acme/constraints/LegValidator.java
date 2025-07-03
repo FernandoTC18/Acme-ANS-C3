@@ -115,7 +115,7 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 					List<Leg> legsWithSamePlane = this.repository.computeDistinctLegsWithSameAircraft(aircraft.getRegistrationNumber(), leg.getId());
 
 					for (Leg l : legsWithSamePlane)
-						if (leg.getScheduledDeparture().before(l.getScheduledArrival()) && leg.getScheduledArrival().after(l.getScheduledDeparture()))
+						if (MomentHelper.isBefore(leg.getScheduledDeparture(), l.getScheduledArrival()) && MomentHelper.isAfter(leg.getScheduledArrival(), l.getScheduledDeparture()))
 							aircraftMatchesNumber += 1;
 					availableAircraft = aircraftMatchesNumber == 0;
 					super.state(context, availableAircraft, "plane", "acme.validation.leg.noAvailableAircraft.message");
