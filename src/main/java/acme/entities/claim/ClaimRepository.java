@@ -15,4 +15,7 @@ public interface ClaimRepository extends AbstractRepository {
 	@Query("select tl from TrackingLog tl where tl.claim.id = :claimId and tl.draftMode = :draftMode")
 	Collection<TrackingLog> findPublishedTrackingLogsByClaimId(int claimId, boolean draftMode);
 
+	@Query("select c from Claim c where c.passengerEmail = :email")
+	Claim findClaimByExistingEmail(String email);
+
 }

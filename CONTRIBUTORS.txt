@@ -9,7 +9,6 @@
 # they accept any liabilities with respect to them.
 
 - Rafael Corchuelo (corchu@us.es)
-- José Manuel García Rosa (josgarros@alum.us.es)
 - Julián Romero Parejo (julrompar@alum.us.es)
 - Fernando Triguero Caballo (fertricab@alum.us.es)
 - Peter Philip Carter González (petcargon@alum.us.es)
