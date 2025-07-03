@@ -49,9 +49,7 @@ public class ManagerLegListService extends AbstractGuiService<Manager, Leg> {
 	public void unbind(final Leg leg) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(leg, "flightNumber", "scheduledDeparture", "status");
-		dataset.put("departureAirport", leg.getDepartureAirport() != null ? leg.getDepartureAirport().getName() : "");
-		dataset.put("arrivalAirport", leg.getArrivalAirport() != null ? leg.getArrivalAirport().getName() : "");
+		dataset = super.unbindObject(leg, "flightNumber", "scheduledDeparture", "status", "departureAirport.city", "arrivalAirport.city");
 
 		super.getResponse().addData(dataset);
 

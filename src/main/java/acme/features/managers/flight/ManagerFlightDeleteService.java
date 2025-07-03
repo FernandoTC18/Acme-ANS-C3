@@ -53,6 +53,7 @@ public class ManagerFlightDeleteService extends AbstractGuiService<Manager, Flig
 	public void validate(final Flight flight) {
 		List<Leg> legs;
 
+		int publishedLegs = 0;
 		boolean noPublishedLegs = true;
 
 		{
@@ -60,7 +61,9 @@ public class ManagerFlightDeleteService extends AbstractGuiService<Manager, Flig
 
 			for (int i = 0; i < legs.size(); i++)
 
-				noPublishedLegs = noPublishedLegs && legs.get(i).isDraftMode();
+				if (!legs.get(i).isDraftMode())
+					publishedLegs += 1;
+			noPublishedLegs = publishedLegs == 0;
 
 			super.state(noPublishedLegs, "*", "acme.validation.flight.noPublishedLegs.message");
 		}
