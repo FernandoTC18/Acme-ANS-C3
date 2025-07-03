@@ -55,7 +55,7 @@ acme.validation.assistanceAgent.unique-assistance-agent.message = The employee c
 acme.validation.assistanceAgent.invalid-employee-code.message = The employee code must begin with the first letter of the name followed by the first letter of the first surname
 
 #Claim Validation
-acme.validation.leg-time.message = Claims must be linked to legs that occurred
+acme.validation.claim.duplicatedPassengerEmail.message = A claim has already been registered using that passenger’s email address
 
 # TrackingLog Validation
 acme.validation.trackingLog.incorrect-indicator.message = The indicator must be ACCEPTED or REJECTED when the resolution percentage is 100%, and PENDING when it is less than 100%

@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
-import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claim.Claim;
@@ -52,7 +51,7 @@ public class AssistanceAgentClaimUpdateService extends AbstractGuiService<Assist
 				moment = claim.getRegistrationMoment();
 				type = super.getRequest().getData("type", String.class);
 
-				if (leg == null || leg.isDraftMode() || moment.before(leg.getScheduledArrival()) || legId != 0 && !this.isValidEnum(ClaimType.class, type))
+				if (legId != 0 && leg == null || leg != null && (leg.isDraftMode() || moment.before(leg.getScheduledArrival())) || !type.equals("0") && !this.isValidEnum(ClaimType.class, type))
 					status = false;
 				else
 					status = true;
@@ -103,7 +102,7 @@ public class AssistanceAgentClaimUpdateService extends AbstractGuiService<Assist
 		SelectChoices legChoices;
 		SelectChoices typeChoices;
 
-		legs = this.repository.findAllPublishedPastLegs(MomentHelper.getCurrentMoment());
+		legs = this.repository.findAllPublishedPastLegs(claim.getRegistrationMoment());
 
 		typeChoices = SelectChoices.from(ClaimType.class, claim.getType());
 		legChoices = SelectChoices.from(legs, "flightNumber", claim.getLeg());
@@ -119,11 +118,11 @@ public class AssistanceAgentClaimUpdateService extends AbstractGuiService<Assist
 
 	// Ancillary methods ------------------------------------------------------
 
-	private <E extends Enum<E>> boolean isValidEnum(final Class<E> enumClass, final String name) {
-		if (name == null)
+	private <E extends Enum<E>> boolean isValidEnum(final Class<E> enumClass, final String value) {
+		if (value == null)
 			return false;
 		try {
-			Enum.valueOf(enumClass, name);
+			Enum.valueOf(enumClass, value);
 			return true;
 		} catch (IllegalArgumentException e) {
 			return false;
