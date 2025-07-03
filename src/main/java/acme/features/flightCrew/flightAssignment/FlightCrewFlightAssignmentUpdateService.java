@@ -66,7 +66,10 @@ public class FlightCrewFlightAssignmentUpdateService extends AbstractGuiService<
 					legId = super.getRequest().getData("leg", int.class);
 					if (legId != 0) {
 						leg = this.repository.findLegById(legId);
-						correctLeg = leg != null && MomentHelper.isFuture(assignment.getLeg().getScheduledDeparture());
+						boolean legIsNull = leg != null;
+						boolean legIsDraftMode = legIsNull ? leg.isDraftMode() : false;
+						boolean futureLeg = legIsNull ? MomentHelper.isFuture(leg.getScheduledDeparture()) : false;
+						correctLeg = legIsNull && !legIsDraftMode && futureLeg;
 					}
 
 					status = correctLeg && draftMode;
@@ -116,8 +119,6 @@ public class FlightCrewFlightAssignmentUpdateService extends AbstractGuiService<
 
 			super.state(MomentHelper.isFuture(leg.getScheduledDeparture()), "leg", "acme.validation.legNotFuture.message");
 
-			super.state(!draftMode, "leg", "acme.validation.unpublishedLeg.message");
-
 			//Checks if the member is assigned to a leg that overlaps with the selected one
 			boolean simultaneousLegs = memberAssignments.stream()
 				.anyMatch(x -> MomentHelper.isBefore(x.getLeg().getScheduledDeparture(), assignment.getLeg().getScheduledArrival()) && MomentHelper.isBefore(assignment.getLeg().getScheduledDeparture(), x.getLeg().getScheduledArrival()));
@@ -146,10 +147,7 @@ public class FlightCrewFlightAssignmentUpdateService extends AbstractGuiService<
 		SelectChoices statusChoices;
 		SelectChoices dutyChoices;
 
-		if (MomentHelper.isPast(assignment.getLeg().getScheduledDeparture()))
-			legs = this.repository.findAllLegs();
-		else
-			legs = this.repository.findFutureAndPublishedLegs(MomentHelper.getCurrentMoment());
+		legs = this.repository.findFutureAndPublishedLegs(MomentHelper.getCurrentMoment());
 
 		legChoices = SelectChoices.from(legs, "flightNumber", assignment.getLeg());
 		statusChoices = SelectChoices.from(AssignmentStatus.class, assignment.getStatus());
