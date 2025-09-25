@@ -40,7 +40,7 @@ public class AssistanceAgentValidator extends AbstractValidator<ValidAssistanceA
 
 				correctCodeFormat = assistanceAgent.getEmployeeCode() != null && Pattern.matches("^[A-Z]{2,3}\\d{6}$", assistanceAgent.getEmployeeCode());
 
-				super.state(context, correctCodeFormat, "codeFormat", "acme.validation.assistanceAgent.invalid-employeeCode-format.message");
+				super.state(context, correctCodeFormat, "employeeCode", "acme.validation.assistanceAgent.invalid-employeeCode.message");
 
 			}
 			{
@@ -49,7 +49,7 @@ public class AssistanceAgentValidator extends AbstractValidator<ValidAssistanceA
 
 				existingAssistanceAgent = this.repository.findAssistanceAgentByCode(assistanceAgent.getEmployeeCode());
 				uniqueAssistanceAgent = existingAssistanceAgent == null || assistanceAgent.getEmployeeCode().isBlank() || existingAssistanceAgent.equals(assistanceAgent);
-				super.state(context, uniqueAssistanceAgent, "uniqueAssistanceAgent", "acme.validation.assistanceAgent.unique-assistance-agent.message");
+				super.state(context, uniqueAssistanceAgent, "employeeCode", "acme.validation.assistanceAgent.unique-assistance-agent.message");
 
 			}
 			{
@@ -63,7 +63,7 @@ public class AssistanceAgentValidator extends AbstractValidator<ValidAssistanceA
 				employeeCode = assistanceAgent.getEmployeeCode();
 
 				correctEmployeeCode = name.charAt(0) == employeeCode.charAt(0) && surname.charAt(0) == employeeCode.charAt(1);
-				super.state(context, correctEmployeeCode, "employeeCode", "acme.validation.assistanceAgent.invalid-employee-code.message");
+				super.state(context, correctEmployeeCode, "employeeCode", "acme.validation.assistanceAgent.invalid-employeeCode-begin.message");
 			}
 		}
 
