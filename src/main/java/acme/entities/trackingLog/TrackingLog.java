@@ -29,7 +29,7 @@ import lombok.Setter;
 @Setter
 @ValidTrackingLog
 @Table(indexes = {
-	@Index(columnList = "draftMode")
+	@Index(columnList = "claim_id, draftMode"), @Index(columnList = "claim_id, resolutionPercentage")
 })
 public class TrackingLog extends AbstractEntity {
 
