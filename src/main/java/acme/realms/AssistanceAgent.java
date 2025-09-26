@@ -37,7 +37,7 @@ public class AssistanceAgent extends AbstractRole {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$", message = "{acme.validation.assistance-agent.invalid-employeeCode-format.message}")
+	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$", message = "{acme.validation.assistance-agent.incorrectly-formatted-employeeCode.message}")
 	@Column(unique = true)
 	private String				employeeCode;
 

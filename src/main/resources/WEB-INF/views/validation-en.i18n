@@ -50,9 +50,10 @@ acme.validation.service.correctPattern.message = the promotional code is not in 
 acme.validation.service.promCodeNotInDb.message = the promotional code  is a unique value
 
 # AssistanceAgent Validation
-acme.validation.assistanceAgent.invalid--employeeCode-format.message = The employee code is not in the correct format or is null
+acme.validation.assistance-agent.incorrectly-formatted-employeeCode.message = The ‘employeeCode’ field does not conform to the pattern "AB123456" or "ABC123456"
+acme.validation.assistanceAgent.invalid-employeeCode.message = Invalid Employee Code
 acme.validation.assistanceAgent.unique-assistance-agent.message = The employee code is already in use
-acme.validation.assistanceAgent.invalid-employee-code.message = The employee code must begin with the first letter of the name followed by the first letter of the first surname
+acme.validation.assistanceAgent.invalid-employeeCode-begin.message = The employee code must begin with the first letter of the name followed by the first letter of the first surname
 
 #Claim Validation
 acme.validation.claim.duplicatedPassengerEmail.message = A claim has already been registered using that passenger’s email address
