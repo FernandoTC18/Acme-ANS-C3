@@ -52,24 +52,30 @@ public class TrackingLogValidator extends AbstractValidator<ValidTrackingLog, Tr
 				List<TrackingLog> allLogs = new ArrayList<>(logs);
 				if (!allLogs.contains(trackingLog))
 					allLogs.add(trackingLog);
-
+				boolean isNew100;
 				allLogs.sort(Comparator.comparing(TrackingLog::getOrderDate));
 
+				if (trackingLog.getResolutionPercentage() != null)
+					isNew100 = Double.compare(trackingLog.getResolutionPercentage(), 100.00) == 0;
+				else
+					isNew100 = false;
+
 				boolean correctPercentage = true;
-				for (int i = 0; i < allLogs.size() - 1; i++) {
-					TrackingLog currentLog = allLogs.get(i);
-					TrackingLog nextLog = allLogs.get(i + 1);
-					if (currentLog.getResolutionPercentage() != null && nextLog.getResolutionPercentage() != null) {
-						if (currentLog.getResolutionPercentage().equals(Double.valueOf(100.00))) {
-							correctPercentage = nextLog.getResolutionPercentage().equals(Double.valueOf(100.00));
-							break;
-						}
-						if (currentLog.getResolutionPercentage() >= nextLog.getResolutionPercentage()) {
-							correctPercentage = false;
-							break;
-						}
+
+				if (!isNew100)
+					for (int i = 0; i < allLogs.size() - 1; i++) {
+						TrackingLog currentLog = allLogs.get(i);
+						TrackingLog nextLog = allLogs.get(i + 1);
+
+						Double cur = currentLog.getResolutionPercentage();
+						Double nxt = nextLog.getResolutionPercentage();
+
+						if (cur != null && nxt != null)
+							if (Double.compare(cur, nxt) >= 0) {
+								correctPercentage = false;
+								break;
+							}
 					}
-				}
 
 				super.state(context, correctPercentage, "resolutionPercentage", "acme.validation.trackingLog.invalid-resolution-percentage.message");
 			}

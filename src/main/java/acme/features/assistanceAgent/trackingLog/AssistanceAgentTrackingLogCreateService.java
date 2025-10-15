@@ -94,14 +94,14 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 
 			totalCompletedLogs = logs.stream().count();
 			publishedCompletedLogs = logs.stream().filter(isPublished).count();
-
-			if (publishedCompletedLogs == 0) {
-				correctlogs = totalCompletedLogs < 1;
-				super.state(correctlogs, "*", "acme.validation.trackingLog.invalid-number-completed-logs.message");
-			} else {
-				correctlogs = totalCompletedLogs < 2;
-				super.state(correctlogs, "*", "acme.validation.trackingLog.invalid-number-completed-published-logs.message");
-			}
+			if (trackingLog.getResolutionPercentage() != null)
+				if (publishedCompletedLogs == 0 && Double.compare(trackingLog.getResolutionPercentage(), 100.00) == 0) {
+					correctlogs = totalCompletedLogs < 1;
+					super.state(correctlogs, "*", "acme.validation.trackingLog.invalid-number-completed-logs.message");
+				} else {
+					correctlogs = totalCompletedLogs < 2;
+					super.state(correctlogs, "*", "acme.validation.trackingLog.invalid-number-completed-published-logs.message");
+				}
 		}
 	}
 
