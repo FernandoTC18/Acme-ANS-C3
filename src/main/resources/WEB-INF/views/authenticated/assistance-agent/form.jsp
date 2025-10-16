@@ -12,4 +12,8 @@
 	<jstl:if test="${_command == 'create'}">
 		<acme:submit  code="authenticated.assistance-agent.form.button.create" action="/authenticated/assistance-agent/create"/>
 	</jstl:if>
+	<jstl:if test="${_command == 'update'}">
+		<acme:input-moment code="authenticated.assistance-agent.form.label.moment" path="moment" readonly="true"/>
+		<acme:submit code="authenticated.assistance-agent.form.button.update" action="/authenticated/assistance-agent/update"/>
+	</jstl:if>
 </acme:form>
