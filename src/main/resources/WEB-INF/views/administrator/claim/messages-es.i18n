@@ -1,0 +1,19 @@
+# List
+administrator.claim.list.title = Listado de reclamaciones
+administrator.claim.list.label.registrationMoment = Momento de Registro
+administrator.claim.list.label.passengerEmail= Correo del Pasajero
+administrator.claim.list.label.description = Descripción
+administrator.claim.list.label.type = Tipo
+administrator.claim.list.label.indicator = Indicador
+administrator.claim.list.label.leg = Tramo
+administrator.claim.list.label.draftMode = Borrador
+
+# Form
+administrator.claim.form.title = Detalles de la reclamación
+administrator.claim.form.label.registrationMoment = Momento de Registro
+administrator.claim.form.label.passengerEmail= Correo del Pasajero
+administrator.claim.form.label.description = Descripción
+administrator.claim.form.label.type = Tipo
+administrator.claim.form.label.indicator = Indicador
+administrator.claim.form.label.leg = Tramo de Vuelo
+administrator.claim.form.button.tracking-log.list = Registros de seguimiento asociados

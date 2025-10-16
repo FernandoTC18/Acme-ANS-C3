@@ -1,0 +1,19 @@
+# List
+administrator.tracking-log.list.title = Listing Tracking Logs
+administrator.tracking-log.list.label.lastUpdateMoment = Last Update Moment
+administrator.tracking-log.list.label.step= Step
+administrator.tracking-log.list.label.resolutionPercentage = Resolution Percentage
+administrator.tracking-log.list.label.indicator = Indicator
+administrator.tracking-log.list.label.resolution = Resolution
+administrator.tracking-log.list.label.orderDate = Order Date
+administrator.tracking-log.list.label.draftMode = Draft
+
+# Form
+administrator.tracking-log.form.title = Tracking Log Details
+administrator.tracking-log.form.label.lastUpdateMoment = Last Update Moment
+administrator.tracking-log.form.label.step= Step
+administrator.tracking-log.form.label.resolutionPercentage = Resolution Percentage
+administrator.tracking-log.form.label.indicator = Indicator
+administrator.tracking-log.form.label.resolution = Resolution
+administrator.tracking-log.form.label.orderDate = Order Date
+administrator.tracking-log.form.label.draftMode = Draft
