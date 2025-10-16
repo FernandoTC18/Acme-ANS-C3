@@ -1,0 +1,97 @@
+<diagram program="umletino" version="15.1"><zoom_level>8</zoom_level><help_text></help_text><element><id>UMLClass</id><coordinates><x>744</x><y>160</y><w>480</w><h>112</h></coordinates><panel_attributes>&lt;&lt;Role&gt;&gt;
+Assistance Agent  {ValidAssistanceAgentEmployeeCode}
+--
++ employeeCode: String {Mandatory, ValidString(pattern = "^[A-Z]{2-3}\d{6}$"), Column(unique=true)}
++ spokenLanguages: String {Mandatory, ValidLongText, Automapped}
++ moment: Date {Mandatory, ValidMoment(past=true), Temporal(TemporalType.TIMESTAMP)}
++ briefBio: String {Optional, ValidLongText, Automapped}
++ salary: Money {Optional, ValidMoney, Automapped}
++ photo: String {Optional, ValidURL, Automapped}
+bg=orange</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>744</x><y>648</y><w>480</w><h>128</h></coordinates><panel_attributes>&lt;&lt;Entity&gt;&gt;
+Airline
+--
++ name: String {Mandatory, ValidShortText, Automapped}
++ iataCode: String {Mandatory, ValidString(pattern = "^[A-Z]{3}$"), Column(unique = true)}
++ webSite: String {Mandatory, ValidURL, Automapped}
++ type: AirlineType {Mandatory, Valid, Automapped}
++ foundation:  Date {Mandatory, ValidMoment(past=true), Temporal(TemporalType.TIMESTAMP)
++ email: String {Optional, ValidEmail, Automapped}
++ phoneNumber: String {Mandatory, ValidString(patternr = "^\\+?\\d{6,15}$"), Automapped}
+bg=yellow</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>912</x><y>264</y><w>80</w><h>400</h></coordinates><panel_attributes>Works for &gt;
+lt=&lt;-x
+m1=1
+m2=*
+
+</panel_attributes><additional_attributes>10;480;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>64</x><y>136</y><w>496</w><h>128</h></coordinates><panel_attributes>&lt;&lt;Entity&gt;&gt;
+Claim {ValidClaim}
+--
++ registrationMoment: Date {Mandatory, ValidMoment(past=true), Temporal(TemporalType.TIMESTAMP)}
++ passengerEmail: String {Mandatory, ValidEmail, Automapped}
++ description: String {Mandatory, ValidLongText, Automapped}
++ type: ClaimType {Mandatory, Valid, Automapped}
++ draftMode : Boolean {Mandatory, Automapped}
+
+--
++ getIndicator(): ClaimStatus
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>424</x><y>256</y><w>72</w><h>120</h></coordinates><panel_attributes>Records &gt;
+lt=&lt;-x
+m1=1
+m2=*
+
+</panel_attributes><additional_attributes>10;10;10;130</additional_attributes></element><element><id>Relation</id><coordinates><x>552</x><y>208</y><w>208</w><h>48</h></coordinates><panel_attributes>Registered by &gt;
+lt=&lt;-x
+m1=1
+m2=*
+
+</panel_attributes><additional_attributes>240;20;10;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>656</y><w>440</w><h>128</h></coordinates><panel_attributes>&lt;&lt;Entity&gt;&gt;
+Leg {ValidFlightNumber, ValidTimeBetweenConsecutiveLegs}
+--
++ flightNumber: String {Mandatory, Valid, Column(unique=true)}
++ scheduledDeparture: Date {Mandatory, ValidMoment, Temporal(TemporalType.TIMESTAMP)}
++ scheduledArrival: Date {Mandatory, ValidMoment, Temporal(TemporalType.TIMESTAMP)
++ status: LegStatus {Mandatory, Valid, Automapped}
++ draftMode: Boolean {Mandatory, Automapped}
+---
++getDuration(): Double
+bg=yellow</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>112</x><y>256</y><w>72</w><h>416</h></coordinates><panel_attributes>Refers to &gt;
+lt=&lt;-x
+m1=1
+m2=*
+
+</panel_attributes><additional_attributes>10;500;10;10</additional_attributes></element><element><id>UMLNote</id><coordinates><x>600</x><y>552</y><w>128</w><h>72</h></coordinates><panel_attributes>orderDate is an auxiliary 
+date used to sort 
+TrackingLog records by 
+age, independent of 
+lastUpdateMoment.
+bg=white
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLInterface</id><coordinates><x>1496</x><y>8</y><w>64</w><h>80</h></coordinates><panel_attributes>Interface
+--
+Operation1
+Operation2</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>656</x><y>496</y><w>24</w><h>72</h></coordinates><panel_attributes></panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element><element><id>UMLNote</id><coordinates><x>1536</x><y>344</y><w>112</w><h>56</h></coordinates><panel_attributes>Note..
+bg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLNote</id><coordinates><x>1512</x><y>336</y><w>112</w><h>56</h></coordinates><panel_attributes>Note..
+bg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLNote</id><coordinates><x>320</x><y>0</y><w>240</w><h>104</h></coordinates><panel_attributes>getIndicator is computed as the indicator 
+of the most recent tracking log for this claim. 
+It obtains a ClaimRepository bean, queries 
+the published tracking logs for the claim with 
+the false flag, selects the log with the greatest 
+orderDate, and returns its indicator. 
+If no log is found, it returns ClaimStatus.PENDING.
+bg=white</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>440</x><y>96</y><w>24</w><h>56</h></coordinates><panel_attributes></panel_attributes><additional_attributes>10;50;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>312</x><y>368</y><w>480</w><h>136</h></coordinates><panel_attributes>&lt;&lt;Entity&gt;&gt;
+TrackingLog {ValidTrackingLog}
+--
++ lastUpdateMoment: Date {Mandatory, ValidMoment(past=true), Temporal(TemporalType.TIMESTAMP)}
++ step: String {Mandatory, ValidShortText, Automapped}
++ resolutionPercentage: Double {Mandatory, ValidScore, Automapped}
++ indicator: ClaimStatus {Mandatory, Valid, Automapped}
++ resolution: String {Optional, ValidLongText, Automapped}
++ compensation: Money {Optional, ValidMoney, Automapped}
++ orderDate: Date {Mandatory, ValidMoment(past=true), Temporal(TemporalType.TIMESTAMP)}
++ draftMode: Boolean {Mandatory, Automapped}
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLNote</id><coordinates><x>528</x><y>680</y><w>144</w><h>88</h></coordinates><panel_attributes>getDuration returns 
+the scheduled flight 
+duration in hours 
+(arrival − departure), 
+or null if either 
+timestamp is missing.
+bg=white
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>432</x><y>696</y><w>112</w><h>32</h></coordinates><panel_attributes></panel_attributes><additional_attributes>10;20;120;20</additional_attributes></element></diagram>

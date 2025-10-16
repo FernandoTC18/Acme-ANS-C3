@@ -1,0 +1,15 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>120</x><y>260</y><w>360</w><h>220</h></coordinates><panel_attributes>&lt;&lt;Form&gt;&gt;
+AssistanceAgentDashboard
+--
++ ratioClaimsResolved: Double
++ ratioClaimsRejected: Double
++ topMonthsHighestClaims: Map&lt;String, Integer&gt;
++ averageNumberLogsPerClaims: double
++ minimumNumberLogsPerClaims: int
++ maximumNumberLogsPerClaims: int
++ deviationNumberLogsPerClaims: double
++ averageNumberClaimsAssisted: double
++ minimumNumberClaimsAssisted: int
++ maximumNumberClaimsAssisted: int
++ deviationNumberClaimsAssisted: double
+bg=cyan</panel_attributes><additional_attributes></additional_attributes></element></diagram>

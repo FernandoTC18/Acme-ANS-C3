@@ -1,0 +1,15 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>150</x><y>380</y><w>160</w><h>100</h></coordinates><panel_attributes>&lt;&lt;Enum&gt;&gt;
+ClaimStatus
+--
++ PENDING
++ ACCEPTED
++ REJECTED
+
+bg=LIGHT_GRAY</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>150</x><y>260</y><w>160</w><h>110</h></coordinates><panel_attributes>&lt;&lt;Enum&gt;&gt;
+ClaimType
+--
++ FLIGHT_ISSUES
++ LUGGAGE_ISSUES
++ SECURITY_INCIDENT
++ OTHER_ISSUES
+bg=LIGHT_GRAY</panel_attributes><additional_attributes></additional_attributes></element></diagram>
