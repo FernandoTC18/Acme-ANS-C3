@@ -38,9 +38,10 @@ public class AssistanceAgentValidator extends AbstractValidator<ValidAssistanceA
 			{
 				boolean correctCodeFormat;
 
-				correctCodeFormat = assistanceAgent.getEmployeeCode() != null && Pattern.matches("^[A-Z]{2,3}\\d{6}$", assistanceAgent.getEmployeeCode());
-
-				super.state(context, correctCodeFormat, "employeeCode", "acme.validation.assistanceAgent.invalid-employeeCode.message");
+				if (!assistanceAgent.getEmployeeCode().isBlank()) {
+					correctCodeFormat = Pattern.matches("^[A-Z]{2,3}\\d{6}$", assistanceAgent.getEmployeeCode());
+					super.state(context, correctCodeFormat, "employeeCode", "acme.validation.assistanceAgent.invalid-employeeCode.message");
+				}
 
 			}
 			{
@@ -60,10 +61,11 @@ public class AssistanceAgentValidator extends AbstractValidator<ValidAssistanceA
 
 				name = assistanceAgent.getIdentity().getName();
 				surname = assistanceAgent.getIdentity().getSurname();
-				employeeCode = assistanceAgent.getEmployeeCode();
-
-				correctEmployeeCode = name.charAt(0) == employeeCode.charAt(0) && surname.charAt(0) == employeeCode.charAt(1);
-				super.state(context, correctEmployeeCode, "employeeCode", "acme.validation.assistanceAgent.invalid-employeeCode-begin.message");
+				if (!assistanceAgent.getEmployeeCode().isBlank()) {
+					employeeCode = assistanceAgent.getEmployeeCode();
+					correctEmployeeCode = name.charAt(0) == employeeCode.charAt(0) && surname.charAt(0) == employeeCode.charAt(1);
+					super.state(context, correctEmployeeCode, "employeeCode", "acme.validation.assistanceAgent.invalid-employeeCode-begin.message");
+				}
 			}
 		}
 

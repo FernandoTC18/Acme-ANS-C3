@@ -79,6 +79,7 @@ acme.validation.aircraft.used-registrationNumber.message = El número de registr
 # Airline Validation
 acme.validation.airline.invalid-iataCode.message = El código IATa no existe o no sigue el patrón ‘^[A-Z]{2,3}’.
 acme.validation.airline.uniqueIataCode.message = Este código IATA ya pertenece a una aerolínea. Por favor, intente con otro nuevo.
+acme.validation.airline.not.null = No puede ser null
 
 # Airport Validation
 acme.validation.airport.invalid-iataCode.message = Código Iata inválido
