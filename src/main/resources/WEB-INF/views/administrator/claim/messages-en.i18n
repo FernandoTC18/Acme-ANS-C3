@@ -1,0 +1,20 @@
+# List
+administrator.claim.list.title = Listing claims
+administrator.claim.list.label.registrationMoment = Registration Moment
+administrator.claim.list.label.passengerEmail= Passenger Email
+administrator.claim.list.label.description = Description
+administrator.claim.list.label.type = Type
+administrator.claim.list.label.indicator = Indicator
+administrator.claim.list.label.leg = Leg
+administrator.claim.list.label.draftMode = Draft
+administrator.claim.list.button.create = Create
+
+# Form
+administrator.claim.form.title = Claim details
+administrator.claim.form.label.registrationMoment = Registration Moment
+administrator.claim.form.label.passengerEmail= Passenger Email
+administrator.claim.form.label.description = Description
+administrator.claim.form.label.type = Type
+administrator.claim.form.label.indicator = Indicator
+administrator.claim.form.label.leg = Leg
+administrator.claim.form.button.tracking-log.list = Associated Tracking Logs

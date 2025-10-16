@@ -1,0 +1,19 @@
+# List
+administrator.tracking-log.list.title = Listado de registros de seguimiento
+administrator.tracking-log.list.label.lastUpdateMoment = Fecha de última actualización
+administrator.tracking-log.list.label.step= Paso
+administrator.tracking-log.list.label.resolutionPercentage = Porcentaje de resolución
+administrator.tracking-log.list.label.indicator = Indicador
+administrator.tracking-log.list.label.resolution = Resolución
+administrator.tracking-log.list.label.orderDate = Fecha de Creación
+administrator.tracking-log.list.label.draftMode = Borrador
+
+# Form
+administrator.tracking-log.form.title = Detalles del registro de seguimiento
+administrator.tracking-log.form.label.lastUpdateMoment = Fecha de última actualización
+administrator.tracking-log.form.label.step= Paso
+administrator.tracking-log.form.label.resolutionPercentage = Porcentaje de resolución
+administrator.tracking-log.form.label.indicator = Indicador
+administrator.tracking-log.form.label.resolution = Resolución
+administrator.tracking-log.form.label.orderDate = Fecha de Creación
+administrator.tracking-log.form.label.draftMode = Borrador
