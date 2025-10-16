@@ -16,7 +16,7 @@ import acme.realms.AssistanceAgent;
 public class AssistanceAgentClaimListUndergoingService extends AbstractGuiService<AssistanceAgent, Claim> {
 
 	@Autowired
-	AssistanceAgentClaimRepository repository;
+	private AssistanceAgentClaimRepository repository;
 
 
 	@Override
